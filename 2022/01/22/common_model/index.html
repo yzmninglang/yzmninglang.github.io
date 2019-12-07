@@ -287,78 +287,32 @@
     <div class="post-body" itemprop="articleBody">
         <p>小小总结，希望以后对自己有帮助</p>
 <span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-target="_blank" rel="noopener" href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-target="_blank" rel="noopener" href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+<h1 id="权重系数确定的方法"><a href="#权重系数确定的方法" class="headerlink" title="权重系数确定的方法"></a>权重系数确定的方法</h1><p>题设：n个评价对象，m个评价指标观测值为</p>
+<script type="math/tex; mode=display">
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11} & a_{12}&...&a_{1,m}\\\\a_{21} & a_{22}&...&a_{2m}\\ \vdots&...&...&\\a_{n1} & a_{n2}&...&a_{nm}\end{bmatrix}</script><h2 id="均方差法"><a href="#均方差法" class="headerlink" title="均方差法"></a>均方差法</h2><script type="math/tex; mode=display">
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow \begin{bmatrix}s_1&\cdots&s_m\end{bmatrix}\\</script><script type="math/tex; mode=display">
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\</script><script type="math/tex; mode=display">
+\begin{bmatrix}w_1& w_2&\cdots w_m\end{bmatrix}</script><h2 id="极差法"><a href="#极差法" class="headerlink" title="极差法"></a>极差法</h2><script type="math/tex; mode=display">
+r_{j}=\max _{1 \leq i<k \leq n}\left\{\left|a_{i j}-a_{k j}\right|\right\}(j=1,2, \cdots, m)\\</script><script type="math/tex; mode=display">
+\max_{every element}\begin{bmatrix}rand(a_{i1}-a_{k1})&\cdots&rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&r_2&\cdots&r_m\end{bmatrix}</script><p>所以第$j$项指标的权重系数为</p>
+<script type="math/tex; mode=display">
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)</script><h2 id="熵值法"><a href="#熵值法" class="headerlink" title="熵值法"></a>熵值法</h2><p>特征比重：</p>
+<p>在<script type="math/tex">\mu_j=\sum_{i=1}^{n} a_{i j}>0</script>,第$j$项指标的特征比重为</p>
+<script type="math/tex; mode=display">
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}</script><p>第$j$项的熵值为：</p>
+<script type="math/tex; mode=display">
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&\cdots&e_m\end{bmatrix}</script><p>不难看出，如果第$j$项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第$j$项指标的差异系数为</p>
+<script type="math/tex; mode=display">
+g_{j}=1-e_{j}(j=1,2, \cdots, m)</script><p>如果第项指标的观测值差异越大，则差异系数$g$就越大，第$j$项指标也就越重要。</p>
+<p>第$j$项的权重系数为</p>
+<script type="math/tex; mode=display">
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文章:</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a target="_blank" rel="noopener" href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory">信息熵</a>)</p>
 
     </div>
 
@@ -400,8 +354,8 @@ target="_blank" rel="noopener" href="https://en.wikipedia.iwiki.eu.org/wiki/Entr
 
 
 <div class="copyright">
-  &copy; 2019 – 
-  <span itemprop="copyrightYear">2023</span>
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class=""></i>
   </span>
