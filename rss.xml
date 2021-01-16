@@ -5,13 +5,13 @@
         <link>http://example.com</link>
         <description></description>
         <language>en</language>
-        <pubDate>Mon, 14 Dec 2020 10:48:53 +0800</pubDate>
-        <lastBuildDate>Mon, 14 Dec 2020 10:48:53 +0800</lastBuildDate>
+        <pubDate>Sat, 16 Jan 2021 10:27:25 +0800</pubDate>
+        <lastBuildDate>Sat, 16 Jan 2021 10:27:25 +0800</lastBuildDate>
         <item>
-            <guid isPermalink="true">http://example.com/2020/12/14/c%20language%20note_1/</guid>
+            <guid isPermalink="true">http://example.com/2021/01/16/c%20language%20note_1/</guid>
             <title>C language</title>
-            <link>http://example.com/2020/12/14/c%20language%20note_1/</link>
-            <pubDate>Mon, 14 Dec 2020 10:48:53 +0800</pubDate>
+            <link>http://example.com/2021/01/16/c%20language%20note_1/</link>
+            <pubDate>Sat, 16 Jan 2021 10:27:25 +0800</pubDate>
             <description><![CDATA[ &lt;h2 id=&#34;string&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#string&#34;&gt;#&lt;/a&gt; &lt;em&gt;&lt;strong&gt;string&lt;/strong&gt;&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Function&lt;/em&gt;&lt;/p&gt;
 &lt;ol&gt;
