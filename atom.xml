@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://example.com</id>
+    <id>https://yzmninglang.github.io</id>
     <title>NingLang</title>
-    <link href="http://example.com" />
+    <link href="https://yzmninglang.github.io" />
     <updated>2021-01-16T02:27:25.500Z</updated>
     <entry>
-        <id>http://example.com/2021/01/16/c%20language%20note_1/</id>
+        <id>https://yzmninglang.github.io/2021/01/16/c%20language%20note_1/</id>
         <title>C language</title>
-        <link rel="alternate" href="http://example.com/2021/01/16/c%20language%20note_1/"/>
+        <link rel="alternate" href="https://yzmninglang.github.io/2021/01/16/c%20language%20note_1/"/>
         <content type="html">&lt;h2 id=&#34;string&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#string&#34;&gt;#&lt;/a&gt; &lt;em&gt;&lt;strong&gt;string&lt;/strong&gt;&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;Function&lt;/em&gt;&lt;/p&gt;
 &lt;ol&gt;
