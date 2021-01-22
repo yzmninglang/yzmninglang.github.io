@@ -8,10 +8,11 @@
         <id>https://yzmninglang.github.io/2021/01/22/%E4%BB%8A%E6%97%A5%E6%A0%A1%E5%9B%AD/</id>
         <title>今日校园</title>
         <link rel="alternate" href="https://yzmninglang.github.io/2021/01/22/%E4%BB%8A%E6%97%A5%E6%A0%A1%E5%9B%AD/"/>
-        <content type="html">&lt;p&gt;​	总的来说，我已经是第二次疫情在家了，本人的记性一直都不太好，去年寒假的时候，每天还有一位热心的姐姐每天打电话问候我，我到现在都十分感谢那位给我打了一个寒假 + 一个学期电话的姐姐，但是现在，由于姐姐不能再继续提醒我了，但是这个记性依然还是很烂呀，而且我们学校每天需要填写的信息都是一样的，没办法，只能在网上搜索了一下教程，终于找到了一个与之相关的 GitHub 项目 ——&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1ppbW9Mb3ZlU2h1YW5nL2F1dG8tc3VibWl0&#34;&gt;auto-submit&lt;/span&gt;&lt;/p&gt;
+        <content type="html">&lt;h2 id=&#34;前言&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#前言&#34;&gt;#&lt;/a&gt; 前言&lt;/h2&gt;
+&lt;p&gt;​	总的来说，我已经是第二次疫情在家了，本人的记性一直都不太好，去年寒假的时候，每天还有一位热心的姐姐每天打电话问候我，我到现在都十分感谢那位给我打了一个寒假 + 一个学期电话的姐姐，但是现在，由于姐姐不能再继续提醒我了，但是这个记性依然还是很烂呀，而且我们学校每天需要填写的信息都是一样的，没办法，只能在网上搜索了一下教程，终于找到了一个与之相关的 GitHub 项目 ——&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9naXRodWIuY29tL1ppbW9Mb3ZlU2h1YW5nL2F1dG8tc3VibWl0&#34;&gt;auto-submit&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210122211835.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;从上传的时间来看，这个项目已经有了大半年了，而且有 400 star，毫不犹豫选择这个，这篇文章将会分为两个目的来给大家介绍，一个是小白上手，另一部分则是分享我整个的经历&lt;/p&gt;
-&lt;p&gt;## 小白上手&lt;/p&gt;
+&lt;h2 id=&#34;小白上手&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#小白上手&#34;&gt;#&lt;/a&gt; 小白上手&lt;/h2&gt;
 &lt;p&gt;​	首先注册搜索并注册腾讯云&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210122213427.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;然后进入云函数&lt;/p&gt;
@@ -61,12 +62,6 @@
 &lt;p&gt;​	至此，这个有趣的项目就弄完了，虽然在一天半时间，这个过程中我曾想过放弃很多次，但是考虑到每天填那个表，还是坚持了下载，但终究还是我运气好，就成功了，欢迎大家有问题啥的留言呀😂，最后分享一下喜悦&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210123003023.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;如果还想实现其他的功能建议自己去探索哟，比如拍照签到，因为我没有相关的条件（没有拍照签到的任务，无法测试😂）&lt;/p&gt;
-&lt;p&gt;&amp;lt;table&amp;gt;&lt;br /&gt;
-&amp;lt;tr&amp;gt;&lt;br /&gt;
-&amp;lt;td &amp;gt;&amp;lt;center&amp;gt;&amp;lt;img src=&amp;quot;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9waWN0dXJubC5vc3MtY24tc2hhbmdoYWkuYWxpeXVuY3MuY29tLzQ5OTZjMjljZjRmNjE5NTA0NThjOTNmZjNkNzU0YzQuanBn&#34;&gt;https://picturnl.oss-cn-shanghai.aliyuncs.com/4996c29cf4f61950458c93ff3d754c4.jpg&lt;/span&gt;&amp;quot; &amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/td&amp;gt;&lt;br /&gt;
-&amp;lt;td &amp;gt;&amp;lt;center&amp;gt;&amp;lt;img src=&amp;quot;&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9waWN0dXJubC5vc3MtY24tc2hhbmdoYWkuYWxpeXVuY3MuY29tLzY2ZWUxZjI0NjEzNTU0ZjI5NzY1N2E3NjQ2YjIxZDkuanBn&#34;&gt;https://picturnl.oss-cn-shanghai.aliyuncs.com/66ee1f24613554f297657a7646b21d9.jpg&lt;/span&gt;&amp;quot;  &amp;gt;&amp;lt;/center&amp;gt;&amp;lt;/td&amp;gt;&lt;br /&gt;
-&amp;lt;/tr&amp;gt;&lt;br /&gt;
-&amp;lt;/table&amp;gt;&lt;/p&gt;
 </content>
         <updated>2021-01-21T16:00:00.000Z</updated>
     </entry>
