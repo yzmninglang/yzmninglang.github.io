@@ -25,7 +25,7 @@
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210122213924.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;鼠标继续往下滑，将这里执行超时改成 60s&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210122214259.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;完成即可，如法炮制，新建一个层，随便输入一个名称，提交方法为默认（本地上传 zip）并且将&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9kZXY3Ni5iYWlkdXBhbi5jb20vMDEyMjIxYmIvMjAyMS8wMS8yMi9jMmVkNjE0OTVlNGE1ZmRkZTRjNGQwMjJiMzVjMTZkNS56aXA/c3Q9RkxVdndaWXBkZ1FYOE1zYmRnQkw2dyZhbXA7ZT0xNjExMzI1MjY0JmFtcDtiPVVXZGFQMVVsQW1JQU93YzFDejVUT1FZd0NpOVRmRk12Q1ROWUpRX2NfYyZhbXA7Zmk9MzY1MDcxMTcmYW1wO3BpZD0xMTctMTU1LTM1LTI0MSZhbXA7dXA9&#34;&gt; dependency&lt;/span&gt; (点击即可下载)，添加 python3.6 的运行环境&lt;/p&gt;
+&lt;p&gt;完成即可，如法炮制，新建一个层，随便输入一个名称，提交方法为默认（本地上传 zip）并且将&lt;span class=&#34;exturl&#34; data-url=&#34;aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VzLmNvbS9pNm5MM2twZzFraA==&#34;&gt; dependency&lt;/span&gt; (点击即可下载)，添加 python3.6 的运行环境&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210122215107.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;找到刚才的函数服务，进入刚刚创建的创建函数，清空其中的代码并且将下面的代码复制到其中并且保存&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210122215436.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
