@@ -51,7 +51,7 @@
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;软件的使用很简单，它的界面只是一个终端界面，你只要将 B 站视频网址粘贴，回车即可，默认视频的最高画质 (不开会员的情况下)😂&lt;/p&gt;
 &lt;p&gt;&lt;img data-src=&#34;https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;​		为什么要把它添加到环境变量呢，因为 B 站爬取的视频其实是分音频和视频的，而 ffmpeg 是一个音视频处理软件，我是先将音频 ( &lt;code&gt;1.mp3&lt;/code&gt; ) 和视频 ( &lt;code&gt;2.mp4&lt;/code&gt; ) 分别爬取，然后用 ffmpeg 把它们拼接在一起 &lt;code&gt;(自动删除1.mp3和1.mp4)&lt;/code&gt; ，我找了很多教程，实在不会把 ffmpeg 源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则运行软件时会报错。(欢迎留言)&lt;/p&gt;
+&lt;p&gt;​		为什么要把它添加到环境变量呢，因为 B 站爬取的视频其实是分音频和视频的，而 ffmpeg 是一个音视频处理软件，我是先将音频 ( &lt;code&gt;1.mp3&lt;/code&gt; ) 和视频 ( &lt;code&gt;1.mp4&lt;/code&gt; ) 分别爬取，然后用 ffmpeg 把它们拼接在一起 &lt;code&gt;(自动删除1.mp3和1.mp4)&lt;/code&gt; ，我找了很多教程，实在不会把 ffmpeg 源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则运行软件时会报错。(欢迎留言)&lt;/p&gt;
 &lt;h2 id=&#34;抓包&#34;&gt;&lt;a class=&#34;anchor&#34; href=&#34;#抓包&#34;&gt;#&lt;/a&gt; 抓包&lt;/h2&gt;
 &lt;p&gt;有时间再写吧。。。。。。。。。。。。。。&lt;/p&gt;
  ]]></description>
