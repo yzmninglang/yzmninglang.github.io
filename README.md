@@ -1,1 +1,2 @@
-# yzmninglang.github.io
+page has been closed
+
