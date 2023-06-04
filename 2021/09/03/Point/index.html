@@ -307,4 +307,139 @@ unchangeable and the content of address is unchangeable,example :</p>
 <p>Using a const to define a <code>integer</code> variable ,the keyword
 omitted is acceptable the definition as following is same:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-<p>formal parameters also can be describe
+<p>formal parameters also can be describe by <code>const</code>,for
+example:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
+<p>the method promise the array can't be changed ,only be read.</p></li>
+</ul>
+<h1 id="pointer-array">Pointer array</h1>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in fact , you see the definition of Pointer array ,It is like as
+follows:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
+<p>At the same time :</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
+<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
+so we can use the code to print 'a'</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="pointer-function">Pointer Function</h1>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is normal ,but There are some difference in
+next function declaration</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is pointer function ,the return is a
+pointer to <code>int</code> ,This is an address</p>
+<h1 id="pointer-to-function">Pointer To Function</h1>
+<p>To state a pointer to function ,which is a Pointer pointing function
+.declaration form:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
+<p>There are two ways to assign values to pointer variables</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
+<p>There are also two ways to call pointer to function</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
+<p>Example:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="new-and-delete">New and Delete</h1>
+<p>operation <code>new</code> can get a space from heap and return the
+pointer to point the first address of the memory,and <code>delete</code>
+can free the space</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space for multidimensional array:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space with initial value:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/03/C_C++/" rel="prev" title="C && C++ (1)">
+                  <i class="fa fa-chevron-left"></i> C && C++ (1)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/20/C&&C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/" rel="next" title="C&&C++问题总汇(1)">
+                  C&&C++问题总汇(1) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"> </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.sourcegcdn.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.sourcegcdn.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.sourcegcdn.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"gD4HJofNq9iaTrB7u4EHxQ0q-gzGzoHsz","appKey":"IXpSgH3nEsNcMlrnzY7YFjLV","serverURLs":"https://gd4hjofn.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":true,"requiredFields":["nick"],"el":"#valine-comments","path":"/2021/09/03/Point/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>

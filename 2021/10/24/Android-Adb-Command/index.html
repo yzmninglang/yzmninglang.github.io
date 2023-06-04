@@ -310,4 +310,160 @@ target="_blank" rel="noopener" href="https://picturnl.oss-cn-shanghai.aliyuncs.c
 <p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
 <p>然后使用下面的语句对应用进行安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
+<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
+<p>卸载app但保留数据和缓存文件：</p>
+<p><code>adb shell pm uninstall -k 包名</code></p>
+<h2 id="恢复data的app">恢复data的app</h2>
+<p>首先安装apk，打开，然后用push将data push到手机中去</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>微信降级</p>
+<p>首先，将<code>data</code>
+push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>重新启动手机</p>
+<p>然后使用adb安装软件（微信）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
+<p>可以完成无需登录的降级</p>
+<h2 id="钛备份恢复文件">钛备份恢复文件</h2>
+<p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
+<h1 id="输入内核">输入内核</h1>
+<p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
+<h1 id="adb-su">adb su</h1>
+<p>adb su由于某些原因打不开，这时候要强制打开使用这个<a
+target="_blank" rel="noopener" href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
+<p>然后使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
+<p>即可完成整个提权，文件读写权限</p>
+<h1 id="magisk">Magisk</h1>
+<ol type="1">
+<li>先下载<code>HttpCanary</code>，<a
+target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>禁止某个ip（magisk20.3）:下载<a
+href="">ipforbidden</a>模块，刷入，即可</li>
+</ol>
+<h1 id="开机模式下软件操作">开机模式下软件操作</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+<p>可以加上查询字</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>获取<code>root</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
+<p>保留数据卸载,此方法可用于微信降级</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
+<p>安装apk</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
+<h1 id="安卓分区">安卓分区</h1>
+<ul>
+<li><p>system</p>
+<p>这个分区无所谓，每次刷机刷的就是这个</p></li>
+<li><p>data</p>
+<p>这个分区就是软件数据放的地方，小心格式化</p></li>
+<li><p>persist</p>
+<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p></li>
+<li><p>vendor</p></li>
+<li><p>recovery</p>
+<p>这个是在fastboot模式下刷入的分区</p></li>
+<li><p>boot</p></li>
+<li><p>cache</p>
+<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p></li>
+<li><p>misc</p>
+<p>这个分区是放硬件配置信息的，USB，adb</p></li>
+<li><p>sdcard</p>
+<p>这个分区就是存储卡分区，没什么特别的</p></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/08/LinkWe/" rel="prev" title="LinkWe Technology">
+                  <i class="fa fa-chevron-left"></i> LinkWe Technology
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/12/06/Cpp%E5%A4%8D%E4%B9%A0/" rel="next" title="Cpp复习">
+                  Cpp复习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"> </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.sourcegcdn.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.sourcegcdn.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.sourcegcdn.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"gD4HJofNq9iaTrB7u4EHxQ0q-gzGzoHsz","appKey":"IXpSgH3nEsNcMlrnzY7YFjLV","serverURLs":"https://gd4hjofn.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":true,"requiredFields":["nick"],"el":"#valine-comments","path":"/2021/10/24/Android-Adb-Command/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>
