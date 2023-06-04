@@ -29,7 +29,7 @@
 <meta property="og:description" content="GANs">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-03T09:43:33.226Z">
-<meta property="article:modified_time" content="2023-06-04T02:50:58.228Z">
+<meta property="article:modified_time" content="2023-06-04T03:52:32.907Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
 
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">模式识别的定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#l1-%E5%92%8C-l2-%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">L1 和 L2 正则化方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gan"><span class="nav-number">1.</span> <span class="nav-text">gan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transform"><span class="nav-number">2.</span> <span class="nav-text">Transform</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E8%AF%86%E5%88%AB%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">模式识别的定义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#l1-%E5%92%8C-l2-%E6%AD%A3%E5%88%99%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number"></span> <span class="nav-text">L1 和 L2 正则化方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gan"><span class="nav-number">1.</span> <span class="nav-text">GAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transform"><span class="nav-number">2.</span> <span class="nav-text">Transform</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,7 +249,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-04 10:50:58" itemprop="dateModified" datetime="2023-06-04T10:50:58+08:00">2023-06-04</time>
+      <time title="Modified: 2023-06-04 11:52:32" itemprop="dateModified" datetime="2023-06-04T11:52:32+08:00">2023-06-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,9 +312,25 @@ recognition - Wikipedia</a></p>
 target="_blank" rel="noopener" href="https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c">L1
 and L2 Regularization Methods. Machine Learning | by Anuja Nagpal |
 Towards Data Science</a></p>
-<h2 id="gan">gan</h2>
+<h2 id="gan">GAN</h2>
 <blockquote>
-<p><strong>Minmax</strong>（有时称为<strong>Minimax</strong>、<strong>MM</strong>
+<p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1406.2661">GAN</a>是一个有趣的想法，<a
+target="_blank" rel="noopener" href="https://www.quora.com/In-what-way-are-Adversarial-Networks-related-or-different-to-Adversarial-Training/answer/Ian-Goodfellow">最初被引入</a>2014
+年，由 Ian Goodfellow（现供职于
+OpenAI）领导的蒙特利尔大学的一组研究人员。GAN
+背后的主要思想是拥有两个相互竞争的神经网络模型。一个将噪声作为输入并生成样本（因此称为生成器）。另一个模型（称为鉴别器）从生成器和训练数据中接收样本，并且必须能够区分这两个来源。这两个网络玩一个连续的游戏，其中生成器正在学习生成越来越多的真实样本，而鉴别器正在学习越来越好地将生成的数据与真实数据区分开来。这两个网络是同时训练的，希望通过竞争来驱动生成的样本与真实数据无法区分。</p>
+<p><a
+target="_blank" rel="noopener" href="https://aylien.com/images/uploads/general/gan_(2).png"></a></p>
+<p>这里经常使用的类比是，生成器就像试图制造一些伪造材料的伪造者，而鉴别器就像试图检测伪造物品的警察。这种设置似乎也让人想起<em>强化学习</em>，其中生成器从鉴别器接收奖励信号，让它知道生成的数据是否准确。然而，与
+GAN
+的主要区别在于我们可以将梯度信息从鉴别器反向传播回生成器网络，因此生成器知道如何调整其参数以产生可以欺骗鉴别器的输出数据。</p>
+</blockquote>
+<p><a
+target="_blank" rel="noopener" href="https://aylien.com/blog/introduction-generative-adversarial-networks-code-tensorflow">An
+introduction to Generative Adversarial Networks (with code in
+TensorFlow)</a></p>
+<blockquote>
+<p><strong>minmax</strong>（有时称为<strong>Minimax</strong>、<strong>MM</strong>
 [<a
 target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Minimax#cite_note-1">1]</a>或<strong>鞍点</strong>[<a
 target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Minimax#cite_note-2">2]</a><a
