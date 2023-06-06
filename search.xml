@@ -172,86 +172,6 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道">信道</h3>
-<blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
-Code
-Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
-Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型">波形成型</h3>
-<blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
-时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形">脉冲整形</h2>
-<p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
-href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
-失真严重导致采样判决出错，无法正确恢复数字信号。
-显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong> 其<a
-href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器">基带滤波器</h2>
-<p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
-发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
-<strong>例子</strong></p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a
-href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a
-href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
-- Riden - 博客园</a></p>
-<blockquote>
-<p>为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
-理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p>为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
-！</p>
-</blockquote>
-<p><a
-href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
-href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -374,7 +294,73 @@ to variable</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i,k;</span><br><span class="line"><span class="keyword">int</span> &amp;j =i;</span><br><span class="line">j =&amp;k;   		<span class="comment">//incorrect , delcare j is the quotation of k is not allowed </span></span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> &amp;r = <span class="number">10</span>; 	<span class="comment">//incorrect, void type is not allow </span></span><br><span class="line"><span class="keyword">int</span> &amp;r = <span class="number">10</span> ; 	<span class="comment">//incorrect,can&#x27;t assign quote &quot;r&quot; with value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t quote array</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>] = <span class="string">&quot;amd&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;a[<span class="number">4</span>] = a;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t define quotation to quotation</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r =n;</span><br><span class="line"><span class="keyword">int</span> &amp;*p = n;</span><br></pre></td></tr></table></figure></li>
 <li><p>used as parameters of function</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp =a;</span><br><span class="line">	a =b;</span><br><span class="line">	b =temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class=�</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp =a;</span><br><span class="line">	a =b;</span><br><span class="line">	b =temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>quotation is used as formal parameter for function variable
+transfer,but it seem that we have really passed a,b into the function
+"swap"</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道">信道</h3>
+<blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
+Code
+Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
+Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型">波形成型</h3>
+<blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
+时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形">脉冲整形</h2>
+<p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
+href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
+失真严重导致采样判决出错，无法正确恢复数字信号。
+显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong> 其<a
+href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器">基带滤波器</h2>
+<p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
+发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
+<strong>例子</strong></p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a
+href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a
+href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
+- Riden - 博客园</a></p>
+<blockquote>
+<p>为什么对基带信号要成形滤波？</p>
 <p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
 <p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
 理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
@@ -511,71 +497,50 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>GANs</title>
-    <url>/2023/06/03/GANs/</url>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
 <span id="more"></span>
-<h2 id="模式识别的定义">模式识别的定义</h2>
 <blockquote>
-<p><strong>模式识别是对</strong><a
-href="https://en.wikipedia.org/wiki/Data">数据中的</a><a
-href="https://en.wikipedia.org/wiki/Pattern">模式</a>和规律性的自动识别。<a
-href="https://en.wiki�会自动学习并且成功x
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
+Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="first">First</h1>
+<p>Hello everyone, welcome to come here, today I will introduce a new
+technology for image translation, called cycle-gan, which is a project
+led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
+let's introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
+Google? What do they have in common? Yes, what they have in common is
+that they are all creative. The so-called creativity means that when you
+input the same sentence, it can give different results, so the first
+word of gpt is Generative, but CNN is not good at generative models. ,
+when you give the same input, it is more likely to output the same
+result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to
+generalize and recognize other domains through a trained model, here
+involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two
+parts: the generator and the discriminator. The generator is used to
+generate content, and the discriminator mainly identifies whether the
+generated content is fake. The generator and the discriminator are two
+models, and they co-evolve with the prey just like in nature. When the
+discriminator cannot distinguish whether the generated content is fake
+or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
+GB-&gt;A,以及两个判别模型
+DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
 域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
 </blockquote>
 <p>Cycle-gan uses cycle consistency and requires a total of four models,
@@ -957,7 +922,7 @@ figure,see whether it is overfit or not ?</li>
 <h2 id="propagation">propagation</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
 <h2 id="define-optimize">define optimize</h2>
-<figure cl>sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
 <h2 id="define-predict">define predict</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
 <h2 id="model">model</h2>
@@ -966,21 +931,6 @@ figure,see whether it is overfit or not ?</li>
 ]]></content>
       <categories>
         <category>Neural Network</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -2006,10 +1956,75 @@ Convolutional Networks</a></p>
   <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
-    <content(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<p>美赛的一种预测模型</p>
+<span id="more"></span>
+<p>基于时间序列模型对黄金和比特币的预测</p>
+<p>黄金和比特币这一类的产品，一般来说，是自身会随着时间发生变化的产品，而时间序列的预测，主要适用于自身的发展趋势会随着自己的情况发展变化，于是，我们这个时候可以使用时间预测模型对该种情况进行预测，</p>
+<p>这个时候我们可以着手判断产品随着时间变化的自我相关问题,根据查阅各样文献,可以得到,最常用的方法还是ARMA的方式。,这种方法比较适用于小规模单变量的预测，如股票的走势。</p>
+<h2 id="ar模型">AR模型</h2>
+<p>AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量<span
+class="math inline">\(x_{t}\)</span>主要受前<span
+class="math inline">\(p\)</span>期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前<span
+class="math inline">\(p\)</span>期的<span
+class="math inline">\(x_t\)</span>之间的相关性。如果<span
+class="math inline">\(x_t\)</span>主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
+<h2 id="ma模型">MA模型</h2>
+<p>​ MA模型主要研究的是<span
+class="math inline">\(x_t\)</span>的取值与前Q期的随机扰动有关,认为是<span
+class="math inline">\(x_t\)</span>主要受过去Q期的干扰项的影响，所以对于MA模型</p>
+<h2
+id="arma模型autoregressive-moving-average-model">ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive
+<strong>m</strong>oving <strong>a</strong>verage model）</h2>
+<p>ARMA
+模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为<span
+class="math inline">\(x_1,x_2,x_3....,x_k\)</span>,由自回归分析可得
+<span class="math display">\[
+Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z
+\]</span> 其中Y是预测对象的观测值，<span
+class="math inline">\(Z\)</span>为误差项 <span class="math display">\[
+Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}
+\]</span> 误差的表达方式为 <span class="math display">\[
+Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
+\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
+\]</span> 我们最终获得ARMA模型的表达式是 <span class="math display">\[
+Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p}
+Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
+\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
+\]</span></p>
+<h2 id="黄金股票预测">黄金股票预测</h2>
+<p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
+<h3 id="arima">ARIMA</h3>
+<p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为
+<span class="math display">\[
+\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d}
+X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}
+\]</span> 其中<span class="math inline">\(d \in Z ,
+d&gt;0\)</span>,记作ARMA(P,D,Q)</p>
+<p>在确定使用哪一种方式之前，我们做出了原数据，一阶差分，二阶差分的图像，如图所示（其中为比特币的处理图像）</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download.png" alt="各阶差分图" style="zoom:50%;" /></p>
+<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即<span
+class="math inline">\(d_{diff}=1\)</span>，即<span
+class="math inline">\(d_{diff} \neq 0\)</span></p>
+<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的
+statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (1).png" alt="download (1)" style="zoom:50%;" /></p>
+<p>图中淡蓝色的阴影区域，表示阶数的置信区间，通过观察，对于自相关而言q=1,2,3,4,5都有可能，p=1,2,3,4也都有可能，显然，仅通过图像观察并不是十分的直观，于是，我们来计算对于不同的q和p的情况下，计算模型的相关系数</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (2).png" alt="download (2)" style="zoom:50%;" /></p>
+<p>可以看出当Lag=3的时候，相关系数<span
+class="math inline">\(corr\)</span>最大，结合上图这是我们断定<span
+class="math inline">\(q\)</span>=3,<span
+class="math inline">\(p\)</span>=2即构建ARMA模型的三个参数 <span
+class="math display">\[
+(P,D,Q):(2,1,3)
+\]</span>
+使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (4).png" alt="预测图" style="zoom:50%;" /></p>
+<p>最后，对模型进行残差分析，可以得到残差图，如图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (3).png" alt="download (3)"  /></p>
+<p>可以看出，我们研究的模型线性关系较好，说明模型预测具有较好的准确性.</p>
 ]]></content>
       <categories>
-        <category>coding</category>
+        <category>Math Model</category>
       </categories>
   </entry>
   <entry>
