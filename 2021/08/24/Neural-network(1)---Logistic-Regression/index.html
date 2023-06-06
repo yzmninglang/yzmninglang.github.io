@@ -338,4 +338,182 @@ well ,so we choose the another function as the loos function ,So why
 distance ? just see two picture:</p>
 <p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
 <p>the two picture is the <span
-class="math inline">\(L(a,y)\)<
+class="math inline">\(L(a,y)\)</span>,when I assume that y=0 and y=1 and
+the value of <span class="math inline">\(L\)</span> is dependent on the
+value of a,</p>
+<p>with different a,the <span class="math inline">\(L\)</span> have
+different value ,when <span class="math inline">\(y=0\)</span>, only
+when <span class="math inline">\(a=0\)</span>,then the Probability also
+the <span class="math inline">\(L\)</span> is equal to 1</p>
+<p>1 represent <code>True</code>,0 represents <code>False</code>,so this
+is the reason why we choose this function to represents our "Loss
+function".</p>
+<p>But unfortunately ,this value can't represent the overall performance
+on the model, so we need another function to reflect the accuracy of
+model ,so we introduce the <span class="math inline">\(J\)</span> ,which
+is mean "<a
+target="_blank" rel="noopener" href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost
+function</a>" ,Its expression is : <span class="math display">\[
+J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))
+\]</span></p>
+<p><span class="math display">\[
+dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}
+\]</span></p>
+<p>so we can get : <span class="math display">\[
+\begin{equation}\begin{aligned}dz
+&amp;=\frac{dl}{da}\cdot\frac{da}{dz}\\&amp;=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot
+\frac{e^z}{(e^z+1)^2}\\&amp;=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&amp;=a-y\end{aligned}\nonumber\end{equation}
+\]</span> ok, we get the <span class="math inline">\(dz\)</span>,then we
+can get some other import information like this : <span
+class="math display">\[
+dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz
+\]</span> then we can use Gradient descent to update the <span
+class="math inline">\(w,b\)</span>: <span class="math display">\[
+\cases{w=w-\alpha w\\b=b-\alpha b}
+\]</span> in this expression <span class="math inline">\(a^{(i)}=\hat
+y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})\)</span>.and we can
+calculate the derivative of <span class="math inline">\(J\)</span> with
+respect to <span class="math inline">\(w\)</span> and <span
+class="math inline">\(b\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial
+w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial
+w_i}(L(a^{(i)},y^{(i)}))
+\]</span> you can see : <span class="math display">\[
+\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d
+w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)
+\]</span> so forward propagation just like this :</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
+<h1 id="vectorization">Vectorization</h1>
+<p>whenever possible avoid explicit <code>for loops</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
+<p>if we use <code>python-numpy</code>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
+<p>python-numpy's syntax is simpler, and calculation is more
+efficient,That is pretty good,deep learning need a lots of calculations
+,so matrix syntax by numpy is recommended</p>
+<h1 id="coding">Coding</h1>
+<p>Building this model neural network , let's do from the structure</p>
+<ul>
+<li>read the data and define the sigmoid function</li>
+<li>use data and sigmoid function to propagate the <span
+class="math inline">\(J\)</span></li>
+<li>use <span class="math inline">\(J\)</span> to backpagate <span
+class="math inline">\(dw\)</span> and <span
+class="math inline">\(db\)</span></li>
+<li>set number of iteration and learning rate to update the <span
+class="math inline">\(J\)</span> (makes it smaller)</li>
+<li>predict the train data and the test data ,get the accuracy of
+model's prediction</li>
+<li>plot the <span class="math inline">\(J-n_{iteration}\)</span>
+figure,see whether it is overfit or not ?</li>
+</ul>
+<h2 id="import-lib-and-read-data">import lib and read data</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
+<p>##data normalization</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
+<h2 id="define-sigmoid">define sigmoid</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
+<h2 id="propagation">propagation</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-optimize">define optimize</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-predict">define predict</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
+<h2 id="model">model</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/19/DP/" rel="prev" title="动态规划入门">
+                  <i class="fa fa-chevron-left"></i> 动态规划入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/03/C_C++/" rel="next" title="C && C++ (1)">
+                  C && C++ (1) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"> </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.sourcegcdn.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.sourcegcdn.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.sourcegcdn.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"gD4HJofNq9iaTrB7u4EHxQ0q-gzGzoHsz","appKey":"IXpSgH3nEsNcMlrnzY7YFjLV","serverURLs":"https://gd4hjofn.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":true,"requiredFields":["nick"],"el":"#valine-comments","path":"/2021/08/24/Neural-network(1)---Logistic-Regression/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>

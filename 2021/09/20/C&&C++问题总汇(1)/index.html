@@ -310,4 +310,139 @@
 <ul>
 <li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="li
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针">指针的指针</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
+<li><p>答：</p></li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
+在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
+初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/03/Point/" rel="prev" title="Pointer">
+                  <i class="fa fa-chevron-left"></i> Pointer
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/20/Qt1/" rel="next" title="Qt">
+                  Qt <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"> </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.sourcegcdn.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.sourcegcdn.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.sourcegcdn.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"gD4HJofNq9iaTrB7u4EHxQ0q-gzGzoHsz","appKey":"IXpSgH3nEsNcMlrnzY7YFjLV","serverURLs":"https://gd4hjofn.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":true,"requiredFields":["nick"],"el":"#valine-comments","path":"/2021/09/20/C&&C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>
