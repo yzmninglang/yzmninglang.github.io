@@ -332,4 +332,139 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" 
 <p><img
 src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
 <h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
-<p>hiberfil占用的储存也挺�
+<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
+<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘分析软件">磁盘分析软件</h1>
+<p>这里，推荐一个磁盘分析软件，<a
+target="_blank" rel="noopener" href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VwLmNvbS9pMlo3Z3lremg1Zw.exe">SpaceSniffer</a>,需要管理员运行程序</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
+<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
+<h1 id="c盘扩容">C盘扩容</h1>
+<p>首先，下载<a
+target="_blank" rel="noopener" href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
+Partition Wizrd Free</a></p>
+<p>如果电脑显示Bitlocker，如下图</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
+<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
+<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
+<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
+<p>右键C盘，选择分给的区扩容</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
+<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
+<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
+<h1 id="latex语法">Latex语法</h1>
+<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
+<span class="math display">\[
+f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
+\]</span> 这时，你需要在word里面输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
+<h1 id="重装系统">重装系统</h1>
+<p>这里使用这个超星的资源<a
+target="_blank" rel="noopener" href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
+<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
+<p>其中18表示目标帧率</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/" rel="prev" title="近代史实践总结">
+                  <i class="fa fa-chevron-left"></i> 近代史实践总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/" rel="next" title="Python 机器学习">
+                  Python 机器学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="valine-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class=""></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"> </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.sourcegcdn.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.sourcegcdn.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.sourcegcdn.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"gD4HJofNq9iaTrB7u4EHxQ0q-gzGzoHsz","appKey":"IXpSgH3nEsNcMlrnzY7YFjLV","serverURLs":"https://gd4hjofn.lc-cn-n1-shared.com","placeholder":"Just go go","avatar":"mm","meta":["nick"],"pageSize":10,"lang":"zh-cn","visitor":false,"comment_count":true,"recordIP":false,"enableQQ":true,"requiredFields":["nick"],"el":"#valine-comments","path":"/2022/01/05/Windows_command/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>

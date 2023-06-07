@@ -483,4 +483,13 @@ document.addEventListener('page:loaded', () => {
   NexT.utils.loadComments(CONFIG.valine.el)
     .then(() => NexT.utils.getScript(
       'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
-      { cond
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>
