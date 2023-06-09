@@ -29,7 +29,7 @@
 <meta property="og:description" content="移动通信重点总结">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-09T08:07:36.053Z">
-<meta property="article:modified_time" content="2023-06-09T09:18:04.455Z">
+<meta property="article:modified_time" content="2023-06-09T09:22:10.327Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
 
@@ -243,7 +243,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-06-09 16:07:36 / Modified: 17:18:04" itemprop="dateCreated datePublished" datetime="2023-06-09T16:07:36+08:00">2023-06-09</time>
+      <time title="Created: 2023-06-09 16:07:36 / Modified: 17:22:10" itemprop="dateCreated datePublished" datetime="2023-06-09T16:07:36+08:00">2023-06-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -440,16 +440,36 @@ a_k=-1: &amp; s_{F S K}(t)=\cos \left(\omega_2 t+\varphi_2\right)
 \end{array}\right\} \quad\left(k T_b \leq t \leq(k+1) T_b\right)
 \]</span></p>
 <ol start="2" type="1">
-<li><p>cpfsk: <span class="math display">\[
+<li><p>cpfsk:即要求当前码元的初相位由前一码元的初相位、当前码元<span
+class="math inline">\(a_k\)</span>和前一码元<span
+class="math inline">\(a_{k-1}\)</span>来决定，该关系称为相位约束条件
+<span class="math display">\[
 \varphi_k=\left(a_{k-1}-a_k\right) \pi h \cdot k+\varphi_{k-1}
 \]</span></p></li>
 <li><p>总结：可以发现，在相同的调制指数h情况下，CPFSK的带宽要比一般的
 2FSK带宽要窄。这意味着前者的频带效率要高于后者。所以，在移动通信
-系统中，2FSK调制常常采用相位连续的调制方式</p></li>
+系统中，2FSK调制常常采用相位连续的调制方式</p>
+<p>随着调制指数h的增加，信号的带宽也在增加。从频带效率考虑，调
+制指数h不宜太大。但过小又因两个信号频率过于接近而不利于信号的检测。
+所以应当从它们的<strong>相关系数</strong>以及信号的<strong>带宽</strong>综合考虑进行选择</p></li>
 </ol></li>
-<li></li>
-<li></li>
-<li><p>MSK信号的相位路径、频率关系及功率谱特点；</p></li>
+<li><p>MSK信号的相位路径、频率关系及功率谱特点；</p>
+<ol type="1">
+<li>相位路径:由于h=0.5，MSK的相位约束条件：</li>
+</ol>
+<p><span class="math display">\[
+\varphi_k=\left(a_{k-1}-a_k\right) \frac{\pi}{2} \cdot k+\varphi_{k-1}
+\]</span></p>
+<ol start="2" type="1">
+<li><p>频率关系 <span class="math display">\[
+\left.\begin{array}{l}
+f_c=m \cdot R_b / 4 \\
+f_2=(m+1) R_b / 4 \\
+f_1=(m-1) R_b / 4
+\end{array}\right\}
+\]</span> 载波频率fc应当是Rb/4的整数倍</p></li>
+<li><p>功率谱特点</p></li>
+</ol></li>
 <li><p>GMSK信号特点和功率谱特性；</p></li>
 <li><p>正交频分复用原理、优缺点、框图；</p></li>
 <li><p>课上习题。</p></li>
