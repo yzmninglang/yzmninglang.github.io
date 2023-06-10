@@ -552,92 +552,6 @@ alt="TTL三态门" />
       </categories>
   </entry>
   <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
-<span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
-Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="first">First</h1>
-<p>Hello everyone, welcome to come here, today I will introduce a new
-technology for image translation, called cycle-gan, which is a project
-led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
-let's introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
-Google? What do they have in common? Yes, what they have in common is
-that they are all creative. The so-called creativity means that when you
-input the same sentence, it can give different results, so the first
-word of gpt is Generative, but CNN is not good at generative models. ,
-when you give the same input, it is more likely to output the same
-result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to
-generalize and recognize other domains through a trained model, here
-involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two
-parts: the generator and the discriminator. The generator is used to
-generate content, and the discriminator mainly identifies whether the
-generated content is fake. The generator and the discriminator are two
-models, and they co-evolve with the prey just like in nature. When the
-discriminator cannot distinguish whether the generated content is fake
-or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
-GB-&gt;A,以及两个判别模型
-DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
-域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models,
-namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
-models DA and DB. This is the origin of cycle, but it is even more
-exciting What is popular is that cycle-gan does not require paired data
-pairs for training, that is to say, we only need to give cycle-gan
-enough data from the source domain and the target domain without a lot
-of labeling work on it, and it will Automatically learn and successfully
-convert the x domain to the y domain. Since it involves the two-way
-conversion of the two domains, the loss function used in its iteration
-is also a cycle consistent loss function.</p>
-<h1 id="second">second</h1>
-<blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in
-the field of video enhancement, black-and-white video becomes color
-video. Or scene transformation. Or convert an abstract painting into a
-concrete painting such as a building, these can be used as communication
-data compression, you can try the sender to transmit data similar to
-color blocks on the network, it may take up a lot of bandwidth Small,
-when you get these color patches at the receiving end, bring them back.
-This looks like a good way to compress video</p>
-<h1 id="third">Third</h1>
-<p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is
-“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
-[15]。</p>
-<p>”。</p>
-<p>The second sentence
-means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis
-“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
-[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -734,6 +648,92 @@ href="https://mp.weixin.qq.com/s/Etxi9erBTg0Y6Vt71Y4r9Q">同任务但不同domai
 <h2 id="transform">Transform</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/600773858">OpenAI
 ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
+<span id="more"></span>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
+Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="first">First</h1>
+<p>Hello everyone, welcome to come here, today I will introduce a new
+technology for image translation, called cycle-gan, which is a project
+led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
+let's introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
+Google? What do they have in common? Yes, what they have in common is
+that they are all creative. The so-called creativity means that when you
+input the same sentence, it can give different results, so the first
+word of gpt is Generative, but CNN is not good at generative models. ,
+when you give the same input, it is more likely to output the same
+result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to
+generalize and recognize other domains through a trained model, here
+involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two
+parts: the generator and the discriminator. The generator is used to
+generate content, and the discriminator mainly identifies whether the
+generated content is fake. The generator and the discriminator are two
+models, and they co-evolve with the prey just like in nature. When the
+discriminator cannot distinguish whether the generated content is fake
+or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
+GB-&gt;A,以及两个判别模型
+DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
+域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models,
+namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
+models DA and DB. This is the origin of cycle, but it is even more
+exciting What is popular is that cycle-gan does not require paired data
+pairs for training, that is to say, we only need to give cycle-gan
+enough data from the source domain and the target domain without a lot
+of labeling work on it, and it will Automatically learn and successfully
+convert the x domain to the y domain. Since it involves the two-way
+conversion of the two domains, the loss function used in its iteration
+is also a cycle consistent loss function.</p>
+<h1 id="second">second</h1>
+<blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in
+the field of video enhancement, black-and-white video becomes color
+video. Or scene transformation. Or convert an abstract painting into a
+concrete painting such as a building, these can be used as communication
+data compression, you can try the sender to transmit data similar to
+color blocks on the network, it may take up a lot of bandwidth Small,
+when you get these color patches at the receiving end, bring them back.
+This looks like a good way to compress video</p>
+<h1 id="third">Third</h1>
+<p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is
+“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
+[15]。</p>
+<p>”。</p>
+<p>The second sentence
+means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis
+“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
+[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -934,6 +934,57 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -1007,57 +1058,6 @@ can free the space</p>
 <p><code>new</code> assign space with initial value:</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -1927,6 +1927,33 @@ Convolutional Networks</a></p>
       </categories>
   </entry>
   <entry>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
+<span id="more"></span>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -1998,33 +2025,6 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
-<span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
