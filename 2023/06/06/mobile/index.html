@@ -29,7 +29,7 @@
 <meta property="og:description" content="移动通信">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-06-06T03:31:25.505Z">
-<meta property="article:modified_time" content="2023-06-14T03:34:51.261Z">
+<meta property="article:modified_time" content="2023-06-14T05:28:44.953Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
 
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ofdm"><span class="nav-number">1.</span> <span class="nav-text">ofdm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mimo"><span class="nav-number">2.</span> <span class="nav-text">MIMO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E9%A2%91%E6%B1%A1%E6%9F%93"><span class="nav-number">2.1.</span> <span class="nav-text">导频污染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E9%A2%91%E6%B1%A1%E6%9F%93%E8%A7%A3%E7%A0%81"><span class="nav-number">2.1.1.</span> <span class="nav-text">导频污染解码</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ofdm"><span class="nav-number">1.</span> <span class="nav-text">ofdm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MIMO"><span class="nav-number">2.</span> <span class="nav-text">MIMO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E9%A2%91%E6%B1%A1%E6%9F%93"><span class="nav-number">2.1.</span> <span class="nav-text">导频污染</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BC%E9%A2%91%E6%B1%A1%E6%9F%93%E8%A7%A3%E7%A0%81"><span class="nav-number">2.1.1.</span> <span class="nav-text">导频污染解码</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -249,7 +249,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-06-14 11:34:51" itemprop="dateModified" datetime="2023-06-14T11:34:51+08:00">2023-06-14</time>
+      <time title="Modified: 2023-06-14 13:28:44" itemprop="dateModified" datetime="2023-06-14T13:28:44+08:00">2023-06-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,80 +287,38 @@
     <div class="post-body" itemprop="articleBody">
         <p>移动通信</p>
 <span id="more"></span>
-<h1 id="ofdm">ofdm</h1>
-<p><a
-target="_blank" rel="noopener" href="https://github.com/zhongyuanzhao/dl_ofdm">zhongyuanzhao/dl_ofdm:
-Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-valued
-Convolutional Networks</a></p>
-<h1 id="mimo">MIMO</h1>
-<blockquote>
+<h1 id="ofdm"><a href="#ofdm" class="headerlink" title="ofdm"></a>ofdm</h1><p><a target="_blank" rel="noopener" href="https://github.com/zhongyuanzhao/dl_ofdm">zhongyuanzhao/dl_ofdm: Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-valued Convolutional Networks</a></p>
+<h1 id="MIMO"><a href="#MIMO" class="headerlink" title="MIMO"></a>MIMO</h1><blockquote>
 <p>摘要</p>
-<p>大规模多输入多输出（Massive
-MIMO）系统由于导频污染现象而可能遭受相干小区间干扰。本文研究了一种两层解码方法，用于减轻多小区大规模MIMO中的相干和非相干干扰。为此，每个基站（BS）首先利用上行导频进行最小均方误差（MMSE）或基于元素的MMSE估计来估计小区内用户的信道。这些估计用于每个基站上的局部解码，然后在第二个解码层中，基站协同工作以减轻小区间干扰。针对任意两层解码方案，计算了上行可达到的频谱效率（SE）表达式。然后针对相关瑞利衰落、最大比合并以及第二层中的提出的大尺度衰落解码（LSFD），得到了一个表达式。我们还提出了一个求和SE最大化问题，其中数据功率和LSFD向量都是优化变量。由于这是一个NP难题，我们基于加权MMSE方法开发了一个低复杂度的算法来获得局部最优解。数值结果表明，数据功率控制和LSFD都可以提高单层解码的多小区大规模MIMO系统的求和SE性能。</p>
+<p>大规模多输入多输出（Massive MIMO）系统由于导频污染现象而可能遭受相干小区间干扰。本文研究了一种两层解码方法，用于减轻多小区大规模MIMO中的相干和非相干干扰。为此，每个基站（BS）首先利用上行导频进行最小均方误差（MMSE）或基于元素的MMSE估计来估计小区内用户的信道。这些估计用于每个基站上的局部解码，然后在第二个解码层中，基站协同工作以减轻小区间干扰。针对任意两层解码方案，计算了上行可达到的频谱效率（SE）表达式。然后针对相关瑞利衰落、最大比合并以及第二层中的提出的大尺度衰落解码（LSFD），得到了一个表达式。我们还提出了一个求和SE最大化问题，其中数据功率和LSFD向量都是优化变量。由于这是一个NP难题，我们基于加权MMSE方法开发了一个低复杂度的算法来获得局部最优解。数值结果表明，数据功率控制和LSFD都可以提高单层解码的多小区大规模MIMO系统的求和SE性能。</p>
 <p>关键词— 大规模MIMO、大尺度衰落解码、总体谱效率优化、信道估计。</p>
 </blockquote>
-<p><a
-target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265728762">5G无线知识，从“大规模MIMO”开始！
-- 知乎</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/368716371">通信系统信道估计 -
-知乎</a>,<a
-target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36554582/article/details/105167186">(34条消息)
-无线通信信道的衰落特性（大尺度衰落和小尺度衰落）_逸凌Time的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265728762">5G无线知识，从“大规模MIMO”开始！ - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/368716371">通信系统信道估计 - 知乎</a>,<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36554582/article/details/105167186">(34条消息) 无线通信信道的衰落特性（大尺度衰落和小尺度衰落）_逸凌Time的博客-CSDN博客</a></p>
 <blockquote>
 <p>信道估计就是估计从发送天线到接收天线之间的无线信道的频率响应。它的任务就是根据接收到的经过信道影响在幅度和相位上产生了畸变并叠加了高斯白噪声的接收序列来准确识别出信道的时域或者频域的传输特性，即：估计出每个子载波上的频率响应。</p>
-<p>MMSE算法对于高斯白噪声有很好的抑制作用，并充分利用了信道自相关矩阵，所以MMSE算法性能要优于LS算法性能。但是MMSE算法最大的缺点在于复杂度太高，不易求得，并且需要求相关矩阵的逆，运算量较大。因此，MMSE算法在实际应用中受到了一定限制。</p>
+<p>MMSE算法对于高斯白噪声有很好的抑制作用，并充 分利用了信道自相关矩阵，所以MMSE算法性能要优于LS算法性能。但是MMSE算法最大的缺点在于复杂度太高，不易求得，并且需要求相关矩阵的逆，运算量较大。因此，MMSE算法在实际应用中受到了一定限制。</p>
 </blockquote>
-<p><a
-target="_blank" rel="noopener" href="https://www.docin.com/p-66905669.html">LTE上行信道估计及导频设计 -
-豆丁网</a></p>
-<h2 id="导频污染">导频污染</h2>
-<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.docin.com/p-66905669.html">LTE上行信道估计及导频设计 - 豆丁网</a></p>
+<h2 id="导频污染"><a href="#导频污染" class="headerlink" title="导频污染"></a>导频污染</h2><blockquote>
 <p>导频污染主要是由于不同的导频序列不正交导致（学术认为序列间的汉明距离比较小）从而不同的序列做相关互相干扰，从而不能够很好估计信道。</p>
-<p>导频污染的影响：
-（1）高BLER。由于多个强导频存在对有用信号构成了干扰，导致Io升高，Eco降低，BLER升高，提供的网络质量下降，导致高的掉话率。
-（2）切换掉话。若存在3个以上强的导频，或多个导频中没有主导导频，则在这些导频之间容易发生频繁切换，从而可能造成切换掉话。
-（3）容量降低。存在导频污染的区域由于干扰增大，降低了系统的有效覆盖，使系统的容量受到影响。）</p>
+<p>导频污染的影响：<br>（1）高BLER。由于多个强导频存在对有用信号构成了干扰，导致Io升高，Eco降低，BLER升高，提供的网络质量下降，导致高的掉话率。<br>（2）切换掉话。若存在3个以上强的导频，或多个导频中没有主导导频，则在这些导频之间容易发生频繁切换，从而可能造成切换掉话。<br>（3）容量降低。存在导频污染的区域由于干扰增大，降低了系统的有效覆盖，使系统的容量受到影响。）</p>
 </blockquote>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/fanzy_edu/article/details/119781159">(34条消息)
-导频污染简单介绍_fanzy_edu的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/fanzy_edu/article/details/119781159">(34条消息) 导频污染简单介绍_fanzy_edu的博客-CSDN博客</a></p>
 <blockquote>
-<p>理想情况下，Massive
-mimo系统中，每个终端分配一个正交上行导频序列，而存在的正交导频序列的最大个数是由信道想干时间间隔除以信道延迟扩展决定的。因此在多小区系统中很容易就会超出可以提供的正交导频个数。两个小区间使用相同的导频序列所产生的影响和相关的消极结果称为导频污染。当服务矩阵将它接收到的导频信号和特定终端的导频序列做相关时，它实际上获得的是使用同一个导频序列的所有终端到信道的信道估计的线性联合。基于受污染的信道估计的下行链路波束成形会对使用同一个导频序列的这些终端造成内部定向干扰。类似的干扰和上行链路数据传输有关。这些定向干扰会随着服务天线的个数同比例增长。</p>
+<p>理想情况下，Massive mimo系统中，每个终端分配一个正交上行导频序列，而存在的正交导频序列的最大个数是由信道想干时间间隔除以信道延迟扩展决定的。因此在多小区系统中很容易就会超出可以提供的正交导频个数。两个小区间使用相同的导频序列所产生的影响和相关的消极结果称为导频污染。当服务矩阵将它接收到的导频信号和特定终端的导频序列做相关时，它实际上获得的是使用同一个导频序列的所有终端到信道的信道估计的线性联合。基于受污染的信道估计的下行链路波束成形会对使用同一个导频序列的这些终端造成内部定向干扰。类似的干扰和上行链路数据传输有关。这些定向干扰会随着服务天线的个数同比例增长。</p>
+<p>实际中，在Massive MIMO TDD系统下，利用信道的互易性，信道矩阵G由基站估计，这样做的标准方法就是使用上行链路导频，导频序列的数日就可以独立于天线数目。而在FDD系统下，上下行链路传播系数受频率选择性衰落影</p>
 </blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.docin.com/p-1392814967.html">Massive MIMO导频污染介绍(新) - 豆丁网</a></p>
+<h3 id="导频污染解码"><a href="#导频污染解码" class="headerlink" title="导频污染解码"></a>导频污染解码</h3><blockquote>
+<p>最大比合并（Maximal Ratio Combining，MRC）是分集合并技术中的最优选择，相对于选择合并和等增益合并可以获得最好的性能，其性能提升是由阵列增益（阵列增益即发射的信号的功率增益，是通过发送机和/或接收机的多个天线而实现功率增益的，一般在LTE中，增加一个天线会有3db的增益）带来的更高的信噪比，进而带来更好的误码率特性。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Nved23/article/details/125939305">(34条消息) 最大比合并 MRC的介绍、证明及应用举例_Nved.的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43871127/article/details/104878126">(34条消息) 大规模MIMO上行信号检测基础_mimo sic_月半 月半的博客-CSDN博客</a></p>
 <blockquote>
-<p>实际中，在Massive MIMO
-TDD系统下，利用信道的互易性，信道矩阵G由基站估计，这样做的标准方法就是使用上行链路导频，导频序列的数日就可以独立于天线数目。而在FDD系统下，上下行链路传播系数受频率选择性衰落影</p>
+<p>1、信道测量和建模。<br>Trigger：天线数增加后信道特性会如何变化，相关性、信道衰落特性等都需要测量和研究，而信道建模是理论研究的基础，如果信道模型是错的话，很多研究将失去意义。<br>2、导频设计以及降低导频污染研究。<br>Trigger：天线数目增加后，噪声、小区内干扰等非相关因素都会随之消失，而导频污染会成为限制大规模MIMO性能的唯一因素。如何分配导频、如何分配导频功率来降低导频污染等问题变得更为重要。<br>3、FDD模式下，下行信道估计、信号反馈、两阶段预编码等研究。<br>Trigger：下行信道估计的导频符号开销正比于基站天线数目（需大于等于天线数），然而相干时间内可发送的数据符号数目有限（比如200），导频开销过大会严重降低有用数据符号的发送，同理，用户估计出信道后，将信道状态信息反馈给基站亦需要较大开销，导致低频谱效率。<br>4、降低硬件开销的混合预编码结构和方法研究。<br>Trigger：传统的信号处理方法需要每根天线对应一个射频链路，然而射频链路非常昂贵，随着天线数增加，硬件和能量开销都会随之增大，所以如果设计和研究降低射频链路的预编码方案非常重要。<br>5、低精度硬件和非完美硬件下的信号处理研究。<br>Trigger：该问题仍然是由天线数增加导致硬件开销大的问题引发的，为了降低硬件的成本，通常会采用不完美的硬件（低成本、低精度硬件），在这种情况下如何进行信号处理，以及如何弥补硬件的不足。<br>6、其他利用空间自由度、统计信道状态信息、波束选择、天线选择等系列研究。</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.docin.com/p-1392814967.html">Massive
-MIMO导频污染介绍(新) - 豆丁网</a></p>
-<h3 id="导频污染解码">导频污染解码</h3>
-<blockquote>
-<p>最大比合并（Maximal Ratio
-Combining，MRC）是分集合并技术中的最优选择，相对于选择合并和等增益合并可以获得最好的性能，其性能提升是由阵列增益（阵列增益即发射的信号的功率增益，是通过发送机和/或接收机的多个天线而实现功率增益的，一般在LTE中，增加一个天线会有3db的增益）带来的更高的信噪比，进而带来更好的误码率特性。</p>
-</blockquote>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/Nved23/article/details/125939305">(34条消息)
-最大比合并 MRC的介绍、证明及应用举例_Nved.的博客-CSDN博客</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43871127/article/details/104878126">(34条消息)
-大规模MIMO上行信号检测基础_mimo sic_月半 月半的博客-CSDN博客</a></p>
-<blockquote>
-<p>1、信道测量和建模。
-Trigger：天线数增加后信道特性会如何变化，相关性、信道衰落特性等都需要测量和研究，而信道建模是理论研究的基础，如果信道模型是错的话，很多研究将失去意义。
-2、导频设计以及降低导频污染研究。
-Trigger：天线数目增加后，噪声、小区内干扰等非相关因素都会随之消失，而导频污染会成为限制大规模MIMO性能的唯一因素。如何分配导频、如何分配导频功率来降低导频污染等问题变得更为重要。
-3、FDD模式下，下行信道估计、信号反馈、两阶段预编码等研究。
-Trigger：下行信道估计的导频符号开销正比于基站天线数目（需大于等于天线数），然而相干时间内可发送的数据符号数目有限（比如200），导频开销过大会严重降低有用数据符号的发送，同理，用户估计出信道后，将信道状态信息反馈给基站亦需要较大开销，导致低频谱效率。
-4、降低硬件开销的混合预编码结构和方法研究。
-Trigger：传统的信号处理方法需要每根天线对应一个射频链路，然而射频链路非常昂贵，随着天线数增加，硬件和能量开销都会随之增大，所以如果设计和研究降低射频链路的预编码方案非常重要。
-5、低精度硬件和非完美硬件下的信号处理研究。
-Trigger：该问题仍然是由天线数增加导致硬件开销大的问题引发的，为了降低硬件的成本，通常会采用不完美的硬件（低成本、低精度硬件），在这种情况下如何进行信号处理，以及如何弥补硬件的不足。
-6、其他利用空间自由度、统计信道状态信息、波束选择、天线选择等系列研究。</p>
-</blockquote>
-<p><a
-target="_blank" rel="noopener" href="https://rf.eefocus.com/module/forum/thread-611270-1-1.html">大规模MIMO和MIMO区别?
-- 问题讨论专区 - RF技术社区</a></p>
+<p><a target="_blank" rel="noopener" href="https://rf.eefocus.com/module/forum/thread-611270-1-1.html">大规模MIMO和MIMO区别? - 问题讨论专区 - RF技术社区</a></p>
 
     </div>
 
