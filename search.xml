@@ -465,20 +465,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>]]></content>
-      <categories>
-        <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -539,6 +525,20 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>]]></content>
+      <categories>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -607,6 +607,29 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营 - 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" alt=""></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营 - 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -668,29 +691,6 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
 <h1 id="Malloc-amp-amp-Free-get-space"><a href="#Malloc-amp-amp-Free-get-space" class="headerlink" title="Malloc  &amp;&amp; Free get space"></a>Malloc  &amp;&amp; Free get space</h1>]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营 - 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" alt=""></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营 - 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>生活</category>
       </categories>
   </entry>
   <entry>
@@ -997,6 +997,42 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m 
       </categories>
   </entry>
   <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法"><a href="#权重系数确定的方法" class="headerlink" title="权重系数确定的方法"></a>权重系数确定的方法</h1><p>题设：n个评价对象，m个评价指标观测值为</p>
+<script type="math/tex; mode=display">
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11} & a_{12}&...&a_{1,m}\\\\a_{21} & a_{22}&...&a_{2m}\\ \vdots&...&...&\\a_{n1} & a_{n2}&...&a_{nm}\end{bmatrix}</script><h2 id="均方差法"><a href="#均方差法" class="headerlink" title="均方差法"></a>均方差法</h2><script type="math/tex; mode=display">
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow \begin{bmatrix}s_1&\cdots&s_m\end{bmatrix}\\</script><script type="math/tex; mode=display">
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\</script><script type="math/tex; mode=display">
+\begin{bmatrix}w_1& w_2&\cdots w_m\end{bmatrix}</script><h2 id="极差法"><a href="#极差法" class="headerlink" title="极差法"></a>极差法</h2><script type="math/tex; mode=display">
+r_{j}=\max _{1 \leq i<k \leq n}\left\{\left|a_{i j}-a_{k j}\right|\right\}(j=1,2, \cdots, m)\\</script><script type="math/tex; mode=display">
+\max_{every element}\begin{bmatrix}rand(a_{i1}-a_{k1})&\cdots&rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&r_2&\cdots&r_m\end{bmatrix}</script><p>所以第$j$项指标的权重系数为</p>
+<script type="math/tex; mode=display">
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)</script><h2 id="熵值法"><a href="#熵值法" class="headerlink" title="熵值法"></a>熵值法</h2><p>特征比重：</p>
+<p>在<script type="math/tex">\mu_j=\sum_{i=1}^{n} a_{i j}>0</script>,第$j$项指标的特征比重为</p>
+<script type="math/tex; mode=display">
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}</script><p>第$j$项的熵值为：</p>
+<script type="math/tex; mode=display">
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&\cdots&e_m\end{bmatrix}</script><p>不难看出，如果第$j$项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第$j$项指标的差异系数为</p>
+<script type="math/tex; mode=display">
+g_{j}=1-e_{j}(j=1,2, \cdots, m)</script><p>如果第项指标的观测值差异越大，则差异系数$g$就越大，第$j$项指标也就越重要。</p>
+<p>第$j$项的权重系数为</p>
+<script type="math/tex; mode=display">
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文章:</p>
+<p><a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory">信息熵</a>)</p>
+]]></content>
+      <categories>
+        <category>Math model</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Windows常用指令和工具</title>
     <url>/2022/01/05/Windows_command/</url>
     <content><![CDATA[<p>电脑常用的一些操作</p>
@@ -1057,42 +1093,6 @@ f(x,y,z)=\begin{cases}x&=&\cos(t)\\y&=&\sin(t)\\z&=&\tan(t)\end{cases}</script><
 ]]></content>
       <categories>
         <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法"><a href="#权重系数确定的方法" class="headerlink" title="权重系数确定的方法"></a>权重系数确定的方法</h1><p>题设：n个评价对象，m个评价指标观测值为</p>
-<script type="math/tex; mode=display">
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)</script><script type="math/tex; mode=display">
-\begin{bmatrix}a_{11} & a_{12}&...&a_{1,m}\\\\a_{21} & a_{22}&...&a_{2m}\\ \vdots&...&...&\\a_{n1} & a_{n2}&...&a_{nm}\end{bmatrix}</script><h2 id="均方差法"><a href="#均方差法" class="headerlink" title="均方差法"></a>均方差法</h2><script type="math/tex; mode=display">
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\</script><script type="math/tex; mode=display">
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow \begin{bmatrix}s_1&\cdots&s_m\end{bmatrix}\\</script><script type="math/tex; mode=display">
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\</script><script type="math/tex; mode=display">
-\begin{bmatrix}w_1& w_2&\cdots w_m\end{bmatrix}</script><h2 id="极差法"><a href="#极差法" class="headerlink" title="极差法"></a>极差法</h2><script type="math/tex; mode=display">
-r_{j}=\max _{1 \leq i<k \leq n}\left\{\left|a_{i j}-a_{k j}\right|\right\}(j=1,2, \cdots, m)\\</script><script type="math/tex; mode=display">
-\max_{every element}\begin{bmatrix}rand(a_{i1}-a_{k1})&\cdots&rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&r_2&\cdots&r_m\end{bmatrix}</script><p>所以第$j$项指标的权重系数为</p>
-<script type="math/tex; mode=display">
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)</script><h2 id="熵值法"><a href="#熵值法" class="headerlink" title="熵值法"></a>熵值法</h2><p>特征比重：</p>
-<p>在<script type="math/tex">\mu_j=\sum_{i=1}^{n} a_{i j}>0</script>,第$j$项指标的特征比重为</p>
-<script type="math/tex; mode=display">
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}</script><p>第$j$项的熵值为：</p>
-<script type="math/tex; mode=display">
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
-\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&\cdots&e_m\end{bmatrix}</script><p>不难看出，如果第$j$项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第$j$项指标的差异系数为</p>
-<script type="math/tex; mode=display">
-g_{j}=1-e_{j}(j=1,2, \cdots, m)</script><p>如果第项指标的观测值差异越大，则差异系数$g$就越大，第$j$项指标也就越重要。</p>
-<p>第$j$项的权重系数为</p>
-<script type="math/tex; mode=display">
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文章:</p>
-<p><a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory">信息熵</a>)</p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
