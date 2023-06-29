@@ -786,154 +786,6 @@ alt="被删除视频" />
       </categories>
   </entry>
   <entry>
-    <title>Neural network(1)---Logistic Regression</title>
-    <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
-    <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic
-way</p>
-<span id="more"></span>
-<h1 id="lead-to">Lead to</h1>
-<p>When I first talk about this topic, I want to use a Mathematical way
-to explain the algorithm---the <a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Logistic_regression">Logistic
-Regression</a>.fisrtly , I want to introduce this algorithm to you ,it
-is a tool to solve binary classification problem,firstly ,for a binary
-classification problem you may recall the function <span
-class="math inline">\(y=wx+b\)</span>,that is linear regression which is
-the simplest binary classification function ,if you have got the <span
-class="math inline">\(w,b\)</span>,and you input a <span
-class="math inline">\(x\)</span>,you will get a <span
-class="math inline">\(\hat y\)</span>, and if the actual value of <span
-class="math inline">\(y\)</span> corresponding to <span
-class="math inline">\(x\)</span> is bigger then <span
-class="math inline">\(\hat y\)</span>,or is smaller then <span
-class="math inline">\(\hat y\)</span>,you will use this way to get two
-two categories in much data</p>
-<h1 id="overview-of-logistic-regression">Overview of logistic
-regression</h1>
-<p>Today we will introduce a new algorithm to solve this problem: <span
-class="math display">\[
-\left\{\begin{array}{l}
-z=w^{\top} x+b \\
-\hat{y}=a=\sigma(z) \\
-L(a, y)=-(y \log (a)+(1-y) \log (1-a))
-\end{array}\right.
-\]</span></p>
-<p>you give the x and y ,you need give the initialization of <span
-class="math inline">\(w,b\)</span> and program will help you to solve
-the <span class="math inline">\(\hat y\)</span> and the loss function
-<span class="math inline">\(L(a,y)\)</span> ,and the function <span
-class="math inline">\(\sigma(z)\)</span> is <span
-class="math display">\[
-\sigma(z)=\frac{e^z}{e^z+1}
-\]</span></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Transparent-2.png" style="zoom: 80%;" /></p>
-<p><span class="math inline">\(L\)</span> is just like the <span
-class="math inline">\(\frac{1}{2}(y-\hat y)^2\)</span>,which represent
-how closer two points is ? if <span class="math inline">\(L\)</span> is
-very small ,which represent the points is very closer. But why we don't
-choose <span class="math inline">\(\frac{1}{2}(y-\hat
-y)^2\)</span>,because if we choose this function ,the loss function is
-maybe not a convex function ,which exist many local minimize solve ,just
-like this picture :</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823212505129.png" style="zoom: 25%;" /></p>
-<p>when the loss function is non-convex ,the gradient can't work very
-well ,so we choose the another function as the loos function ,So why
-<span class="math inline">\(L(a,y)\)</span> can be used to describe the
-distance ? just see two picture:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
-<p>the two picture is the <span
-class="math inline">\(L(a,y)\)</span>,when I assume that y=0 and y=1 and
-the value of <span class="math inline">\(L\)</span> is dependent on the
-value of a,</p>
-<p>with different a,the <span class="math inline">\(L\)</span> have
-different value ,when <span class="math inline">\(y=0\)</span>, only
-when <span class="math inline">\(a=0\)</span>,then the Probability also
-the <span class="math inline">\(L\)</span> is equal to 1</p>
-<p>1 represent <code>True</code>,0 represents <code>False</code>,so this
-is the reason why we choose this function to represents our "Loss
-function".</p>
-<p>But unfortunately ,this value can't represent the overall performance
-on the model, so we need another function to reflect the accuracy of
-model ,so we introduce the <span class="math inline">\(J\)</span> ,which
-is mean "<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost
-function</a>" ,Its expression is : <span class="math display">\[
-J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))
-\]</span></p>
-<p><span class="math display">\[
-dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}
-\]</span></p>
-<p>so we can get : <span class="math display">\[
-\begin{equation}\begin{aligned}dz
-&amp;=\frac{dl}{da}\cdot\frac{da}{dz}\\&amp;=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot
-\frac{e^z}{(e^z+1)^2}\\&amp;=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&amp;=a-y\end{aligned}\nonumber\end{equation}
-\]</span> ok, we get the <span class="math inline">\(dz\)</span>,then we
-can get some other import information like this : <span
-class="math display">\[
-dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz
-\]</span> then we can use Gradient descent to update the <span
-class="math inline">\(w,b\)</span>: <span class="math display">\[
-\cases{w=w-\alpha w\\b=b-\alpha b}
-\]</span> in this expression <span class="math inline">\(a^{(i)}=\hat
-y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})\)</span>.and we can
-calculate the derivative of <span class="math inline">\(J\)</span> with
-respect to <span class="math inline">\(w\)</span> and <span
-class="math inline">\(b\)</span>:</p>
-<p><span class="math display">\[
-\frac{\partial}{\partial
-w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial
-w_i}(L(a^{(i)},y^{(i)}))
-\]</span> you can see : <span class="math display">\[
-\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d
-w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)
-\]</span> so forward propagation just like this :</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
-<h1 id="vectorization">Vectorization</h1>
-<p>whenever possible avoid explicit <code>for loops</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
-<p>if we use <code>python-numpy</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
-<p>python-numpy's syntax is simpler, and calculation is more
-efficient,That is pretty good,deep learning need a lots of calculations
-,so matrix syntax by numpy is recommended</p>
-<h1 id="coding">Coding</h1>
-<p>Building this model neural network , let's do from the structure</p>
-<ul>
-<li>read the data and define the sigmoid function</li>
-<li>use data and sigmoid function to propagate the <span
-class="math inline">\(J\)</span></li>
-<li>use <span class="math inline">\(J\)</span> to backpagate <span
-class="math inline">\(dw\)</span> and <span
-class="math inline">\(db\)</span></li>
-<li>set number of iteration and learning rate to update the <span
-class="math inline">\(J\)</span> (makes it smaller)</li>
-<li>predict the train data and the test data ,get the accuracy of
-model's prediction</li>
-<li>plot the <span class="math inline">\(J-n_{iteration}\)</span>
-figure,see whether it is overfit or not ?</li>
-</ul>
-<h2 id="import-lib-and-read-data">import lib and read data</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
-<p>##data normalization</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
-<h2 id="define-sigmoid">define sigmoid</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
-<h2 id="propagation">propagation</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
-<h2 id="define-optimize">define optimize</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
-<h2 id="define-predict">define predict</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
-<h2 id="model">model</h2>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Neural Network</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -1096,6 +948,187 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>Neural network(1)---Logistic Regression</title>
+    <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
+    <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic
+way</p>
+<span id="more"></span>
+<h1 id="lead-to">Lead to</h1>
+<p>When I first talk about this topic, I want to use a Mathematical way
+to explain the algorithm---the <a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Logistic_regression">Logistic
+Regression</a>.fisrtly , I want to introduce this algorithm to you ,it
+is a tool to solve binary classification problem,firstly ,for a binary
+classification problem you may recall the function <span
+class="math inline">\(y=wx+b\)</span>,that is linear regression which is
+the simplest binary classification function ,if you have got the <span
+class="math inline">\(w,b\)</span>,and you input a <span
+class="math inline">\(x\)</span>,you will get a <span
+class="math inline">\(\hat y\)</span>, and if the actual value of <span
+class="math inline">\(y\)</span> corresponding to <span
+class="math inline">\(x\)</span> is bigger then <span
+class="math inline">\(\hat y\)</span>,or is smaller then <span
+class="math inline">\(\hat y\)</span>,you will use this way to get two
+two categories in much data</p>
+<h1 id="overview-of-logistic-regression">Overview of logistic
+regression</h1>
+<p>Today we will introduce a new algorithm to solve this problem: <span
+class="math display">\[
+\left\{\begin{array}{l}
+z=w^{\top} x+b \\
+\hat{y}=a=\sigma(z) \\
+L(a, y)=-(y \log (a)+(1-y) \log (1-a))
+\end{array}\right.
+\]</span></p>
+<p>you give the x and y ,you need give the initialization of <span
+class="math inline">\(w,b\)</span> and program will help you to solve
+the <span class="math inline">\(\hat y\)</span> and the loss function
+<span class="math inline">\(L(a,y)\)</span> ,and the function <span
+class="math inline">\(\sigma(z)\)</span> is <span
+class="math display">\[
+\sigma(z)=\frac{e^z}{e^z+1}
+\]</span></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Transparent-2.png" style="zoom: 80%;" /></p>
+<p><span class="math inline">\(L\)</span> is just like the <span
+class="math inline">\(\frac{1}{2}(y-\hat y)^2\)</span>,which represent
+how closer two points is ? if <span class="math inline">\(L\)</span> is
+very small ,which represent the points is very closer. But why we don't
+choose <span class="math inline">\(\frac{1}{2}(y-\hat
+y)^2\)</span>,because if we choose this function ,the loss function is
+maybe not a convex function ,which exist many local minimize solve ,just
+like this picture :</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823212505129.png" style="zoom: 25%;" /></p>
+<p>when the loss function is non-convex ,the gradient can't work very
+well ,so we choose the another function as the loos function ,So why
+<span class="math inline">\(L(a,y)\)</span> can be used to describe the
+distance ? just see two picture:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
+<p>the two picture is the <span
+class="math inline">\(L(a,y)\)</span>,when I assume that y=0 and y=1 and
+the value of <span class="math inline">\(L\)</span> is dependent on the
+value of a,</p>
+<p>with different a,the <span class="math inline">\(L\)</span> have
+different value ,when <span class="math inline">\(y=0\)</span>, only
+when <span class="math inline">\(a=0\)</span>,then the Probability also
+the <span class="math inline">\(L\)</span> is equal to 1</p>
+<p>1 represent <code>True</code>,0 represents <code>False</code>,so this
+is the reason why we choose this function to represents our "Loss
+function".</p>
+<p>But unfortunately ,this value can't represent the overall performance
+on the model, so we need another function to reflect the accuracy of
+model ,so we introduce the <span class="math inline">\(J\)</span> ,which
+is mean "<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost
+function</a>" ,Its expression is : <span class="math display">\[
+J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))
+\]</span></p>
+<p><span class="math display">\[
+dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}
+\]</span></p>
+<p>so we can get : <span class="math display">\[
+\begin{equation}\begin{aligned}dz
+&amp;=\frac{dl}{da}\cdot\frac{da}{dz}\\&amp;=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot
+\frac{e^z}{(e^z+1)^2}\\&amp;=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&amp;=a-y\end{aligned}\nonumber\end{equation}
+\]</span> ok, we get the <span class="math inline">\(dz\)</span>,then we
+can get some other import information like this : <span
+class="math display">\[
+dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz
+\]</span> then we can use Gradient descent to update the <span
+class="math inline">\(w,b\)</span>: <span class="math display">\[
+\cases{w=w-\alpha w\\b=b-\alpha b}
+\]</span> in this expression <span class="math inline">\(a^{(i)}=\hat
+y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})\)</span>.and we can
+calculate the derivative of <span class="math inline">\(J\)</span> with
+respect to <span class="math inline">\(w\)</span> and <span
+class="math inline">\(b\)</span>:</p>
+<p><span class="math display">\[
+\frac{\partial}{\partial
+w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial
+w_i}(L(a^{(i)},y^{(i)}))
+\]</span> you can see : <span class="math display">\[
+\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d
+w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)
+\]</span> so forward propagation just like this :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
+<h1 id="vectorization">Vectorization</h1>
+<p>whenever possible avoid explicit <code>for loops</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
+<p>if we use <code>python-numpy</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
+<p>python-numpy's syntax is simpler, and calculation is more
+efficient,That is pretty good,deep learning need a lots of calculations
+,so matrix syntax by numpy is recommended</p>
+<h1 id="coding">Coding</h1>
+<p>Building this model neural network , let's do from the structure</p>
+<ul>
+<li>read the data and define the sigmoid function</li>
+<li>use data and sigmoid function to propagate the <span
+class="math inline">\(J\)</span></li>
+<li>use <span class="math inline">\(J\)</span> to backpagate <span
+class="math inline">\(dw\)</span> and <span
+class="math inline">\(db\)</span></li>
+<li>set number of iteration and learning rate to update the <span
+class="math inline">\(J\)</span> (makes it smaller)</li>
+<li>predict the train data and the test data ,get the accuracy of
+model's prediction</li>
+<li>plot the <span class="math inline">\(J-n_{iteration}\)</span>
+figure,see whether it is overfit or not ?</li>
+</ul>
+<h2 id="import-lib-and-read-data">import lib and read data</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
+<p>##data normalization</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
+<h2 id="define-sigmoid">define sigmoid</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
+<h2 id="propagation">propagation</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-optimize">define optimize</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-predict">define predict</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
+<h2 id="model">model</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Neural Network</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1150,39 +1183,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1419,88 +1419,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>爬虫小结</title>
-    <url>/2021/02/02/Web%20Crawler/</url>
-    <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
-<span id="more"></span>
-<h2 id="前言">前言</h2>
-<p>​
-在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
-<h2 id="爬虫">爬虫</h2>
-<h3 id="有道翻译">有道翻译</h3>
-<p>​ 打开开发者工具后，我们对我们输入的字符“are you
-ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png"
-alt="有道翻译抓包分析" />
-<figcaption aria-hidden="true">有道翻译抓包分析</figcaption>
-</figure>
-<p>观察Response
-,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" /></p>
-<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" /></p>
-<p>观察webform，把它复制粘贴到代码就可以了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" /></p>
-<p>​
-但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code>
-,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制）</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" /></p>
-<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" /></p>
-<h3 id="百度图片">百度图片</h3>
-<p>​ <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" />如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" /></p>
-<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" /></p>
-<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" /></p>
-<h3 id="b站视频">B站视频</h3>
-<p>​
-刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
-<p>先下载这个<a href="">压缩包</a></p>
-<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" /></p>
-<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a
-href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" /></p>
-<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code>
-目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" /></p>
-<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
-<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
-<h2 id="抓包">抓包</h2>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Windows常用指令和工具</title>
     <url>/2022/01/05/Windows_command/</url>
     <content><![CDATA[<p>电脑常用的一些操作</p>
@@ -1596,6 +1514,88 @@ href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c
 ]]></content>
       <categories>
         <category>Windows</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>爬虫小结</title>
+    <url>/2021/02/02/Web%20Crawler/</url>
+    <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
+<span id="more"></span>
+<h2 id="前言">前言</h2>
+<p>​
+在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
+<h2 id="爬虫">爬虫</h2>
+<h3 id="有道翻译">有道翻译</h3>
+<p>​ 打开开发者工具后，我们对我们输入的字符“are you
+ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png"
+alt="有道翻译抓包分析" />
+<figcaption aria-hidden="true">有道翻译抓包分析</figcaption>
+</figure>
+<p>观察Response
+,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" /></p>
+<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" /></p>
+<p>观察webform，把它复制粘贴到代码就可以了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" /></p>
+<p>​
+但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code>
+,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制）</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" /></p>
+<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" /></p>
+<h3 id="百度图片">百度图片</h3>
+<p>​ <img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" />如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" /></p>
+<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" /></p>
+<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" /></p>
+<h3 id="b站视频">B站视频</h3>
+<p>​
+刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
+<p>先下载这个<a href="">压缩包</a></p>
+<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" /></p>
+<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a
+href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" /></p>
+<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code>
+目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" /></p>
+<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
+<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
+<h2 id="抓包">抓包</h2>
+]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -2074,6 +2074,33 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
+<span id="more"></span>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2148,30 +2175,19 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
 <span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
 ]]></content>
       <categories>
-        <category>coding</category>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2226,22 +2242,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
