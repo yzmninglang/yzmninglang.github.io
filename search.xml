@@ -497,147 +497,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
-<span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
-Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="first">First</h1>
-<p>Hello everyone, welcome to come here, today I will introduce a new
-technology for image translation, called cycle-gan, which is a project
-led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
-let's introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
-Google? What do they have in common? Yes, what they have in common is
-that they are all creative. The so-called creativity means that when you
-input the same sentence, it can give different results, so the first
-word of gpt is Generative, but CNN is not good at generative models. ,
-when you give the same input, it is more likely to output the same
-result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to
-generalize and recognize other domains through a trained model, here
-involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two
-parts: the generator and the discriminator. The generator is used to
-generate content, and the discriminator mainly identifies whether the
-generated content is fake. The generator and the discriminator are two
-models, and they co-evolve with the prey just like in nature. When the
-discriminator cannot distinguish whether the generated content is fake
-or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
-GB-&gt;A,以及两个判别模型
-DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
-域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models,
-namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
-models DA and DB. This is the origin of cycle, but it is even more
-exciting What is popular is that cycle-gan does not require paired data
-pairs for training, that is to say, we only need to give cycle-gan
-enough data from the source domain and the target domain without a lot
-of labeling work on it, and it will Automatically learn and successfully
-convert the x domain to the y domain. Since it involves the two-way
-conversion of the two domains, the loss function used in its iteration
-is also a cycle consistent loss function.</p>
-<h1 id="second">second</h1>
-<blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in
-the field of video enhancement, black-and-white video becomes color
-video. Or scene transformation. Or convert an abstract painting into a
-concrete painting such as a building, these can be used as communication
-data compression, you can try the sender to transmit data similar to
-color blocks on the network, it may take up a lot of bandwidth Small,
-when you get these color patches at the receiving end, bring them back.
-This looks like a good way to compress video</p>
-<h1 id="third">Third</h1>
-<p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is
-“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
-[15]。</p>
-<p>”。</p>
-<p>The second sentence
-means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis
-“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
-[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -740,6 +599,162 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>Product design</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
+<span id="more"></span>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
+Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="first">First</h1>
+<p>Hello everyone, welcome to come here, today I will introduce a new
+technology for image translation, called cycle-gan, which is a project
+led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
+let's introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
+Google? What do they have in common? Yes, what they have in common is
+that they are all creative. The so-called creativity means that when you
+input the same sentence, it can give different results, so the first
+word of gpt is Generative, but CNN is not good at generative models. ,
+when you give the same input, it is more likely to output the same
+result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to
+generalize and recognize other domains through a trained model, here
+involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two
+parts: the generator and the discriminator. The generator is used to
+generate content, and the discriminator mainly identifies whether the
+generated content is fake. The generator and the discriminator are two
+models, and they co-evolve with the prey just like in nature. When the
+discriminator cannot distinguish whether the generated content is fake
+or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
+GB-&gt;A,以及两个判别模型
+DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
+域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models,
+namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
+models DA and DB. This is the origin of cycle, but it is even more
+exciting What is popular is that cycle-gan does not require paired data
+pairs for training, that is to say, we only need to give cycle-gan
+enough data from the source domain and the target domain without a lot
+of labeling work on it, and it will Automatically learn and successfully
+convert the x domain to the y domain. Since it involves the two-way
+conversion of the two domains, the loss function used in its iteration
+is also a cycle consistent loss function.</p>
+<h1 id="second">second</h1>
+<blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in
+the field of video enhancement, black-and-white video becomes color
+video. Or scene transformation. Or convert an abstract painting into a
+concrete painting such as a building, these can be used as communication
+data compression, you can try the sender to transmit data similar to
+color blocks on the network, it may take up a lot of bandwidth Small,
+when you get these color patches at the receiving end, bring them back.
+This looks like a good way to compress video</p>
+<h1 id="third">Third</h1>
+<p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is
+“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
+[15]。</p>
+<p>”。</p>
+<p>The second sentence
+means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis
+“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
+[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>毛概实践课</title>
     <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
     <content><![CDATA[<p>毛概实践课🤗</p>
@@ -768,21 +783,6 @@ alt="被删除视频" />
 ]]></content>
       <categories>
         <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -1042,6 +1042,57 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
 ]]></content>
       <categories>
         <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1368,57 +1419,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>爬虫小结</title>
     <url>/2021/02/02/Web%20Crawler/</url>
     <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
@@ -1498,88 +1498,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1678,6 +1596,88 @@ href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c
 ]]></content>
       <categories>
         <category>Windows</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -2175,6 +2175,22 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -2226,22 +2242,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
