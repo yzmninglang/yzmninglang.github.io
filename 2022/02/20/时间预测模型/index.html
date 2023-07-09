@@ -150,7 +150,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AR%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">AR模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MA%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">MA模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARMA%E6%A8%A1%E5%9E%8B%EF%BC%88Autoregressive-moving-average-model%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">ARMA模型（Autoregressive moving average model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%84%E9%87%91%E8%82%A1%E7%A5%A8%E9%A2%84%E6%B5%8B"><span class="nav-number">4.</span> <span class="nav-text">黄金股票预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ARIMA"><span class="nav-number">4.1.</span> <span class="nav-text">ARIMA</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ar%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">AR模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ma%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">MA模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#arma%E6%A8%A1%E5%9E%8Bautoregressive-moving-average-model"><span class="nav-number">3.</span> <span class="nav-text">ARMA模型（Autoregressive
+moving average model）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%84%E9%87%91%E8%82%A1%E7%A5%A8%E9%A2%84%E6%B5%8B"><span class="nav-number">4.</span> <span class="nav-text">黄金股票预测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arima"><span class="nav-number">4.1.</span> <span class="nav-text">ARIMA</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -296,30 +297,63 @@
 <p>基于时间序列模型对黄金和比特币的预测</p>
 <p>黄金和比特币这一类的产品，一般来说，是自身会随着时间发生变化的产品，而时间序列的预测，主要适用于自身的发展趋势会随着自己的情况发展变化，于是，我们这个时候可以使用时间预测模型对该种情况进行预测，</p>
 <p>这个时候我们可以着手判断产品随着时间变化的自我相关问题,根据查阅各样文献,可以得到,最常用的方法还是ARMA的方式。,这种方法比较适用于小规模单变量的预测，如股票的走势。</p>
-<h2 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h2><p>  AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量$x_{t}$主要受前$p$期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前$p$期的$x_t$之间的相关性。如果$x_t$主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
-<h2 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h2><p>​    MA模型主要研究的是$x_t$的取值与前Q期的随机扰动有关,认为是$x_t$主要受过去Q期的干扰项的影响，所以对于MA模型</p>
-<h2 id="ARMA模型（Autoregressive-moving-average-model）"><a href="#ARMA模型（Autoregressive-moving-average-model）" class="headerlink" title="ARMA模型（Autoregressive moving average model）"></a>ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive <strong>m</strong>oving <strong>a</strong>verage model）</h2><p>ARMA 模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为$x_1,x_2,x_3….,x_k$,由自回归分析可得</p>
-<script type="math/tex; mode=display">
-Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z</script><p>其中Y是预测对象的观测值，$Z$为误差项</p>
-<script type="math/tex; mode=display">
-Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}</script><p>误差的表达方式为</p>
-<script type="math/tex; mode=display">
-Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2} \epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}</script><p>我们最终获得ARMA模型的表达式是</p>
-<script type="math/tex; mode=display">
-Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2} \epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}</script><h2 id="黄金股票预测"><a href="#黄金股票预测" class="headerlink" title="黄金股票预测"></a>黄金股票预测</h2><p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
-<h3 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h3><p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为</p>
-<script type="math/tex; mode=display">
-\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}</script><p>其中$d \in Z , d&gt;0$,记作ARMA(P,D,Q)</p>
+<h2 id="ar模型">AR模型</h2>
+<p>AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量<span
+class="math inline">\(x_{t}\)</span>主要受前<span
+class="math inline">\(p\)</span>期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前<span
+class="math inline">\(p\)</span>期的<span
+class="math inline">\(x_t\)</span>之间的相关性。如果<span
+class="math inline">\(x_t\)</span>主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
+<h2 id="ma模型">MA模型</h2>
+<p>​ MA模型主要研究的是<span
+class="math inline">\(x_t\)</span>的取值与前Q期的随机扰动有关,认为是<span
+class="math inline">\(x_t\)</span>主要受过去Q期的干扰项的影响，所以对于MA模型</p>
+<h2
+id="arma模型autoregressive-moving-average-model">ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive
+<strong>m</strong>oving <strong>a</strong>verage model）</h2>
+<p>ARMA
+模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为<span
+class="math inline">\(x_1,x_2,x_3....,x_k\)</span>,由自回归分析可得
+<span class="math display">\[
+Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z
+\]</span> 其中Y是预测对象的观测值，<span
+class="math inline">\(Z\)</span>为误差项 <span class="math display">\[
+Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}
+\]</span> 误差的表达方式为 <span class="math display">\[
+Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
+\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
+\]</span> 我们最终获得ARMA模型的表达式是 <span class="math display">\[
+Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p}
+Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
+\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
+\]</span></p>
+<h2 id="黄金股票预测">黄金股票预测</h2>
+<p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
+<h3 id="arima">ARIMA</h3>
+<p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为
+<span class="math display">\[
+\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d}
+X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}
+\]</span> 其中<span class="math inline">\(d \in Z ,
+d&gt;0\)</span>,记作ARMA(P,D,Q)</p>
 <p>在确定使用哪一种方式之前，我们做出了原数据，一阶差分，二阶差分的图像，如图所示（其中为比特币的处理图像）</p>
 <p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download.png" alt="各阶差分图" style="zoom:50%;" /></p>
-<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即$d_{diff}=1$，即$d_{diff} \neq 0$</p>
-<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的 statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
+<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即<span
+class="math inline">\(d_{diff}=1\)</span>，即<span
+class="math inline">\(d_{diff} \neq 0\)</span></p>
+<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的
+statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
 <p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (1).png" alt="download (1)" style="zoom:50%;" /></p>
 <p>图中淡蓝色的阴影区域，表示阶数的置信区间，通过观察，对于自相关而言q=1,2,3,4,5都有可能，p=1,2,3,4也都有可能，显然，仅通过图像观察并不是十分的直观，于是，我们来计算对于不同的q和p的情况下，计算模型的相关系数</p>
 <p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (2).png" alt="download (2)" style="zoom:50%;" /></p>
-<p>可以看出当Lag=3的时候，相关系数$corr$最大，结合上图这是我们断定$q$=3,$p$=2即构建ARMA模型的三个参数</p>
-<script type="math/tex; mode=display">
-(P,D,Q):(2,1,3)</script><p>使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
+<p>可以看出当Lag=3的时候，相关系数<span
+class="math inline">\(corr\)</span>最大，结合上图这是我们断定<span
+class="math inline">\(q\)</span>=3,<span
+class="math inline">\(p\)</span>=2即构建ARMA模型的三个参数 <span
+class="math display">\[
+(P,D,Q):(2,1,3)
+\]</span>
+使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
 <p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (4).png" alt="预测图" style="zoom:50%;" /></p>
 <p>最后，对模型进行残差分析，可以得到残差图，如图</p>
 <p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (3).png" alt="download (3)"  /></p>
@@ -365,8 +399,8 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
 
 
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class=""></i>
   </span>
