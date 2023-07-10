@@ -21,25 +21,17 @@
   <link rel="stylesheet" href="https://cdnjs.sourcegcdn.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"yzmninglang.gitee.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.9.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="数学建模.Are you kidding me ?   😭我要疯了！">
+<meta name="description" content="数学建模.Are you kidding me ? 😭我要疯了！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="出租车载客模型">
 <meta property="og:url" content="http://yzmninglang.gitee.io/2021/08/15/Taxi%20passenger%20model/index.html">
 <meta property="og:site_name" content="ninglang">
-<meta property="og:description" content="数学建模.Are you kidding me ?   😭我要疯了！">
+<meta property="og:description" content="数学建模.Are you kidding me ? 😭我要疯了！">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled Diagram1.png">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled Diagram.png">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png">
 <meta property="article:published_time" content="2021-08-15T15:05:47.087Z">
 <meta property="article:modified_time" content="2021-08-15T15:30:52.111Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png">
 
 
 <link rel="canonical" href="http://yzmninglang.gitee.io/2021/08/15/Taxi%20passenger%20model/">
@@ -287,132 +279,232 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>数学建模.Are you kidding me ?   😭我要疯了！</p>
+        <p>数学建模.Are you kidding me ? 😭我要疯了！</p>
 <span id="more"></span>
-<h1 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h1><ul>
+<h1 id="问题分析">问题分析</h1>
+<ul>
 <li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
 <li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
 <li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
 </ul>
-<h1 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h1><ul>
-<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p>
-</li>
+<h1 id="问题一">问题一</h1>
+<ul>
+<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
 <li><p>因素确定：</p>
-<p>时间$T_0\in[T_1,T_2]$航班总数$N_{f2}$,人数为$M_{p2}$.</p>
-<p>出租车总数，等待时间不超过预期$N_{taxi}$,选择等待</p>
-<p>空载率$\beta$和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为$v_{leave}$,是指单位时间内通过出租车载客离开的组数</p>
-<p>机场与市中心的距离$L$,距离越大越倾向等待，时间的等待上线提高</p>
-<p>航班载客数：</p>
-<script type="math/tex; mode=display">
-U(M_1,M_2)=\begin{cases}0&M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&M_0\in[M_1,M_2]\end{cases}</script><script type="math/tex; mode=display">
+<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
+class="math inline">\(N_{f2}\)</span>,人数为<span
+class="math inline">\(M_{p2}\)</span>.</p>
+<p>出租车总数，等待时间不超过预期<span
+class="math inline">\(N_{taxi}\)</span>,选择等待</p>
+<p>空载率<span
+class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
+class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
+<p>机场与市中心的距离<span
+class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
+<p>航班载客数： <span class="math display">\[
+U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
+\]</span></p>
+<p><span class="math display">\[
 M_p=M_{p1}+M_{p2}\\
-M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}</script><p>$N_{f1}$为为时间$[T_1,T_0]$内机场的预计滞留人数，$N_{f2}$为时间$[T_0,T_2]$内机场来的人数</p>
-<p>其中$M_{p1}$为司机估计的机场滞留人数，$M_{p2}$为司机估计机场抵达人数</p>
-<p>里程：假设里程正态分布</p>
-<script type="math/tex; mode=display">
-\xi(x)\sim N(\mu,\sigma^2)</script><p>概率密度图为</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" alt=""> </p>
-<h2 id="收入"><a href="#收入" class="headerlink" title="收入"></a>收入</h2></li>
-</ul>
-<p>  计价规则：</p>
-<script type="math/tex; mode=display">
-  \begin{cases}p_0&x\le a\\p_0+p_1(x-a)&a<x\le b \\p_0+p_1(b-a)+p_2(x-b)&x>b\end{cases}</script><p>  时间成本：</p>
-<p>  ​    空载: $C_{free}$</p>
-<p>  ​    等待：$C_{wait}$</p>
-<p>  等待时间成本$M_{plain}$为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数$M_p$成比例关系，即$M_{plain}=\mu_1M_p$,$\mu_1$为机场乘客选择出租车的比例。</p>
-<script type="math/tex; mode=display">
-  t_{wait}=\frac{M_{plain}}{v_{leave}}</script><p>  总出行人数除以单位时间出行人数</p>
-<p>  ​    出租行驶载客:概率$\gamma=1-\beta$.司机载客时间为$L_{pa}=L_{drive}\cdot\gamma$,其中时间成本的具体表达式为:</p>
-<script type="math/tex; mode=display">
-  C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma</script><p>  $G(L_{paw}),G(L_{paf})$为等待和空载的计价收入</p>
-<h2 id="成本"><a href="#成本" class="headerlink" title="成本"></a>成本</h2><script type="math/tex; mode=display">
-  C_g(x)=A \cdot S_{gax}\cdot x</script><ul>
-<li><p>方案确立</p>
-</li>
-<li><p>等待</p>
-<script type="math/tex; mode=display">
+M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
+\]</span></p>
+<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
+class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
+class="math inline">\(N_{f2}\)</span>为时间<span
+class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
+<p>其中<span
+class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
+class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
+<p>里程：假设里程正态分布 <span class="math display">\[
+\xi(x)\sim N(\mu,\sigma^2)
+\]</span> 概率密度图为</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
+<h2 id="收入">收入</h2>
+<p>计价规则： <span class="math display">\[
+\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
+\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
+\]</span> 时间成本：</p>
+<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
+<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
+<p>等待时间成本<span
+class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
+class="math inline">\(M_p\)</span>成比例关系，即<span
+class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
+class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
+class="math display">\[
+t_{wait}=\frac{M_{plain}}{v_{leave}}
+\]</span> 总出行人数除以单位时间出行人数</p>
+<p>​ 出租行驶载客:概率<span
+class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
+class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
+<span class="math display">\[
+C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
+v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
+\]</span> <span
+class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
+<h2 id="成本">成本</h2>
+<p><span class="math display">\[
+C_g(x)=A \cdot S_{gax}\cdot x
+\]</span></p></li>
+<li><p>方案确立</p></li>
+<li><p>等待 <span class="math display">\[
 W_1=G(x)-C_g(x)-C_{time}\\
-=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }} \gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
- t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}</script></li>
+=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
+\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
+t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
+\]</span></p></li>
 </ul>
 <p>空载时间为总路程减去载客路程除以汽车的速度，</p>
 <ul>
-<li><p>空载</p>
-<script type="math/tex; mode=display">
+<li><p>空载 <span class="math display">\[
 W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
-t_{free}=\frac{L}{v_{taxi}}</script></li>
+t_{free}=\frac{L}{v_{taxi}}
+\]</span></p></li>
 <li><p>模型求解</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" alt=""></p>
-<p>假设参数，$L=25.1km$.出租车的空载率为$\beta=0.4$，车速为$v_{leave}=1$。出租车出行占总人数比例为$\mu_1=0.3$,平均同行人数为$\mu_2=2$,后期设置一般数据验证</p>
-</li>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
+<p>假设参数，<span
+class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
+class="math inline">\(\beta=0.4\)</span>，车速为<span
+class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
+class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
+class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
 </ul>
-<h1 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h1><ul>
-<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p>
-</li>
+<h1 id="问题二">问题二</h1>
+<ul>
+<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
 <li><p>数据收集</p>
-<p>北京首都机场</p>
-</li>
+<p>北京首都机场</p></li>
 <li><p>表格数据</p>
-<p>| 类型         | 9~10 | 10~11 | 11~12 |<br>| —————— | —— | :—-: | ——: |<br>| 忙季(节假日) | 30   |  27   |    15 |<br>| 淡季(工作日) | 1    |   3   |     3 |</p>
-</li>
-<li><p>价格</p>
-<script type="math/tex; mode=display">
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>9~10</th>
+<th style="text-align: center;">10~11</th>
+<th style="text-align: right;">11~12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>忙季(节假日)</td>
+<td>30</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td>淡季(工作日)</td>
+<td>1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>价格 <span class="math display">\[
 晚上：G(x)\left\{\begin{array}{lc}
-13, & x \leq 3 \\
-13+2.76 \times(x-3), & 3<x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), & x>15
-\end{array}\right.</script><script type="math/tex; mode=display">
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p><span class="math display">\[
 早上：G(x)=\left\{\begin{array}{lc}
-13, & x \leq 3 \\
-13+2.76 \times(x-3), & 3<x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), & x>15
-\end{array}\right.</script></li>
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
+<p>然后可以根据排队方案一的收益</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
+alt="image-20210815164119981" />
+<figcaption aria-hidden="true">image-20210815164119981</figcaption>
+</figure>
+<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
 </ul>
-<p>  代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
-<p>  <img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" alt=""></p>
-<p>  然后可以根据排队方案一的收益</p>
-<p>  <img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled Diagram1.png" alt="image-20210815164119981"></p>
-<p>  不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
-<p>  <img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" alt=""></p>
-<h1 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h1><ul>
-<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p>
-</li>
+<h1 id="问题三">问题三</h1>
+<ul>
+<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
 <li><p>建立模型:</p>
 <p>目标函数：乘车效率</p>
 <p>决策变量：上车点数</p>
-<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为$\alpha_1$,$\lambda_1$为到达机场的人数，$\lambda_2$平均每分钟到达机场的乘客数，$\alpha_1=\frac{\lambda_1}{\lambda_2}$;</p>
+<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
+class="math inline">\(\alpha_1\)</span>,<span
+class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
+class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
+class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
 <p>模型：</p>
-<script type="math/tex; mode=display">\begin{aligned}max \quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad k\le12\end{aligned}</script><p>求解</p>
-</li>
+<p><span class="math display">\[\begin{aligned}max
+\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
+k\le12\end{aligned}\]</span></p>
+<p>求解</p></li>
 </ul>
-<h1 id="问题四"><a href="#问题四" class="headerlink" title="问题四"></a>问题四</h1><ul>
-<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p>
-</li>
+<h1 id="问题四">问题四</h1>
+<ul>
+<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
 <li><p>短途</p>
-</li>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
 </ul>
-<p>  <img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled Diagram.png" alt=""></p>
-<script type="math/tex; mode=display">
+<p><span class="math display">\[
 \begin{aligned}
-&\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share }} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi }}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi }}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L / v_{\text {taxi }}} \\
-&\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\& W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} / v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
-\end{aligned}</script><ul>
+&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
+}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
+}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
+}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
+v_{\text {taxi }}} \\
+&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
+{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
+v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
+/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
+v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
+\end{aligned}
+\]</span></p>
+<ul>
 <li><p>长途</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" alt=""></p>
-</li>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
 </ul>
-<script type="math/tex; mode=display">
-\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}</script><ul>
-<li>$\epsilon_1$和$\epsilon_2$为权重因子,$\Delta\beta_{max}$和$\Delta W_{max}$为归一化因子，变量计算方法如下:<script type="math/tex; mode=display">
-\begin{aligned}\min \quad g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng }}-\beta_{\text {short }}}{\Delta \beta_{\max }}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text {short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
-\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
-W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m / v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
-\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text {leave }}} \\
-W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m / v_{\text {leave }}+T}
-\end{cases}\end{aligned}</script></li>
+<p><span class="math display">\[
+\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
+W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\epsilon_1\)</span>和<span
+class="math inline">\(\epsilon_2\)</span>为权重因子,<span
+class="math inline">\(\Delta\beta_{max}\)</span>和<span
+class="math inline">\(\Delta
+W_{max}\)</span>为归一化因子，变量计算方法如下: <span
+class="math display">\[
+\begin{aligned}\min \quad
+g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
+}}-\beta_{\text {short }}}{\Delta \beta_{\max
+}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
+{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
+\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
+}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
+{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
+W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
+\\
+\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
+}}+m / v_{\text {leave }}} \\
+W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
+{taxi }}+m / v_{\text {leave }}+T}
+\end{cases}\end{aligned}
+\]</span></li>
 </ul>
 <p>计算即可</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1>
+<h1 id="代码">代码</h1>
+
     </div>
 
     
@@ -453,8 +545,8 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m 
 
 
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class=""></i>
   </span>

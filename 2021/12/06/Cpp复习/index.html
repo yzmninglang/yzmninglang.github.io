@@ -28,12 +28,10 @@
 <meta property="og:site_name" content="ninglang">
 <meta property="og:description" content="cpp问题总结">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20211205182046698.png">
 <meta property="article:published_time" content="2021-12-06T15:36:04.289Z">
 <meta property="article:modified_time" content="2021-12-11T08:03:17.671Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20211205182046698.png">
 
 
 <link rel="canonical" href="http://yzmninglang.gitee.io/2021/12/06/Cpp%E5%A4%8D%E4%B9%A0/">
@@ -146,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">C基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">面向对象概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cpp%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">cpp概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">4.1.</span> <span class="nav-text">拷贝构造函数的调用关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E5%85%83"><span class="nav-number">4.2.</span> <span class="nav-text">友元</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.1.</span> <span class="nav-text">普通友元函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0%E6%98%AF%E5%85%B6%E5%AE%83%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.2.</span> <span class="nav-text">友元函数是其它类的成员函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="nav-number">4.2.3.</span> <span class="nav-text">友元类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">4.2.4.</span> <span class="nav-text">类的组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.2.5.</span> <span class="nav-text">常类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B4%BE%E7%94%9F%E4%B8%8E%E7%BB%A7%E6%89%BF"><span class="nav-number">5.</span> <span class="nav-text">派生与继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="nav-number">5.0.1.</span> <span class="nav-text">多重继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E5%9F%BA%E7%B1%BB"><span class="nav-number">5.0.2.</span> <span class="nav-text">虚基类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E8%B5%8B%E5%80%BC"><span class="nav-number">5.0.3.</span> <span class="nav-text">兼容赋值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%80%81"><span class="nav-number">6.</span> <span class="nav-text">多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="nav-number">6.1.</span> <span class="nav-text">友元运算符函数重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%90%E5%91%98%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">6.2.</span> <span class="nav-text">成员运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96"><span class="nav-number">6.3.</span> <span class="nav-text">类型转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-number">6.4.</span> <span class="nav-text">虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">6.5.</span> <span class="nav-text">问题</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#c%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">C基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%A6%82%E8%BF%B0"><span class="nav-number">2.</span> <span class="nav-text">面向对象概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cpp%E6%A6%82%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">cpp概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.</span> <span class="nav-text">类与对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="nav-number">4.1.</span> <span class="nav-text">拷贝构造函数的调用关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E5%85%83"><span class="nav-number">4.2.</span> <span class="nav-text">友元</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.1.</span> <span class="nav-text">普通友元函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0%E6%98%AF%E5%85%B6%E5%AE%83%E7%B1%BB%E7%9A%84%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="nav-number">4.2.2.</span> <span class="nav-text">友元函数是其它类的成员函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="nav-number">4.2.3.</span> <span class="nav-text">友元类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E7%9A%84%E7%BB%84%E5%90%88"><span class="nav-number">4.2.4.</span> <span class="nav-text">类的组合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.2.5.</span> <span class="nav-text">常类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B4%BE%E7%94%9F%E4%B8%8E%E7%BB%A7%E6%89%BF"><span class="nav-number">5.</span> <span class="nav-text">派生与继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="nav-number">5.0.1.</span> <span class="nav-text">多重继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E5%9F%BA%E7%B1%BB"><span class="nav-number">5.0.2.</span> <span class="nav-text">虚基类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E8%B5%8B%E5%80%BC"><span class="nav-number">5.0.3.</span> <span class="nav-text">兼容赋值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E6%80%81"><span class="nav-number">6.</span> <span class="nav-text">多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD"><span class="nav-number">6.1.</span> <span class="nav-text">友元运算符函数重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%90%E5%91%98%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">6.2.</span> <span class="nav-text">成员运算符重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E5%8C%96"><span class="nav-number">6.3.</span> <span class="nav-text">类型转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-number">6.4.</span> <span class="nav-text">虚函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">6.5.</span> <span class="nav-text">问题</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -289,11 +287,17 @@
     <div class="post-body" itemprop="articleBody">
         <p>cpp问题总结</p>
 <span id="more"></span>
-<h2 id="C基础"><a href="#C基础" class="headerlink" title="C基础"></a>C基础</h2><p>程序形式：程序=过程+调用</p>
+<h2 id="c基础">C基础</h2>
+<p>程序形式：程序=过程+调用</p>
 <p>I&gt;自顶向下、逐步求精：</p>
 <p>I&gt;模化：</p>
 <p>II&gt;语句结构化</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20211205182046698.png" alt="image-20211205182046698"></p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20211205182046698.png"
+alt="image-20211205182046698" />
+<figcaption aria-hidden="true">image-20211205182046698</figcaption>
+</figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a=<span class="number">0</span></span><br><span class="line"><span class="keyword">int</span> a(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">int</span> a=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> a&#123;<span class="number">0</span>&#125;;</span><br></pre></td></tr></table></figure>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//简单的I/O格式控制</span></span><br><span class="line">setw(<span class="number">5</span>)<span class="comment">//设置域宽</span></span><br></pre></td></tr></table></figure>
 <p>swith分支的判断都是<code>char</code>或者<code>int</code></p>
@@ -305,7 +309,8 @@
 <p>C语言中的变量声明必须集中的在前面，而不能放在函数执行的过程之中，需要我们特别注意</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    i=<span class="number">10</span>;<span class="comment">//这是不允许的</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>带有默认参数的函数，默认参数需要放在后面</p>
-<h2 id="面向对象概述"><a href="#面向对象概述" class="headerlink" title="面向对象概述"></a>面向对象概述</h2><p>1、什么是面向对象？</p>
+<h2 id="面向对象概述">面向对象概述</h2>
+<p>1、什么是面向对象？</p>
 <p>程序=对象+消息</p>
 <p>2、什么是对象，对象与类的关系是什么？</p>
 <p>在面向对象程序设计中，对象是描述其属性的数据以及对这些数据施加的一组操作封装在一起构成的统一体。在C++中每个对象都是由数据和操作代码（通常用函数来实现）</p>
@@ -329,7 +334,7 @@
 <p>7、什么是单继承、多继承</p>
 <p>单继承是指每个派生只是继承了一个基类的特征</p>
 <p>多继承是指多个基类派生出一个派生类的继承关系</p>
-<p>8、什么是多态？<br>不同的对象受到同样消息执行不同操作，有两种多态</p>
+<p>8、什么是多态？ 不同的对象受到同样消息执行不同操作，有两种多态</p>
 <ul>
 <li>函数重载，运算符重载（编译时的多态）</li>
 <li>虚函数（运行时的多态）</li>
@@ -341,7 +346,8 @@
 <p>(4)能够更好地支持大型程序设计;</p>
 <p>(5)增强了计算机处理信息的范围;</p>
 <p>(6)能很好地适应新的硬件环境。</p>
-<h2 id="cpp概述"><a href="#cpp概述" class="headerlink" title="cpp概述"></a>cpp概述</h2><p>1、简述cpp的特点？</p>
+<h2 id="cpp概述">cpp概述</h2>
+<p>1、简述cpp的特点？</p>
 <ul>
 <li>cpp是c的超集，cpp保持了与c的兼容，使得众多c的函数库和代码不经修改可以直接用于cpp中</li>
 <li>C++是一个更好的C,它保持了C的简洁、高效和接近汇编语言等特点,并对C的功能作了不少扩充。用C++编写的程序比C更安全,可读性更好,代码结构更为合理，C++的编译系统能够检查出更多的类型错误。</li>
@@ -381,7 +387,8 @@
 <li><code>delete</code>是会释放内存的，但是不会让指针变量消失，也就是，它还可以指向别的地址</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">delete</span> []p;</span><br><span class="line"><span class="keyword">int</span> a[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">p=a;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;p[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
-<h2 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h2><p>1、类默认的私有成员属性让整个cpp中的类比结构体更安全（数据隐藏），<font color='red'>但是结构体默认是公有的</font></p>
+<h2 id="类与对象">类与对象</h2>
+<p>1、类默认的私有成员属性让整个cpp中的类比结构体更安全（数据隐藏），<font color='red'>但是结构体默认是公有的</font></p>
 <ul>
 <li><font color='red'>不能在类声明中给数据成员赋初值</font></li>
 <li>在声明类的同时定义的对象是一种全局对象，它的生存期直到整个程序运行结束</li>
@@ -406,14 +413,10 @@
 <p>在定义对象时，对数据成员赋初值，称为对象的初始化。在定义对象时，如果某一数据成员没有被赋值，则它的值是不可预知的。对象是一个实体，在使用对象时，它的<font color='red'>每一个数据成员都应该有确定的值</font>。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="keyword">double</span> real;</span><br><span class="line">    	<span class="keyword">double</span> imag;</span><br><span class="line">&#125;;</span><br><span class="line">Complex c1=&#123;<span class="number">1.1</span>,<span class="number">2.2</span>&#125;	<span class="comment">//这种初始化一定要注意了，有私有成员时不行,只有公有成员可以	</span></span><br></pre></td></tr></table></figure>
 <p>7、成员初始化列表对数据成员初始化</p>
-<font color='red'>必须使用该方法的两类数据</font>，一是常量`const`，二是引用`&`.
-
+<p><font color='red'>必须使用该方法的两类数据</font>，一是常量<code>const</code>，二是引用<code>&amp;</code>.</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Complex(<span class="keyword">double</span> x,<span class="keyword">double</span> y):real(x),imag(y)&#123;&#125;;<span class="comment">//构造函数后面操作</span></span><br></pre></td></tr></table></figure>
-
-数据成员是按照它们在类中<font color='red'>声明的顺序</font>进行初始化的，与它们<font color='red'>在成员初始化列表中列出的顺序无关</font>。
-
-<font color='red'>注意：如果参量是数组，则一定不能使用初始化表对其进行初始化</font>
-
+<p>数据成员是按照它们在类中<font color='red'>声明的顺序</font>进行初始化的，与它们<font color='red'>在成员初始化列表中列出的顺序无关</font>。</p>
+<p><font color='red'>注意：如果参量是数组，则一定不能使用初始化表对其进行初始化</font></p>
 <p>8、无参构造函数对象的定义</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Complex a;	<span class="comment">//正确</span></span><br><span class="line"><span class="function">Complex <span class="title">a</span><span class="params">()</span></span>;<span class="comment">//错误</span></span><br></pre></td></tr></table></figure>
 <p>9、带默认参数的构造函数</p>
@@ -440,10 +443,8 @@
 <p>（5）对象指针访问对象数组</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    a *p,c[<span class="number">4</span>]..;</span><br><span class="line">    p=c;</span><br><span class="line">    p[<span class="number">0</span>]-&gt;show();</span><br><span class="line">    p++;<span class="comment">//c[1]</span></span><br><span class="line">    p-&gt;show();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li><p>对象的赋值和复制</p>
-</li>
-<li><p>拷贝复制函数（<font color='red'>这个函数没有返回值</font>）</p>
-</li>
+<li><p>对象的赋值和复制</p></li>
+<li><p>拷贝复制函数（<font color='red'>这个函数没有返回值</font>）</p></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Point <span class="title">p2</span><span class="params">(p1)</span><span class="comment">//使用拷贝复制函数构建p2,方式一</span></span></span><br><span class="line"><span class="function">Point p2</span>=p1 <span class="comment">//使用拷贝复制函数构建p2，方式二</span></span><br></pre></td></tr></table></figure>
 <p>（1）与构造函数同名</p>
@@ -465,31 +466,38 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">int</span> a)</span></span>;</span><br><span class="line"><span class="comment">//访问方式同数据成员</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">A::f</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;&#125;<span class="comment">//不用static前缀</span></span><br></pre></td></tr></table></figure>
 <p>静态函数成员没有<code>this</code>指针,这是它和其它函数最大的区别，一般来说，<font color='red'>不访问非静态成员</font>，如果访问，则也是需要通过对象的引用</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">dis</span><span class="params">(A &amp;w)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A::dis</span><span class="params">(A &amp;w)</span></span>&#123;....&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="拷贝构造函数的调用关系"><a href="#拷贝构造函数的调用关系" class="headerlink" title="拷贝构造函数的调用关系"></a>拷贝构造函数的调用关系</h3><ul>
+<h3 id="拷贝构造函数的调用关系">拷贝构造函数的调用关系</h3>
+<ul>
 <li>当子类的拷贝构造函数没有自定义的时候，拷贝时默认会调用父类的拷贝构造函数（无论父类构造是否自定义）</li>
 <li>当子类的拷贝构造函数自定义之后，拷贝时默认调用父类的构造函数，这时父类的数据成员达不到复制的目的，需要显式调用父类拷贝构造函数。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	B()&#123;&#125;;</span><br><span class="line">    	B(<span class="keyword">const</span> B &amp;ob):A(ob)&#123;...&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h3><p>为什么要使用友元函数</p>
+<h3 id="友元">友元</h3>
+<p>为什么要使用友元函数</p>
 <p>（1）友元函数通过直接访问对象的私有成员，提高了程序运行的效率。</p>
 <p>（2）在某些情况，如运算符被重载时，需要用到友元函数。</p>
 <p>（3）一个函数可以是多个类的友元函数。当一个函数需要访问多个类时，友元函数非常有用</p>
 <p>（1）友元关系是单向的，不具有交换性。若类X是类Y的友元，类Y是否是X的友元，要看在类中是否有相应的声明。</p>
 <p>（2）友元关系也不具有传递性。若类X是类Y的友元，类Y是类z的友元，不定类X是类Z的友元。</p>
-<h4 id="普通友元函数"><a href="#普通友元函数" class="headerlink" title="普通友元函数"></a>普通友元函数</h4><p>（1）<font color='red'>友元一定不是当前类的成员函数</font></p>
+<h4 id="普通友元函数">普通友元函数</h4>
+<p>（1）<font color='red'>友元一定不是当前类的成员函数</font></p>
 <p>（2）只需要在声明的时候前面加上<code>friend</code>,可以定义在类的内部，也可以定义在类的外部</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">si</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">si</span><span class="params">()</span></span>&#123;&#125;;<span class="comment">//声明在类内，定义在类外，不是成员函数</span></span><br></pre></td></tr></table></figure>
 <p>友元在访问的时候，必须传入<font color='red'>对象指针或者对象</font>的引用来进行访问</p>
-<h4 id="友元函数是其它类的成员函数"><a href="#友元函数是其它类的成员函数" class="headerlink" title="友元函数是其它类的成员函数"></a>友元函数是其它类的成员函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//友元成员函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Girl</span>;</span><span class="comment">//这个很必要</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Boy</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">si</span><span class="params">(Girl &amp;)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Girl</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">Boy::si</span><span class="params">(Girl &amp;)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="友元函数是其它类的成员函数">友元函数是其它类的成员函数</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//友元成员函数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Girl</span>;</span><span class="comment">//这个很必要</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Boy</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">si</span><span class="params">(Girl &amp;)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Girl</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">friend</span> <span class="keyword">void</span> <span class="title">Boy::si</span><span class="params">(Girl &amp;)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>（1）一定要先定义友元函数所在的那个类，在定义声明为友元的那个类，需要提前声明类是存在的</p>
-<h4 id="友元类"><a href="#友元类" class="headerlink" title="友元类"></a>友元类</h4><p>（1）<font color='red'>友元类（友元函数所在的类）</font>必须在最开始定义，在其它类里面声明<code>friend 类名</code></p>
+<h4 id="友元类">友元类</h4>
+<p>（1）<font color='red'>友元类（友元函数所在的类）</font>必须在最开始定义，在其它类里面声明<code>friend 类名</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Girl</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Boy</span>&#123;</span></span><br><span class="line">    print(Girl &amp;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Girl</span>&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> (class) Boy; <span class="comment">//class 可以有，可以没有</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果需要互相声明为友元，则需要在上面的类中加上声明下面的类为友元即可，声明友元类后，<font color='red'>友元内的成员函数不能够在类内定义，只能类外定义</font>.</p>
-<h4 id="类的组合"><a href="#类的组合" class="headerlink" title="类的组合"></a>类的组合</h4><p>在一个类中有其它类对象的变量</p>
+<h4 id="类的组合">类的组合</h4>
+<p>在一个类中有其它类对象的变量</p>
 <p>初始化的方法:初始化化表</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    B b;</span><br><span class="line">    C c;</span><br><span class="line">    A(<span class="keyword">int</span> b1,<span class="keyword">int</span> c1):b(b1),c(c1)&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>构造顺序只与其在类中定义的顺序有关，与其在初始化表中的顺序无关，析构相反,<font color='red'>先调用A-&gt;调用B-&gt;调用c-&gt;执行A的函数体</font></p>
-<h4 id="常类型"><a href="#常类型" class="headerlink" title="常类型"></a>常类型</h4><ul>
+<h4 id="常类型">常类型</h4>
+<ul>
 <li>常引用</li>
 </ul>
 <p><code>const 类型 &amp; 引用名</code>作为形参</p>
@@ -503,62 +511,37 @@
 </ul>
 <p><code>返回类型 函数名（参数表）const</code>;</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dis</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> A::dis <span class="title">const</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<font color='red'>常对象只能调用常函数，不能调用普通函数，但是常函数可以被任意调用</font>，常函数可以调用对象的数据成员，但是不能该对象的数据成员，可以改变参数表传进来的形式参数
-
-【3.1】类声明的一般格式是什么？
-
-【解】类声明的一般格式如下：class类名
-private：私有数据成员和成员函数
+<p><font color='red'>常对象只能调用常函数，不能调用普通函数，但是常函数可以被任意调用</font>，常函数可以调用对象的数据成员，但是不能该对象的数据成员，可以改变参数表传进来的形式参数</p>
+<p>【3.1】类声明的一般格式是什么？</p>
+<p>【解】类声明的一般格式如下：class类名 private：私有数据成员和成员函数
 public公有数据成员和成员函数
 其中：class是声明类的关键字，类名是要声明的类的名字；后面的花括号表示类声明的范围；最后的分号表示类声明结束
-除了 private和 public之外，类中的成员还可以用另一个关键字 protected来说明。这时类声明的格式可写成：
-
-类名
-
-[private:]私有数据成员和成员函数
-
-public：公有数据成员和成员函数
-
-protected：保护数据成员和成员函数
-
-被 protected说明的数据成员和成员函数称为保护成员。保护成员可以由本类的成员函数访问，也可以由本类的派生类的成员函数访问，而类外的任何访问都是非法的，即它是半隐蔽的。
-
-【3.2】构造函数和析构函数的主要作用是什么？它们各有什么特性？
-
-【解】构造函数是一种特殊的成员函数，它主要用于为<font color='red'>对象分配空间，进行初始化</font>。构造函数的名字必须与类名相同，而不能由用户任意命名。<font color='red'>它可以有任意类型的参数，但不能具有返回值类型</font>。它<font color='red'>不需要用户来调用，而是在建立对象时自动执行</font>。
-
-构造函数具有一些特性：
-
-（1）构造函数的名字必须与类名相同，否则编译程序将把它当作一般的成员函数来处理。
-
-（2）构造函数没有返回值，在定义构造函数时，是不能说明它的类型的，甚至说明为void类型也不行。
-
-//（3）构造函数的函数体可写在类体内，也可写在类体外。
-
-//（4）构造函数的作用主要是用来对对象进行初始化，用户根据初始化的要求设计函数体和函数参数。在构造函数的函数体中不仅可以对数据成员赋初值，而且可以包含其他语句，但是，为了保持构造函数的功能清晰，一般不提倡在构造函数中加入与初始化无关的内容。
-
-（5）构造函数<font color='red'>一般声明为公有成员</font>，但它不需要也不能像其他成员函数那样被显式地调用，它是在定义对象的同时被自动调用的，而且只执行一次。
-
-（6）在实际应用中，通常需要给每个类定义构造函数。如果没有给类定义构造函数，则编译系统自动地生成一个默认构造函数。
-
-析构函数也是一种特殊的成员函数。它执行与构造函数相反的操作，<font color='red'>通常用于执行些清理任务，如释放分配给对象的内存空间等</font>。析构函数有以下一些特点：
-
-（1）析构函数名与类名相同，但它前面必须加一个波浪号（~）。
-
-（2）<font color='red'>析构函数不返回任何值</font>。在定义析构函数时，是不能说明它的类型的，甚至说明为void类型也不行。
-
-（3）<font color='red'>析构函数没有参数，因此它不能被重载</font>。<font color='red'>一个类可以有多个构造函数，但是只能有一个析构函数</font>。
-
-（4）<font color='red'>撤销对象时，编译系统会自动地调用析构函数</font>。
-
-【3.3】什么是对象数组？
-
-【解】所谓对象数组是指每一<font color='red'>数组元素都是对象的数组</font>，也就是说，若一个类有若干个对象，我们把这一系列的对象用一个数组来存放。对象数组的元素是对象，<font color='red'>不仅具有数据成员，而且还有函数成员</font>。
-
-【3.4】什么是this指针？它的主要作用是什么？
-
-【解】C++为成员函数提供了一个名字为this的指针，这个<font color='red'>指针称为自引用指针</font>。每当创建一个对象时，系统就把this指针初始化为指向该对象，即this指针的值是<font color='red'>当前被调用的成员函数所在的对象的起始地址</font>。每当调用一<font color='red'>个成员函数</font>时，系统就自动把<font color='red'>this指针作为一个隐含的参数传给该函数</font>。不同的<font color='red'>对象调用同一个成员函数</font>时，C++编译器将根据成员函数的<font color='red'>this指针所指向的对象来确定应该引用哪一个对象的数据成员</font>
-
+除了 private和 public之外，类中的成员还可以用另一个关键字
+protected来说明。这时类声明的格式可写成：</p>
+<p>类名</p>
+<p>[private:]私有数据成员和成员函数</p>
+<p>public：公有数据成员和成员函数</p>
+<p>protected：保护数据成员和成员函数</p>
+<p>被
+protected说明的数据成员和成员函数称为保护成员。保护成员可以由本类的成员函数访问，也可以由本类的派生类的成员函数访问，而类外的任何访问都是非法的，即它是半隐蔽的。</p>
+<p>【3.2】构造函数和析构函数的主要作用是什么？它们各有什么特性？</p>
+<p>【解】构造函数是一种特殊的成员函数，它主要用于为<font color='red'>对象分配空间，进行初始化</font>。构造函数的名字必须与类名相同，而不能由用户任意命名。<font color='red'>它可以有任意类型的参数，但不能具有返回值类型</font>。它<font color='red'>不需要用户来调用，而是在建立对象时自动执行</font>。</p>
+<p>构造函数具有一些特性：</p>
+<p>（1）构造函数的名字必须与类名相同，否则编译程序将把它当作一般的成员函数来处理。</p>
+<p>（2）构造函数没有返回值，在定义构造函数时，是不能说明它的类型的，甚至说明为void类型也不行。</p>
+<p>//（3）构造函数的函数体可写在类体内，也可写在类体外。</p>
+<p>//（4）构造函数的作用主要是用来对对象进行初始化，用户根据初始化的要求设计函数体和函数参数。在构造函数的函数体中不仅可以对数据成员赋初值，而且可以包含其他语句，但是，为了保持构造函数的功能清晰，一般不提倡在构造函数中加入与初始化无关的内容。</p>
+<p>（5）构造函数<font color='red'>一般声明为公有成员</font>，但它不需要也不能像其他成员函数那样被显式地调用，它是在定义对象的同时被自动调用的，而且只执行一次。</p>
+<p>（6）在实际应用中，通常需要给每个类定义构造函数。如果没有给类定义构造函数，则编译系统自动地生成一个默认构造函数。</p>
+<p>析构函数也是一种特殊的成员函数。它执行与构造函数相反的操作，<font color='red'>通常用于执行些清理任务，如释放分配给对象的内存空间等</font>。析构函数有以下一些特点：</p>
+<p>（1）析构函数名与类名相同，但它前面必须加一个波浪号（~）。</p>
+<p>（2）<font color='red'>析构函数不返回任何值</font>。在定义析构函数时，是不能说明它的类型的，甚至说明为void类型也不行。</p>
+<p>（3）<font color='red'>析构函数没有参数，因此它不能被重载</font>。<font color='red'>一个类可以有多个构造函数，但是只能有一个析构函数</font>。</p>
+<p>（4）<font color='red'>撤销对象时，编译系统会自动地调用析构函数</font>。</p>
+<p>【3.3】什么是对象数组？</p>
+<p>【解】所谓对象数组是指每一<font color='red'>数组元素都是对象的数组</font>，也就是说，若一个类有若干个对象，我们把这一系列的对象用一个数组来存放。对象数组的元素是对象，<font color='red'>不仅具有数据成员，而且还有函数成员</font>。</p>
+<p>【3.4】什么是this指针？它的主要作用是什么？</p>
+<p>【解】C++为成员函数提供了一个名字为this的指针，这个<font color='red'>指针称为自引用指针</font>。每当创建一个对象时，系统就把this指针初始化为指向该对象，即this指针的值是<font color='red'>当前被调用的成员函数所在的对象的起始地址</font>。每当调用一<font color='red'>个成员函数</font>时，系统就自动把<font color='red'>this指针作为一个隐含的参数传给该函数</font>。不同的<font color='red'>对象调用同一个成员函数</font>时，C++编译器将根据成员函数的<font color='red'>this指针所指向的对象来确定应该引用哪一个对象的数据成员</font></p>
 <p>【3.5】友元函数有什么作用？</p>
 <p>【解】<font color='red'>友元函数不是当前类的成员函数，而是独立于当前类的外部函数</font>，<font color='red'>但它可以访问该类所有的成员</font>font&gt;，包括私有成员、保护成员和公有成员。<font color='red'>当一个函数需要访问多个类时，友元函数非常有用</font>，普通的成员函数只能访问其所属的类，但是多个类的友元函数能够访问相应的所有类的数据。此外，<font color='red'>在某些情况，例如运算符被重载时，需要用到友元函数</font></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Point p1=p2;<span class="comment">//调用拷贝构造</span></span><br><span class="line">p3=p2  <span class="comment">//调用默认赋值</span></span><br></pre></td></tr></table></figure>
@@ -571,7 +554,8 @@ protected：保护数据成员和成员函数
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A a1,a2;</span><br><span class="line">a1=a2 <span class="comment">//这时候是不调用拷贝构造函数的！！！</span></span><br></pre></td></tr></table></figure>
 <p>（6）<font color='red'>数组传参的本质是地址，也就是说，只能用指针进行接收</font>，若是字符串，则可以这样</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">char</span> a[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> b[<span class="number">90</span>];</span><br><span class="line">    <span class="built_in">strcpy</span>(b,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="派生与继承"><a href="#派生与继承" class="headerlink" title="派生与继承"></a>派生与继承</h2><p>（1）派生类不继承基类的构造函数和析构函数</p>
+<h2 id="派生与继承">派生与继承</h2>
+<p>（1）派生类不继承基类的构造函数和析构函数</p>
 <p>（2）调整基类的成员属性</p>
 <ul>
 <li><p>三种继承方式</p>
@@ -581,15 +565,15 @@ protected：保护数据成员和成员函数
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="keyword">int</span> x1;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	<span class="keyword">int</span> x2;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    	<span class="keyword">int</span> x3</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	A::x1;</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">    	A::x2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>记住下面着这个例子</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span><span class="keyword">public</span> A,B&#123;&#125;;</span><br></pre></td></tr></table></figure>
-<font color='red'>其中对A是公有继承，对B是私有继承。</font>
-</li>
+<p><font color='red'>其中对A是公有继承，对B是私有继承。</font></p></li>
 <li><p>同名成员（重定义）</p>
 <p>（1）函数重定义（可以直接调整函数原来的属性）</p>
-<p>要求：<font color='red'>函数名一样，<del>参数表一样</del>（参数可以不一样，这时候会直接隐藏父类的函数）：覆盖  ，  如果不一样，则就是重载</font>覆盖不代表原来的函数没有了，它其实还是存在的，只是这时访问要加上作用域</p>
+<p>要求：<font color='red'>函数名一样，<del>参数表一样</del>（参数可以不一样，这时候会直接隐藏父类的函数）：覆盖
+，
+如果不一样，则就是重载</font>覆盖不代表原来的函数没有了，它其实还是存在的，只是这时访问要加上作用域</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Y</span>;</span></span><br><span class="line">Y::m&#123;</span><br><span class="line">    f();<span class="comment">//访问y中的f（）</span></span><br><span class="line">    X::f();<span class="comment">//访问x中的f（）</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<p>（2）数据成员重写（<font color='red'>这种方式可以被直接无视父类中成员的权限，直接提升权限</font>）</p></li>
 </ul>
-<p>  （2）数据成员重写（<font color='red'>这种方式可以被直接无视父类中成员的权限，直接提升权限</font>）</p>
 <p>（3）基类中的私有成员。无论哪种继承方式，基类中的私有成员不允许派生类继承，即在派生类中是不可直接访问的。但是私有继承时，原来的<code>public \ protected</code>都是可以被内部访问的</p>
 <p>（4）基类中的私有成员既不能被派生类的对象访问，也不能被派生类的成员函数访问，只能<font color='red'>被基类自己的成员函数（公有或者protected）访问</font>。</p>
 <p>（5）通常情况下，当创建派生类对象时，首先执行基类的构造函数，随后再执行派生类的构造函数；当撤销派生类对象时，则先执行派生类的析构函数，随后再执行基类的析构函数。</p>
@@ -601,55 +585,77 @@ protected：保护数据成员和成员函数
 <li>调用基类构造函数</li>
 <li>调用内嵌对象的构造函数</li>
 <li>执行B的函数体</li>
-<li><font color='red'>析构顺序相反</font>
-
-</li>
+<li><font color='red'>析构顺序相反</font></li>
 </ul>
 <p>对象成员的构造函数调用顺序是他们在派生类中的声明顺序，析构相反</p>
-<h4 id="多重继承"><a href="#多重继承" class="headerlink" title="多重继承"></a>多重继承</h4><p>形式:</p>
+<h4 id="多重继承">多重继承</h4>
+<p>形式:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span>:</span><span class="keyword">public</span> A,<span class="keyword">protected</span> B</span><br><span class="line">&#123;</span><br><span class="line">    ....<span class="comment">//先调用A的构造，再调用B的构造</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>构造函数的调用顺序与声明时的顺序有关，析构相反</p>
-<h4 id="虚基类"><a href="#虚基类" class="headerlink" title="虚基类"></a>虚基类</h4><p>（1）如果在<font color='red'>虚基类中定义有带形参的构造函数</font>，并且没有定义默认形式的构造函数，则整个继承结构中，<font color='red'>所有直接或间接的派生类都必须在构造函数的成员初始化表中列出对虚<br>基类构造函数的调用（不是虚基类不用调用。只用管自己的上一级）</font>，以初始化在虚基类中定义的数据成员。</p>
-<p>（2）建立一个对象时，如果这个对象中含有从虚基类继承来的成员，<font color='red'>则虚基类的成员是由最远派生类的构造函数通过调用虚基类的构造函数进行初始化的（构造函数只执行一次，普通继承调用多次）</font>。该派生类的其他基类<br>对虚基类构造函数的调用都自动被忽略。</p>
-<p>（3）若同一层次中同时包含虚基类和非虚基类<font color='red'>，应先调用虚基类的构造函数，再调用非<br>虚基类的构造函数，最后调用派生类构造函数</font>。</p>
+<h4 id="虚基类">虚基类</h4>
+<p>（1）如果在<font color='red'>虚基类中定义有带形参的构造函数</font>，并且没有定义默认形式的构造函数，则整个继承结构中，<font color='red'>所有直接或间接的派生类都必须在构造函数的成员初始化表中列出对虚
+基类构造函数的调用（不是虚基类不用调用。只用管自己的上一级）</font>，以初始化在虚基类中定义的数据成员。</p>
+<p>（2）建立一个对象时，如果这个对象中含有从虚基类继承来的成员，<font color='red'>则虚基类的成员是由最远派生类的构造函数通过调用虚基类的构造函数进行初始化的（构造函数只执行一次，普通继承调用多次）</font>。该派生类的其他基类
+对虚基类构造函数的调用都自动被忽略。</p>
+<p>（3）若同一层次中同时包含虚基类和非虚基类<font color='red'>，应先调用虚基类的构造函数，再调用非
+虚基类的构造函数，最后调用派生类构造函数</font>。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">X</span>:</span><span class="keyword">public</span> Y <span class="keyword">virtual</span> <span class="keyword">public</span> Z&#123;&#125;;</span><br><span class="line"><span class="comment">//先调用z，然后y，然后x</span></span><br></pre></td></tr></table></figure>
 <p>（4）对于多个虚基类，构造函数的执行顺序仍然是先左后右，自上而下。</p>
 <p>（5）对于非虚基类，构造函数的执行顺序仍是先左后右，自上而下。</p>
 <p>（6）若虚基类由非虚基类派生而来，则仍然先调用基类构造函数，再调用派生类的构造</p>
-<h4 id="兼容赋值"><a href="#兼容赋值" class="headerlink" title="兼容赋值"></a>兼容赋值</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Base b;</span><br><span class="line">Derieve d;</span><br><span class="line">b=d;<span class="comment">//只能访问b具有的成员</span></span><br><span class="line">Base &amp;b=d;</span><br><span class="line">base *p=&amp;d;</span><br></pre></td></tr></table></figure>
+<h4 id="兼容赋值">兼容赋值</h4>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Base b;</span><br><span class="line">Derieve d;</span><br><span class="line">b=d;<span class="comment">//只能访问b具有的成员</span></span><br><span class="line">Base &amp;b=d;</span><br><span class="line">base *p=&amp;d;</span><br></pre></td></tr></table></figure>
 <p>指向基类的指针只能指向他的<font color='red'>公有派生类</font>的对象，而不能指向他的私有和保护派生对象。</p>
-<p>【4.3】保护成员有哪些特性？保护成员以公有方式或私有方式被继承后的访问特性<br>如何？</p>
-<p>【解】当类的继承方式为公有继承时，基类中的所有保护成员在派生类中仍以保护成<br>员的身份出现，在派生类内可以访问这些成员，但派生类外部不能访问它们，而在下一层派<br>生类内可以访问它们。</p>
-<p>当类的继承方式为私有继承时，基类中的所有保护成员在派生类中都以私有成员的身<br>份出现，在派生类内可以访问这些成员，但派生类外部不能访问它们。</p>
+<p>【4.3】保护成员有哪些特性？保护成员以公有方式或私有方式被继承后的访问特性
+如何？</p>
+<p>【解】当类的继承方式为公有继承时，基类中的所有保护成员在派生类中仍以保护成
+员的身份出现，在派生类内可以访问这些成员，但派生类外部不能访问它们，而在下一层派
+生类内可以访问它们。</p>
+<p>当类的继承方式为私有继承时，基类中的所有保护成员在派生类中都以私有成员的身
+份出现，在派生类内可以访问这些成员，但派生类外部不能访问它们。</p>
 <p>【4.7】在类的派生中为何要引人虚基类？虚基类构造函数的调用顺序是如何规定的？</p>
-<p>【解】当引用派生类的成员时，首先在派生类自身的作用域中寻找这个成员，如果没有<br>找到，则到它的基类中寻找。如果一个派生类是从多个基类派生出来的，而这些基类又有一<br>个共同的基类，则在这个派生类中访问这个共同的基类中的成员时，可能会产生二义性。为<br>了解决这种二义性，C++引入了虚基类的概念。<br>虚基类的初始化与一般的多继承的初始化在语法上是一样的，但构造函数的调用顺序不同。在使用虚基类机制时应该注意以下几点：</p>
-<p>（1）如果在虚基类中定义有<font color='red'>带形参的构造函</font>数，并且没有定义默认形式的构造函数，则<br>整个继承结构中，所有直<font color='red'>接或间接的派生类都必须在构造函数的成员初始化表中列出对虚<br>基类构造函数的调用</font>，以初始化在虚基类中定义的数据成员。</p>
-<p>（2）建立一个对象时，如果这个对象中含有从虚基类继承来的成员，则虚基类的成员是<br>由最远派生类的构造函数通过调用虚基类的构造函数进行初始化的。该派生类的其他基类<br>对虚基类构造函数的调用都自动被忽略。</p>
-<p>（3）若同一层次中同时包含虚基类和非虚基类，应先调用虚基类的构造函数，再调用非<br>虚基类的构造函数，最后调用派生类构造函数。</p>
+<p>【解】当引用派生类的成员时，首先在派生类自身的作用域中寻找这个成员，如果没有
+找到，则到它的基类中寻找。如果一个派生类是从多个基类派生出来的，而这些基类又有一
+个共同的基类，则在这个派生类中访问这个共同的基类中的成员时，可能会产生二义性。为
+了解决这种二义性，C++引入了虚基类的概念。
+虚基类的初始化与一般的多继承的初始化在语法上是一样的，但构造函数的调用顺序不同。在使用虚基类机制时应该注意以下几点：</p>
+<p>（1）如果在虚基类中定义有<font color='red'>带形参的构造函</font>数，并且没有定义默认形式的构造函数，则
+整个继承结构中，所有直<font color='red'>接或间接的派生类都必须在构造函数的成员初始化表中列出对虚
+基类构造函数的调用</font>，以初始化在虚基类中定义的数据成员。</p>
+<p>（2）建立一个对象时，如果这个对象中含有从虚基类继承来的成员，则虚基类的成员是
+由最远派生类的构造函数通过调用虚基类的构造函数进行初始化的。该派生类的其他基类
+对虚基类构造函数的调用都自动被忽略。</p>
+<p>（3）若同一层次中同时包含虚基类和非虚基类，应先调用虚基类的构造函数，再调用非
+虚基类的构造函数，最后调用派生类构造函数。</p>
 <p>（4）对于多个虚基类，构造函数的执行顺序仍然是先左后右，自上而下。</p>
 <p>（5）对于非虚基类，构造函数的执行顺序仍是先左后右，自上而下。</p>
-<p>（6）若虚基类由非虚基类派生而来，则仍然先调用基类构造函数，再调用派生类的构造<br>函数。</p>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>1、运算符重载(<font color='red'>所有的运算符重载都有返回值（除了转化构造函数外，一般为对象，但是=和[]返回的值对象的引用），一般都需要传入对象的引用，双目运算符函数的提供者是左边，单目运算符提供者默认是右边</font>)</p>
+<p>（6）若虚基类由非虚基类派生而来，则仍然先调用基类构造函数，再调用派生类的构造
+函数。</p>
+<h2 id="多态">多态</h2>
+<p>1、运算符重载(<font color='red'>所有的运算符重载都有返回值（除了转化构造函数外，一般为对象，但是=和[]返回的值对象的引用），一般都需要传入对象的引用，双目运算符函数的提供者是左边，单目运算符提供者默认是右边</font>)</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">....</span><br><span class="line">&#125;;</span><br><span class="line">Complex <span class="keyword">operator</span>+(Complex a,Complex b)</span><br><span class="line">&#123;</span><br><span class="line">    ....</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	total1=com1+com2;	<span class="comment">//调用方式1</span></span><br><span class="line">	total2=<span class="keyword">operator</span>+(com1,com2);	<span class="comment">//调用方式2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>不能重载的运算符有：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">.*</span><br><span class="line">::</span><br><span class="line"><span class="keyword">sizeof</span></span><br><span class="line">?:</span><br></pre></td></tr></table></figure>
 <p>C++不允许自己定义新的运算符，例如<code>**</code>不能重载，也不能定义，因为C++中无法通过这个进行乘方运算</p>
 <ul>
 <li>重载运算符不能改变操作数的个数（+）</li>
-<li>重载不能改变优先级（+，$\times$）</li>
+<li>重载不能改变优先级（+，<span
+class="math inline">\(\times\)</span>）</li>
 <li>重载不能改变结合特性</li>
 <li>重载的参数至少一个是<u>类对象</u>（类引用），<u>不能全部是标准数据类型</u></li>
 <li>=不用重载，除非类中有动态分配内存的指针成员</li>
 </ul>
-<h3 id="友元运算符函数重载"><a href="#友元运算符函数重载" class="headerlink" title="友元运算符函数重载"></a>友元运算符函数重载</h3><ul>
+<h3 id="友元运算符函数重载">友元运算符函数重载</h3>
+<ul>
 <li>友元函数可以是不属于任何类的非成员函数，也可以是其他类的成员函数（一定不是自己的成员函数）</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//友元运算符重载</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">x</span>&#123;</span></span><br><span class="line">    <span class="keyword">friend</span> 函数类型 <span class="keyword">operator</span>运算符(形参表);</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line">函数类型 <span class="keyword">operator</span>运算符（形参表）	<span class="comment">//无需加上类名</span></span><br><span class="line">&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>在重载单目运算符，特别是++和—的时候，一定要记得使用<u>对象引用</u>，因为对象类型将无法改变它自身</li>
+<li>在重载单目运算符，特别是++和--的时候，一定要记得使用<u>对象引用</u>，因为对象类型将无法改变它自身</li>
 <li>有些的运算符不能定义为友元重载函数如<code>= 、[] 、()</code>，他们只能定为。。。</li>
 </ul>
-<h3 id="成员运算符重载"><a href="#成员运算符重载" class="headerlink" title="成员运算符重载"></a>成员运算符重载</h3><ul>
+<h3 id="成员运算符重载">成员运算符重载</h3>
+<ul>
 <li>双目运算符：参数表为一个操作数</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//测试访问权限</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">x</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">....</span><br><span class="line">		x <span class="keyword">operator</span>*(x ob);</span><br><span class="line">&#125;;</span><br><span class="line">x x::<span class="keyword">operator</span>*(x ob)</span><br><span class="line">&#123;</span><br><span class="line">	real=real*ob.real;</span><br><span class="line">	imag=imag*ob.imag;<span class="comment">//可以直接访问ob.imag</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -668,7 +674,8 @@ protected：保护数据成员和成员函数
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明区别</span></span><br><span class="line"><span class="comment">//前缀</span></span><br><span class="line">x <span class="keyword">operator</span>++();</span><br><span class="line"><span class="keyword">friend</span> x <span class="keyword">operator</span>++();</span><br><span class="line"><span class="comment">//后缀</span></span><br><span class="line">x <span class="keyword">operator</span>++(<span class="keyword">int</span>);	<span class="comment">//无需参数名，只需写类型</span></span><br><span class="line"><span class="keyword">friend</span> x <span class="keyword">operator</span>++(<span class="keyword">int</span>);</span><br><span class="line"><span class="comment">//定义区别</span></span><br><span class="line"><span class="comment">//前缀</span></span><br><span class="line">x x::<span class="keyword">operator</span>++()&#123;&#125;</span><br><span class="line">x <span class="keyword">operator</span>++()&#123;&#125;</span><br><span class="line"><span class="comment">//后缀</span></span><br><span class="line">x x::<span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;&#125;</span><br><span class="line">x <span class="keyword">operator</span>++(<span class="keyword">int</span>)&#123;&#125;</span><br><span class="line"><span class="comment">//调用区别</span></span><br><span class="line"><span class="comment">//前缀</span></span><br><span class="line">ob.<span class="keyword">operator</span>++();<span class="comment">//显式调用，成员函数</span></span><br><span class="line"><span class="keyword">operator</span>++(ob);<span class="comment">//显示调用，友元函数</span></span><br><span class="line">++ob;	<span class="comment">//隐式调用:友元重载和成员函数重载一样</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//后缀</span></span><br><span class="line">ob.<span class="keyword">operator</span>++(<span class="number">0</span>);<span class="comment">//显式调用，成员函数</span></span><br><span class="line"><span class="keyword">operator</span>++(ob,<span class="number">0</span>);<span class="comment">//显示调用，友元函数</span></span><br><span class="line">ob++;	<span class="comment">//隐式调用:友元重载和成员函数重载一样</span></span><br></pre></td></tr></table></figure>
 <p>前缀<code>++x</code>是先自加，在进行下一步运算，<code>x=0,z=x++*4</code>,则最终<code>z=0</code>.</p>
-<p>双目运算符一般可以被重载为友元运算符重载函数或成员运算符重载函数，但有一种情况，必须使用友元函数<br>例如，如果将一个复数与一个整数相加，可用成员运算符函数重载“+”运算符：</p>
+<p>双目运算符一般可以被重载为友元运算符重载函数或成员运算符重载函数，但有一种情况，必须使用友元函数
+例如，如果将一个复数与一个整数相加，可用成员运算符函数重载“+”运算符：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Complex A::<span class="keyword">operator</span>+ (<span class="keyword">int</span> a)</span><br><span class="line">&#123; <span class="keyword">return</span> Complex(real+a ,imag);</span><br><span class="line">&#125;<span class="comment">// obj+100可以 100+obj不可以</span></span><br></pre></td></tr></table></figure>
 <p>但是通过声明友元即可以解决这个问题，声明两个友元函数即可，即如果操作数希望有隐私类型转化，必须使用友元函数重载。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> Complex <span class="keyword">operator</span>+（comp1 ex com，inta）/运算符+的左侧是类对象</span><br><span class="line">&#123;<span class="keyword">return</span> Complex（com.real+ a,com.imag）&#125;<span class="comment">//右侧是整数</span></span><br><span class="line"><span class="keyword">friend</span> Complex <span class="keyword">operator</span>+（inta，Complex com）<span class="comment">//运算符+的左侧是整数</span></span><br><span class="line">&#123;<span class="keyword">return</span> Complex（a+ com.real,com.imag）&#125;<span class="comment">//右侧是类对象</span></span><br></pre></td></tr></table></figure>
@@ -682,7 +689,8 @@ protected：保护数据成员和成员函数
 <ul>
 <li><u>下标运算符只能定义为成员函数</u></li>
 </ul>
-<h3 id="类型转化"><a href="#类型转化" class="headerlink" title="类型转化"></a>类型转化</h3><ul>
+<h3 id="类型转化">类型转化</h3>
+<ul>
 <li>转化构造函数（<u>只能是类内构造函数</u>）,<font color='red'>没有说明返回类型</font></li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span>&#123;</span></span><br><span class="line">  a()&#123;&#125;;</span><br><span class="line">  a(<span class="keyword">double</span> r)&#123;	<span class="comment">//要转化的类型，转化构造函数</span></span><br><span class="line">      x=r,y=<span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -695,14 +703,17 @@ protected：保护数据成员和成员函数
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span><span class="comment">//目标类型</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> real;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span></span></span><br><span class="line"><span class="function">        ....</span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span>(com) <span class="comment">//调用方式，注意这个和一般函数调用的区别</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>（1）类型转换函数<u>只能定义为一个类的成员函数而不能定义为类的友元函数</u>。类型转换函数也可以在类体中声明函数原型，而将函数体定义在类的外部</p>
 <p>（2）类型转换函数既没有参数，也不能在函数名前面指定函数类型</p>
-<p>（3）类型函数中必须有<font color='red'> <strong>return</strong></font>语句，即必须送回目标类型的数据作为函数的返回值。</p>
+<p>（3）类型函数中必须有<font color='red'>
+<strong>return</strong></font>语句，即必须送回目标类型的数据作为函数的返回值。</p>
 <p>（4）一个类可以定义多个类型转换函数。C++编译器将根据类型转换函数名自动地选择一个合适的类型转换函数予以调用。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//类型转化隐式调用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span>&#123;</span></span><br><span class="line">    Complex(<span class="keyword">int</span> i);</span><br><span class="line">    <span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function">Complex <span class="title">a1</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span>,<span class="title">a2</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span>,a3</span>;</span><br><span class="line">    a3=a1+a2;<span class="comment">//先调用类型转化函数，在调用转化构造函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h3><p>虚函数是重载的另一种表现形式。这是一种动态的重载方式，它提供了一种更为灵活的运行时的多态性机制。属于动态联编</p>
+<h3 id="虚函数">虚函数</h3>
+<p>虚函数是重载的另一种表现形式。这是一种动态的重载方式，它提供了一种更为灵活的运行时的多态性机制。属于动态联编</p>
 <p>原来，在C++中规定：<u>基类的对象指针</u>可以指向它的公有派生的对象，但是当其指向公有派生类对象时，它<u><font color='red'>只能访问派生类中从基类继承来的成员</font></u>，而<u>不能访问公有派生类中定义的成</u>员。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">a</span>&#123;</span></span><br><span class="line">    print1();</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">b</span>:</span><span class="keyword">public</span> a&#123;</span><br><span class="line">    print2()</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    a *p=&amp;b;</span><br><span class="line">    p-&gt;print1();<span class="comment">//正确</span></span><br><span class="line">    p-&gt;print2();<span class="comment">//错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>可以通过基类的<font color='red'>指针</font>或者<font color='red'>引用</font>来访问同名函数，在派生类中重新定义时，其函数原型，包括函数类型、函数名、参数个数、参数类型的顺序，都必须与基类中的原型完全相同。不一样的话将直接调用基类的虚函数</p>
-<p>（1）若在基类中，只声明虚函数原型（需加上 virtual），而在类外定义虚函数时，则不必再加 virtual</p>
+<p>（1）若在基类中，只声明虚函数原型（需加上
+virtual），而在类外定义虚函数时，则不必再加 virtual</p>
 <p>（2）<code>virtual</code>可写可不写，在子类中</p>
 <p>（3）如果虚函数没有被重新定义，则自接继承父类虚函数</p>
 <p>（3）虚函数<font color='red'>必须是类的成员函数</font>，<font color='red'>不能是友元函数</font>，不能是静态函数</p>
@@ -724,11 +735,16 @@ protected：保护数据成员和成员函数
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">area</span><span class="params">()</span></span>=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
 <p>（1）不能建立抽象类对象，只能作为基类</p>
 <p>（2）可以定义指针，指向子类，<font color='red'>不能作为参数类型，函数返回类型</font></p>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>1、什么是动态联编和静态联编？</p>
-<p>​        静态联编是指<font color='red'>系统在编译时就决定如何实现某一动作</font>。静态联编要求在程序编译时就知道调用函数的全部信息，因此，这种联编类型的<font color='red'>函数调用速度很快。效率高</font>是静态联编的主要优点。<br>​        动态联编是指<font color='red'>系统在运行时动态实现某一动作</font>。采用这种联编方式，一直要到程序运行时才能确定调用哪个函数。动态联编的主要优点是：<font color='red'>提供了更好的灵活性、问题抽象性和程序易维护性</font>。</p>
+<h3 id="问题">问题</h3>
+<p>1、什么是动态联编和静态联编？</p>
+<p>​
+静态联编是指<font color='red'>系统在编译时就决定如何实现某一动作</font>。静态联编要求在程序编译时就知道调用函数的全部信息，因此，这种联编类型的<font color='red'>函数调用速度很快。效率高</font>是静态联编的主要优点。
+​
+动态联编是指<font color='red'>系统在运行时动态实现某一动作</font>。采用这种联编方式，一直要到程序运行时才能确定调用哪个函数。动态联编的主要优点是：<font color='red'>提供了更好的灵活性、问题抽象性和程序易维护性</font>。</p>
 <p>2、编译时的多态性与运行时的多态性有什么区别？它们的实现方法有什么不同？</p>
 <p>【解】<font color='red'>静态联编支持的多态性称为编译时多态性</font>，也称静态多态性。在C++中，<font color='red'>编译时多态性是通过函数重载（包括运算符重载）和模板实现的</font>。利用函数重载机制，在调用同名的函数时，编译系统可根据实参的具体情况确立所要调用的是哪个函数</p>
-<p>​    <font color='red'>动态联编所支持的多态性称为运行时多态性</font>，也称动态多态性。在C++中，运行时<font color='red'>多态性是通过虚函数</font>来实现的。</p>
+<p>​
+<font color='red'>动态联编所支持的多态性称为运行时多态性</font>，也称动态多态性。在C++中，运行时<font color='red'>多态性是通过虚函数</font>来实现的。</p>
 <p>3、简述运算符重载的规则。</p>
 <p>【解】C++语言对运算符重载制定了以下一些规则：</p>
 <p>（1）C++中绝大部分的运算符允许重载，不能重载的运算符只有少数几个。</p>
@@ -741,14 +757,19 @@ protected：保护数据成员和成员函数
 <p>（8）运算符重载函数可以是普通函数，也可以是类的成员函数，还可以是类的友元函数。</p>
 <p>（9）一般而言，用于类对象的运算符必须重载，但是赋值运算符“=”例外，不必用户进行重载。但在某些情况下，例如数据成员中包含指向动态分配内存的指针成员时，使用系统提供的对象赋值运算符函数就不能满足程序的要求，在赋值时可能出现错误。在这种情况下，就需要用户自己编写赋值运算符重载函数。</p>
 <p>【5.4】友元运算符重载函数和成员运算符重载函数有什么不同</p>
-<p>【解】友元运算符重载函数和成员运算符重载函数的不同有以下几点：<br>（1）对双目运算符而言，成员运算符重载函数参数表中含有一个参数，而友元运算符重载函数参数表中含有两个参数；对单目运算符而言，成员运算符重载函数参数表中没有参数，而友元运算符重载函数参数表中含有一个参数<br>（2）双目运算符一般可以被重载为友元运算符重载函数或成员运算符重载函数，但有些情况，必须使用友元运算符重载函数，例如一个常数与一个对象相加。有的运算符（如=等）只能使用成员运算符重载函数</p>
+<p>【解】友元运算符重载函数和成员运算符重载函数的不同有以下几点：
+（1）对双目运算符而言，成员运算符重载函数参数表中含有一个参数，而友元运算符重载函数参数表中含有两个参数；对单目运算符而言，成员运算符重载函数参数表中没有参数，而友元运算符重载函数参数表中含有一个参数
+（2）双目运算符一般可以被重载为友元运算符重载函数或成员运算符重载函数，但有些情况，必须使用友元运算符重载函数，例如一个常数与一个对象相加。有的运算符（如=等）只能使用成员运算符重载函数</p>
 <p>（3）成员运算符函数和友元运算符函数都可以用习惯方式调用，也可以用它们专用的方式调用。</p>
 <p>【5.5】什么是虚函数？虚函数与函数重载有哪些相同点与不同点？</p>
-<p>【解】虚函数就是在基类中被关键字 virtual说明，并在派生类中重新定义的函数。虚函数的作用是允许在派生类中重新定义与基类同名的函数，并且可以通过基类指针或引用来访问基类和派生类中的同名函数。</p>
-<p>​        在一个派生类中重新定义基类的虚函数是函数重载的另一种形式，但它不同于一般的函数重载。当普通的函数重载时，其函数的参数或参数类型必须有所不同，函数的返回类型也可以不同。但是，当重载一个虚函数时，也就是说在派生类中重新定义虚函数时，要求函数名、返回类型、参数个数、参数的类型和顺序与基类中的虚函数原型完全相同。如果仅仅返回类型不同，其余均相同，系统会给出错误信息；若仅仅函数名相同，而参数的个数、类型或顺序不同，系统将它作为普通的函数重载，这时虚函数的特性将丢失</p>
+<p>【解】虚函数就是在基类中被关键字
+virtual说明，并在派生类中重新定义的函数。虚函数的作用是允许在派生类中重新定义与基类同名的函数，并且可以通过基类指针或引用来访问基类和派生类中的同名函数。</p>
+<p>​
+在一个派生类中重新定义基类的虚函数是函数重载的另一种形式，但它不同于一般的函数重载。当普通的函数重载时，其函数的参数或参数类型必须有所不同，函数的返回类型也可以不同。但是，当重载一个虚函数时，也就是说在派生类中重新定义虚函数时，要求函数名、返回类型、参数个数、参数的类型和顺序与基类中的虚函数原型完全相同。如果仅仅返回类型不同，其余均相同，系统会给出错误信息；若仅仅函数名相同，而参数的个数、类型或顺序不同，系统将它作为普通的函数重载，这时虚函数的特性将丢失</p>
 <p>【5.6】什么是纯虚函数？什么是抽象类？</p>
 <p>【解】纯虚函数是一个在基类中说明的虚函数，它在该基类中没有定义，但要求在它的派生类中定义自己的版本，或重新说明为纯虚函数。</p>
-<p>​        声明纯虚函数的一般形式如下：<code>virtual 函数类型 函数名（参数表）=0</code>；纯虚函数的作用是在基类中为其派生类保留一个函数的名字，以便派生类根据需要对它进行重新定义。纯虚函数没有函数体，它最后面的“=0”并不表示函数的返回值为0，而只起形式上的作用，告诉编译系统“这是纯虚函数”。纯虚函数不具备函数的功能，不能被调用。</p>
+<p>​
+声明纯虚函数的一般形式如下：<code>virtual 函数类型 函数名（参数表）=0</code>；纯虚函数的作用是在基类中为其派生类保留一个函数的名字，以便派生类根据需要对它进行重新定义。纯虚函数没有函数体，它最后面的“=0”并不表示函数的返回值为0，而只起形式上的作用，告诉编译系统“这是纯虚函数”。纯虚函数不具备函数的功能，不能被调用。</p>
 <ul>
 <li>当父类的构造函数为空时，可以不用在子类构造中调用父类构造函数，实际上系统会默认调用。</li>
 </ul>
@@ -793,8 +814,8 @@ protected：保护数据成员和成员函数
 
 
 <div class="copyright">
-  &copy; 
-  <span itemprop="copyrightYear">2019</span>
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class=""></i>
   </span>
