@@ -552,92 +552,6 @@ alt="TTL三态门" />
       </categories>
   </entry>
   <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
-<span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
-Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="first">First</h1>
-<p>Hello everyone, welcome to come here, today I will introduce a new
-technology for image translation, called cycle-gan, which is a project
-led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
-let's introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
-Google? What do they have in common? Yes, what they have in common is
-that they are all creative. The so-called creativity means that when you
-input the same sentence, it can give different results, so the first
-word of gpt is Generative, but CNN is not good at generative models. ,
-when you give the same input, it is more likely to output the same
-result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to
-generalize and recognize other domains through a trained model, here
-involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two
-parts: the generator and the discriminator. The generator is used to
-generate content, and the discriminator mainly identifies whether the
-generated content is fake. The generator and the discriminator are two
-models, and they co-evolve with the prey just like in nature. When the
-discriminator cannot distinguish whether the generated content is fake
-or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
-GB-&gt;A,以及两个判别模型
-DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
-域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models,
-namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
-models DA and DB. This is the origin of cycle, but it is even more
-exciting What is popular is that cycle-gan does not require paired data
-pairs for training, that is to say, we only need to give cycle-gan
-enough data from the source domain and the target domain without a lot
-of labeling work on it, and it will Automatically learn and successfully
-convert the x domain to the y domain. Since it involves the two-way
-conversion of the two domains, the loss function used in its iteration
-is also a cycle consistent loss function.</p>
-<h1 id="second">second</h1>
-<blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in
-the field of video enhancement, black-and-white video becomes color
-video. Or scene transformation. Or convert an abstract painting into a
-concrete painting such as a building, these can be used as communication
-data compression, you can try the sender to transmit data similar to
-color blocks on the network, it may take up a lot of bandwidth Small,
-when you get these color patches at the receiving end, bring them back.
-This looks like a good way to compress video</p>
-<h1 id="third">Third</h1>
-<p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is
-“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
-[15]。</p>
-<p>”。</p>
-<p>The second sentence
-means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis
-“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
-[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -734,6 +648,92 @@ href="https://mp.weixin.qq.com/s/Etxi9erBTg0Y6Vt71Y4r9Q">同任务但不同domai
 <h2 id="transform">Transform</h2>
 <p><a href="https://zhuanlan.zhihu.com/p/600773858">OpenAI
 ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
+<span id="more"></span>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
+Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="first">First</h1>
+<p>Hello everyone, welcome to come here, today I will introduce a new
+technology for image translation, called cycle-gan, which is a project
+led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
+let's introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
+Google? What do they have in common? Yes, what they have in common is
+that they are all creative. The so-called creativity means that when you
+input the same sentence, it can give different results, so the first
+word of gpt is Generative, but CNN is not good at generative models. ,
+when you give the same input, it is more likely to output the same
+result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to
+generalize and recognize other domains through a trained model, here
+involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two
+parts: the generator and the discriminator. The generator is used to
+generate content, and the discriminator mainly identifies whether the
+generated content is fake. The generator and the discriminator are two
+models, and they co-evolve with the prey just like in nature. When the
+discriminator cannot distinguish whether the generated content is fake
+or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
+GB-&gt;A,以及两个判别模型
+DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
+域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models,
+namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
+models DA and DB. This is the origin of cycle, but it is even more
+exciting What is popular is that cycle-gan does not require paired data
+pairs for training, that is to say, we only need to give cycle-gan
+enough data from the source domain and the target domain without a lot
+of labeling work on it, and it will Automatically learn and successfully
+convert the x domain to the y domain. Since it involves the two-way
+conversion of the two domains, the loss function used in its iteration
+is also a cycle consistent loss function.</p>
+<h1 id="second">second</h1>
+<blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in
+the field of video enhancement, black-and-white video becomes color
+video. Or scene transformation. Or convert an abstract painting into a
+concrete painting such as a building, these can be used as communication
+data compression, you can try the sender to transmit data similar to
+color blocks on the network, it may take up a lot of bandwidth Small,
+when you get these color patches at the receiving end, bring them back.
+This looks like a good way to compress video</p>
+<h1 id="third">Third</h1>
+<p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is
+“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
+[15]。</p>
+<p>”。</p>
+<p>The second sentence
+means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis
+“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
+[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -1096,39 +1096,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1183,6 +1150,39 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -2191,52 +2191,6 @@ Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
-<p><a
-href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
-- 华为</a>。</p>
-<p><a
-href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a
-href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
-3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a
-href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol type="1">
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点
-共享，通信与感知完全一体化，系统性能显著提升，网络系统
-的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
-Equipment，UE）之间更大规模的协同、通信感
-知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
-术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-  </entry>
-  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -2289,6 +2243,52 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
       <categories>
         <category>思想觉悟</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p><a
+href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
+- 华为</a>。</p>
+<p><a
+href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a
+href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
+3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a
+href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol type="1">
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点
+共享，通信与感知完全一体化，系统性能显著提升，网络系统
+的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
+Equipment，UE）之间更大规模的协同、通信感
+知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
+术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
   </entry>
   <entry>
     <title>移动通信重点总结</title>
