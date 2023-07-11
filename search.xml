@@ -417,6 +417,61 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>通信原理笔记</title>
     <url>/2023/05/23/Communication%20principle/</url>
     <content><![CDATA[<p>通信原理理解性笔记</p>
@@ -583,61 +638,6 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -768,21 +768,6 @@ alt="被删除视频" />
 ]]></content>
       <categories>
         <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -931,6 +916,21 @@ figure,see whether it is overfit or not ?</li>
 ]]></content>
       <categories>
         <category>Neural Network</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -1186,6 +1186,88 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>爬虫小结</title>
+    <url>/2021/02/02/Web%20Crawler/</url>
+    <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
+<span id="more"></span>
+<h2 id="前言">前言</h2>
+<p>​
+在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
+<h2 id="爬虫">爬虫</h2>
+<h3 id="有道翻译">有道翻译</h3>
+<p>​ 打开开发者工具后，我们对我们输入的字符“are you
+ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png"
+alt="有道翻译抓包分析" />
+<figcaption aria-hidden="true">有道翻译抓包分析</figcaption>
+</figure>
+<p>观察Response
+,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" /></p>
+<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" /></p>
+<p>观察webform，把它复制粘贴到代码就可以了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" /></p>
+<p>​
+但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code>
+,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制）</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" /></p>
+<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" /></p>
+<h3 id="百度图片">百度图片</h3>
+<p>​ <img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" />如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" /></p>
+<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" /></p>
+<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" /></p>
+<h3 id="b站视频">B站视频</h3>
+<p>​
+刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
+<p>先下载这个<a href="">压缩包</a></p>
+<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" /></p>
+<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a
+href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" /></p>
+<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code>
+目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" /></p>
+<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
+<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
+<h2 id="抓包">抓包</h2>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>出租车载客模型</title>
     <url>/2021/08/15/Taxi%20passenger%20model/</url>
     <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
@@ -1419,85 +1501,85 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>爬虫小结</title>
-    <url>/2021/02/02/Web%20Crawler/</url>
-    <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
 <span id="more"></span>
-<h2 id="前言">前言</h2>
-<p>​
-在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
-<h2 id="爬虫">爬虫</h2>
-<h3 id="有道翻译">有道翻译</h3>
-<p>​ 打开开发者工具后，我们对我们输入的字符“are you
-ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png"
-alt="有道翻译抓包分析" />
-<figcaption aria-hidden="true">有道翻译抓包分析</figcaption>
-</figure>
-<p>观察Response
-,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" /></p>
-<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" /></p>
-<p>观察webform，把它复制粘贴到代码就可以了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" /></p>
-<p>​
-但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code>
-,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制）</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" /></p>
-<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" /></p>
-<h3 id="百度图片">百度图片</h3>
-<p>​ <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" />如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" /></p>
-<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" /></p>
-<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" /></p>
-<h3 id="b站视频">B站视频</h3>
-<p>​
-刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
-<p>先下载这个<a href="">压缩包</a></p>
-<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" /></p>
-<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a
-href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" /></p>
-<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code>
-目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" /></p>
-<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
-<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
-<h2 id="抓包">抓包</h2>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
 ]]></content>
       <categories>
-        <category>coding</category>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1596,88 +1678,6 @@ href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c
 ]]></content>
       <categories>
         <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -2101,22 +2101,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2188,6 +2172,22 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
