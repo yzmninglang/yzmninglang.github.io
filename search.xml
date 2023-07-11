@@ -787,6 +787,38 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><ol>
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​        </p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>出租车载客模型</title>
     <url>/2021/08/15/Taxi%20passenger%20model/</url>
     <content><![CDATA[<p>数学建模.Are you kidding me ?   😭我要疯了！</p>
@@ -965,35 +997,39 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m 
       </categories>
   </entry>
   <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
 <span id="more"></span>
-<h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><ol>
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol>
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol>
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol>
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​        </p>
+<h1 id="权重系数确定的方法"><a href="#权重系数确定的方法" class="headerlink" title="权重系数确定的方法"></a>权重系数确定的方法</h1><p>题设：n个评价对象，m个评价指标观测值为</p>
+<script type="math/tex; mode=display">
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11} & a_{12}&...&a_{1,m}\\\\a_{21} & a_{22}&...&a_{2m}\\ \vdots&...&...&\\a_{n1} & a_{n2}&...&a_{nm}\end{bmatrix}</script><h2 id="均方差法"><a href="#均方差法" class="headerlink" title="均方差法"></a>均方差法</h2><script type="math/tex; mode=display">
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow \begin{bmatrix}s_1&\cdots&s_m\end{bmatrix}\\</script><script type="math/tex; mode=display">
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\</script><script type="math/tex; mode=display">
+\begin{bmatrix}w_1& w_2&\cdots w_m\end{bmatrix}</script><h2 id="极差法"><a href="#极差法" class="headerlink" title="极差法"></a>极差法</h2><script type="math/tex; mode=display">
+r_{j}=\max _{1 \leq i<k \leq n}\left\{\left|a_{i j}-a_{k j}\right|\right\}(j=1,2, \cdots, m)\\</script><script type="math/tex; mode=display">
+\max_{every element}\begin{bmatrix}rand(a_{i1}-a_{k1})&\cdots&rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&r_2&\cdots&r_m\end{bmatrix}</script><p>所以第$j$项指标的权重系数为</p>
+<script type="math/tex; mode=display">
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)</script><h2 id="熵值法"><a href="#熵值法" class="headerlink" title="熵值法"></a>熵值法</h2><p>特征比重：</p>
+<p>在<script type="math/tex">\mu_j=\sum_{i=1}^{n} a_{i j}>0</script>,第$j$项指标的特征比重为</p>
+<script type="math/tex; mode=display">
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}</script><p>第$j$项的熵值为：</p>
+<script type="math/tex; mode=display">
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
+\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&\cdots&e_m\end{bmatrix}</script><p>不难看出，如果第$j$项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第$j$项指标的差异系数为</p>
+<script type="math/tex; mode=display">
+g_{j}=1-e_{j}(j=1,2, \cdots, m)</script><p>如果第项指标的观测值差异越大，则差异系数$g$就越大，第$j$项指标也就越重要。</p>
+<p>第$j$项的权重系数为</p>
+<script type="math/tex; mode=display">
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文章:</p>
+<p><a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory">信息熵</a>)</p>
 ]]></content>
       <categories>
-        <category>电子</category>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1057,42 +1093,6 @@ f(x,y,z)=\begin{cases}x&=&\cos(t)\\y&=&\sin(t)\\z&=&\tan(t)\end{cases}</script><
 ]]></content>
       <categories>
         <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法"><a href="#权重系数确定的方法" class="headerlink" title="权重系数确定的方法"></a>权重系数确定的方法</h1><p>题设：n个评价对象，m个评价指标观测值为</p>
-<script type="math/tex; mode=display">
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)</script><script type="math/tex; mode=display">
-\begin{bmatrix}a_{11} & a_{12}&...&a_{1,m}\\\\a_{21} & a_{22}&...&a_{2m}\\ \vdots&...&...&\\a_{n1} & a_{n2}&...&a_{nm}\end{bmatrix}</script><h2 id="均方差法"><a href="#均方差法" class="headerlink" title="均方差法"></a>均方差法</h2><script type="math/tex; mode=display">
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\</script><script type="math/tex; mode=display">
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow \begin{bmatrix}s_1&\cdots&s_m\end{bmatrix}\\</script><script type="math/tex; mode=display">
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\</script><script type="math/tex; mode=display">
-\begin{bmatrix}w_1& w_2&\cdots w_m\end{bmatrix}</script><h2 id="极差法"><a href="#极差法" class="headerlink" title="极差法"></a>极差法</h2><script type="math/tex; mode=display">
-r_{j}=\max _{1 \leq i<k \leq n}\left\{\left|a_{i j}-a_{k j}\right|\right\}(j=1,2, \cdots, m)\\</script><script type="math/tex; mode=display">
-\max_{every element}\begin{bmatrix}rand(a_{i1}-a_{k1})&\cdots&rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&r_2&\cdots&r_m\end{bmatrix}</script><p>所以第$j$项指标的权重系数为</p>
-<script type="math/tex; mode=display">
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)</script><h2 id="熵值法"><a href="#熵值法" class="headerlink" title="熵值法"></a>熵值法</h2><p>特征比重：</p>
-<p>在<script type="math/tex">\mu_j=\sum_{i=1}^{n} a_{i j}>0</script>,第$j$项指标的特征比重为</p>
-<script type="math/tex; mode=display">
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}</script><p>第$j$项的熵值为：</p>
-<script type="math/tex; mode=display">
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots, m)</script><script type="math/tex; mode=display">
-\begin{bmatrix}p_{11}&\cdots&p_{1m}\\p_{21}&\cdots&p_{2m}\\\vdots&\cdots&\\p_{n1}&\cdots&p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&\cdots&e_m\end{bmatrix}</script><p>不难看出，如果第$j$项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第$j$项指标的差异系数为</p>
-<script type="math/tex; mode=display">
-g_{j}=1-e_{j}(j=1,2, \cdots, m)</script><p>如果第项指标的观测值差异越大，则差异系数$g$就越大，第$j$项指标也就越重要。</p>
-<p>第$j$项的权重系数为</p>
-<script type="math/tex; mode=display">
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文章:</p>
-<p><a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory">信息熵</a>)</p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
