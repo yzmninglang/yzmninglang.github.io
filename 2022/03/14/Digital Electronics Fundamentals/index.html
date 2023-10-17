@@ -28,10 +28,13 @@
 <meta property="og:site_name" content="ninglang">
 <meta property="og:description" content="一些数电不太能理解的地方">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png">
+<meta property="og:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png">
 <meta property="article:published_time" content="2022-03-14T02:06:33.697Z">
 <meta property="article:modified_time" content="2022-03-15T01:19:13.872Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png">
 
 
 <link rel="canonical" href="http://yzmninglang.gitee.io/2022/03/14/Digital%20Electronics%20Fundamentals/">
@@ -144,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E7%9B%B8%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">反相器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#coms%E7%94%B5%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">COMS电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ttl%E7%94%B5%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">TTL电路</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E7%9B%B8%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">反相器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#COMS%E7%94%B5%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">COMS电路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TTL%E7%94%B5%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">TTL电路</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +181,7 @@
         <a href="mailto:yzmninglang@gmail.com" title="E-Mail → mailto:yzmninglang@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://www.googlejxz.ml/" title="Google → https:&#x2F;&#x2F;www.googlejxz.ml&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+        <a href="https://google.ninglang.site/" title="Google → https:&#x2F;&#x2F;google.ninglang.site&#x2F;" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
       </span>
       <span class="links-of-author-item">
         <a href="https://www.wikipedia.ahau.cf/" title="Wikipedia → https:&#x2F;&#x2F;www.wikipedia.ahau.cf&#x2F;" rel="noopener" target="_blank"><i class="fab fa-wikipedia-w fa-fw"></i>Wikipedia</a>
@@ -287,48 +290,32 @@
     <div class="post-body" itemprop="articleBody">
         <p>一些数电不太能理解的地方</p>
 <span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
+<li>CMOS的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li>$V_{OH}\quad V_{OL}…$的取法<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
 <li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
 <li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
 </ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
+</li>
+<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
+</li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
+</li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
+</li>
 </ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
 <ul>
 <li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
 </ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
 <ul>
 <li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
 </ul>
