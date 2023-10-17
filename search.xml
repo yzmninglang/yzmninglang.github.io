@@ -172,6 +172,86 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道">信道</h3>
+<blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
+Code
+Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
+Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型">波形成型</h3>
+<blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
+时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形">脉冲整形</h2>
+<p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
+href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
+失真严重导致采样判决出错，无法正确恢复数字信号。
+显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong> 其<a
+href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器">基带滤波器</h2>
+<p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
+发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
+<strong>例子</strong></p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a
+href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a
+href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
+- Riden - 博客园</a></p>
+<blockquote>
+<p>为什么对基带信号要成形滤波？</p>
+<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
+<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
+理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
+<blockquote>
+<p>为什么要-&gt;这里有直接结论：</p>
+<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
+！</p>
+</blockquote>
+<p><a
+href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
+<blockquote>
+<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
+<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
+href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>电路</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -306,86 +386,6 @@ transfer,but it seem that we have really passed a,b into the function
       </categories>
   </entry>
   <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道">信道</h3>
-<blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
-Code
-Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
-Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型">波形成型</h3>
-<blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
-时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形">脉冲整形</h2>
-<p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
-href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
-失真严重导致采样判决出错，无法正确恢复数字信号。
-显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong> 其<a
-href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器">基带滤波器</h2>
-<p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
-发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
-<strong>例子</strong></p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a
-href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a
-href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
-- Riden - 博客园</a></p>
-<blockquote>
-<p>为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
-理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p>为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
-！</p>
-</blockquote>
-<p><a
-href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
-href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -497,6 +497,61 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -580,61 +635,6 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1013,57 +1013,6 @@ can free the space</p>
       </categories>
   </entry>
   <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>保研注意事项</title>
     <url>/2023/06/13/Postgraduate/</url>
     <content><![CDATA[<p>保研注意事项</p>
@@ -1183,6 +1132,57 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
 ]]></content>
       <categories>
         <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1501,6 +1501,88 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
       </categories>
   </entry>
   <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Windows常用指令和工具</title>
     <url>/2022/01/05/Windows_command/</url>
     <content><![CDATA[<p>电脑常用的一些操作</p>
@@ -1608,86 +1690,10 @@ alt="image-20231017175719127" />
       </categories>
   </entry>
   <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
 ]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
   </entry>
   <entry>
     <title>数据结构</title>
@@ -1951,12 +1957,6 @@ class="math inline">\(O(1)\)</span></li>
       <categories>
         <category>coding</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
