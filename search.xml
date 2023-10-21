@@ -497,61 +497,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -635,6 +580,61 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
 ]]></content>
       <categories>
         <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1608,88 +1608,6 @@ alt="image-20231017175719127" />
       </categories>
   </entry>
   <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1950,6 +1868,88 @@ class="math inline">\(O(1)\)</span></li>
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
