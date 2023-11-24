@@ -386,6 +386,108 @@ href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出
       </categories>
   </entry>
   <entry>
+    <title>GANs</title>
+    <url>/2023/06/03/GANs/</url>
+    <content><![CDATA[<p>GANs</p>
+<span id="more"></span>
+<h2 id="模式识别的定义">模式识别的定义</h2>
+<blockquote>
+<p><strong>模式识别是对</strong><a
+href="https://en.wikipedia.org/wiki/Data">数据中的</a><a
+href="https://en.wikipedia.org/wiki/Pattern">模式</a>和规律性的自动识别。<a
+href="https://en.wikipedia.org/wiki/Data_analysis">它在统计数据分析</a>、<a
+href="https://en.wikipedia.org/wiki/Signal_processing">信号处理</a>、<a
+href="https://en.wikipedia.org/wiki/Image_analysis">图像分析</a>、<a
+href="https://en.wikipedia.org/wiki/Information_retrieval">信息检索</a>、<a
+href="https://en.wikipedia.org/wiki/Bioinformatics">生物信息学</a>、<a
+href="https://en.wikipedia.org/wiki/Data_compression">数据压缩</a>、<a
+href="https://en.wikipedia.org/wiki/Computer_graphics">计算机图形学</a>和<a
+href="https://en.wikipedia.org/wiki/Machine_learning">机器学习</a>中都有应用。模式识别起源于统计学和工程学；一些现代的模式识别方法包括使用<a
+href="https://en.wikipedia.org/wiki/Machine_learning">机器学习，这是由于</a><a
+href="https://en.wikipedia.org/wiki/Big_data">大数据</a>可用性的增加和<a
+href="https://en.wikipedia.org/wiki/Processing_power">处理能力</a>的新丰富.
+这些活动可以看作是同一个应用领域的两个方面，在过去的几十年里都得到了长足的发展。</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Pattern_recognition">Pattern
+recognition - Wikipedia</a></p>
+<h1 id="l1-和-l2-正则化方法"><strong>L1 和 L2 正则化方法</strong></h1>
+<p><a
+href="https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c">L1
+and L2 Regularization Methods. Machine Learning | by Anuja Nagpal |
+Towards Data Science</a></p>
+<h2 id="gan">GAN</h2>
+<blockquote>
+<p><a href="https://arxiv.org/abs/1406.2661">GAN</a>是一个有趣的想法，<a
+href="https://www.quora.com/In-what-way-are-Adversarial-Networks-related-or-different-to-Adversarial-Training/answer/Ian-Goodfellow">最初被引入</a>2014
+年，由 Ian Goodfellow（现供职于
+OpenAI）领导的蒙特利尔大学的一组研究人员。GAN
+背后的主要思想是拥有两个相互竞争的神经网络模型。一个将噪声作为输入并生成样本（因此称为生成器）。另一个模型（称为鉴别器）从生成器和训练数据中接收样本，并且必须能够区分这两个来源。这两个网络玩一个连续的游戏，其中生成器正在学习生成越来越多的真实样本，而鉴别器正在学习越来越好地将生成的数据与真实数据区分开来。这两个网络是同时训练的，希望通过竞争来驱动生成的样本与真实数据无法区分。</p>
+<p><a
+href="https://aylien.com/images/uploads/general/gan_(2).png"></a></p>
+<p>这里经常使用的类比是，生成器就像试图制造一些伪造材料的伪造者，而鉴别器就像试图检测伪造物品的警察。这种设置似乎也让人想起<em>强化学习</em>，其中生成器从鉴别器接收奖励信号，让它知道生成的数据是否准确。然而，与
+GAN
+的主要区别在于我们可以将梯度信息从鉴别器反向传播回生成器网络，因此生成器知道如何调整其参数以产生可以欺骗鉴别器的输出数据。</p>
+</blockquote>
+<p><a
+href="https://aylien.com/blog/introduction-generative-adversarial-networks-code-tensorflow">An
+introduction to Generative Adversarial Networks (with code in
+TensorFlow)</a></p>
+<blockquote>
+<p><strong>minmax</strong>（有时称为<strong>Minimax</strong>、<strong>MM</strong>
+[<a
+href="https://en.wikipedia.org/wiki/Minimax#cite_note-1">1]</a>或<strong>鞍点</strong>[<a
+href="https://en.wikipedia.org/wiki/Minimax#cite_note-2">2]</a><a
+href="https://en.wikipedia.org/wiki/Artificial_intelligence">）是人工智能</a>、<a
+href="https://en.wikipedia.org/wiki/Decision_theory">决策论</a>、<a
+href="https://en.wikipedia.org/wiki/Game_theory">博弈论</a>、<a
+href="https://en.wikipedia.org/wiki/Statistics">统计学</a>和<a
+href="https://en.wikipedia.org/wiki/Philosophy">哲学</a>中用于<em>最小化</em>最坏情况<a
+href="https://en.wikipedia.org/wiki/Worst-case_scenario">（</a><a
+href="https://en.wikipedia.org/wiki/Worst-case_scenario"><em>最大</em></a><a
+href="https://en.wikipedia.org/wiki/Worst-case_scenario">损失）场景的</a>可能<a
+href="https://en.wikipedia.org/wiki/Loss_function">损失</a>的决策规则.
+在处理增益时，它被称为“maximin”——最大化最小增益。最初是为多人<a
+href="https://en.wikipedia.org/wiki/Zero-sum">零和</a><a
+href="https://en.wikipedia.org/wiki/Game_theory">博弈论制定的</a>
+，涵盖了玩家交替移动和同时移动的情况，它也被扩展到更复杂的游戏和存在不确定性的一般决策。</p>
+</blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Minimax">Minimax -
+Wikipedia</a></p>
+<ul>
+<li>Cross-domain</li>
+</ul>
+<blockquote>
+<p>Cross
+Domain：中文表示--跨域。以小样本学习为例，跨域问题是指在学习过程中，源域(source
+domain)和目标域(target
+domain)在特征空间、类别空间或、边缘分布中的某一项或几项存在差异从而在学习过程中引起的问题。</p>
+<p>Domain Adaptation，缩写DA：中文表示--域适应，主要是针对Cross
+Domain跨域问题中源域和目标域的特征空间、类别空间相同、但边缘分布不同，即Ps(xs)
+/=
+Pt(xt)情况下的解决途径，如下图所示；域适应更多的应用在无监督学习下即UDA---Unsupervised
+Domain Adaptation。</p>
+<p><strong>域适应</strong>，领域自适应技术的研究由来已久，其目的是将知识从一个或多个源域转移到具有不同数据分布的目标域。早期的方法通常依赖于浅层分类模型的适应性，使用实例重加权[12]和模型参数自适应[65]等技术。最近，人们提出了许多使用深层神经网络来解决域适应问题的方法，包括基于差异的方法，旨在调整域之间的边缘分布[38,54,23,30]，基于对抗的方法，它们依赖于域鉴别器来鼓励与域无关的特征学习[59,14]，以及基于重构的技术，通常使用编码器-解码器模型或GANs来重建新域中的数据[4,69,22]。然而，所有这些方法都考虑到训练集和测试集具有相同的类的情况。一项工作考虑了这样一种情况：有些类可能不相交，但仍然需要类重叠才能成功对齐[50]。相比之下，我们研究了源域和目标域具有完全不相交的标签集的跨域少镜头学习问题。</p>
+<p><strong>域泛化DG</strong>与域适应相关，因为我们关心的是目标域的性能，而不是源域的性能；但是它考虑的是目标域样本在训练过程中不可用的情况，因此模型必须直接泛化而不是适应目标域。DG与传统的泛化有关：在一组训练实例中学习的模型可以归纳为新的测试实例，例如通过正则化。然而它在更高的层次上运行，我们的目标是帮助在一组训练域上训练的模型泛化为一个新的测试域。</p>
+</blockquote>
+<p><a
+href="https://zhuanlan.zhihu.com/p/263669949">CrossDomain、DomainAdaptation、DomainGeneralization
+- 知乎</a></p>
+<blockquote>
+<p>不同的domain之间存在特征交集，比如电商领域的CTR（曝光给用户预测其点击的概率）任务存在着部分相同的用户群体和商品，这部分信息其实在不同的domain任务中可以共享，但是又不完全相同，比如同一用户在不同的domain中的行为是不一样的。所以简单的混合不同domain数据训练一个共享model（完全不区分domain任务）是不够的，必须要有区分。</p>
+<p>容易想到的就是每个domain训练一个model，但是这样显而易见的缺点就是（1）有的domain训练数据量少，导致很难学到一个理想效果（2）训练这么多model，维护起来也很麻烦，而且需要更多的计算和存储资源。</p>
+<p>总体来说就是既要融合但是也要有区分。所以本文介绍的阿里这篇论文的着眼点就是去学一个模型，同时其又可以区分不同domain任务。目前其已经被应用在了阿里的广告系统，CTR提高了8%，RPM收入提高了6%。所以还是非常不错的一篇工业实践，一起来看看吧。</p>
+</blockquote>
+<p><a
+href="https://mp.weixin.qq.com/s/Etxi9erBTg0Y6Vt71Y4r9Q">同任务但不同domain数据的统一模型</a></p>
+<h2 id="transform">Transform</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/600773858">OpenAI
+ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -632,108 +734,6 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
 “图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
 [19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
 <p>Here are some references. thanks for listening！</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>GANs</title>
-    <url>/2023/06/03/GANs/</url>
-    <content><![CDATA[<p>GANs</p>
-<span id="more"></span>
-<h2 id="模式识别的定义">模式识别的定义</h2>
-<blockquote>
-<p><strong>模式识别是对</strong><a
-href="https://en.wikipedia.org/wiki/Data">数据中的</a><a
-href="https://en.wikipedia.org/wiki/Pattern">模式</a>和规律性的自动识别。<a
-href="https://en.wikipedia.org/wiki/Data_analysis">它在统计数据分析</a>、<a
-href="https://en.wikipedia.org/wiki/Signal_processing">信号处理</a>、<a
-href="https://en.wikipedia.org/wiki/Image_analysis">图像分析</a>、<a
-href="https://en.wikipedia.org/wiki/Information_retrieval">信息检索</a>、<a
-href="https://en.wikipedia.org/wiki/Bioinformatics">生物信息学</a>、<a
-href="https://en.wikipedia.org/wiki/Data_compression">数据压缩</a>、<a
-href="https://en.wikipedia.org/wiki/Computer_graphics">计算机图形学</a>和<a
-href="https://en.wikipedia.org/wiki/Machine_learning">机器学习</a>中都有应用。模式识别起源于统计学和工程学；一些现代的模式识别方法包括使用<a
-href="https://en.wikipedia.org/wiki/Machine_learning">机器学习，这是由于</a><a
-href="https://en.wikipedia.org/wiki/Big_data">大数据</a>可用性的增加和<a
-href="https://en.wikipedia.org/wiki/Processing_power">处理能力</a>的新丰富.
-这些活动可以看作是同一个应用领域的两个方面，在过去的几十年里都得到了长足的发展。</p>
-</blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Pattern_recognition">Pattern
-recognition - Wikipedia</a></p>
-<h1 id="l1-和-l2-正则化方法"><strong>L1 和 L2 正则化方法</strong></h1>
-<p><a
-href="https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c">L1
-and L2 Regularization Methods. Machine Learning | by Anuja Nagpal |
-Towards Data Science</a></p>
-<h2 id="gan">GAN</h2>
-<blockquote>
-<p><a href="https://arxiv.org/abs/1406.2661">GAN</a>是一个有趣的想法，<a
-href="https://www.quora.com/In-what-way-are-Adversarial-Networks-related-or-different-to-Adversarial-Training/answer/Ian-Goodfellow">最初被引入</a>2014
-年，由 Ian Goodfellow（现供职于
-OpenAI）领导的蒙特利尔大学的一组研究人员。GAN
-背后的主要思想是拥有两个相互竞争的神经网络模型。一个将噪声作为输入并生成样本（因此称为生成器）。另一个模型（称为鉴别器）从生成器和训练数据中接收样本，并且必须能够区分这两个来源。这两个网络玩一个连续的游戏，其中生成器正在学习生成越来越多的真实样本，而鉴别器正在学习越来越好地将生成的数据与真实数据区分开来。这两个网络是同时训练的，希望通过竞争来驱动生成的样本与真实数据无法区分。</p>
-<p><a
-href="https://aylien.com/images/uploads/general/gan_(2).png"></a></p>
-<p>这里经常使用的类比是，生成器就像试图制造一些伪造材料的伪造者，而鉴别器就像试图检测伪造物品的警察。这种设置似乎也让人想起<em>强化学习</em>，其中生成器从鉴别器接收奖励信号，让它知道生成的数据是否准确。然而，与
-GAN
-的主要区别在于我们可以将梯度信息从鉴别器反向传播回生成器网络，因此生成器知道如何调整其参数以产生可以欺骗鉴别器的输出数据。</p>
-</blockquote>
-<p><a
-href="https://aylien.com/blog/introduction-generative-adversarial-networks-code-tensorflow">An
-introduction to Generative Adversarial Networks (with code in
-TensorFlow)</a></p>
-<blockquote>
-<p><strong>minmax</strong>（有时称为<strong>Minimax</strong>、<strong>MM</strong>
-[<a
-href="https://en.wikipedia.org/wiki/Minimax#cite_note-1">1]</a>或<strong>鞍点</strong>[<a
-href="https://en.wikipedia.org/wiki/Minimax#cite_note-2">2]</a><a
-href="https://en.wikipedia.org/wiki/Artificial_intelligence">）是人工智能</a>、<a
-href="https://en.wikipedia.org/wiki/Decision_theory">决策论</a>、<a
-href="https://en.wikipedia.org/wiki/Game_theory">博弈论</a>、<a
-href="https://en.wikipedia.org/wiki/Statistics">统计学</a>和<a
-href="https://en.wikipedia.org/wiki/Philosophy">哲学</a>中用于<em>最小化</em>最坏情况<a
-href="https://en.wikipedia.org/wiki/Worst-case_scenario">（</a><a
-href="https://en.wikipedia.org/wiki/Worst-case_scenario"><em>最大</em></a><a
-href="https://en.wikipedia.org/wiki/Worst-case_scenario">损失）场景的</a>可能<a
-href="https://en.wikipedia.org/wiki/Loss_function">损失</a>的决策规则.
-在处理增益时，它被称为“maximin”——最大化最小增益。最初是为多人<a
-href="https://en.wikipedia.org/wiki/Zero-sum">零和</a><a
-href="https://en.wikipedia.org/wiki/Game_theory">博弈论制定的</a>
-，涵盖了玩家交替移动和同时移动的情况，它也被扩展到更复杂的游戏和存在不确定性的一般决策。</p>
-</blockquote>
-<p><a href="https://en.wikipedia.org/wiki/Minimax">Minimax -
-Wikipedia</a></p>
-<ul>
-<li>Cross-domain</li>
-</ul>
-<blockquote>
-<p>Cross
-Domain：中文表示--跨域。以小样本学习为例，跨域问题是指在学习过程中，源域(source
-domain)和目标域(target
-domain)在特征空间、类别空间或、边缘分布中的某一项或几项存在差异从而在学习过程中引起的问题。</p>
-<p>Domain Adaptation，缩写DA：中文表示--域适应，主要是针对Cross
-Domain跨域问题中源域和目标域的特征空间、类别空间相同、但边缘分布不同，即Ps(xs)
-/=
-Pt(xt)情况下的解决途径，如下图所示；域适应更多的应用在无监督学习下即UDA---Unsupervised
-Domain Adaptation。</p>
-<p><strong>域适应</strong>，领域自适应技术的研究由来已久，其目的是将知识从一个或多个源域转移到具有不同数据分布的目标域。早期的方法通常依赖于浅层分类模型的适应性，使用实例重加权[12]和模型参数自适应[65]等技术。最近，人们提出了许多使用深层神经网络来解决域适应问题的方法，包括基于差异的方法，旨在调整域之间的边缘分布[38,54,23,30]，基于对抗的方法，它们依赖于域鉴别器来鼓励与域无关的特征学习[59,14]，以及基于重构的技术，通常使用编码器-解码器模型或GANs来重建新域中的数据[4,69,22]。然而，所有这些方法都考虑到训练集和测试集具有相同的类的情况。一项工作考虑了这样一种情况：有些类可能不相交，但仍然需要类重叠才能成功对齐[50]。相比之下，我们研究了源域和目标域具有完全不相交的标签集的跨域少镜头学习问题。</p>
-<p><strong>域泛化DG</strong>与域适应相关，因为我们关心的是目标域的性能，而不是源域的性能；但是它考虑的是目标域样本在训练过程中不可用的情况，因此模型必须直接泛化而不是适应目标域。DG与传统的泛化有关：在一组训练实例中学习的模型可以归纳为新的测试实例，例如通过正则化。然而它在更高的层次上运行，我们的目标是帮助在一组训练域上训练的模型泛化为一个新的测试域。</p>
-</blockquote>
-<p><a
-href="https://zhuanlan.zhihu.com/p/263669949">CrossDomain、DomainAdaptation、DomainGeneralization
-- 知乎</a></p>
-<blockquote>
-<p>不同的domain之间存在特征交集，比如电商领域的CTR（曝光给用户预测其点击的概率）任务存在着部分相同的用户群体和商品，这部分信息其实在不同的domain任务中可以共享，但是又不完全相同，比如同一用户在不同的domain中的行为是不一样的。所以简单的混合不同domain数据训练一个共享model（完全不区分domain任务）是不够的，必须要有区分。</p>
-<p>容易想到的就是每个domain训练一个model，但是这样显而易见的缺点就是（1）有的domain训练数据量少，导致很难学到一个理想效果（2）训练这么多model，维护起来也很麻烦，而且需要更多的计算和存储资源。</p>
-<p>总体来说就是既要融合但是也要有区分。所以本文介绍的阿里这篇论文的着眼点就是去学一个模型，同时其又可以区分不同domain任务。目前其已经被应用在了阿里的广告系统，CTR提高了8%，RPM收入提高了6%。所以还是非常不错的一篇工业实践，一起来看看吧。</p>
-</blockquote>
-<p><a
-href="https://mp.weixin.qq.com/s/Etxi9erBTg0Y6Vt71Y4r9Q">同任务但不同domain数据的统一模型</a></p>
-<h2 id="transform">Transform</h2>
-<p><a href="https://zhuanlan.zhihu.com/p/600773858">OpenAI
-ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
 ]]></content>
       <categories>
         <category>code</category>
@@ -1013,6 +1013,38 @@ can free the space</p>
       </categories>
   </entry>
   <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
+- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
+- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a
+href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python 机器学习</title>
     <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
@@ -1064,35 +1096,46 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
 <span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
-- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
-- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a
-href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1150,49 +1193,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1511,6 +1511,88 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
       </categories>
   </entry>
   <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Windows常用指令和工具</title>
     <url>/2022/01/05/Windows_command/</url>
     <content><![CDATA[<p>电脑常用的一些操作</p>
@@ -1615,88 +1697,6 @@ alt="image-20231017175719127" />
 ]]></content>
       <categories>
         <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -2126,22 +2126,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2213,6 +2197,22 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
