@@ -172,86 +172,6 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道">信道</h3>
-<blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
-Code
-Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
-Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型">波形成型</h3>
-<blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
-时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形">脉冲整形</h2>
-<p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
-href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
-失真严重导致采样判决出错，无法正确恢复数字信号。
-显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong> 其<a
-href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器">基带滤波器</h2>
-<p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
-发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
-<strong>例子</strong></p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a
-href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a
-href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
-- Riden - 博客园</a></p>
-<blockquote>
-<p>为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
-理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p>为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
-！</p>
-</blockquote>
-<p><a
-href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
-href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -383,6 +303,86 @@ transfer,but it seem that we have really passed a,b into the function
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道">信道</h3>
+<blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
+Code
+Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
+Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型">波形成型</h3>
+<blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
+时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形">脉冲整形</h2>
+<p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
+href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
+失真严重导致采样判决出错，无法正确恢复数字信号。
+显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong> 其<a
+href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器">基带滤波器</h2>
+<p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
+发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
+<strong>例子</strong></p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a
+href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a
+href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
+- Riden - 博客园</a></p>
+<blockquote>
+<p>为什么对基带信号要成形滤波？</p>
+<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
+<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
+理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
+<blockquote>
+<p>为什么要-&gt;这里有直接结论：</p>
+<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
+！</p>
+</blockquote>
+<p><a
+href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
+<blockquote>
+<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
+<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
+href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>电路</category>
       </categories>
   </entry>
   <entry>
@@ -1096,39 +1096,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1183,6 +1150,39 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1429,113 +1429,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>Windows常用指令和工具</title>
-    <url>/2022/01/05/Windows_command/</url>
-    <content><![CDATA[<p>电脑常用的一些操作</p>
-<span id="more"></span>
-<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
-<p>现在我的F盘里面有一个文件夹blog</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
-<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
-<p>指令如下</p>
-<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
-<h1 id="关闭windows更新">关闭Windows更新</h1>
-<p>安装<code>wu10man</code>，点击该处访问其<a
-href="https://github.com/WereDev/Wu10Man">github</a>.</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
-<p>安装打开<code>wu10man</code>,选择即可</p>
-<h1 id="右键菜单规定">右键菜单规定</h1>
-<p>下载ccleaner</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
-<p>对其相应的进行调整即可</p>
-<h1 id="c盘清理">C盘清理</h1>
-<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
-<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
-<p>然后打开环境变量的设置</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
-<p>就可以看到这个pagefile，点击更改。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
-<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
-<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
-<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
-<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
-<h1 id="磁盘分析软件">磁盘分析软件</h1>
-<p>这里，推荐一个磁盘分析软件，<a
-href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
-<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
-<h1 id="c盘扩容">C盘扩容</h1>
-<p>首先，下载<a
-href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
-Partition Wizrd Free</a></p>
-<p>如果电脑显示Bitlocker，如下图</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
-<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
-<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
-<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
-<p>右键C盘，选择分给的区扩容</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
-<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
-<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
-<h1 id="latex语法">Latex语法</h1>
-<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
-<span class="math display">\[
-f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
-\]</span> 这时，你需要在word里面输入下面的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
-<h1 id="重装系统">重装系统</h1>
-<p>这里使用这个超星的资源<a
-href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
-<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
-<p>其中18表示目标帧率</p>
-<h1 id="gitgnore的编写">gitgnore的编写</h1>
-<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
-alt="image-20231017175719127" />
-<figcaption aria-hidden="true">image-20231017175719127</figcaption>
-</figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
     <title>爬虫小结</title>
     <url>/2021/02/02/Web%20Crawler/</url>
     <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
@@ -1700,10 +1593,111 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
+    <title>Windows常用指令和工具</title>
+    <url>/2022/01/05/Windows_command/</url>
+    <content><![CDATA[<p>电脑常用的一些操作</p>
+<span id="more"></span>
+<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
+<p>现在我的F盘里面有一个文件夹blog</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
+<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
+<p>指令如下</p>
+<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
+<h1 id="关闭windows更新">关闭Windows更新</h1>
+<p>安装<code>wu10man</code>，点击该处访问其<a
+href="https://github.com/WereDev/Wu10Man">github</a>.</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
+<p>安装打开<code>wu10man</code>,选择即可</p>
+<h1 id="右键菜单规定">右键菜单规定</h1>
+<p>下载ccleaner</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
+<p>对其相应的进行调整即可</p>
+<h1 id="c盘清理">C盘清理</h1>
+<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
+<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
+<p>然后打开环境变量的设置</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
+<p>就可以看到这个pagefile，点击更改。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
+<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
+<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
+<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
+<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘分析软件">磁盘分析软件</h1>
+<p>这里，推荐一个磁盘分析软件，<a
+href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
+<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
+<h1 id="c盘扩容">C盘扩容</h1>
+<p>首先，下载<a
+href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
+Partition Wizrd Free</a></p>
+<p>如果电脑显示Bitlocker，如下图</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
+<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
+<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
+<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
+<p>右键C盘，选择分给的区扩容</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
+<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
+<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
+<h1 id="latex语法">Latex语法</h1>
+<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
+<span class="math display">\[
+f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
+\]</span> 这时，你需要在word里面输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
+<h1 id="重装系统">重装系统</h1>
+<p>这里使用这个超星的资源<a
+href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
+<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
+<p>其中18表示目标帧率</p>
+<h1 id="gitgnore的编写">gitgnore的编写</h1>
+<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
+alt="image-20231017175719127" />
+<figcaption aria-hidden="true">image-20231017175719127</figcaption>
+</figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
   </entry>
   <entry>
     <title>数据结构</title>
@@ -1969,6 +1963,12 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2216,58 +2216,6 @@ Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a
       </categories>
   </entry>
   <entry>
-    <title>ISAC</title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<p>通感一体化</p>
-<span id="more"></span>
-<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
-<p><a
-href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
-- 华为</a>。</p>
-<p><a
-href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a
-href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
-3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a
-href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol type="1">
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点
-共享，通信与感知完全一体化，系统性能显著提升，网络系统
-的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
-Equipment，UE）之间更大规模的协同、通信感
-知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
-术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -2319,6 +2267,58 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ISAC</title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<p>通感一体化</p>
+<span id="more"></span>
+<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p><a
+href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
+- 华为</a>。</p>
+<p><a
+href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a
+href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
+3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a
+href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol type="1">
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点
+共享，通信与感知完全一体化，系统性能显著提升，网络系统
+的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
+Equipment，UE）之间更大规模的协同、通信感
+知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
+术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
