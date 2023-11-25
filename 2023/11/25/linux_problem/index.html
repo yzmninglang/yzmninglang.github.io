@@ -29,7 +29,7 @@
 <meta property="og:description" content="欢迎交流">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-11-25T07:50:48.868Z">
-<meta property="article:modified_time" content="2023-11-25T08:47:01.622Z">
+<meta property="article:modified_time" content="2023-11-25T08:50:58.187Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
 
@@ -243,7 +243,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-11-25 15:50:48 / Modified: 16:47:01" itemprop="dateCreated datePublished" datetime="2023-11-25T15:50:48+08:00">2023-11-25</time>
+      <time title="Created: 2023-11-25 15:50:48 / Modified: 16:50:58" itemprop="dateCreated datePublished" datetime="2023-11-25T15:50:48+08:00">2023-11-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -315,7 +315,9 @@ alt="image-20231125161329086" />
 <ul>
 <li>下载镜像</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>运行docker</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run全新创建</span></span><br></pre></td></tr></table></figure>
 <h1 id="linux">Linux</h1>
 <h2 id="解压tar包">解压tar包</h2>
 <p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
@@ -335,7 +337,7 @@ verbose详细显示，-f file文件属性）</p>
 <ul>
 <li>查找<code>grep</code></li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
 
     </div>
 
