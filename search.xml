@@ -1,103 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Android Adb Command</title>
-    <url>/2021/10/24/Android-Adb-Command/</url>
-    <content><![CDATA[<p>安卓小技巧</p>
-<span id="more"></span>
-<h1 id="recovery-模式下使用adb">recovery 模式下使用adb</h1>
-<p>首先在电脑中找到<code>adbkey.pub</code>文件，我的默认地址是<code>.android</code>,通过一些手段移入安卓设备的一个分区<code>/data/misc/adb/</code>的<code>adb_keys</code>文件中，下面是push的的方法，当然也可以用第三方<code>rec</code>直接导入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ~/.android/adbkey.pub /data/misc/adb/adb_keys</span><br></pre></td></tr></table></figure>
-<p>wifi连接adb</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect ip:5555</span><br></pre></td></tr></table></figure>
-<p>断开连接</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb disconnect ip:5555</span><br></pre></td></tr></table></figure>
-<h1 id="备份文件">备份文件</h1>
-<p>备份文件的方法主要用<code>adb pull</code>，这里以<code>tim</code>为例，可以这样做</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/data/com.tencent.tim ./tim</span><br></pre></td></tr></table></figure>
-<p>切记，备份时最好用linux操作系统，Windows总是会有一些莫名的错误,备份安装包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/app/  ./app</span><br></pre></td></tr></table></figure>
-<p>备份<code>sdcard</code>的数据</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull ./sdcard/Android/data/com.tencent.tim ./com.tencent.tim </span><br></pre></td></tr></table></figure>
-<p>使用脚本备份文件,下载下面的<a
-href="https://ninglang.lanzoui.com/iHmmuvpiygj">脚本</a>，将备份的文件导入电脑</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /storage/emulated/0/back/ ./back</span><br></pre></td></tr></table></figure>
-<p><a
-href="https://picturnl.oss-cn-shanghai.aliyuncs.com/contacts.csv">联系人备份</a></p>
-<h1 id="恢复app">恢复App</h1>
-<p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
-<p>然后使用下面的语句对应用进行安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
-<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
-<p>卸载app但保留数据和缓存文件：</p>
-<p><code>adb shell pm uninstall -k 包名</code></p>
-<h2 id="恢复data的app">恢复data的app</h2>
-<p>首先安装apk，打开，然后用push将data push到手机中去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
-<p>微信降级</p>
-<p>首先，将<code>data</code>
-push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
-<p>重新启动手机</p>
-<p>然后使用adb安装软件（微信）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
-<p>可以完成无需登录的降级</p>
-<h2 id="钛备份恢复文件">钛备份恢复文件</h2>
-<p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
-<h1 id="输入内核">输入内核</h1>
-<p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
-<h1 id="adb-su">adb su</h1>
-<p>adb su由于某些原因打不开，这时候要强制打开使用这个<a
-href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
-<p>然后使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
-<p>即可完成整个提权，文件读写权限</p>
-<h1 id="magisk">Magisk</h1>
-<ol type="1">
-<li>先下载<code>HttpCanary</code>，<a
-href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>禁止某个ip（magisk20.3）:下载<a
-href="">ipforbidden</a>模块，刷入，即可</li>
-</ol>
-<h1 id="开机模式下软件操作">开机模式下软件操作</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
-<p>可以加上查询字</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>获取<code>root</code>权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
-<p>保留数据卸载,此方法可用于微信降级</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
-<p>安装apk</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
-<h1 id="安卓分区">安卓分区</h1>
-<ul>
-<li><p>system</p>
-<p>这个分区无所谓，每次刷机刷的就是这个</p></li>
-<li><p>data</p>
-<p>这个分区就是软件数据放的地方，小心格式化</p></li>
-<li><p>persist</p>
-<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p></li>
-<li><p>vendor</p></li>
-<li><p>recovery</p>
-<p>这个是在fastboot模式下刷入的分区</p></li>
-<li><p>boot</p></li>
-<li><p>cache</p>
-<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p></li>
-<li><p>misc</p>
-<p>这个分区是放硬件配置信息的，USB，adb</p></li>
-<li><p>sdcard</p>
-<p>这个分区就是存储卡分区，没什么特别的</p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C&amp;&amp;C++问题总汇(1)</title>
     <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
     <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
@@ -303,6 +206,103 @@ transfer,but it seem that we have really passed a,b into the function
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Android Adb Command</title>
+    <url>/2021/10/24/Android-Adb-Command/</url>
+    <content><![CDATA[<p>安卓小技巧</p>
+<span id="more"></span>
+<h1 id="recovery-模式下使用adb">recovery 模式下使用adb</h1>
+<p>首先在电脑中找到<code>adbkey.pub</code>文件，我的默认地址是<code>.android</code>,通过一些手段移入安卓设备的一个分区<code>/data/misc/adb/</code>的<code>adb_keys</code>文件中，下面是push的的方法，当然也可以用第三方<code>rec</code>直接导入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ~/.android/adbkey.pub /data/misc/adb/adb_keys</span><br></pre></td></tr></table></figure>
+<p>wifi连接adb</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect ip:5555</span><br></pre></td></tr></table></figure>
+<p>断开连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb disconnect ip:5555</span><br></pre></td></tr></table></figure>
+<h1 id="备份文件">备份文件</h1>
+<p>备份文件的方法主要用<code>adb pull</code>，这里以<code>tim</code>为例，可以这样做</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/data/com.tencent.tim ./tim</span><br></pre></td></tr></table></figure>
+<p>切记，备份时最好用linux操作系统，Windows总是会有一些莫名的错误,备份安装包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/app/  ./app</span><br></pre></td></tr></table></figure>
+<p>备份<code>sdcard</code>的数据</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull ./sdcard/Android/data/com.tencent.tim ./com.tencent.tim </span><br></pre></td></tr></table></figure>
+<p>使用脚本备份文件,下载下面的<a
+href="https://ninglang.lanzoui.com/iHmmuvpiygj">脚本</a>，将备份的文件导入电脑</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /storage/emulated/0/back/ ./back</span><br></pre></td></tr></table></figure>
+<p><a
+href="https://picturnl.oss-cn-shanghai.aliyuncs.com/contacts.csv">联系人备份</a></p>
+<h1 id="恢复app">恢复App</h1>
+<p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
+<p>然后使用下面的语句对应用进行安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
+<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
+<p>卸载app但保留数据和缓存文件：</p>
+<p><code>adb shell pm uninstall -k 包名</code></p>
+<h2 id="恢复data的app">恢复data的app</h2>
+<p>首先安装apk，打开，然后用push将data push到手机中去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>微信降级</p>
+<p>首先，将<code>data</code>
+push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>重新启动手机</p>
+<p>然后使用adb安装软件（微信）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
+<p>可以完成无需登录的降级</p>
+<h2 id="钛备份恢复文件">钛备份恢复文件</h2>
+<p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
+<h1 id="输入内核">输入内核</h1>
+<p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
+<h1 id="adb-su">adb su</h1>
+<p>adb su由于某些原因打不开，这时候要强制打开使用这个<a
+href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
+<p>然后使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
+<p>即可完成整个提权，文件读写权限</p>
+<h1 id="magisk">Magisk</h1>
+<ol type="1">
+<li>先下载<code>HttpCanary</code>，<a
+href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>禁止某个ip（magisk20.3）:下载<a
+href="">ipforbidden</a>模块，刷入，即可</li>
+</ol>
+<h1 id="开机模式下软件操作">开机模式下软件操作</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+<p>可以加上查询字</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>获取<code>root</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
+<p>保留数据卸载,此方法可用于微信降级</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
+<p>安装apk</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
+<h1 id="安卓分区">安卓分区</h1>
+<ul>
+<li><p>system</p>
+<p>这个分区无所谓，每次刷机刷的就是这个</p></li>
+<li><p>data</p>
+<p>这个分区就是软件数据放的地方，小心格式化</p></li>
+<li><p>persist</p>
+<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p></li>
+<li><p>vendor</p></li>
+<li><p>recovery</p>
+<p>这个是在fastboot模式下刷入的分区</p></li>
+<li><p>boot</p></li>
+<li><p>cache</p>
+<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p></li>
+<li><p>misc</p>
+<p>这个分区是放硬件配置信息的，USB，adb</p></li>
+<li><p>sdcard</p>
+<p>这个分区就是存储卡分区，没什么特别的</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
       </categories>
   </entry>
   <entry>
@@ -1045,6 +1045,39 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
       </categories>
   </entry>
   <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python 机器学习</title>
     <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
@@ -1150,39 +1183,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1700,6 +1700,12 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1961,12 +1967,6 @@ class="math inline">\(O(1)\)</span></li>
       <categories>
         <category>coding</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
