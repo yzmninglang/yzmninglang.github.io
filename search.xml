@@ -98,6 +98,80 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
+    <title>C&amp;&amp;C++问题总汇(1)</title>
+    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
+    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
+<span id="more"></span>
+<h1 id="二维数组">二维数组</h1>
+<p>定义一个二维数组如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果采用一个指针去指向这个数组，可以这么做:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>那么访问这个二维数组的指针方法是:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
+<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
+<ul>
+<li>指针数组是这样子的吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
+<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
+<ul>
+<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针">指针的指针</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
+<li><p>答：</p></li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
+在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
+初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -232,135 +306,6 @@ transfer,but it seem that we have really passed a,b into the function
       </categories>
   </entry>
   <entry>
-    <title>C&amp;&amp;C++问题总汇(1)</title>
-    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
-    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
-<span id="more"></span>
-<h1 id="二维数组">二维数组</h1>
-<p>定义一个二维数组如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
-<p>如果采用一个指针去指向这个数组，可以这么做:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>那么访问这个二维数组的指针方法是:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
-<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
-<ul>
-<li>指针数组是这样子的吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
-<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
-<ul>
-<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
-<ul>
-<li>友元函数访问私有成员问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的指针">指针的指针</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所以说，这个<code>int</code>有用吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数的分号问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
-<li><p>答：</p></li>
-</ul>
-<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
-在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
-初始化完毕。</p>
-<ul>
-<li>问：动态联编和静态联编，可以访问派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：不能调用派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：这个可以算重载嘛？，结果值为第一个</li>
-<li>答:</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>通信原理笔记</title>
     <url>/2023/05/23/Communication%20principle/</url>
     <content><![CDATA[<p>通信原理理解性笔记</p>
@@ -441,89 +386,58 @@ href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出
       </categories>
   </entry>
   <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
 <span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
-Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="first">First</h1>
-<p>Hello everyone, welcome to come here, today I will introduce a new
-technology for image translation, called cycle-gan, which is a project
-led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
-let's introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
-Google? What do they have in common? Yes, what they have in common is
-that they are all creative. The so-called creativity means that when you
-input the same sentence, it can give different results, so the first
-word of gpt is Generative, but CNN is not good at generative models. ,
-when you give the same input, it is more likely to output the same
-result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to
-generalize and recognize other domains through a trained model, here
-involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two
-parts: the generator and the discriminator. The generator is used to
-generate content, and the discriminator mainly identifies whether the
-generated content is fake. The generator and the discriminator are two
-models, and they co-evolve with the prey just like in nature. When the
-discriminator cannot distinguish whether the generated content is fake
-or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
-GB-&gt;A,以及两个判别模型
-DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
-域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models,
-namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
-models DA and DB. This is the origin of cycle, but it is even more
-exciting What is popular is that cycle-gan does not require paired data
-pairs for training, that is to say, we only need to give cycle-gan
-enough data from the source domain and the target domain without a lot
-of labeling work on it, and it will Automatically learn and successfully
-convert the x domain to the y domain. Since it involves the two-way
-conversion of the two domains, the loss function used in its iteration
-is also a cycle consistent loss function.</p>
-<h1 id="second">second</h1>
-<blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in
-the field of video enhancement, black-and-white video becomes color
-video. Or scene transformation. Or convert an abstract painting into a
-concrete painting such as a building, these can be used as communication
-data compression, you can try the sender to transmit data similar to
-color blocks on the network, it may take up a lot of bandwidth Small,
-when you get these color patches at the receiving end, bring them back.
-This looks like a good way to compress video</p>
-<h1 id="third">Third</h1>
-<p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is
-“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
-[15]。</p>
-<p>”。</p>
-<p>The second sentence
-means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis
-“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
-[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
 ]]></content>
       <categories>
-        <category>code</category>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -635,6 +549,92 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
+<span id="more"></span>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
+Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="first">First</h1>
+<p>Hello everyone, welcome to come here, today I will introduce a new
+technology for image translation, called cycle-gan, which is a project
+led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
+let's introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
+Google? What do they have in common? Yes, what they have in common is
+that they are all creative. The so-called creativity means that when you
+input the same sentence, it can give different results, so the first
+word of gpt is Generative, but CNN is not good at generative models. ,
+when you give the same input, it is more likely to output the same
+result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to
+generalize and recognize other domains through a trained model, here
+involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two
+parts: the generator and the discriminator. The generator is used to
+generate content, and the discriminator mainly identifies whether the
+generated content is fake. The generator and the discriminator are two
+models, and they co-evolve with the prey just like in nature. When the
+discriminator cannot distinguish whether the generated content is fake
+or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
+GB-&gt;A,以及两个判别模型
+DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
+域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models,
+namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
+models DA and DB. This is the origin of cycle, but it is even more
+exciting What is popular is that cycle-gan does not require paired data
+pairs for training, that is to say, we only need to give cycle-gan
+enough data from the source domain and the target domain without a lot
+of labeling work on it, and it will Automatically learn and successfully
+convert the x domain to the y domain. Since it involves the two-way
+conversion of the two domains, the loss function used in its iteration
+is also a cycle consistent loss function.</p>
+<h1 id="second">second</h1>
+<blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in
+the field of video enhancement, black-and-white video becomes color
+video. Or scene transformation. Or convert an abstract painting into a
+concrete painting such as a building, these can be used as communication
+data compression, you can try the sender to transmit data similar to
+color blocks on the network, it may take up a lot of bandwidth Small,
+when you get these color patches at the receiving end, bring them back.
+This looks like a good way to compress video</p>
+<h1 id="third">Third</h1>
+<p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is
+“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
+[15]。</p>
+<p>”。</p>
+<p>The second sentence
+means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis
+“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
+[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
+]]></content>
+      <categories>
+        <category>code</category>
       </categories>
   </entry>
   <entry>
@@ -786,6 +786,85 @@ alt="被删除视频" />
       </categories>
   </entry>
   <entry>
+    <title>Pointer</title>
+    <url>/2021/09/03/Point/</url>
+    <content><![CDATA[<p>Review the knowledge of pointers</p>
+<span id="more"></span>
+<h1 id="pointer-category">Pointer Category</h1>
+<ul>
+<li><p>Pointer point the constant:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *name = <span class="string">&quot;chen&quot;</span>    <span class="comment">//statement a pointer point a constant</span></span><br></pre></td></tr></table></figure>
+<p>because using <code>const</code>,so the Pointer can't change variable
+in the address which it point ,so the statement as follows is incorrect
+:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;a&#x27;</span>					<span class="comment">//incorrect,pointer &quot;name&quot; can&#x27;t change constant </span></span><br></pre></td></tr></table></figure>
+<p>but name is a normal pointer ,so it could change the items it
+point,statement as follows are correct:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>				<span class="comment">//change the address the pointer point ,correct</span></span><br></pre></td></tr></table></figure>
+<p>Also,Even you have changed your string you point ,you still can't
+change the string, Please somebody tell me why ,Thank you !</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;y&#x27;</span>					<span class="comment">//incorrect,but I don&#x27;t know why!</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Constant Pointer</p>
+<p>A pointer can't change the address it point ,but it still can change
+the content it point,example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">const</span> name =<span class="string">&quot;chen&quot;</span>;     <span class="comment">//define a constant pointer</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;					<span class="comment">//correct ,it can change the constent of pointer</span></span><br><span class="line">name = <span class="string">&quot;zhang&quot;</span>;					<span class="comment">//incorrect ,it can&#x27;t change the address it points</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Constant Pointer points to constant</p>
+<p>A constant pointer points a constant ,the address pointer point is
+unchangeable and the content of address is unchangeable,example :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> name=<span class="string">&quot;chen&quot;</span>;	<span class="comment">//define a constant pointer point the constant</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;q&#x27;</span>;					<span class="comment">//incorrect ,the constant is unchangeable</span></span><br><span class="line">name =<span class="string">&#x27;ninglang&#x27;</span>;				<span class="comment">//incorrect ,the address pointed is unchangeable </span></span><br></pre></td></tr></table></figure></li>
+<li><p>Const</p>
+<p>Using a const to define a <code>integer</code> variable ,the keyword
+omitted is acceptable the definition as following is same:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>formal parameters also can be describe by <code>const</code>,for
+example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
+<p>the method promise the array can't be changed ,only be read.</p></li>
+</ul>
+<h1 id="pointer-array">Pointer array</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in fact , you see the definition of Pointer array ,It is like as
+follows:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
+<p>At the same time :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
+<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
+so we can use the code to print 'a'</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="pointer-function">Pointer Function</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is normal ,but There are some difference in
+next function declaration</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is pointer function ,the return is a
+pointer to <code>int</code> ,This is an address</p>
+<h1 id="pointer-to-function">Pointer To Function</h1>
+<p>To state a pointer to function ,which is a Pointer pointing function
+.declaration form:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
+<p>There are two ways to assign values to pointer variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
+<p>There are also two ways to call pointer to function</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
+<p>Example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="new-and-delete">New and Delete</h1>
+<p>operation <code>new</code> can get a space from heap and return the
+pointer to point the first address of the memory,and <code>delete</code>
+can free the space</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space for multidimensional array:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space with initial value:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Neural network(1)---Logistic Regression</title>
     <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
     <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic
@@ -931,85 +1010,6 @@ figure,see whether it is overfit or not ?</li>
 ]]></content>
       <categories>
         <category>Neural Network</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Pointer</title>
-    <url>/2021/09/03/Point/</url>
-    <content><![CDATA[<p>Review the knowledge of pointers</p>
-<span id="more"></span>
-<h1 id="pointer-category">Pointer Category</h1>
-<ul>
-<li><p>Pointer point the constant:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *name = <span class="string">&quot;chen&quot;</span>    <span class="comment">//statement a pointer point a constant</span></span><br></pre></td></tr></table></figure>
-<p>because using <code>const</code>,so the Pointer can't change variable
-in the address which it point ,so the statement as follows is incorrect
-:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;a&#x27;</span>					<span class="comment">//incorrect,pointer &quot;name&quot; can&#x27;t change constant </span></span><br></pre></td></tr></table></figure>
-<p>but name is a normal pointer ,so it could change the items it
-point,statement as follows are correct:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>				<span class="comment">//change the address the pointer point ,correct</span></span><br></pre></td></tr></table></figure>
-<p>Also,Even you have changed your string you point ,you still can't
-change the string, Please somebody tell me why ,Thank you !</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;y&#x27;</span>					<span class="comment">//incorrect,but I don&#x27;t know why!</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Constant Pointer</p>
-<p>A pointer can't change the address it point ,but it still can change
-the content it point,example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">const</span> name =<span class="string">&quot;chen&quot;</span>;     <span class="comment">//define a constant pointer</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;					<span class="comment">//correct ,it can change the constent of pointer</span></span><br><span class="line">name = <span class="string">&quot;zhang&quot;</span>;					<span class="comment">//incorrect ,it can&#x27;t change the address it points</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Constant Pointer points to constant</p>
-<p>A constant pointer points a constant ,the address pointer point is
-unchangeable and the content of address is unchangeable,example :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> name=<span class="string">&quot;chen&quot;</span>;	<span class="comment">//define a constant pointer point the constant</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;q&#x27;</span>;					<span class="comment">//incorrect ,the constant is unchangeable</span></span><br><span class="line">name =<span class="string">&#x27;ninglang&#x27;</span>;				<span class="comment">//incorrect ,the address pointed is unchangeable </span></span><br></pre></td></tr></table></figure></li>
-<li><p>Const</p>
-<p>Using a const to define a <code>integer</code> variable ,the keyword
-omitted is acceptable the definition as following is same:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-<p>formal parameters also can be describe by <code>const</code>,for
-example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
-<p>the method promise the array can't be changed ,only be read.</p></li>
-</ul>
-<h1 id="pointer-array">Pointer array</h1>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>in fact , you see the definition of Pointer array ,It is like as
-follows:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
-<p>At the same time :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
-<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
-so we can use the code to print 'a'</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="pointer-function">Pointer Function</h1>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
-<p>This function declaration is normal ,but There are some difference in
-next function declaration</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
-<p>This function declaration is pointer function ,the return is a
-pointer to <code>int</code> ,This is an address</p>
-<h1 id="pointer-to-function">Pointer To Function</h1>
-<p>To state a pointer to function ,which is a Pointer pointing function
-.declaration form:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
-<p>There are two ways to assign values to pointer variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
-<p>There are also two ways to call pointer to function</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
-<p>Example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="new-and-delete">New and Delete</h1>
-<p>operation <code>new</code> can get a space from heap and return the
-pointer to point the first address of the memory,and <code>delete</code>
-can free the space</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
-<p><code>new</code> assign space for multidimensional array:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
-<p><code>new</code> assign space with initial value:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1196,6 +1196,239 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>出租车载客模型</title>
+    <url>/2021/08/15/Taxi%20passenger%20model/</url>
+    <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
+<span id="more"></span>
+<h1 id="问题分析">问题分析</h1>
+<ul>
+<li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
+<li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
+<li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
+</ul>
+<h1 id="问题一">问题一</h1>
+<ul>
+<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
+<li><p>因素确定：</p>
+<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
+class="math inline">\(N_{f2}\)</span>,人数为<span
+class="math inline">\(M_{p2}\)</span>.</p>
+<p>出租车总数，等待时间不超过预期<span
+class="math inline">\(N_{taxi}\)</span>,选择等待</p>
+<p>空载率<span
+class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
+class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
+<p>机场与市中心的距离<span
+class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
+<p>航班载客数： <span class="math display">\[
+U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+M_p=M_{p1}+M_{p2}\\
+M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
+\]</span></p>
+<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
+class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
+class="math inline">\(N_{f2}\)</span>为时间<span
+class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
+<p>其中<span
+class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
+class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
+<p>里程：假设里程正态分布 <span class="math display">\[
+\xi(x)\sim N(\mu,\sigma^2)
+\]</span> 概率密度图为</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
+<h2 id="收入">收入</h2>
+<p>计价规则： <span class="math display">\[
+\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
+\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
+\]</span> 时间成本：</p>
+<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
+<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
+<p>等待时间成本<span
+class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
+class="math inline">\(M_p\)</span>成比例关系，即<span
+class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
+class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
+class="math display">\[
+t_{wait}=\frac{M_{plain}}{v_{leave}}
+\]</span> 总出行人数除以单位时间出行人数</p>
+<p>​ 出租行驶载客:概率<span
+class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
+class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
+<span class="math display">\[
+C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
+v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
+\]</span> <span
+class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
+<h2 id="成本">成本</h2>
+<p><span class="math display">\[
+C_g(x)=A \cdot S_{gax}\cdot x
+\]</span></p></li>
+<li><p>方案确立</p></li>
+<li><p>等待 <span class="math display">\[
+W_1=G(x)-C_g(x)-C_{time}\\
+=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
+\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
+t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
+\]</span></p></li>
+</ul>
+<p>空载时间为总路程减去载客路程除以汽车的速度，</p>
+<ul>
+<li><p>空载 <span class="math display">\[
+W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
+t_{free}=\frac{L}{v_{taxi}}
+\]</span></p></li>
+<li><p>模型求解</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
+<p>假设参数，<span
+class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
+class="math inline">\(\beta=0.4\)</span>，车速为<span
+class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
+class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
+class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
+</ul>
+<h1 id="问题二">问题二</h1>
+<ul>
+<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
+<li><p>数据收集</p>
+<p>北京首都机场</p></li>
+<li><p>表格数据</p>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>9~10</th>
+<th style="text-align: center;">10~11</th>
+<th style="text-align: right;">11~12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>忙季(节假日)</td>
+<td>30</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td>淡季(工作日)</td>
+<td>1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>价格 <span class="math display">\[
+晚上：G(x)\left\{\begin{array}{lc}
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p><span class="math display">\[
+早上：G(x)=\left\{\begin{array}{lc}
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
+<p>然后可以根据排队方案一的收益</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
+alt="image-20210815164119981" />
+<figcaption aria-hidden="true">image-20210815164119981</figcaption>
+</figure>
+<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
+</ul>
+<h1 id="问题三">问题三</h1>
+<ul>
+<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
+<li><p>建立模型:</p>
+<p>目标函数：乘车效率</p>
+<p>决策变量：上车点数</p>
+<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
+class="math inline">\(\alpha_1\)</span>,<span
+class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
+class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
+class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
+<p>模型：</p>
+<p><span class="math display">\[\begin{aligned}max
+\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
+k\le12\end{aligned}\]</span></p>
+<p>求解</p></li>
+</ul>
+<h1 id="问题四">问题四</h1>
+<ul>
+<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
+<li><p>短途</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
+}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
+}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
+}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
+v_{\text {taxi }}} \\
+&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
+{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
+v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
+/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
+v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p>长途</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
+</ul>
+<p><span class="math display">\[
+\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
+W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\epsilon_1\)</span>和<span
+class="math inline">\(\epsilon_2\)</span>为权重因子,<span
+class="math inline">\(\Delta\beta_{max}\)</span>和<span
+class="math inline">\(\Delta
+W_{max}\)</span>为归一化因子，变量计算方法如下: <span
+class="math display">\[
+\begin{aligned}\min \quad
+g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
+}}-\beta_{\text {short }}}{\Delta \beta_{\max
+}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
+{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
+\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
+}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
+{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
+W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
+\\
+\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
+}}+m / v_{\text {leave }}} \\
+W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
+{taxi }}+m / v_{\text {leave }}+T}
+\end{cases}\end{aligned}
+\]</span></li>
+</ul>
+<p>计算即可</p>
+<h1 id="代码">代码</h1>
+]]></content>
+      <categories>
+        <category>Math model</category>
+      </categories>
+  </entry>
+  <entry>
     <title>爬虫小结</title>
     <url>/2021/02/02/Web%20Crawler/</url>
     <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
@@ -1275,6 +1508,195 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Windows常用指令和工具</title>
+    <url>/2022/01/05/Windows_command/</url>
+    <content><![CDATA[<p>电脑常用的一些操作</p>
+<span id="more"></span>
+<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
+<p>现在我的F盘里面有一个文件夹blog</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
+<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
+<p>指令如下</p>
+<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
+<h1 id="关闭windows更新">关闭Windows更新</h1>
+<p>安装<code>wu10man</code>，点击该处访问其<a
+href="https://github.com/WereDev/Wu10Man">github</a>.</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
+<p>安装打开<code>wu10man</code>,选择即可</p>
+<h1 id="右键菜单规定">右键菜单规定</h1>
+<p>下载ccleaner</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
+<p>对其相应的进行调整即可</p>
+<h1 id="c盘清理">C盘清理</h1>
+<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
+<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
+<p>然后打开环境变量的设置</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
+<p>就可以看到这个pagefile，点击更改。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
+<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
+<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
+<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
+<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘分析软件">磁盘分析软件</h1>
+<p>这里，推荐一个磁盘分析软件，<a
+href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
+<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
+<h1 id="c盘扩容">C盘扩容</h1>
+<p>首先，下载<a
+href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
+Partition Wizrd Free</a></p>
+<p>如果电脑显示Bitlocker，如下图</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
+<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
+<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
+<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
+<p>右键C盘，选择分给的区扩容</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
+<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
+<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
+<h1 id="latex语法">Latex语法</h1>
+<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
+<span class="math display">\[
+f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
+\]</span> 这时，你需要在word里面输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
+<h1 id="重装系统">重装系统</h1>
+<p>这里使用这个超星的资源<a
+href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
+<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
+<p>其中18表示目标帧率</p>
+<h1 id="gitgnore的编写">gitgnore的编写</h1>
+<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
+alt="image-20231017175719127" />
+<figcaption aria-hidden="true">image-20231017175719127</figcaption>
+</figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1541,459 +1963,10 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>Windows常用指令和工具</title>
-    <url>/2022/01/05/Windows_command/</url>
-    <content><![CDATA[<p>电脑常用的一些操作</p>
-<span id="more"></span>
-<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
-<p>现在我的F盘里面有一个文件夹blog</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
-<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
-<p>指令如下</p>
-<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
-<h1 id="关闭windows更新">关闭Windows更新</h1>
-<p>安装<code>wu10man</code>，点击该处访问其<a
-href="https://github.com/WereDev/Wu10Man">github</a>.</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
-<p>安装打开<code>wu10man</code>,选择即可</p>
-<h1 id="右键菜单规定">右键菜单规定</h1>
-<p>下载ccleaner</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
-<p>对其相应的进行调整即可</p>
-<h1 id="c盘清理">C盘清理</h1>
-<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
-<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
-<p>然后打开环境变量的设置</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
-<p>就可以看到这个pagefile，点击更改。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
-<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
-<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
-<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
-<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
-<h1 id="磁盘分析软件">磁盘分析软件</h1>
-<p>这里，推荐一个磁盘分析软件，<a
-href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
-<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
-<h1 id="c盘扩容">C盘扩容</h1>
-<p>首先，下载<a
-href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
-Partition Wizrd Free</a></p>
-<p>如果电脑显示Bitlocker，如下图</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
-<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
-<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
-<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
-<p>右键C盘，选择分给的区扩容</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
-<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
-<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
-<h1 id="latex语法">Latex语法</h1>
-<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
-<span class="math display">\[
-f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
-\]</span> 这时，你需要在word里面输入下面的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
-<h1 id="重装系统">重装系统</h1>
-<p>这里使用这个超星的资源<a
-href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
-<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
-<p>其中18表示目标帧率</p>
-<h1 id="gitgnore的编写">gitgnore的编写</h1>
-<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
-alt="image-20231017175719127" />
-<figcaption aria-hidden="true">image-20231017175719127</figcaption>
-</figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
     <title></title>
     <url>/2023/10/17/index/</url>
     <content><![CDATA[<span id="more"></span>
 ]]></content>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>出租车载客模型</title>
-    <url>/2021/08/15/Taxi%20passenger%20model/</url>
-    <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
-<span id="more"></span>
-<h1 id="问题分析">问题分析</h1>
-<ul>
-<li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
-<li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
-<li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
-</ul>
-<h1 id="问题一">问题一</h1>
-<ul>
-<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
-<li><p>因素确定：</p>
-<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
-class="math inline">\(N_{f2}\)</span>,人数为<span
-class="math inline">\(M_{p2}\)</span>.</p>
-<p>出租车总数，等待时间不超过预期<span
-class="math inline">\(N_{taxi}\)</span>,选择等待</p>
-<p>空载率<span
-class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
-class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
-<p>机场与市中心的距离<span
-class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
-<p>航班载客数： <span class="math display">\[
-U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-M_p=M_{p1}+M_{p2}\\
-M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
-\]</span></p>
-<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
-class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
-class="math inline">\(N_{f2}\)</span>为时间<span
-class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
-<p>其中<span
-class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
-class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
-<p>里程：假设里程正态分布 <span class="math display">\[
-\xi(x)\sim N(\mu,\sigma^2)
-\]</span> 概率密度图为</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
-<h2 id="收入">收入</h2>
-<p>计价规则： <span class="math display">\[
-\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
-\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
-\]</span> 时间成本：</p>
-<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
-<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
-<p>等待时间成本<span
-class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
-class="math inline">\(M_p\)</span>成比例关系，即<span
-class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
-class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
-class="math display">\[
-t_{wait}=\frac{M_{plain}}{v_{leave}}
-\]</span> 总出行人数除以单位时间出行人数</p>
-<p>​ 出租行驶载客:概率<span
-class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
-class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
-<span class="math display">\[
-C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
-v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
-\]</span> <span
-class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
-<h2 id="成本">成本</h2>
-<p><span class="math display">\[
-C_g(x)=A \cdot S_{gax}\cdot x
-\]</span></p></li>
-<li><p>方案确立</p></li>
-<li><p>等待 <span class="math display">\[
-W_1=G(x)-C_g(x)-C_{time}\\
-=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
-\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
-t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
-\]</span></p></li>
-</ul>
-<p>空载时间为总路程减去载客路程除以汽车的速度，</p>
-<ul>
-<li><p>空载 <span class="math display">\[
-W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
-t_{free}=\frac{L}{v_{taxi}}
-\]</span></p></li>
-<li><p>模型求解</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
-<p>假设参数，<span
-class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
-class="math inline">\(\beta=0.4\)</span>，车速为<span
-class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
-class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
-class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
-</ul>
-<h1 id="问题二">问题二</h1>
-<ul>
-<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
-<li><p>数据收集</p>
-<p>北京首都机场</p></li>
-<li><p>表格数据</p>
-<table>
-<thead>
-<tr class="header">
-<th>类型</th>
-<th>9~10</th>
-<th style="text-align: center;">10~11</th>
-<th style="text-align: right;">11~12</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>忙季(节假日)</td>
-<td>30</td>
-<td style="text-align: center;">27</td>
-<td style="text-align: right;">15</td>
-</tr>
-<tr class="even">
-<td>淡季(工作日)</td>
-<td>1</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: right;">3</td>
-</tr>
-</tbody>
-</table></li>
-<li><p>价格 <span class="math display">\[
-晚上：G(x)\left\{\begin{array}{lc}
-13, &amp; x \leq 3 \\
-13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
-\end{array}\right.
-\]</span></p>
-<p><span class="math display">\[
-早上：G(x)=\left\{\begin{array}{lc}
-13, &amp; x \leq 3 \\
-13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
-\end{array}\right.
-\]</span></p>
-<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
-<p>然后可以根据排队方案一的收益</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
-alt="image-20210815164119981" />
-<figcaption aria-hidden="true">image-20210815164119981</figcaption>
-</figure>
-<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
-</ul>
-<h1 id="问题三">问题三</h1>
-<ul>
-<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
-<li><p>建立模型:</p>
-<p>目标函数：乘车效率</p>
-<p>决策变量：上车点数</p>
-<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
-class="math inline">\(\alpha_1\)</span>,<span
-class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
-class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
-class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
-<p>模型：</p>
-<p><span class="math display">\[\begin{aligned}max
-\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
-k\le12\end{aligned}\]</span></p>
-<p>求解</p></li>
-</ul>
-<h1 id="问题四">问题四</h1>
-<ul>
-<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
-<li><p>短途</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
-</ul>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
-}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
-}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
-}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
-v_{\text {taxi }}} \\
-&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
-{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
-v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
-v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
-/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
-v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
-\end{aligned}
-\]</span></p>
-<ul>
-<li><p>长途</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
-</ul>
-<p><span class="math display">\[
-\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
-W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\epsilon_1\)</span>和<span
-class="math inline">\(\epsilon_2\)</span>为权重因子,<span
-class="math inline">\(\Delta\beta_{max}\)</span>和<span
-class="math inline">\(\Delta
-W_{max}\)</span>为归一化因子，变量计算方法如下: <span
-class="math display">\[
-\begin{aligned}\min \quad
-g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
-}}-\beta_{\text {short }}}{\Delta \beta_{\max
-}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
-{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
-\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
-}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
-{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
-W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
-v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
-\\
-\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
-}}+m / v_{\text {leave }}} \\
-W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
-{taxi }}+m / v_{\text {leave }}+T}
-\end{cases}\end{aligned}
-\]</span></li>
-</ul>
-<p>计算即可</p>
-<h1 id="代码">代码</h1>
-]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
-<span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
@@ -2126,6 +2099,33 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
+<span id="more"></span>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2200,6 +2200,22 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -2251,22 +2267,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
