@@ -1,103 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Android Adb Command</title>
-    <url>/2021/10/24/Android-Adb-Command/</url>
-    <content><![CDATA[<p>安卓小技巧</p>
-<span id="more"></span>
-<h1 id="recovery-模式下使用adb">recovery 模式下使用adb</h1>
-<p>首先在电脑中找到<code>adbkey.pub</code>文件，我的默认地址是<code>.android</code>,通过一些手段移入安卓设备的一个分区<code>/data/misc/adb/</code>的<code>adb_keys</code>文件中，下面是push的的方法，当然也可以用第三方<code>rec</code>直接导入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ~/.android/adbkey.pub /data/misc/adb/adb_keys</span><br></pre></td></tr></table></figure>
-<p>wifi连接adb</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect ip:5555</span><br></pre></td></tr></table></figure>
-<p>断开连接</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb disconnect ip:5555</span><br></pre></td></tr></table></figure>
-<h1 id="备份文件">备份文件</h1>
-<p>备份文件的方法主要用<code>adb pull</code>，这里以<code>tim</code>为例，可以这样做</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/data/com.tencent.tim ./tim</span><br></pre></td></tr></table></figure>
-<p>切记，备份时最好用linux操作系统，Windows总是会有一些莫名的错误,备份安装包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/app/  ./app</span><br></pre></td></tr></table></figure>
-<p>备份<code>sdcard</code>的数据</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull ./sdcard/Android/data/com.tencent.tim ./com.tencent.tim </span><br></pre></td></tr></table></figure>
-<p>使用脚本备份文件,下载下面的<a
-href="https://ninglang.lanzoui.com/iHmmuvpiygj">脚本</a>，将备份的文件导入电脑</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /storage/emulated/0/back/ ./back</span><br></pre></td></tr></table></figure>
-<p><a
-href="https://picturnl.oss-cn-shanghai.aliyuncs.com/contacts.csv">联系人备份</a></p>
-<h1 id="恢复app">恢复App</h1>
-<p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
-<p>然后使用下面的语句对应用进行安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
-<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
-<p>卸载app但保留数据和缓存文件：</p>
-<p><code>adb shell pm uninstall -k 包名</code></p>
-<h2 id="恢复data的app">恢复data的app</h2>
-<p>首先安装apk，打开，然后用push将data push到手机中去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
-<p>微信降级</p>
-<p>首先，将<code>data</code>
-push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
-<p>重新启动手机</p>
-<p>然后使用adb安装软件（微信）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
-<p>可以完成无需登录的降级</p>
-<h2 id="钛备份恢复文件">钛备份恢复文件</h2>
-<p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
-<h1 id="输入内核">输入内核</h1>
-<p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
-<h1 id="adb-su">adb su</h1>
-<p>adb su由于某些原因打不开，这时候要强制打开使用这个<a
-href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
-<p>然后使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
-<p>即可完成整个提权，文件读写权限</p>
-<h1 id="magisk">Magisk</h1>
-<ol type="1">
-<li>先下载<code>HttpCanary</code>，<a
-href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>禁止某个ip（magisk20.3）:下载<a
-href="">ipforbidden</a>模块，刷入，即可</li>
-</ol>
-<h1 id="开机模式下软件操作">开机模式下软件操作</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
-<p>可以加上查询字</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>获取<code>root</code>权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
-<p>保留数据卸载,此方法可用于微信降级</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
-<p>安装apk</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
-<h1 id="安卓分区">安卓分区</h1>
-<ul>
-<li><p>system</p>
-<p>这个分区无所谓，每次刷机刷的就是这个</p></li>
-<li><p>data</p>
-<p>这个分区就是软件数据放的地方，小心格式化</p></li>
-<li><p>persist</p>
-<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p></li>
-<li><p>vendor</p></li>
-<li><p>recovery</p>
-<p>这个是在fastboot模式下刷入的分区</p></li>
-<li><p>boot</p></li>
-<li><p>cache</p>
-<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p></li>
-<li><p>misc</p>
-<p>这个分区是放硬件配置信息的，USB，adb</p></li>
-<li><p>sdcard</p>
-<p>这个分区就是存储卡分区，没什么特别的</p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C&amp;&amp;C++问题总汇(1)</title>
     <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
     <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
@@ -303,6 +206,103 @@ transfer,but it seem that we have really passed a,b into the function
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Android Adb Command</title>
+    <url>/2021/10/24/Android-Adb-Command/</url>
+    <content><![CDATA[<p>安卓小技巧</p>
+<span id="more"></span>
+<h1 id="recovery-模式下使用adb">recovery 模式下使用adb</h1>
+<p>首先在电脑中找到<code>adbkey.pub</code>文件，我的默认地址是<code>.android</code>,通过一些手段移入安卓设备的一个分区<code>/data/misc/adb/</code>的<code>adb_keys</code>文件中，下面是push的的方法，当然也可以用第三方<code>rec</code>直接导入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ~/.android/adbkey.pub /data/misc/adb/adb_keys</span><br></pre></td></tr></table></figure>
+<p>wifi连接adb</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect ip:5555</span><br></pre></td></tr></table></figure>
+<p>断开连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb disconnect ip:5555</span><br></pre></td></tr></table></figure>
+<h1 id="备份文件">备份文件</h1>
+<p>备份文件的方法主要用<code>adb pull</code>，这里以<code>tim</code>为例，可以这样做</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/data/com.tencent.tim ./tim</span><br></pre></td></tr></table></figure>
+<p>切记，备份时最好用linux操作系统，Windows总是会有一些莫名的错误,备份安装包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/app/  ./app</span><br></pre></td></tr></table></figure>
+<p>备份<code>sdcard</code>的数据</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull ./sdcard/Android/data/com.tencent.tim ./com.tencent.tim </span><br></pre></td></tr></table></figure>
+<p>使用脚本备份文件,下载下面的<a
+href="https://ninglang.lanzoui.com/iHmmuvpiygj">脚本</a>，将备份的文件导入电脑</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /storage/emulated/0/back/ ./back</span><br></pre></td></tr></table></figure>
+<p><a
+href="https://picturnl.oss-cn-shanghai.aliyuncs.com/contacts.csv">联系人备份</a></p>
+<h1 id="恢复app">恢复App</h1>
+<p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
+<p>然后使用下面的语句对应用进行安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
+<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
+<p>卸载app但保留数据和缓存文件：</p>
+<p><code>adb shell pm uninstall -k 包名</code></p>
+<h2 id="恢复data的app">恢复data的app</h2>
+<p>首先安装apk，打开，然后用push将data push到手机中去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>微信降级</p>
+<p>首先，将<code>data</code>
+push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>重新启动手机</p>
+<p>然后使用adb安装软件（微信）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
+<p>可以完成无需登录的降级</p>
+<h2 id="钛备份恢复文件">钛备份恢复文件</h2>
+<p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
+<h1 id="输入内核">输入内核</h1>
+<p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
+<h1 id="adb-su">adb su</h1>
+<p>adb su由于某些原因打不开，这时候要强制打开使用这个<a
+href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
+<p>然后使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
+<p>即可完成整个提权，文件读写权限</p>
+<h1 id="magisk">Magisk</h1>
+<ol type="1">
+<li>先下载<code>HttpCanary</code>，<a
+href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>禁止某个ip（magisk20.3）:下载<a
+href="">ipforbidden</a>模块，刷入，即可</li>
+</ol>
+<h1 id="开机模式下软件操作">开机模式下软件操作</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+<p>可以加上查询字</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>获取<code>root</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
+<p>保留数据卸载,此方法可用于微信降级</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
+<p>安装apk</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
+<h1 id="安卓分区">安卓分区</h1>
+<ul>
+<li><p>system</p>
+<p>这个分区无所谓，每次刷机刷的就是这个</p></li>
+<li><p>data</p>
+<p>这个分区就是软件数据放的地方，小心格式化</p></li>
+<li><p>persist</p>
+<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p></li>
+<li><p>vendor</p></li>
+<li><p>recovery</p>
+<p>这个是在fastboot模式下刷入的分区</p></li>
+<li><p>boot</p></li>
+<li><p>cache</p>
+<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p></li>
+<li><p>misc</p>
+<p>这个分区是放硬件配置信息的，USB，adb</p></li>
+<li><p>sdcard</p>
+<p>这个分区就是存储卡分区，没什么特别的</p></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
       </categories>
   </entry>
   <entry>
@@ -1700,6 +1700,12 @@ alt="image-20231017175719127" />
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1961,12 +1967,6 @@ class="math inline">\(O(1)\)</span></li>
       <categories>
         <category>coding</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
   </entry>
   <entry>
     <title>Linux开发项目总结</title>
@@ -2240,22 +2240,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2330,52 +2314,16 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
-    <title>ISAC</title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<p>移动通信重点总结</p>
-<p>通感一体化</p>
 <span id="more"></span>
-<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
 <p><a
-href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
-- 华为</a>。</p>
-<p><a
-href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a
-href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
-3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a
-href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol type="1">
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点
-共享，通信与感知完全一体化，系统性能显著提升，网络系统
-的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
-Equipment，UE）之间更大规模的协同、通信感
-知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
-术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
 ]]></content>
       <categories>
         <category>Code</category>
@@ -2433,6 +2381,58 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ISAC</title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<p>通感一体化</p>
+<span id="more"></span>
+<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p><a
+href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
+- 华为</a>。</p>
+<p><a
+href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a
+href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
+3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a
+href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol type="1">
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点
+共享，通信与感知完全一体化，系统性能显著提升，网络系统
+的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
+Equipment，UE）之间更大规模的协同、通信感
+知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
+术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
