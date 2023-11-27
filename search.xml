@@ -172,6 +172,86 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道">信道</h3>
+<blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
+Code
+Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
+Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型">波形成型</h3>
+<blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
+时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形">脉冲整形</h2>
+<p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
+href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
+失真严重导致采样判决出错，无法正确恢复数字信号。
+显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong> 其<a
+href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器">基带滤波器</h2>
+<p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
+发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
+<strong>例子</strong></p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a
+href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a
+href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
+- Riden - 博客园</a></p>
+<blockquote>
+<p>为什么对基带信号要成形滤波？</p>
+<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
+<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
+理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
+<blockquote>
+<p>为什么要-&gt;这里有直接结论：</p>
+<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
+！</p>
+</blockquote>
+<p><a
+href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
+<blockquote>
+<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
+<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
+href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>电路</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -417,86 +497,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道">信道</h3>
-<blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
-Code
-Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
-Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型">波形成型</h3>
-<blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
-时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形">脉冲整形</h2>
-<p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
-href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
-失真严重导致采样判决出错，无法正确恢复数字信号。
-显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong> 其<a
-href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器">基带滤波器</h2>
-<p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
-发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
-<strong>例子</strong></p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a
-href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a
-href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
-- Riden - 博客园</a></p>
-<blockquote>
-<p>为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
-理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p>为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
-！</p>
-</blockquote>
-<p><a
-href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
-href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数字电子基础</title>
     <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
     <content><![CDATA[<p>一些数电不太能理解的地方</p>
@@ -638,6 +638,37 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
       </categories>
   </entry>
   <entry>
+    <title>毛概实践课</title>
+    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
+    <content><![CDATA[<p>毛概实践课🤗</p>
+<span id="more"></span>
+<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
+
+<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
+
+<p>看看我们的大合照😁:</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
+<p>​
+哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
+<p>​
+这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
+alt="被删除视频" />
+<figcaption aria-hidden="true">被删除视频</figcaption>
+</figure>
+<p>​
+这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
+<p>​
+总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -737,37 +768,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>毛概实践课</title>
-    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
-    <content><![CDATA[<p>毛概实践课🤗</p>
-<span id="more"></span>
-<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
-
-<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
-
-<p>看看我们的大合照😁:</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
-<p>​
-哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
-<p>​
-这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
-alt="被删除视频" />
-<figcaption aria-hidden="true">被删除视频</figcaption>
-</figure>
-<p>​
-这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
-<p>​
-总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -1045,6 +1045,63 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
       </categories>
   </entry>
   <entry>
+    <title>Qt</title>
+    <url>/2021/09/20/Qt1/</url>
+    <content><![CDATA[<p>Qt问题总汇</p>
+<span id="more"></span>
+<h1 id="信号和槽">信号和槽</h1>
+<h2 id="连接函数connect">连接函数：connect</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<p>松散耦合：发送端和接受端的松散耦合</p>
+<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
+<ul>
+<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
+<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>定义槽和信号后，需要定义触发函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
+<h3 id="信号的重载">信号的重载</h3>
+<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：这里的两个函数指针是如何定义的？？？</li>
+<li>答：</li>
+</ul>
+<p>Qstring 转char *</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号">信号连接信号</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<p>直接将两个信号用connect相连</p>
+<ul>
+<li><p>断开信号 disconnect</p></li>
+<li><p>多个信号一个槽</p></li>
+<li><p>多个槽连接一个信号</p></li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
+</ul>
+<p>lambda函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
+<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
+</ul>
+<h1 id="模态与非模态">模态与非模态</h1>
+<h2 id="模态">模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态">非模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
+<li>答：</li>
+</ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python 机器学习</title>
     <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
@@ -1129,63 +1186,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>Qt</title>
-    <url>/2021/09/20/Qt1/</url>
-    <content><![CDATA[<p>Qt问题总汇</p>
-<span id="more"></span>
-<h1 id="信号和槽">信号和槽</h1>
-<h2 id="连接函数connect">连接函数：connect</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
-<p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
-<ul>
-<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
-<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义槽和信号后，需要定义触发函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载">信号的重载</h3>
-<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：这里的两个函数指针是如何定义的？？？</li>
-<li>答：</li>
-</ul>
-<p>Qstring 转char *</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号">信号连接信号</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
-<p>直接将两个信号用connect相连</p>
-<ul>
-<li><p>断开信号 disconnect</p></li>
-<li><p>多个信号一个槽</p></li>
-<li><p>多个槽连接一个信号</p></li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
-</ul>
-<p>lambda函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
-<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
-</ul>
-<h1 id="模态与非模态">模态与非模态</h1>
-<h2 id="模态">模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态">非模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
-<li>答：</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>学业生涯规划指导经验交流贴</title>
     <url>/2023/10/31/Study%20exchange%20meeting/</url>
     <content><![CDATA[<p>欢迎交流</p>
@@ -1193,6 +1193,239 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>出租车载客模型</title>
+    <url>/2021/08/15/Taxi%20passenger%20model/</url>
+    <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
+<span id="more"></span>
+<h1 id="问题分析">问题分析</h1>
+<ul>
+<li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
+<li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
+<li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
+</ul>
+<h1 id="问题一">问题一</h1>
+<ul>
+<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
+<li><p>因素确定：</p>
+<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
+class="math inline">\(N_{f2}\)</span>,人数为<span
+class="math inline">\(M_{p2}\)</span>.</p>
+<p>出租车总数，等待时间不超过预期<span
+class="math inline">\(N_{taxi}\)</span>,选择等待</p>
+<p>空载率<span
+class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
+class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
+<p>机场与市中心的距离<span
+class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
+<p>航班载客数： <span class="math display">\[
+U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+M_p=M_{p1}+M_{p2}\\
+M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
+\]</span></p>
+<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
+class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
+class="math inline">\(N_{f2}\)</span>为时间<span
+class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
+<p>其中<span
+class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
+class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
+<p>里程：假设里程正态分布 <span class="math display">\[
+\xi(x)\sim N(\mu,\sigma^2)
+\]</span> 概率密度图为</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
+<h2 id="收入">收入</h2>
+<p>计价规则： <span class="math display">\[
+\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
+\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
+\]</span> 时间成本：</p>
+<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
+<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
+<p>等待时间成本<span
+class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
+class="math inline">\(M_p\)</span>成比例关系，即<span
+class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
+class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
+class="math display">\[
+t_{wait}=\frac{M_{plain}}{v_{leave}}
+\]</span> 总出行人数除以单位时间出行人数</p>
+<p>​ 出租行驶载客:概率<span
+class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
+class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
+<span class="math display">\[
+C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
+v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
+\]</span> <span
+class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
+<h2 id="成本">成本</h2>
+<p><span class="math display">\[
+C_g(x)=A \cdot S_{gax}\cdot x
+\]</span></p></li>
+<li><p>方案确立</p></li>
+<li><p>等待 <span class="math display">\[
+W_1=G(x)-C_g(x)-C_{time}\\
+=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
+\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
+t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
+\]</span></p></li>
+</ul>
+<p>空载时间为总路程减去载客路程除以汽车的速度，</p>
+<ul>
+<li><p>空载 <span class="math display">\[
+W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
+t_{free}=\frac{L}{v_{taxi}}
+\]</span></p></li>
+<li><p>模型求解</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
+<p>假设参数，<span
+class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
+class="math inline">\(\beta=0.4\)</span>，车速为<span
+class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
+class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
+class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
+</ul>
+<h1 id="问题二">问题二</h1>
+<ul>
+<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
+<li><p>数据收集</p>
+<p>北京首都机场</p></li>
+<li><p>表格数据</p>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>9~10</th>
+<th style="text-align: center;">10~11</th>
+<th style="text-align: right;">11~12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>忙季(节假日)</td>
+<td>30</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td>淡季(工作日)</td>
+<td>1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>价格 <span class="math display">\[
+晚上：G(x)\left\{\begin{array}{lc}
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p><span class="math display">\[
+早上：G(x)=\left\{\begin{array}{lc}
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
+<p>然后可以根据排队方案一的收益</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
+alt="image-20210815164119981" />
+<figcaption aria-hidden="true">image-20210815164119981</figcaption>
+</figure>
+<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
+</ul>
+<h1 id="问题三">问题三</h1>
+<ul>
+<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
+<li><p>建立模型:</p>
+<p>目标函数：乘车效率</p>
+<p>决策变量：上车点数</p>
+<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
+class="math inline">\(\alpha_1\)</span>,<span
+class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
+class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
+class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
+<p>模型：</p>
+<p><span class="math display">\[\begin{aligned}max
+\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
+k\le12\end{aligned}\]</span></p>
+<p>求解</p></li>
+</ul>
+<h1 id="问题四">问题四</h1>
+<ul>
+<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
+<li><p>短途</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
+}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
+}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
+}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
+v_{\text {taxi }}} \\
+&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
+{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
+v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
+/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
+v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p>长途</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
+</ul>
+<p><span class="math display">\[
+\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
+W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\epsilon_1\)</span>和<span
+class="math inline">\(\epsilon_2\)</span>为权重因子,<span
+class="math inline">\(\Delta\beta_{max}\)</span>和<span
+class="math inline">\(\Delta
+W_{max}\)</span>为归一化因子，变量计算方法如下: <span
+class="math display">\[
+\begin{aligned}\min \quad
+g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
+}}-\beta_{\text {short }}}{\Delta \beta_{\max
+}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
+{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
+\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
+}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
+{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
+W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
+\\
+\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
+}}+m / v_{\text {leave }}} \\
+W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
+{taxi }}+m / v_{\text {leave }}+T}
+\end{cases}\end{aligned}
+\]</span></li>
+</ul>
+<p>计算即可</p>
+<h1 id="代码">代码</h1>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1850,239 +2083,6 @@ verbose详细显示，-f file文件属性）</p>
       </categories>
   </entry>
   <entry>
-    <title>出租车载客模型</title>
-    <url>/2021/08/15/Taxi%20passenger%20model/</url>
-    <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
-<span id="more"></span>
-<h1 id="问题分析">问题分析</h1>
-<ul>
-<li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
-<li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
-<li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
-</ul>
-<h1 id="问题一">问题一</h1>
-<ul>
-<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
-<li><p>因素确定：</p>
-<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
-class="math inline">\(N_{f2}\)</span>,人数为<span
-class="math inline">\(M_{p2}\)</span>.</p>
-<p>出租车总数，等待时间不超过预期<span
-class="math inline">\(N_{taxi}\)</span>,选择等待</p>
-<p>空载率<span
-class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
-class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
-<p>机场与市中心的距离<span
-class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
-<p>航班载客数： <span class="math display">\[
-U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-M_p=M_{p1}+M_{p2}\\
-M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
-\]</span></p>
-<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
-class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
-class="math inline">\(N_{f2}\)</span>为时间<span
-class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
-<p>其中<span
-class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
-class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
-<p>里程：假设里程正态分布 <span class="math display">\[
-\xi(x)\sim N(\mu,\sigma^2)
-\]</span> 概率密度图为</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
-<h2 id="收入">收入</h2>
-<p>计价规则： <span class="math display">\[
-\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
-\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
-\]</span> 时间成本：</p>
-<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
-<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
-<p>等待时间成本<span
-class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
-class="math inline">\(M_p\)</span>成比例关系，即<span
-class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
-class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
-class="math display">\[
-t_{wait}=\frac{M_{plain}}{v_{leave}}
-\]</span> 总出行人数除以单位时间出行人数</p>
-<p>​ 出租行驶载客:概率<span
-class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
-class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
-<span class="math display">\[
-C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
-v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
-\]</span> <span
-class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
-<h2 id="成本">成本</h2>
-<p><span class="math display">\[
-C_g(x)=A \cdot S_{gax}\cdot x
-\]</span></p></li>
-<li><p>方案确立</p></li>
-<li><p>等待 <span class="math display">\[
-W_1=G(x)-C_g(x)-C_{time}\\
-=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
-\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
-t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
-\]</span></p></li>
-</ul>
-<p>空载时间为总路程减去载客路程除以汽车的速度，</p>
-<ul>
-<li><p>空载 <span class="math display">\[
-W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
-t_{free}=\frac{L}{v_{taxi}}
-\]</span></p></li>
-<li><p>模型求解</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
-<p>假设参数，<span
-class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
-class="math inline">\(\beta=0.4\)</span>，车速为<span
-class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
-class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
-class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
-</ul>
-<h1 id="问题二">问题二</h1>
-<ul>
-<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
-<li><p>数据收集</p>
-<p>北京首都机场</p></li>
-<li><p>表格数据</p>
-<table>
-<thead>
-<tr class="header">
-<th>类型</th>
-<th>9~10</th>
-<th style="text-align: center;">10~11</th>
-<th style="text-align: right;">11~12</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>忙季(节假日)</td>
-<td>30</td>
-<td style="text-align: center;">27</td>
-<td style="text-align: right;">15</td>
-</tr>
-<tr class="even">
-<td>淡季(工作日)</td>
-<td>1</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: right;">3</td>
-</tr>
-</tbody>
-</table></li>
-<li><p>价格 <span class="math display">\[
-晚上：G(x)\left\{\begin{array}{lc}
-13, &amp; x \leq 3 \\
-13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
-\end{array}\right.
-\]</span></p>
-<p><span class="math display">\[
-早上：G(x)=\left\{\begin{array}{lc}
-13, &amp; x \leq 3 \\
-13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
-\end{array}\right.
-\]</span></p>
-<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
-<p>然后可以根据排队方案一的收益</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
-alt="image-20210815164119981" />
-<figcaption aria-hidden="true">image-20210815164119981</figcaption>
-</figure>
-<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
-</ul>
-<h1 id="问题三">问题三</h1>
-<ul>
-<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
-<li><p>建立模型:</p>
-<p>目标函数：乘车效率</p>
-<p>决策变量：上车点数</p>
-<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
-class="math inline">\(\alpha_1\)</span>,<span
-class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
-class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
-class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
-<p>模型：</p>
-<p><span class="math display">\[\begin{aligned}max
-\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
-k\le12\end{aligned}\]</span></p>
-<p>求解</p></li>
-</ul>
-<h1 id="问题四">问题四</h1>
-<ul>
-<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
-<li><p>短途</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
-</ul>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
-}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
-}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
-}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
-v_{\text {taxi }}} \\
-&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
-{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
-v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
-v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
-/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
-v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
-\end{aligned}
-\]</span></p>
-<ul>
-<li><p>长途</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
-</ul>
-<p><span class="math display">\[
-\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
-W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\epsilon_1\)</span>和<span
-class="math inline">\(\epsilon_2\)</span>为权重因子,<span
-class="math inline">\(\Delta\beta_{max}\)</span>和<span
-class="math inline">\(\Delta
-W_{max}\)</span>为归一化因子，变量计算方法如下: <span
-class="math display">\[
-\begin{aligned}\min \quad
-g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
-}}-\beta_{\text {short }}}{\Delta \beta_{\max
-}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
-{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
-\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
-}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
-{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
-W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
-v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
-\\
-\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
-}}+m / v_{\text {leave }}} \\
-W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
-{taxi }}+m / v_{\text {leave }}+T}
-\end{cases}\end{aligned}
-\]</span></li>
-</ul>
-<p>计算即可</p>
-<h1 id="代码">代码</h1>
-]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2240,22 +2240,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2381,6 +2365,22 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
