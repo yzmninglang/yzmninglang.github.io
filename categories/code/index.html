@@ -347,3 +347,19 @@ document.addEventListener('page:loaded', () => {
 
 </body>
 </html>
+P":false,"enableQQ":true,"requiredFields":["nick"],"el":"#valine-comments","path":"/categories/code/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://picturnl.oss-cn-shanghai.aliyuncs.com/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
+
+</body>
+</html>
