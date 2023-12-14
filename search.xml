@@ -1096,39 +1096,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1183,6 +1150,39 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -2095,229 +2095,6 @@ verbose详细显示，-f file文件属性）</p>
       </categories>
   </entry>
   <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
-<span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>时间预测模型</title>
-    <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<p>美赛的一种预测模型</p>
-<span id="more"></span>
-<p>基于时间序列模型对黄金和比特币的预测</p>
-<p>黄金和比特币这一类的产品，一般来说，是自身会随着时间发生变化的产品，而时间序列的预测，主要适用于自身的发展趋势会随着自己的情况发展变化，于是，我们这个时候可以使用时间预测模型对该种情况进行预测，</p>
-<p>这个时候我们可以着手判断产品随着时间变化的自我相关问题,根据查阅各样文献,可以得到,最常用的方法还是ARMA的方式。,这种方法比较适用于小规模单变量的预测，如股票的走势。</p>
-<h2 id="ar模型">AR模型</h2>
-<p>AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量<span
-class="math inline">\(x_{t}\)</span>主要受前<span
-class="math inline">\(p\)</span>期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前<span
-class="math inline">\(p\)</span>期的<span
-class="math inline">\(x_t\)</span>之间的相关性。如果<span
-class="math inline">\(x_t\)</span>主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
-<h2 id="ma模型">MA模型</h2>
-<p>​ MA模型主要研究的是<span
-class="math inline">\(x_t\)</span>的取值与前Q期的随机扰动有关,认为是<span
-class="math inline">\(x_t\)</span>主要受过去Q期的干扰项的影响，所以对于MA模型</p>
-<h2
-id="arma模型autoregressive-moving-average-model">ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive
-<strong>m</strong>oving <strong>a</strong>verage model）</h2>
-<p>ARMA
-模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为<span
-class="math inline">\(x_1,x_2,x_3....,x_k\)</span>,由自回归分析可得
-<span class="math display">\[
-Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z
-\]</span> 其中Y是预测对象的观测值，<span
-class="math inline">\(Z\)</span>为误差项 <span class="math display">\[
-Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}
-\]</span> 误差的表达方式为 <span class="math display">\[
-Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
-\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
-\]</span> 我们最终获得ARMA模型的表达式是 <span class="math display">\[
-Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p}
-Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
-\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
-\]</span></p>
-<h2 id="黄金股票预测">黄金股票预测</h2>
-<p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
-<h3 id="arima">ARIMA</h3>
-<p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为
-<span class="math display">\[
-\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d}
-X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}
-\]</span> 其中<span class="math inline">\(d \in Z ,
-d&gt;0\)</span>,记作ARMA(P,D,Q)</p>
-<p>在确定使用哪一种方式之前，我们做出了原数据，一阶差分，二阶差分的图像，如图所示（其中为比特币的处理图像）</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download.png" alt="各阶差分图" style="zoom:50%;" /></p>
-<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即<span
-class="math inline">\(d_{diff}=1\)</span>，即<span
-class="math inline">\(d_{diff} \neq 0\)</span></p>
-<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的
-statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (1).png" alt="download (1)" style="zoom:50%;" /></p>
-<p>图中淡蓝色的阴影区域，表示阶数的置信区间，通过观察，对于自相关而言q=1,2,3,4,5都有可能，p=1,2,3,4也都有可能，显然，仅通过图像观察并不是十分的直观，于是，我们来计算对于不同的q和p的情况下，计算模型的相关系数</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (2).png" alt="download (2)" style="zoom:50%;" /></p>
-<p>可以看出当Lag=3的时候，相关系数<span
-class="math inline">\(corr\)</span>最大，结合上图这是我们断定<span
-class="math inline">\(q\)</span>=3,<span
-class="math inline">\(p\)</span>=2即构建ARMA模型的三个参数 <span
-class="math display">\[
-(P,D,Q):(2,1,3)
-\]</span>
-使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (4).png" alt="预测图" style="zoom:50%;" /></p>
-<p>最后，对模型进行残差分析，可以得到残差图，如图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (3).png" alt="download (3)"  /></p>
-<p>可以看出，我们研究的模型线性关系较好，说明模型预测具有较好的准确性.</p>
-]]></content>
-      <categories>
-        <category>Math Model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>近代史实践总结</title>
-    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>🙄</p>
-<span id="more"></span>
-<center>
-先来看看整个效果吧😜
-</center>
-
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-</div>
-
-<center>
-一些小细节
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
-<center>
-看国焘春风得意🤣
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
-<center>
-贺龙和代英胜利在握😏
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
-<center>
-哈哈，都不知道在笑什么😆
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
-<center>
-小伙伴们都被吓傻啦😅
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
-<center>
-集体照组合🤣
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
-<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ISAC</title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<p>通感一体化</p>
-<span id="more"></span>
-<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
-<p><a
-href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
-- 华为</a>。</p>
-<p><a
-href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a
-href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
-3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a
-href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol type="1">
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点
-共享，通信与感知完全一体化，系统性能显著提升，网络系统
-的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
-Equipment，UE）之间更大规模的协同、通信感
-知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
-术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2445,6 +2222,229 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
 ]]></content>
       <categories>
         <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>时间预测模型</title>
+    <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<p>美赛的一种预测模型</p>
+<span id="more"></span>
+<p>基于时间序列模型对黄金和比特币的预测</p>
+<p>黄金和比特币这一类的产品，一般来说，是自身会随着时间发生变化的产品，而时间序列的预测，主要适用于自身的发展趋势会随着自己的情况发展变化，于是，我们这个时候可以使用时间预测模型对该种情况进行预测，</p>
+<p>这个时候我们可以着手判断产品随着时间变化的自我相关问题,根据查阅各样文献,可以得到,最常用的方法还是ARMA的方式。,这种方法比较适用于小规模单变量的预测，如股票的走势。</p>
+<h2 id="ar模型">AR模型</h2>
+<p>AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量<span
+class="math inline">\(x_{t}\)</span>主要受前<span
+class="math inline">\(p\)</span>期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前<span
+class="math inline">\(p\)</span>期的<span
+class="math inline">\(x_t\)</span>之间的相关性。如果<span
+class="math inline">\(x_t\)</span>主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
+<h2 id="ma模型">MA模型</h2>
+<p>​ MA模型主要研究的是<span
+class="math inline">\(x_t\)</span>的取值与前Q期的随机扰动有关,认为是<span
+class="math inline">\(x_t\)</span>主要受过去Q期的干扰项的影响，所以对于MA模型</p>
+<h2
+id="arma模型autoregressive-moving-average-model">ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive
+<strong>m</strong>oving <strong>a</strong>verage model）</h2>
+<p>ARMA
+模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为<span
+class="math inline">\(x_1,x_2,x_3....,x_k\)</span>,由自回归分析可得
+<span class="math display">\[
+Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z
+\]</span> 其中Y是预测对象的观测值，<span
+class="math inline">\(Z\)</span>为误差项 <span class="math display">\[
+Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}
+\]</span> 误差的表达方式为 <span class="math display">\[
+Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
+\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
+\]</span> 我们最终获得ARMA模型的表达式是 <span class="math display">\[
+Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p}
+Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2}
+\epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}
+\]</span></p>
+<h2 id="黄金股票预测">黄金股票预测</h2>
+<p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
+<h3 id="arima">ARIMA</h3>
+<p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为
+<span class="math display">\[
+\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d}
+X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}
+\]</span> 其中<span class="math inline">\(d \in Z ,
+d&gt;0\)</span>,记作ARMA(P,D,Q)</p>
+<p>在确定使用哪一种方式之前，我们做出了原数据，一阶差分，二阶差分的图像，如图所示（其中为比特币的处理图像）</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download.png" alt="各阶差分图" style="zoom:50%;" /></p>
+<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即<span
+class="math inline">\(d_{diff}=1\)</span>，即<span
+class="math inline">\(d_{diff} \neq 0\)</span></p>
+<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的
+statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (1).png" alt="download (1)" style="zoom:50%;" /></p>
+<p>图中淡蓝色的阴影区域，表示阶数的置信区间，通过观察，对于自相关而言q=1,2,3,4,5都有可能，p=1,2,3,4也都有可能，显然，仅通过图像观察并不是十分的直观，于是，我们来计算对于不同的q和p的情况下，计算模型的相关系数</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (2).png" alt="download (2)" style="zoom:50%;" /></p>
+<p>可以看出当Lag=3的时候，相关系数<span
+class="math inline">\(corr\)</span>最大，结合上图这是我们断定<span
+class="math inline">\(q\)</span>=3,<span
+class="math inline">\(p\)</span>=2即构建ARMA模型的三个参数 <span
+class="math display">\[
+(P,D,Q):(2,1,3)
+\]</span>
+使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (4).png" alt="预测图" style="zoom:50%;" /></p>
+<p>最后，对模型进行残差分析，可以得到残差图，如图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (3).png" alt="download (3)"  /></p>
+<p>可以看出，我们研究的模型线性关系较好，说明模型预测具有较好的准确性.</p>
+]]></content>
+      <categories>
+        <category>Math Model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
+<span id="more"></span>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>近代史实践总结</title>
+    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>🙄</p>
+<span id="more"></span>
+<center>
+先来看看整个效果吧😜
+</center>
+
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+
+<center>
+一些小细节
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
+<center>
+看国焘春风得意🤣
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
+<center>
+贺龙和代英胜利在握😏
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
+<center>
+哈哈，都不知道在笑什么😆
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
+<center>
+小伙伴们都被吓傻啦😅
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
+<center>
+集体照组合🤣
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
+<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ISAC</title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<p>通感一体化</p>
+<span id="more"></span>
+<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p><a
+href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
+- 华为</a>。</p>
+<p><a
+href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a
+href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
+3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a
+href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol type="1">
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点
+共享，通信与感知完全一体化，系统性能显著提升，网络系统
+的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
+Equipment，UE）之间更大规模的协同、通信感
+知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
+术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
