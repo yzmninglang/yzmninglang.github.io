@@ -386,117 +386,6 @@ href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出
       </categories>
   </entry>
   <entry>
-    <title>动态规划入门</title>
-    <url>/2021/08/19/DP/</url>
-    <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
-<span id="more"></span>
-<h1 id="fibonacci-sequence">Fibonacci Sequence</h1>
-<ul>
-<li>递归的思想
-<ul>
-<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
-<li>Fobonacci
-Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>​
-既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-<p>​
-我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
-<h1 id="house-robber">House-robber</h1>
-<ul>
-<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你
-不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
-<li>输入：[1,2,3,1]</li>
-</ul>
-<p>输出：4</p>
-<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
-<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
-<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
-<h1 id="maximum-value-of-gifts">Maximum value of gifts</h1>
-<p>在一个 m*n
-的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于
-0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
-<p>输入:</p>
-<p>[]</p>
-<p>输出: 12</p>
-<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
-<p>​
-我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
-<h1 id="coins-exchange">Coins exchange</h1>
-<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount
-，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数
-。如果没有任何一种硬币组合能组成总金额，返回 -1
-。你可以认为每种硬币的数量是无限的。</p>
-<p>输入：coins = [1, 2, 5], S = 11</p>
-<p>输出：3</p>
-<p>解释：11 = 5 + 5 + 1</p>
-<p>输入：coins = [2], S = 3</p>
-<p>输出：-1</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
-<p><span class="math display">\[
-f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1
-\]</span></p>
-<p>如果<span class="math inline">\(x-c_i&lt;0\)</span>，则令<span
-class="math inline">\(f(x-c_i)=\infty\)</span>这样就不会选这个<span
-class="math inline">\(f(x-c_i)\)</span>了</p>
-<p>如果<span class="math inline">\(x-c_i=0\)</span>,那么<span
-class="math inline">\(f(x-c_i)=0\)</span>即<span
-class="math inline">\(f(0)=0\)</span></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
-<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
-<p>思路：
-我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
-<p>如何得到硬币的组合呢（5，5，1）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
-<h1 id="knapsack-problem">Knapsack Problem</h1>
-<p>​
-有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
-<p>如下表所示:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
-<p>​
-由于只有--辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
-<p>思路：</p>
-<p>​ 有m件物品，第i件物品的利润为<span
-class="math inline">\(v_i\)</span>重量为<span
-class="math inline">\(w_i\)</span>背包的总重量为W.</p>
-<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
-<p>子问题:在满足重量的约束条件下，将i(<span class="math inline">\(i\le
-m\)</span>)件物品选择性放入容量为j(<span class="math inline">\(j \le
-W\)</span>)的背包所获得的最大利润 <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png"
-alt="image-20210819174526184" /></p>
-<p>状态分析:</p>
-<p>​
-我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4...增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
-<p>​
-对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
-<p>​
-对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
-<p>​ 对于其它的列来说，需要用到状态转移方程，对于要求前<span
-class="math inline">\(i\)</span>件物品装进容量为<span
-class="math inline">\(j\)</span>的背包，在<span
-class="math inline">\(i-1\)</span>的基础上只需要考虑到底装不装第<span
-class="math inline">\(i\)</span>件物品，那么怎么考虑呢？要装第<span
-class="math inline">\(i\)</span>件物品首先，第<span
-class="math inline">\(i\)</span>件物品的重量必须小于背包的容量所以有: ​
-<span class="math inline">\(j-weight(i)&gt;=0\)</span>才去判断: <span
-class="math display">\[
-max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
-\]</span></p>
-<p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -638,6 +527,117 @@ alt="TTL三态门" />
       </categories>
   </entry>
   <entry>
+    <title>动态规划入门</title>
+    <url>/2021/08/19/DP/</url>
+    <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
+<span id="more"></span>
+<h1 id="fibonacci-sequence">Fibonacci Sequence</h1>
+<ul>
+<li>递归的思想
+<ul>
+<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
+<li>Fobonacci
+Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
+</ul></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>​
+既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>​
+我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
+<h1 id="house-robber">House-robber</h1>
+<ul>
+<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你
+不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
+<li>输入：[1,2,3,1]</li>
+</ul>
+<p>输出：4</p>
+<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
+<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
+<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
+<h1 id="maximum-value-of-gifts">Maximum value of gifts</h1>
+<p>在一个 m*n
+的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于
+0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
+<p>输入:</p>
+<p>[]</p>
+<p>输出: 12</p>
+<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
+<p>​
+我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
+<h1 id="coins-exchange">Coins exchange</h1>
+<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount
+，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数
+。如果没有任何一种硬币组合能组成总金额，返回 -1
+。你可以认为每种硬币的数量是无限的。</p>
+<p>输入：coins = [1, 2, 5], S = 11</p>
+<p>输出：3</p>
+<p>解释：11 = 5 + 5 + 1</p>
+<p>输入：coins = [2], S = 3</p>
+<p>输出：-1</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
+<p><span class="math display">\[
+f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1
+\]</span></p>
+<p>如果<span class="math inline">\(x-c_i&lt;0\)</span>，则令<span
+class="math inline">\(f(x-c_i)=\infty\)</span>这样就不会选这个<span
+class="math inline">\(f(x-c_i)\)</span>了</p>
+<p>如果<span class="math inline">\(x-c_i=0\)</span>,那么<span
+class="math inline">\(f(x-c_i)=0\)</span>即<span
+class="math inline">\(f(0)=0\)</span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
+<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
+<p>思路：
+我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
+<p>如何得到硬币的组合呢（5，5，1）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
+<h1 id="knapsack-problem">Knapsack Problem</h1>
+<p>​
+有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
+<p>如下表所示:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
+<p>​
+由于只有--辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
+<p>思路：</p>
+<p>​ 有m件物品，第i件物品的利润为<span
+class="math inline">\(v_i\)</span>重量为<span
+class="math inline">\(w_i\)</span>背包的总重量为W.</p>
+<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
+<p>子问题:在满足重量的约束条件下，将i(<span class="math inline">\(i\le
+m\)</span>)件物品选择性放入容量为j(<span class="math inline">\(j \le
+W\)</span>)的背包所获得的最大利润 <img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png"
+alt="image-20210819174526184" /></p>
+<p>状态分析:</p>
+<p>​
+我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4...增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
+<p>​
+对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
+<p>​
+对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
+<p>​ 对于其它的列来说，需要用到状态转移方程，对于要求前<span
+class="math inline">\(i\)</span>件物品装进容量为<span
+class="math inline">\(j\)</span>的背包，在<span
+class="math inline">\(i-1\)</span>的基础上只需要考虑到底装不装第<span
+class="math inline">\(i\)</span>件物品，那么怎么考虑呢？要装第<span
+class="math inline">\(i\)</span>件物品首先，第<span
+class="math inline">\(i\)</span>件物品的重量必须小于背包的容量所以有: ​
+<span class="math inline">\(j-weight(i)&gt;=0\)</span>才去判断: <span
+class="math display">\[
+max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
+\]</span></p>
+<p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -737,37 +737,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>毛概实践课</title>
-    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
-    <content><![CDATA[<p>毛概实践课🤗</p>
-<span id="more"></span>
-<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
-
-<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
-
-<p>看看我们的大合照😁:</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
-<p>​
-哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
-<p>​
-这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
-alt="被删除视频" />
-<figcaption aria-hidden="true">被删除视频</figcaption>
-</figure>
-<p>​
-这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
-<p>​
-总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -1013,6 +982,37 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
+    <title>毛概实践课</title>
+    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
+    <content><![CDATA[<p>毛概实践课🤗</p>
+<span id="more"></span>
+<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
+
+<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
+
+<p>看看我们的大合照😁:</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
+<p>​
+哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
+<p>​
+这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
+alt="被删除视频" />
+<figcaption aria-hidden="true">被删除视频</figcaption>
+</figure>
+<p>​
+这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
+<p>​
+总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
     <title>保研注意事项</title>
     <url>/2023/06/13/Postgraduate/</url>
     <content><![CDATA[<p>保研注意事项</p>
@@ -1042,6 +1042,63 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
 ]]></content>
       <categories>
         <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Qt</title>
+    <url>/2021/09/20/Qt1/</url>
+    <content><![CDATA[<p>Qt问题总汇</p>
+<span id="more"></span>
+<h1 id="信号和槽">信号和槽</h1>
+<h2 id="连接函数connect">连接函数：connect</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<p>松散耦合：发送端和接受端的松散耦合</p>
+<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
+<ul>
+<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
+<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>定义槽和信号后，需要定义触发函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
+<h3 id="信号的重载">信号的重载</h3>
+<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：这里的两个函数指针是如何定义的？？？</li>
+<li>答：</li>
+</ul>
+<p>Qstring 转char *</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号">信号连接信号</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<p>直接将两个信号用connect相连</p>
+<ul>
+<li><p>断开信号 disconnect</p></li>
+<li><p>多个信号一个槽</p></li>
+<li><p>多个槽连接一个信号</p></li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
+</ul>
+<p>lambda函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
+<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
+</ul>
+<h1 id="模态与非模态">模态与非模态</h1>
+<h2 id="模态">模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态">非模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
+<li>答：</li>
+</ul>
+]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1136,63 +1193,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Qt</title>
-    <url>/2021/09/20/Qt1/</url>
-    <content><![CDATA[<p>Qt问题总汇</p>
-<span id="more"></span>
-<h1 id="信号和槽">信号和槽</h1>
-<h2 id="连接函数connect">连接函数：connect</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
-<p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
-<ul>
-<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
-<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义槽和信号后，需要定义触发函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载">信号的重载</h3>
-<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：这里的两个函数指针是如何定义的？？？</li>
-<li>答：</li>
-</ul>
-<p>Qstring 转char *</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号">信号连接信号</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
-<p>直接将两个信号用connect相连</p>
-<ul>
-<li><p>断开信号 disconnect</p></li>
-<li><p>多个信号一个槽</p></li>
-<li><p>多个槽连接一个信号</p></li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
-</ul>
-<p>lambda函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
-<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
-</ul>
-<h1 id="模态与非模态">模态与非模态</h1>
-<h2 id="模态">模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态">非模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
-<li>答：</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1963,6 +1963,12 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
     <title>Linux开发项目总结</title>
     <url>/2023/11/25/linux_problem/</url>
     <content><![CDATA[<p>欢迎交流</p>
@@ -2087,12 +2093,6 @@ verbose详细显示，-f file文件属性）</p>
       <categories>
         <category>Code</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
@@ -2225,30 +2225,19 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
 <span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
 ]]></content>
       <categories>
-        <category>coding</category>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2326,19 +2315,30 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
 <span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Code</category>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
