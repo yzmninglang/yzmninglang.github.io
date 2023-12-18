@@ -172,86 +172,6 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道">信道</h3>
-<blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
-Code
-Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
-Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型">波形成型</h3>
-<blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
-时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形">脉冲整形</h2>
-<p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
-href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
-失真严重导致采样判决出错，无法正确恢复数字信号。
-显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong> 其<a
-href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器">基带滤波器</h2>
-<p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
-发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
-<strong>例子</strong></p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a
-href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a
-href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
-- Riden - 博客园</a></p>
-<blockquote>
-<p>为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
-理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p>为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
-！</p>
-</blockquote>
-<p><a
-href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
-href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -386,6 +306,86 @@ transfer,but it seem that we have really passed a,b into the function
       </categories>
   </entry>
   <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道">信道</h3>
+<blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
+Code
+Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
+Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型">波形成型</h3>
+<blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
+时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形">脉冲整形</h2>
+<p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
+href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
+失真严重导致采样判决出错，无法正确恢复数字信号。
+显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong> 其<a
+href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器">基带滤波器</h2>
+<p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
+发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
+<strong>例子</strong></p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a
+href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a
+href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
+- Riden - 博客园</a></p>
+<blockquote>
+<p>为什么对基带信号要成形滤波？</p>
+<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
+<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
+理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
+<blockquote>
+<p>为什么要-&gt;这里有直接结论：</p>
+<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
+！</p>
+</blockquote>
+<p><a
+href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
+<blockquote>
+<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
+<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
+href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>电路</category>
+      </categories>
+  </entry>
+  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -497,6 +497,61 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -580,61 +635,6 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -966,57 +966,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
       </categories>
   </entry>
   <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -1096,6 +1045,90 @@ can free the space</p>
       </categories>
   </entry>
   <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1150,39 +1183,6 @@ can free the space</p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1275,239 +1275,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>出租车载客模型</title>
-    <url>/2021/08/15/Taxi%20passenger%20model/</url>
-    <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
-<span id="more"></span>
-<h1 id="问题分析">问题分析</h1>
-<ul>
-<li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
-<li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
-<li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
-</ul>
-<h1 id="问题一">问题一</h1>
-<ul>
-<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
-<li><p>因素确定：</p>
-<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
-class="math inline">\(N_{f2}\)</span>,人数为<span
-class="math inline">\(M_{p2}\)</span>.</p>
-<p>出租车总数，等待时间不超过预期<span
-class="math inline">\(N_{taxi}\)</span>,选择等待</p>
-<p>空载率<span
-class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
-class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
-<p>机场与市中心的距离<span
-class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
-<p>航班载客数： <span class="math display">\[
-U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
-\]</span></p>
-<p><span class="math display">\[
-M_p=M_{p1}+M_{p2}\\
-M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
-\]</span></p>
-<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
-class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
-class="math inline">\(N_{f2}\)</span>为时间<span
-class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
-<p>其中<span
-class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
-class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
-<p>里程：假设里程正态分布 <span class="math display">\[
-\xi(x)\sim N(\mu,\sigma^2)
-\]</span> 概率密度图为</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
-<h2 id="收入">收入</h2>
-<p>计价规则： <span class="math display">\[
-\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
-\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
-\]</span> 时间成本：</p>
-<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
-<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
-<p>等待时间成本<span
-class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
-class="math inline">\(M_p\)</span>成比例关系，即<span
-class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
-class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
-class="math display">\[
-t_{wait}=\frac{M_{plain}}{v_{leave}}
-\]</span> 总出行人数除以单位时间出行人数</p>
-<p>​ 出租行驶载客:概率<span
-class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
-class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
-<span class="math display">\[
-C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
-v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
-\]</span> <span
-class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
-<h2 id="成本">成本</h2>
-<p><span class="math display">\[
-C_g(x)=A \cdot S_{gax}\cdot x
-\]</span></p></li>
-<li><p>方案确立</p></li>
-<li><p>等待 <span class="math display">\[
-W_1=G(x)-C_g(x)-C_{time}\\
-=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
-\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
-t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
-\]</span></p></li>
-</ul>
-<p>空载时间为总路程减去载客路程除以汽车的速度，</p>
-<ul>
-<li><p>空载 <span class="math display">\[
-W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
-t_{free}=\frac{L}{v_{taxi}}
-\]</span></p></li>
-<li><p>模型求解</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
-<p>假设参数，<span
-class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
-class="math inline">\(\beta=0.4\)</span>，车速为<span
-class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
-class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
-class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
-</ul>
-<h1 id="问题二">问题二</h1>
-<ul>
-<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
-<li><p>数据收集</p>
-<p>北京首都机场</p></li>
-<li><p>表格数据</p>
-<table>
-<thead>
-<tr class="header">
-<th>类型</th>
-<th>9~10</th>
-<th style="text-align: center;">10~11</th>
-<th style="text-align: right;">11~12</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>忙季(节假日)</td>
-<td>30</td>
-<td style="text-align: center;">27</td>
-<td style="text-align: right;">15</td>
-</tr>
-<tr class="even">
-<td>淡季(工作日)</td>
-<td>1</td>
-<td style="text-align: center;">3</td>
-<td style="text-align: right;">3</td>
-</tr>
-</tbody>
-</table></li>
-<li><p>价格 <span class="math display">\[
-晚上：G(x)\left\{\begin{array}{lc}
-13, &amp; x \leq 3 \\
-13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
-\end{array}\right.
-\]</span></p>
-<p><span class="math display">\[
-早上：G(x)=\left\{\begin{array}{lc}
-13, &amp; x \leq 3 \\
-13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
-13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
-\end{array}\right.
-\]</span></p>
-<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
-<p>然后可以根据排队方案一的收益</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
-alt="image-20210815164119981" />
-<figcaption aria-hidden="true">image-20210815164119981</figcaption>
-</figure>
-<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
-</ul>
-<h1 id="问题三">问题三</h1>
-<ul>
-<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
-<li><p>建立模型:</p>
-<p>目标函数：乘车效率</p>
-<p>决策变量：上车点数</p>
-<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
-class="math inline">\(\alpha_1\)</span>,<span
-class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
-class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
-class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
-<p>模型：</p>
-<p><span class="math display">\[\begin{aligned}max
-\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
-k\le12\end{aligned}\]</span></p>
-<p>求解</p></li>
-</ul>
-<h1 id="问题四">问题四</h1>
-<ul>
-<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
-<li><p>短途</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
-</ul>
-<p><span class="math display">\[
-\begin{aligned}
-&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
-}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
-}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
-}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
-v_{\text {taxi }}} \\
-&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
-{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
-v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
-v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
-/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
-v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
-\end{aligned}
-\]</span></p>
-<ul>
-<li><p>长途</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
-</ul>
-<p><span class="math display">\[
-\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
-W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
-\]</span></p>
-<ul>
-<li><span class="math inline">\(\epsilon_1\)</span>和<span
-class="math inline">\(\epsilon_2\)</span>为权重因子,<span
-class="math inline">\(\Delta\beta_{max}\)</span>和<span
-class="math inline">\(\Delta
-W_{max}\)</span>为归一化因子，变量计算方法如下: <span
-class="math display">\[
-\begin{aligned}\min \quad
-g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
-}}-\beta_{\text {short }}}{\Delta \beta_{\max
-}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
-{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
-\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
-}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
-{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
-W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
-v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
-\\
-\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
-}}+m / v_{\text {leave }}} \\
-W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
-{taxi }}+m / v_{\text {leave }}+T}
-\end{cases}\end{aligned}
-\]</span></li>
-</ul>
-<p>计算即可</p>
-<h1 id="代码">代码</h1>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1963,10 +1730,237 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
+    <title>出租车载客模型</title>
+    <url>/2021/08/15/Taxi%20passenger%20model/</url>
+    <content><![CDATA[<p>数学建模.Are you kidding me ? 😭我要疯了！</p>
+<span id="more"></span>
+<h1 id="问题分析">问题分析</h1>
+<ul>
+<li>司机去等候区等候，需要一定的<strong>时间</strong>，等待时间取决于<strong>出租车</strong>和<strong>乘客数量</strong></li>
+<li>不载客人出机场，直接去市区把客人拉回来，但是<strong>空载费用</strong>和<strong>潜在用户的损失</strong></li>
+<li>已知：蓄车池<strong>车的数量</strong>，司机<strong>个人的判断(决策)</strong>，<strong>航班的数量</strong>，<strong>人数</strong></li>
+</ul>
+<h1 id="问题一">问题一</h1>
+<ul>
+<li><p>分析影响司机<strong>决策</strong>的因素，其与<strong>乘客数量</strong>，<strong>不同情况的收益</strong>，选出最优决策</p></li>
+<li><p>因素确定：</p>
+<p>时间<span class="math inline">\(T_0\in[T_1,T_2]\)</span>航班总数<span
+class="math inline">\(N_{f2}\)</span>,人数为<span
+class="math inline">\(M_{p2}\)</span>.</p>
+<p>出租车总数，等待时间不超过预期<span
+class="math inline">\(N_{taxi}\)</span>,选择等待</p>
+<p>空载率<span
+class="math inline">\(\beta\)</span>和机场通行率,空载率越低，载客的可能性越高，更倾向于半路接客，通行能力为<span
+class="math inline">\(v_{leave}\)</span>,是指单位时间内通过出租车载客离开的组数</p>
+<p>机场与市中心的距离<span
+class="math inline">\(L\)</span>,距离越大越倾向等待，时间的等待上线提高</p>
+<p>航班载客数： <span class="math display">\[
+U(M_1,M_2)=\begin{cases}0&amp;M_0\notin[M_1.M_2]\\\frac{1}{M_2-M_1}&amp;M_0\in[M_1,M_2]\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+M_p=M_{p1}+M_{p2}\\
+M_{p1}=\sum_{i=1}^{N_{f1}}M_{0i},M_{p2}=\sum_{i=1}^{N_{f2}}M_{0i}
+\]</span></p>
+<p><span class="math inline">\(N_{f1}\)</span>为为时间<span
+class="math inline">\([T_1,T_0]\)</span>内机场的预计滞留人数，<span
+class="math inline">\(N_{f2}\)</span>为时间<span
+class="math inline">\([T_0,T_2]\)</span>内机场来的人数</p>
+<p>其中<span
+class="math inline">\(M_{p1}\)</span>为司机估计的机场滞留人数，<span
+class="math inline">\(M_{p2}\)</span>为司机估计机场抵达人数</p>
+<p>里程：假设里程正态分布 <span class="math display">\[
+\xi(x)\sim N(\mu,\sigma^2)
+\]</span> 概率密度图为</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210814135757913.png" /></p>
+<h2 id="收入">收入</h2>
+<p>计价规则： <span class="math display">\[
+\begin{cases}p_0&amp;x\le a\\p_0+p_1(x-a)&amp;a&lt;x\le b
+\\p_0+p_1(b-a)+p_2(x-b)&amp;x&gt;b\end{cases}
+\]</span> 时间成本：</p>
+<p>​ 空载: <span class="math inline">\(C_{free}\)</span></p>
+<p>​ 等待：<span class="math inline">\(C_{wait}\)</span></p>
+<p>等待时间成本<span
+class="math inline">\(M_{plain}\)</span>为时间段内机场乘客选择乘坐出租车的总数，与机场的总乘客数<span
+class="math inline">\(M_p\)</span>成比例关系，即<span
+class="math inline">\(M_{plain}=\mu_1M_p\)</span>,<span
+class="math inline">\(\mu_1\)</span>为机场乘客选择出租车的比例。 <span
+class="math display">\[
+t_{wait}=\frac{M_{plain}}{v_{leave}}
+\]</span> 总出行人数除以单位时间出行人数</p>
+<p>​ 出租行驶载客:概率<span
+class="math inline">\(\gamma=1-\beta\)</span>.司机载客时间为<span
+class="math inline">\(L_{pa}=L_{drive}\cdot\gamma\)</span>,其中时间成本的具体表达式为:
+<span class="math display">\[
+C_{time}=C_{wait}+C_{free}=G(L_{paw})+G(L_{paf})\\L_{paw}=t_{wait}\cdot
+v_{taix} \cdot \gamma;L_{paf}=t_{free}\cdot v_{taix}\cdot \gamma
+\]</span> <span
+class="math inline">\(G(L_{paw}),G(L_{paf})\)</span>为等待和空载的计价收入</p>
+<h2 id="成本">成本</h2>
+<p><span class="math display">\[
+C_g(x)=A \cdot S_{gax}\cdot x
+\]</span></p></li>
+<li><p>方案确立</p></li>
+<li><p>等待 <span class="math display">\[
+W_1=G(x)-C_g(x)-C_{time}\\
+=G(x)-C_{g}(L)-G\left(t_{\text {wait }} v_{\text {taxi }}
+\gamma\right)-G\left(t_{\text {free }} v_{\text {taxi }} \gamma\right)\\
+t_{\text {free }}=\frac{L-x}{v_{\text {taxi }}}
+\]</span></p></li>
+</ul>
+<p>空载时间为总路程减去载客路程除以汽车的速度，</p>
+<ul>
+<li><p>空载 <span class="math display">\[
+W_2=-C_g(x)-C_{time}=-C_g(L)-G(t_{free}v_{taxi}\gamma)\\
+t_{free}=\frac{L}{v_{taxi}}
+\]</span></p></li>
+<li><p>模型求解</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815231705524.png" /></p>
+<p>假设参数，<span
+class="math inline">\(L=25.1km\)</span>.出租车的空载率为<span
+class="math inline">\(\beta=0.4\)</span>，车速为<span
+class="math inline">\(v_{leave}=1\)</span>。出租车出行占总人数比例为<span
+class="math inline">\(\mu_1=0.3\)</span>,平均同行人数为<span
+class="math inline">\(\mu_2=2\)</span>,后期设置一般数据验证</p></li>
+</ul>
+<h1 id="问题二">问题二</h1>
+<ul>
+<li><p>选一个机场，给出司机的选择(司机的决策(<strong>数据</strong>))说出合理性和因素的依赖性</p></li>
+<li><p>数据收集</p>
+<p>北京首都机场</p></li>
+<li><p>表格数据</p>
+<table>
+<thead>
+<tr class="header">
+<th>类型</th>
+<th>9~10</th>
+<th style="text-align: center;">10~11</th>
+<th style="text-align: right;">11~12</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>忙季(节假日)</td>
+<td>30</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="even">
+<td>淡季(工作日)</td>
+<td>1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>价格 <span class="math display">\[
+晚上：G(x)\left\{\begin{array}{lc}
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p><span class="math display">\[
+早上：G(x)=\left\{\begin{array}{lc}
+13, &amp; x \leq 3 \\
+13+2.76 \times(x-3), &amp; 3&lt;x \leq 15 \\
+13+2.76 \times 12+2.76 \times 1.5 \times(x-15), &amp; x&gt;15
+\end{array}\right.
+\]</span></p>
+<p>代入数据，可以得到闲暇时期和忙碌时期的不同图像</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164119981.png" /></p>
+<p>然后可以根据排队方案一的收益</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram1.png"
+alt="image-20210815164119981" />
+<figcaption aria-hidden="true">image-20210815164119981</figcaption>
+</figure>
+<p>不同距离和行驶的速度也因为时间成本是不一样的得到的收益</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164514951.png" /></p></li>
+</ul>
+<h1 id="问题三">问题三</h1>
+<ul>
+<li><p>有两条道路，如何安排让乘客和司机的等待时间最小</p></li>
+<li><p>建立模型:</p>
+<p>目标函数：乘车效率</p>
+<p>决策变量：上车点数</p>
+<p>环境参量：单位时间，达到机场的平均出租车数和平均人数为<span
+class="math inline">\(\alpha_1\)</span>,<span
+class="math inline">\(\lambda_1\)</span>为到达机场的人数，<span
+class="math inline">\(\lambda_2\)</span>平均每分钟到达机场的乘客数，<span
+class="math inline">\(\alpha_1=\frac{\lambda_1}{\lambda_2}\)</span>;</p>
+<p>模型：</p>
+<p><span class="math display">\[\begin{aligned}max
+\quad\eta=\frac{1}{\sum_{i=1}^{n}\frac{t_{pi}}{n}+\sum_{j=1}^{m}\frac{t_{cj}}{m}}\\s.t.\quad
+k\le12\end{aligned}\]</span></p>
+<p>求解</p></li>
+</ul>
+<h1 id="问题四">问题四</h1>
+<ul>
+<li><p>收益和里程成正比，对于短途的载客给予优先权，使得大家的工资尽量均衡，该如何给其优先权,注意这里假设的长途和短途的定义</p></li>
+<li><p>短途</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Untitled%20Diagram.png" /></p></li>
+</ul>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x_{\text {share
+}} / v_{\text {tax } i}+m_{0} / v_{\text {leave }}}{L / v_{\text {taxi
+}}+m / v_{\text {leave }}+x_{\text {short }} / v_{\text {taxi
+}}+x_{\text {short }} / v_{\text {taxi }}+m_{0} / v_{\text {leave }}+L /
+v_{\text {taxi }}} \\
+&amp;\qquad=\frac{m / v_{\text {leave }}+x_{\text {short }} / v_{\text
+{taxi }}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x_{\text {taxi }} / v_{\text {taxi }}+m_{0} /
+v_{\text {leave }}} \\&amp; W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L
+/ v_{\text {taxi }}+m / v_{\text {leave }}+2 x_{\text {short }} /
+v_{\text {taxt }}+m_{0} / v_{\text {leave }}}
+\end{aligned}
+\]</span></p>
+<ul>
+<li><p>长途</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210815164007363.png" /></p></li>
+</ul>
+<p><span class="math display">\[
+\beta_{long}=\frac{m/v_{leave}}{2L/v_{taxi}+m/v_{leave}}\qquad
+W_{long}=\frac{2W_L+W_{city}(T)}{2L/v_{taxi}+m/v_{leave}+T}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\epsilon_1\)</span>和<span
+class="math inline">\(\epsilon_2\)</span>为权重因子,<span
+class="math inline">\(\Delta\beta_{max}\)</span>和<span
+class="math inline">\(\Delta
+W_{max}\)</span>为归一化因子，变量计算方法如下: <span
+class="math display">\[
+\begin{aligned}\min \quad
+g\left(m_{0}\right)=\varepsilon_{1}\left(\frac{\beta_{\text {l0ng
+}}-\beta_{\text {short }}}{\Delta \beta_{\max
+}}\right)^{2}+\varepsilon_{2}\left(\frac{W_{\text {long }}-W_{\text
+{short }}}{\Delta W_{\max }}\right)^{2}\\\begin{cases}
+\beta_{\text {short }}=\frac{m / v_{\text {leave }}+x / v_{\text {taxi
+}}+m_{0} / v_{\text {leave }}}{2 L / v_{\text {taxi }}+m / v_{\text
+{leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}} \\
+W_{\text {short }}=\frac{2 W_{L}+W_{x}}{2 L / v_{\text {taxi }}+m /
+v_{\text {leave }}+2 x / v_{\text {taxi }}+m_{0} / v_{\text {leave }}}
+\\
+\beta_{\text {long }}=\frac{m / v_{\text {leave }}}{2 L / v_{\text {taxi
+}}+m / v_{\text {leave }}} \\
+W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
+{taxi }}+m / v_{\text {leave }}+T}
+\end{cases}\end{aligned}
+\]</span></li>
+</ul>
+<p>计算即可</p>
+<h1 id="代码">代码</h1>
 ]]></content>
+      <categories>
+        <category>Math model</category>
+      </categories>
   </entry>
   <entry>
     <title>Linux开发项目总结</title>
@@ -2093,6 +2087,12 @@ verbose详细显示，-f file文件属性）</p>
       <categories>
         <category>Code</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
@@ -2342,58 +2342,6 @@ Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a
       </categories>
   </entry>
   <entry>
-    <title>ISAC</title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<p>通感一体化</p>
-<span id="more"></span>
-<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
-<p><a
-href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
-- 华为</a>。</p>
-<p><a
-href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a
-href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
-3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a
-href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol type="1">
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点
-共享，通信与感知完全一体化，系统性能显著提升，网络系统
-的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
-Equipment，UE）之间更大规模的协同、通信感
-知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
-术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -2445,6 +2393,58 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ISAC</title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<p>通感一体化</p>
+<span id="more"></span>
+<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p><a
+href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
+- 华为</a>。</p>
+<p><a
+href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a
+href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
+3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a
+href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol type="1">
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点
+共享，通信与感知完全一体化，系统性能显著提升，网络系统
+的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
+Equipment，UE）之间更大规模的协同、通信感
+知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
+术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
