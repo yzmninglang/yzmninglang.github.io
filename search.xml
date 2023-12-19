@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C&amp;&amp;C++问题总汇(1)</title>
+    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
+    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
+<span id="more"></span>
+<h1 id="二维数组">二维数组</h1>
+<p>定义一个二维数组如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果采用一个指针去指向这个数组，可以这么做:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>那么访问这个二维数组的指针方法是:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
+<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
+<ul>
+<li>指针数组是这样子的吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
+<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
+<ul>
+<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针">指针的指针</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
+<li><p>答：</p></li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
+在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
+初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Android Adb Command</title>
     <url>/2021/10/24/Android-Adb-Command/</url>
     <content><![CDATA[<p>安卓小技巧</p>
@@ -226,80 +300,6 @@ transfer,but it seem that we have really passed a,b into the function
 "swap"</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>C&amp;&amp;C++问题总汇(1)</title>
-    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
-    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
-<span id="more"></span>
-<h1 id="二维数组">二维数组</h1>
-<p>定义一个二维数组如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
-<p>如果采用一个指针去指向这个数组，可以这么做:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>那么访问这个二维数组的指针方法是:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
-<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
-<ul>
-<li>指针数组是这样子的吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
-<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
-<ul>
-<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
-<ul>
-<li>友元函数访问私有成员问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的指针">指针的指针</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所以说，这个<code>int</code>有用吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数的分号问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
-<li><p>答：</p></li>
-</ul>
-<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
-在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
-初始化完毕。</p>
-<ul>
-<li>问：动态联编和静态联编，可以访问派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：不能调用派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：这个可以算重载嘛？，结果值为第一个</li>
-<li>答:</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -552,92 +552,6 @@ alt="TTL三态门" />
       </categories>
   </entry>
   <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
-<span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
-Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="first">First</h1>
-<p>Hello everyone, welcome to come here, today I will introduce a new
-technology for image translation, called cycle-gan, which is a project
-led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
-let's introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
-Google? What do they have in common? Yes, what they have in common is
-that they are all creative. The so-called creativity means that when you
-input the same sentence, it can give different results, so the first
-word of gpt is Generative, but CNN is not good at generative models. ,
-when you give the same input, it is more likely to output the same
-result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to
-generalize and recognize other domains through a trained model, here
-involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two
-parts: the generator and the discriminator. The generator is used to
-generate content, and the discriminator mainly identifies whether the
-generated content is fake. The generator and the discriminator are two
-models, and they co-evolve with the prey just like in nature. When the
-discriminator cannot distinguish whether the generated content is fake
-or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
-GB-&gt;A,以及两个判别模型
-DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
-域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models,
-namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
-models DA and DB. This is the origin of cycle, but it is even more
-exciting What is popular is that cycle-gan does not require paired data
-pairs for training, that is to say, we only need to give cycle-gan
-enough data from the source domain and the target domain without a lot
-of labeling work on it, and it will Automatically learn and successfully
-convert the x domain to the y domain. Since it involves the two-way
-conversion of the two domains, the loss function used in its iteration
-is also a cycle consistent loss function.</p>
-<h1 id="second">second</h1>
-<blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in
-the field of video enhancement, black-and-white video becomes color
-video. Or scene transformation. Or convert an abstract painting into a
-concrete painting such as a building, these can be used as communication
-data compression, you can try the sender to transmit data similar to
-color blocks on the network, it may take up a lot of bandwidth Small,
-when you get these color patches at the receiving end, bring them back.
-This looks like a good way to compress video</p>
-<h1 id="third">Third</h1>
-<p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is
-“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
-[15]。</p>
-<p>”。</p>
-<p>The second sentence
-means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis
-“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
-[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>GANs</title>
     <url>/2023/06/03/GANs/</url>
     <content><![CDATA[<p>GANs</p>
@@ -740,21 +654,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
       </categories>
   </entry>
   <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
     <title>毛概实践课</title>
     <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
     <content><![CDATA[<p>毛概实践课🤗</p>
@@ -783,6 +682,107 @@ alt="被删除视频" />
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
+<span id="more"></span>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan
+Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="first">First</h1>
+<p>Hello everyone, welcome to come here, today I will introduce a new
+technology for image translation, called cycle-gan, which is a project
+led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that,
+let's introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by
+Google? What do they have in common? Yes, what they have in common is
+that they are all creative. The so-called creativity means that when you
+input the same sentence, it can give different results, so the first
+word of gpt is Generative, but CNN is not good at generative models. ,
+when you give the same input, it is more likely to output the same
+result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to
+generalize and recognize other domains through a trained model, here
+involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two
+parts: the generator and the discriminator. The generator is used to
+generate content, and the discriminator mainly identifies whether the
+generated content is fake. The generator and the discriminator are two
+models, and they co-evolve with the prey just like in nature. When the
+discriminator cannot distinguish whether the generated content is fake
+or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B,
+GB-&gt;A,以及两个判别模型
+DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x
+域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models,
+namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative
+models DA and DB. This is the origin of cycle, but it is even more
+exciting What is popular is that cycle-gan does not require paired data
+pairs for training, that is to say, we only need to give cycle-gan
+enough data from the source domain and the target domain without a lot
+of labeling work on it, and it will Automatically learn and successfully
+convert the x domain to the y domain. Since it involves the two-way
+conversion of the two domains, the loss function used in its iteration
+is also a cycle consistent loss function.</p>
+<h1 id="second">second</h1>
+<blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in
+the field of video enhancement, black-and-white video becomes color
+video. Or scene transformation. Or convert an abstract painting into a
+concrete painting such as a building, these can be used as communication
+data compression, you can try the sender to transmit data similar to
+color blocks on the network, it may take up a lot of bandwidth Small,
+when you get these color patches at the receiving end, bring them back.
+This looks like a good way to compress video</p>
+<h1 id="third">Third</h1>
+<p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is
+“此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展
+[15]。</p>
+<p>”。</p>
+<p>The second sentence
+means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis
+“图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比
+[19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -934,6 +934,38 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
+- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
+- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a
+href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -1010,38 +1042,6 @@ can free the space</p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
-- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
-- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a
-href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
-]]></content>
-      <categories>
-        <category>生活</category>
       </categories>
   </entry>
   <entry>
@@ -1153,16 +1153,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>DSP</title>
     <url>/2022/03/14/Signals%20and%20Systems/</url>
     <content><![CDATA[<p>信号与系统笔记</p>
@@ -1193,6 +1183,16 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1700,6 +1700,268 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux开发项目总结</title>
+    <url>/2023/11/25/linux_problem/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+<h1 id="python">Python</h1>
+<ul>
+<li>pip永久换源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
+<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
+<ol type="1">
+<li>安装<code>pipreqs</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>进入项目主要目录：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>生成requirement.txt</li>
+</ol>
+<h1 id="docker">Docker</h1>
+<p>​
+虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
+alt="image-20231125161329086" />
+<figcaption aria-hidden="true">image-20231125161329086</figcaption>
+</figure>
+<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
+<ul>
+<li>Docker search</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建并运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>杀掉</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker删除容器&amp;&amp;镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行多台docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>观察docker情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h1 id="linux">Linux</h1>
+<h2 id="解压tar包">解压tar包</h2>
+<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
+verbose详细显示，-f file文件属性）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
+<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="查看ip地址">查看ip地址</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
+<p>观察NAT转发表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
+<h2 id="path">PATH</h2>
+<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Python虚拟环境virtualenv4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看命令执行情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找<code>grep</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="进程">进程</h2>
+<p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
+<h2 id="git">git</h2>
+<ul>
+<li>git如何设置gitignore</li>
+</ul>
+<ol type="1">
+<li>新建<code>.gitgnore</code>文件</li>
+<li>添加如下代码排除所有工程文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="设置脚本自启动">设置脚本自启动</h2>
+<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>移动通信三级项目</title>
+    <url>/2023/06/06/mobile/</url>
+    <content><![CDATA[<p>移动通信</p>
+<span id="more"></span>
+<h1 id="ofdm">ofdm</h1>
+<p><a
+href="https://github.com/zhongyuanzhao/dl_ofdm">zhongyuanzhao/dl_ofdm:
+Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-valued
+Convolutional Networks</a></p>
+<h1
+id="频率选择性衰落和时间选择性衰落详解">频率选择性衰落和时间选择性衰落详解</h1>
+<blockquote>
+<p>当移动台移动时，接收信号衰落的具体类型由传输方案和信道特点决定。传输方案由信号的参数确定，如信号带宽和符号周期。无线信道的特点由两种不同的信道参数描述，它们是多径时延扩展和多普勒扩展。多径时延扩展和多普勒扩展分别引起时间色散效应和频率色散效应，根据时间色散的程度或频率色散的程度，它们将分别引起频率选择性衰落或时间选择性衰落。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/ddatalent/article/details/118198520">(34条消息)
+频率选择性衰落和时间选择性衰落详解_ddatalent的博客-CSDN博客</a></p>
+<h1 id="mimo">MIMO</h1>
+<blockquote>
+<p>摘要</p>
+<p>大规模多输入多输出（Massive
+MIMO）系统由于导频污染现象而可能遭受相干小区间干扰。本文研究了一种两层解码方法，用于减轻多小区大规模MIMO中的相干和非相干干扰。为此，每个基站（BS）首先利用上行导频进行最小均方误差（MMSE）或基于元素的MMSE估计来估计小区内用户的信道。这些估计用于每个基站上的局部解码，然后在第二个解码层中，基站协同工作以减轻小区间干扰。针对任意两层解码方案，计算了上行可达到的频谱效率（SE）表达式。然后针对相关瑞利衰落、最大比合并以及第二层中的提出的大尺度衰落解码（LSFD），得到了一个表达式。我们还提出了一个求和SE最大化问题，其中数据功率和LSFD向量都是优化变量。由于这是一个NP难题，我们基于加权MMSE方法开发了一个低复杂度的算法来获得局部最优解。数值结果表明，数据功率控制和LSFD都可以提高单层解码的多小区大规模MIMO系统的求和SE性能。</p>
+<p>关键词— 大规模MIMO、大尺度衰落解码、总体谱效率优化、信道估计。</p>
+</blockquote>
+<p><a
+href="https://zhuanlan.zhihu.com/p/265728762">5G无线知识，从“大规模MIMO”开始！
+- 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/368716371">通信系统信道估计 -
+知乎</a>,<a
+href="https://blog.csdn.net/qq_36554582/article/details/105167186">(34条消息)
+无线通信信道的衰落特性（大尺度衰落和小尺度衰落）_逸凌Time的博客-CSDN博客</a></p>
+<blockquote>
+<p>信道估计就是估计从发送天线到接收天线之间的无线信道的频率响应。它的任务就是根据接收到的经过信道影响在幅度和相位上产生了畸变并叠加了高斯白噪声的接收序列来准确识别出信道的时域或者频域的传输特性，即：估计出每个子载波上的频率响应。</p>
+<p>MMSE算法对于高斯白噪声有很好的抑制作用，并充
+分利用了信道自相关矩阵，所以MMSE算法性能要优于LS算法性能。但是MMSE算法最大的缺点在于复杂度太高，不易求得，并且需要求相关矩阵的逆，运算量较大。因此，MMSE算法在实际应用中受到了一定限制。</p>
+</blockquote>
+<p><a
+href="https://www.docin.com/p-66905669.html">LTE上行信道估计及导频设计 -
+豆丁网</a></p>
+<blockquote>
+<p>1、MMO多种模式带来多种增益 ·发送分集增益
+提高系统可靠性，不能提升数据速率。 ·波束赋形增益
+提高系统有效性，可以提升数据速率。 ·空分复用增益
+提高系统有效性，可以提升数据速率。</p>
+<p>2、提高频谱效率
+·要求TD-LTE的下行频谱效率达到5bps/Hz（Rel-10为30bps/Hz）。
+·要求TD-LTE的上行频谱效率达到2.5bps/Hz（Rel-10为15bps/Hz）。</p>
+<p>MMO技术主要分为三大类：<strong>波束赋形、传输分集和空间复用</strong>。</p>
+</blockquote>
+<p><a
+href="https://rf.eefocus.com/article/id-335492">一文读懂MIMO（从MIMO到Massive
+MIMO） - RF技术社区</a></p>
+<h2 id="导频污染">导频污染</h2>
+<blockquote>
+<p>以我才疏学浅的理解，强答一下。导频英文是Training。其实中文也有叫导频训练序列，训练的意思就是在正式发送数据之前，先给系统训练训练，让它知道周围的通讯环境是怎样的，然后在正式发送数据时，发射端就可以更具这些信息(称为信道状态信息)做出相应的调整，从而达到较好的通信性能。用导频获取信道状态信息的这个过程就叫做信道估计。</p>
+</blockquote>
+<p><a href="https://www.zhihu.com/question/28786690">(25 封私信)
+如何理解信道估计中的导频和插值？ - 知乎</a></p>
+<blockquote>
+<p>导频污染主要是由于不同的导频序列不正交导致（学术认为序列间的汉明距离比较小）从而不同的序列做相关互相干扰，从而不能够很好估计信道。</p>
+<p>导频污染的影响：
+（1）高BLER。由于多个强导频存在对有用信号构成了干扰，导致Io升高，Eco降低，BLER升高，提供的网络质量下降，导致高的掉话率。
+（2）切换掉话。若存在3个以上强的导频，或多个导频中没有主导导频，则在这些导频之间容易发生频繁切换，从而可能造成切换掉话。
+（3）容量降低。存在导频污染的区域由于干扰增大，降低了系统的有效覆盖，使系统的容量受到影响。）</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/fanzy_edu/article/details/119781159">(34条消息)
+导频污染简单介绍_fanzy_edu的博客-CSDN博客</a></p>
+<blockquote>
+<p>理想情况下，Massive
+mimo系统中，每个终端分配一个正交上行导频序列，而存在的正交导频序列的最大个数是由信道想干时间间隔除以信道延迟扩展决定的。因此在多小区系统中很容易就会超出可以提供的正交导频个数。两个小区间使用相同的导频序列所产生的影响和相关的消极结果称为导频污染。当服务矩阵将它接收到的导频信号和特定终端的导频序列做相关时，它实际上获得的是使用同一个导频序列的所有终端到信道的信道估计的线性联合。基于受污染的信道估计的下行链路波束成形会对使用同一个导频序列的这些终端造成内部定向干扰。类似的干扰和上行链路数据传输有关。这些定向干扰会随着服务天线的个数同比例增长。</p>
+</blockquote>
+<blockquote>
+<p>实际中，在Massive MIMO
+TDD系统下，利用信道的互易性，信道矩阵G由基站估计，这样做的标准方法就是使用上行链路导频，导频序列的数目就可以独立于天线数目。而在FDD系统下，上下行链路传播系数受频率选择性衰落影</p>
+</blockquote>
+<p><a href="https://www.docin.com/p-1392814967.html">Massive
+MIMO导频污染介绍(新) - 豆丁网</a></p>
+<blockquote>
+<p>在实际应用中，AP往往具有较多的天线数，从4天线到16天线不等，但是终端（比如手机）通常只有1-2根天线。即使天线技术在不断进步，但受限于终端产品的体积大小，即使再容纳1-2根天线，也远小于AP的天线个数，这就意味着可以传输的空间流数量受限于终端，导致无法充分享受到空间流数增加带来的速率成倍增加，造成AP上天线资源的浪费。幸运的是多用户类型的MIMO技术出现并解决了这一问题，例如<a
+href="https://info.support.huawei.com/info-finder/encyclopedia/zh/MU-MIMO.html">MU-MIMO</a>可以让一个AP同时和多个终端传输信号，多个终端的天线总数和AP的天线数对等，让AP的能力得到充分的发挥。</p>
+</blockquote>
+<p><a
+href="https://info.support.huawei.com/info-finder/encyclopedia/zh/MIMO.html">什么是MIMO？从SISO到MIMO
+- 华为</a>,</p>
+<h3 id="导频污染解码">导频污染解码</h3>
+<blockquote>
+<p>最大比合并（Maximal Ratio
+Combining，MRC）是分集合并技术中的最优选择，相对于选择合并和等增益合并可以获得最好的性能，其性能提升是由阵列增益（阵列增益即发射的信号的功率增益，是通过发送机和/或接收机的多个天线而实现功率增益的，一般在LTE中，增加一个天线会有3db的增益）带来的更高的信噪比，进而带来更好的误码率特性。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/Nved23/article/details/125939305">(34条消息)
+最大比合并 MRC的介绍、证明及应用举例_Nved.的博客-CSDN博客</a></p>
+<p><a
+href="https://blog.csdn.net/weixin_43871127/article/details/104878126">(34条消息)
+大规模MIMO上行信号检测基础_mimo sic_月半 月半的博客-CSDN博客</a></p>
+<blockquote>
+<p>1、信道测量和建模。
+Trigger：天线数增加后信道特性会如何变化，相关性、信道衰落特性等都需要测量和研究，而信道建模是理论研究的基础，如果信道模型是错的话，很多研究将失去意义。</p>
+<p>2、导频设计以及降低导频污染研究。
+Trigger：天线数目增加后，噪声、小区内干扰等非相关因素都会随之消失，而导频污染会成为限制大规模MIMO性能的唯一因素。如何分配导频、如何分配导频功率来降低导频污染等问题变得更为重要。</p>
+<p>3、FDD模式下，下行信道估计、信号反馈、两阶段预编码等研究。
+Trigger：下行信道估计的导频符号开销正比于基站天线数目（需大于等于天线数），然而相干时间内可发送的数据符号数目有限（比如200），导频开销过大会严重降低有用数据符号的发送，同理，用户估计出信道后，将信道状态信息反馈给基站亦需要较大开销，导致低频谱效率。</p>
+<p>4、降低硬件开销的混合预编码结构和方法研究。
+Trigger：传统的信号处理方法需要每根天线对应一个射频链路，然而射频链路非常昂贵，随着天线数增加，硬件和能量开销都会随之增大，所以如果设计和研究降低射频链路的预编码方案非常重要。</p>
+<p>5、低精度硬件和非完美硬件下的信号处理研究。
+Trigger：该问题仍然是由天线数增加导致硬件开销大的问题引发的，为了降低硬件的成本，通常会采用不完美的硬件（低成本、低精度硬件），在这种情况下如何进行信号处理，以及如何弥补硬件的不足。</p>
+<p>6、其他利用空间自由度、统计信道状态信息、波束选择、天线选择等系列研究。</p>
+</blockquote>
+<p><a
+href="https://rf.eefocus.com/module/forum/thread-611270-1-1.html">大规模MIMO和MIMO区别?
+- 问题讨论专区 - RF技术社区</a>, <a
+href="https://blog.csdn.net/Anne033/article/details/122201199#:~:text=%E9%A2%91%E8%B0%B1%E6%95%88%E7%8E%87%EF%BC%88Spectral%20Efficiency%EF%BC%8CSE%EF%BC%89%E7%AE%80%E7%A7%B0%E8%B0%B1%E6%95%88%EF%BC%8C%E4%B9%9F%E7%A7%B0%E7%B3%BB%E7%BB%9F%E5%AE%B9%E9%87%8F%E3%80%81%E9%A2%91%E5%B8%A6%E5%88%A9%E7%94%A8%E7%8E%87%E3%80%82,%E8%AF%A5%E6%8C%87%E6%A0%87%E7%94%A8%E6%9D%A5%E8%A1%A1%E9%87%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%EF%BC%8C%E6%8F%8F%E8%BF%B0%E4%BA%86%E8%83%BD%E5%A4%9F%E6%8F%90%E4%BE%9B%E5%A4%9A%E5%B0%91%E5%AE%B9%E9%87%8F%E3%80%82%20%E5%AE%83%E5%AE%9A%E4%B9%89%E4%B8%BA%E7%B3%BB%E7%BB%9F%E4%BC%A0%E8%BE%93%E7%9A%84%E6%9C%89%E6%95%88%E4%BF%A1%E6%81%AF%E9%80%9F%E7%8E%87R%E9%99%A4%E4%BB%A5%E9%80%9A%E4%BF%A1%E4%BF%A1%E9%81%93%E5%B8%A6%E5%AE%BDB%EF%BC%8C%E5%8D%B3%E5%8D%95%E4%BD%8D%E5%B8%A6%E5%AE%BD%E4%BC%A0%E8%BE%93%E9%A2%91%E9%81%93%E4%B8%8A%E6%AF%8F%E7%A7%92%E5%8F%AF%E4%BC%A0%E8%BE%93%E7%9A%84%E6%AF%94%E7%89%B9%E6%95%B0%EF%BC%8C%E4%BB%A3%E8%A1%A8%E4%BA%86%E7%B3%BB%E7%BB%9F%E5%AF%B9%E9%A2%91%E8%B0%B1%E8%B5%84%E6%BA%90%E7%9A%84%E5%88%A9%E7%94%A8%E6%95%88%E7%8E%87%E3%80%82">(34条消息)
+通信中的频谱效率与能量效率_Anne033的博客-CSDN博客</a>.</p>
+<h2 id="预编码">预编码</h2>
+<blockquote>
+<p>在预编码系统中，发射机可以根据信道条件，对发送信号的空间特性进行优化，使发送信号的空间分布特性与信道条件相匹配，因此可以有效地降低对接收机算法的依赖程度。<strong>即使采用简单的ZF或MMSE等线性处理算法，也能够获得较好的性能。</strong></p>
+<p>传统的预编码方案包括全数字预编码（Digital
+Precoding，DP）方案和全模拟预编码（Aanalog
+Precoding，AP）方案。根据预编码所使用的预编码矩阵集合的特点，也可以将预编码分类为非码本方式的预编码和基于码本的预编码。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
+预编码 与 混合预编码 简单总结_小强~的博客-CSDN博客</a></p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1963,268 +2225,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
-    <title>Linux开发项目总结</title>
-    <url>/2023/11/25/linux_problem/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-<h1 id="python">Python</h1>
-<ul>
-<li>pip永久换源</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
-<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
-<ol type="1">
-<li>安装<code>pipreqs</code>:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>进入项目主要目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>生成requirement.txt</li>
-</ol>
-<h1 id="docker">Docker</h1>
-<p>​
-虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
-alt="image-20231125161329086" />
-<figcaption aria-hidden="true">image-20231125161329086</figcaption>
-</figure>
-<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
-<ul>
-<li>Docker search</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建并运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>停止运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>杀掉</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker删除容器&amp;&amp;镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行多台docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>观察docker情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<h1 id="linux">Linux</h1>
-<h2 id="解压tar包">解压tar包</h2>
-<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
-verbose详细显示，-f file文件属性）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
-<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="查看ip地址">查看ip地址</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
-<p>观察NAT转发表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
-<h2 id="path">PATH</h2>
-<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Python虚拟环境virtualenv4</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看命令执行情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找<code>grep</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
-<h2 id="进程">进程</h2>
-<p>查看进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
-<h2 id="git">git</h2>
-<ul>
-<li>git如何设置gitignore</li>
-</ul>
-<ol type="1">
-<li>新建<code>.gitgnore</code>文件</li>
-<li>添加如下代码排除所有工程文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="设置脚本自启动">设置脚本自启动</h2>
-<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>移动通信三级项目</title>
-    <url>/2023/06/06/mobile/</url>
-    <content><![CDATA[<p>移动通信</p>
-<span id="more"></span>
-<h1 id="ofdm">ofdm</h1>
-<p><a
-href="https://github.com/zhongyuanzhao/dl_ofdm">zhongyuanzhao/dl_ofdm:
-Deep-Waveform: A Learned OFDM Receiver Based on Deep Complex-valued
-Convolutional Networks</a></p>
-<h1
-id="频率选择性衰落和时间选择性衰落详解">频率选择性衰落和时间选择性衰落详解</h1>
-<blockquote>
-<p>当移动台移动时，接收信号衰落的具体类型由传输方案和信道特点决定。传输方案由信号的参数确定，如信号带宽和符号周期。无线信道的特点由两种不同的信道参数描述，它们是多径时延扩展和多普勒扩展。多径时延扩展和多普勒扩展分别引起时间色散效应和频率色散效应，根据时间色散的程度或频率色散的程度，它们将分别引起频率选择性衰落或时间选择性衰落。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/ddatalent/article/details/118198520">(34条消息)
-频率选择性衰落和时间选择性衰落详解_ddatalent的博客-CSDN博客</a></p>
-<h1 id="mimo">MIMO</h1>
-<blockquote>
-<p>摘要</p>
-<p>大规模多输入多输出（Massive
-MIMO）系统由于导频污染现象而可能遭受相干小区间干扰。本文研究了一种两层解码方法，用于减轻多小区大规模MIMO中的相干和非相干干扰。为此，每个基站（BS）首先利用上行导频进行最小均方误差（MMSE）或基于元素的MMSE估计来估计小区内用户的信道。这些估计用于每个基站上的局部解码，然后在第二个解码层中，基站协同工作以减轻小区间干扰。针对任意两层解码方案，计算了上行可达到的频谱效率（SE）表达式。然后针对相关瑞利衰落、最大比合并以及第二层中的提出的大尺度衰落解码（LSFD），得到了一个表达式。我们还提出了一个求和SE最大化问题，其中数据功率和LSFD向量都是优化变量。由于这是一个NP难题，我们基于加权MMSE方法开发了一个低复杂度的算法来获得局部最优解。数值结果表明，数据功率控制和LSFD都可以提高单层解码的多小区大规模MIMO系统的求和SE性能。</p>
-<p>关键词— 大规模MIMO、大尺度衰落解码、总体谱效率优化、信道估计。</p>
-</blockquote>
-<p><a
-href="https://zhuanlan.zhihu.com/p/265728762">5G无线知识，从“大规模MIMO”开始！
-- 知乎</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/368716371">通信系统信道估计 -
-知乎</a>,<a
-href="https://blog.csdn.net/qq_36554582/article/details/105167186">(34条消息)
-无线通信信道的衰落特性（大尺度衰落和小尺度衰落）_逸凌Time的博客-CSDN博客</a></p>
-<blockquote>
-<p>信道估计就是估计从发送天线到接收天线之间的无线信道的频率响应。它的任务就是根据接收到的经过信道影响在幅度和相位上产生了畸变并叠加了高斯白噪声的接收序列来准确识别出信道的时域或者频域的传输特性，即：估计出每个子载波上的频率响应。</p>
-<p>MMSE算法对于高斯白噪声有很好的抑制作用，并充
-分利用了信道自相关矩阵，所以MMSE算法性能要优于LS算法性能。但是MMSE算法最大的缺点在于复杂度太高，不易求得，并且需要求相关矩阵的逆，运算量较大。因此，MMSE算法在实际应用中受到了一定限制。</p>
-</blockquote>
-<p><a
-href="https://www.docin.com/p-66905669.html">LTE上行信道估计及导频设计 -
-豆丁网</a></p>
-<blockquote>
-<p>1、MMO多种模式带来多种增益 ·发送分集增益
-提高系统可靠性，不能提升数据速率。 ·波束赋形增益
-提高系统有效性，可以提升数据速率。 ·空分复用增益
-提高系统有效性，可以提升数据速率。</p>
-<p>2、提高频谱效率
-·要求TD-LTE的下行频谱效率达到5bps/Hz（Rel-10为30bps/Hz）。
-·要求TD-LTE的上行频谱效率达到2.5bps/Hz（Rel-10为15bps/Hz）。</p>
-<p>MMO技术主要分为三大类：<strong>波束赋形、传输分集和空间复用</strong>。</p>
-</blockquote>
-<p><a
-href="https://rf.eefocus.com/article/id-335492">一文读懂MIMO（从MIMO到Massive
-MIMO） - RF技术社区</a></p>
-<h2 id="导频污染">导频污染</h2>
-<blockquote>
-<p>以我才疏学浅的理解，强答一下。导频英文是Training。其实中文也有叫导频训练序列，训练的意思就是在正式发送数据之前，先给系统训练训练，让它知道周围的通讯环境是怎样的，然后在正式发送数据时，发射端就可以更具这些信息(称为信道状态信息)做出相应的调整，从而达到较好的通信性能。用导频获取信道状态信息的这个过程就叫做信道估计。</p>
-</blockquote>
-<p><a href="https://www.zhihu.com/question/28786690">(25 封私信)
-如何理解信道估计中的导频和插值？ - 知乎</a></p>
-<blockquote>
-<p>导频污染主要是由于不同的导频序列不正交导致（学术认为序列间的汉明距离比较小）从而不同的序列做相关互相干扰，从而不能够很好估计信道。</p>
-<p>导频污染的影响：
-（1）高BLER。由于多个强导频存在对有用信号构成了干扰，导致Io升高，Eco降低，BLER升高，提供的网络质量下降，导致高的掉话率。
-（2）切换掉话。若存在3个以上强的导频，或多个导频中没有主导导频，则在这些导频之间容易发生频繁切换，从而可能造成切换掉话。
-（3）容量降低。存在导频污染的区域由于干扰增大，降低了系统的有效覆盖，使系统的容量受到影响。）</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/fanzy_edu/article/details/119781159">(34条消息)
-导频污染简单介绍_fanzy_edu的博客-CSDN博客</a></p>
-<blockquote>
-<p>理想情况下，Massive
-mimo系统中，每个终端分配一个正交上行导频序列，而存在的正交导频序列的最大个数是由信道想干时间间隔除以信道延迟扩展决定的。因此在多小区系统中很容易就会超出可以提供的正交导频个数。两个小区间使用相同的导频序列所产生的影响和相关的消极结果称为导频污染。当服务矩阵将它接收到的导频信号和特定终端的导频序列做相关时，它实际上获得的是使用同一个导频序列的所有终端到信道的信道估计的线性联合。基于受污染的信道估计的下行链路波束成形会对使用同一个导频序列的这些终端造成内部定向干扰。类似的干扰和上行链路数据传输有关。这些定向干扰会随着服务天线的个数同比例增长。</p>
-</blockquote>
-<blockquote>
-<p>实际中，在Massive MIMO
-TDD系统下，利用信道的互易性，信道矩阵G由基站估计，这样做的标准方法就是使用上行链路导频，导频序列的数目就可以独立于天线数目。而在FDD系统下，上下行链路传播系数受频率选择性衰落影</p>
-</blockquote>
-<p><a href="https://www.docin.com/p-1392814967.html">Massive
-MIMO导频污染介绍(新) - 豆丁网</a></p>
-<blockquote>
-<p>在实际应用中，AP往往具有较多的天线数，从4天线到16天线不等，但是终端（比如手机）通常只有1-2根天线。即使天线技术在不断进步，但受限于终端产品的体积大小，即使再容纳1-2根天线，也远小于AP的天线个数，这就意味着可以传输的空间流数量受限于终端，导致无法充分享受到空间流数增加带来的速率成倍增加，造成AP上天线资源的浪费。幸运的是多用户类型的MIMO技术出现并解决了这一问题，例如<a
-href="https://info.support.huawei.com/info-finder/encyclopedia/zh/MU-MIMO.html">MU-MIMO</a>可以让一个AP同时和多个终端传输信号，多个终端的天线总数和AP的天线数对等，让AP的能力得到充分的发挥。</p>
-</blockquote>
-<p><a
-href="https://info.support.huawei.com/info-finder/encyclopedia/zh/MIMO.html">什么是MIMO？从SISO到MIMO
-- 华为</a>,</p>
-<h3 id="导频污染解码">导频污染解码</h3>
-<blockquote>
-<p>最大比合并（Maximal Ratio
-Combining，MRC）是分集合并技术中的最优选择，相对于选择合并和等增益合并可以获得最好的性能，其性能提升是由阵列增益（阵列增益即发射的信号的功率增益，是通过发送机和/或接收机的多个天线而实现功率增益的，一般在LTE中，增加一个天线会有3db的增益）带来的更高的信噪比，进而带来更好的误码率特性。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/Nved23/article/details/125939305">(34条消息)
-最大比合并 MRC的介绍、证明及应用举例_Nved.的博客-CSDN博客</a></p>
-<p><a
-href="https://blog.csdn.net/weixin_43871127/article/details/104878126">(34条消息)
-大规模MIMO上行信号检测基础_mimo sic_月半 月半的博客-CSDN博客</a></p>
-<blockquote>
-<p>1、信道测量和建模。
-Trigger：天线数增加后信道特性会如何变化，相关性、信道衰落特性等都需要测量和研究，而信道建模是理论研究的基础，如果信道模型是错的话，很多研究将失去意义。</p>
-<p>2、导频设计以及降低导频污染研究。
-Trigger：天线数目增加后，噪声、小区内干扰等非相关因素都会随之消失，而导频污染会成为限制大规模MIMO性能的唯一因素。如何分配导频、如何分配导频功率来降低导频污染等问题变得更为重要。</p>
-<p>3、FDD模式下，下行信道估计、信号反馈、两阶段预编码等研究。
-Trigger：下行信道估计的导频符号开销正比于基站天线数目（需大于等于天线数），然而相干时间内可发送的数据符号数目有限（比如200），导频开销过大会严重降低有用数据符号的发送，同理，用户估计出信道后，将信道状态信息反馈给基站亦需要较大开销，导致低频谱效率。</p>
-<p>4、降低硬件开销的混合预编码结构和方法研究。
-Trigger：传统的信号处理方法需要每根天线对应一个射频链路，然而射频链路非常昂贵，随着天线数增加，硬件和能量开销都会随之增大，所以如果设计和研究降低射频链路的预编码方案非常重要。</p>
-<p>5、低精度硬件和非完美硬件下的信号处理研究。
-Trigger：该问题仍然是由天线数增加导致硬件开销大的问题引发的，为了降低硬件的成本，通常会采用不完美的硬件（低成本、低精度硬件），在这种情况下如何进行信号处理，以及如何弥补硬件的不足。</p>
-<p>6、其他利用空间自由度、统计信道状态信息、波束选择、天线选择等系列研究。</p>
-</blockquote>
-<p><a
-href="https://rf.eefocus.com/module/forum/thread-611270-1-1.html">大规模MIMO和MIMO区别?
-- 问题讨论专区 - RF技术社区</a>, <a
-href="https://blog.csdn.net/Anne033/article/details/122201199#:~:text=%E9%A2%91%E8%B0%B1%E6%95%88%E7%8E%87%EF%BC%88Spectral%20Efficiency%EF%BC%8CSE%EF%BC%89%E7%AE%80%E7%A7%B0%E8%B0%B1%E6%95%88%EF%BC%8C%E4%B9%9F%E7%A7%B0%E7%B3%BB%E7%BB%9F%E5%AE%B9%E9%87%8F%E3%80%81%E9%A2%91%E5%B8%A6%E5%88%A9%E7%94%A8%E7%8E%87%E3%80%82,%E8%AF%A5%E6%8C%87%E6%A0%87%E7%94%A8%E6%9D%A5%E8%A1%A1%E9%87%8F%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%9C%89%E6%95%88%E6%80%A7%EF%BC%8C%E6%8F%8F%E8%BF%B0%E4%BA%86%E8%83%BD%E5%A4%9F%E6%8F%90%E4%BE%9B%E5%A4%9A%E5%B0%91%E5%AE%B9%E9%87%8F%E3%80%82%20%E5%AE%83%E5%AE%9A%E4%B9%89%E4%B8%BA%E7%B3%BB%E7%BB%9F%E4%BC%A0%E8%BE%93%E7%9A%84%E6%9C%89%E6%95%88%E4%BF%A1%E6%81%AF%E9%80%9F%E7%8E%87R%E9%99%A4%E4%BB%A5%E9%80%9A%E4%BF%A1%E4%BF%A1%E9%81%93%E5%B8%A6%E5%AE%BDB%EF%BC%8C%E5%8D%B3%E5%8D%95%E4%BD%8D%E5%B8%A6%E5%AE%BD%E4%BC%A0%E8%BE%93%E9%A2%91%E9%81%93%E4%B8%8A%E6%AF%8F%E7%A7%92%E5%8F%AF%E4%BC%A0%E8%BE%93%E7%9A%84%E6%AF%94%E7%89%B9%E6%95%B0%EF%BC%8C%E4%BB%A3%E8%A1%A8%E4%BA%86%E7%B3%BB%E7%BB%9F%E5%AF%B9%E9%A2%91%E8%B0%B1%E8%B5%84%E6%BA%90%E7%9A%84%E5%88%A9%E7%94%A8%E6%95%88%E7%8E%87%E3%80%82">(34条消息)
-通信中的频谱效率与能量效率_Anne033的博客-CSDN博客</a>.</p>
-<h2 id="预编码">预编码</h2>
-<blockquote>
-<p>在预编码系统中，发射机可以根据信道条件，对发送信号的空间特性进行优化，使发送信号的空间分布特性与信道条件相匹配，因此可以有效地降低对接收机算法的依赖程度。<strong>即使采用简单的ZF或MMSE等线性处理算法，也能够获得较好的性能。</strong></p>
-<p>传统的预编码方案包括全数字预编码（Digital
-Precoding，DP）方案和全模拟预编码（Aanalog
-Precoding，AP）方案。根据预编码所使用的预编码矩阵集合的特点，也可以将预编码分类为非码本方式的预编码和基于码本的预编码。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
-预编码 与 混合预编码 简单总结_小强~的博客-CSDN博客</a></p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>遗传算法</title>
     <url>/2022/02/20/yichuan/</url>
     <content><![CDATA[<p>遗传算法的初步了解</p>
@@ -2249,6 +2249,76 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>近代史实践总结</title>
+    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>🙄</p>
+<span id="more"></span>
+<center>
+先来看看整个效果吧😜
+</center>
+
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+
+<center>
+一些小细节
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
+<center>
+看国焘春风得意🤣
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
+<center>
+贺龙和代英胜利在握😏
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
+<center>
+哈哈，都不知道在笑什么😆
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
+<center>
+小伙伴们都被吓傻啦😅
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
+<center>
+集体照组合🤣
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
+<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -2323,76 +2393,6 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>近代史实践总结</title>
-    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>🙄</p>
-<span id="more"></span>
-<center>
-先来看看整个效果吧😜
-</center>
-
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-</div>
-
-<center>
-一些小细节
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
-<center>
-看国焘春风得意🤣
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
-<center>
-贺龙和代英胜利在握😏
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
-<center>
-哈哈，都不知道在笑什么😆
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
-<center>
-小伙伴们都被吓傻啦😅
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
-<center>
-集体照组合🤣
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
-<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
