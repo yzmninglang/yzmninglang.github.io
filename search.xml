@@ -91,6 +91,102 @@
       </categories>
   </entry>
   <entry>
+    <title>C &amp;&amp; C++ (1)</title>
+    <url>/2021/09/03/C_C++/</url>
+    <content><![CDATA[<p>describe some differences between c and c++,(Function Union and Quote)</p>
+<span id="more"></span>
+<h1 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h1><ul>
+<li><p>Function declaration</p>
+<p>if Function declaration’s parameter is empty of <code>void</code>,This two declaration in c++ are same :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f();				<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br></pre></td></tr></table></figure>
+<p>but they are different in c:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f();				<span class="comment">//Don&#x27;t give the information of parameters ,It have chance to carrary 						//paramters</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Macro definition </p>
+<p>Macro definition may cause some error that we can’t  expect ,for example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> doub(x) x*2</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in line 8 ,we are expecting the result is :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> doubled is <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>but in fact ,the result is :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> <span class="keyword">double</span> is <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>because the macro definition is replace the expression in the place where it is called :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>*<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Inline function</p>
+<p>to avoid the unsafe of Marco definition ,We can use inline function to replace the macro function to achieve more safe :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>function with default value of parameters</p>
+<p>the parameters with default value must be in the right of parameters with no initial value:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i ,<span class="keyword">int</span> j=<span class="number">5</span>,<span class="keyword">int</span> k)</span></span>;     <span class="comment">//incorrect </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k=<span class="number">5</span>)</span></span>;      <span class="comment">//correct</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>Function Overloading</p>
+<p>The same function name can be used to define different tasks</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">square</span><span class="params">(<span class="keyword">long</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">square</span><span class="params">(<span class="keyword">double</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i =<span class="number">12</span>;</span><br><span class="line">    <span class="keyword">long</span> j =<span class="number">1234</span>;</span><br><span class="line">    <span class="keyword">double</span> k =<span class="number">1.23</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;int i&#x27;quare is &quot;</span>&lt;&lt;square(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;long j&#x27;s quare is &quot;</span>&lt;&lt;square(j)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;double k&#x27;s quare is &quot;</span>&lt;&lt;square(k)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if only the type of return is not the same ,the numbers of parameter and the type of parameters is same,The function couldn’t be overloaded:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;     <span class="comment">//That is incorrect ,because only the type of return is not the same </span></span><br></pre></td></tr></table></figure>
+<p>if the overloading function with default value parameter, it can be incorrect :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b=<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a)</span></span>;				<span class="comment">//This is also incorrect the compiler can&#x27;t decide which function should be choosed </span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Scope-operator"><a href="#Scope-operator" class="headerlink" title="Scope operator ::"></a>Scope operator ::</h1><ul>
+<li><p>Priority</p>
+<p>Local variables have higher priority than global variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> avar =<span class="number">10</span>;			<span class="comment">//global variable</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> avar=<span class="number">3</span>;			<span class="comment">//local variable</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;avar is &quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if global variables wants to be called in function ,we can add <code>::</code> in the front of variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;local variable&quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;global variable&quot;</span>&lt;&lt;::avar&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h1><ul>
+<li><p>What is the Union </p>
+<p>Union is a custom type ,we can create union in two way in c:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>,<span class="title">b</span>,<span class="title">c</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//second way</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;a,b,c;</span><br></pre></td></tr></table></figure>
+<p>union’s space is the largest memory footprint  of all member ,<code>int</code>,<code>char</code>,<code>double</code>,the double’s  memory footprint is largest ,so the union data’s memory footprint is 8 bits(the size of <code>double</code>)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">short</span> m;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d,%d\n&quot;</span>,<span class="keyword">sizeof</span>(a),<span class="keyword">sizeof</span>(<span class="keyword">union</span> data));</span><br><span class="line">	a.n = <span class="number">0x40</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.ch =<span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.m = <span class="number">0x2059</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.n =<span class="number">0x3e25ad54</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>you may get the result as follows:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span>,<span class="number">4</span></span><br><span class="line"><span class="number">40</span>,@,<span class="number">40</span></span><br><span class="line"><span class="number">39</span>,<span class="number">9</span>,<span class="number">39</span></span><br><span class="line"><span class="number">2059</span>,Y,<span class="number">2059</span></span><br><span class="line"><span class="number">3E25</span>AD54,T,AD54</span><br></pre></td></tr></table></figure>
+<p>so the result prove that union members will have Influence each other, if  you change one member’s value ,the other member’s value is changed</p>
+</li>
+<li><p>How to store data</p>
+<p>Union ‘s data is shared for all member ,so one of they is changed ,others will be effected,but the process is how to go</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210903113323946.png" alt=""></p>
+</li>
+<li><p>Using union </p>
+<p>student information and teacher information is recorded by the same struct ,but some place are different,for example:</p>
+<p>| name | Num  | Sex  | Profession | Score/course |<br>| —— | —— | —— | ————— | —————— |<br>| A    | 1    | f    | s          | 89           |<br>| B    | 2    | m    | t          | math         |</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM 4</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">40</span>];</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">	<span class="keyword">char</span> pro;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">d</span>&#123;</span></span><br><span class="line">		<span class="keyword">int</span> score;</span><br><span class="line">		<span class="keyword">char</span> course[<span class="number">10</span>];</span><br><span class="line">	&#125;sc;</span><br><span class="line">&#125; bodys[NUM];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;NUM;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Please input info:&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s %d %c %c&quot;</span>,&amp;bodys[i].name,&amp;bodys[i].num,&amp;bodys[i].sex,&amp;bodys[i].pro);</span><br><span class="line">		<span class="keyword">if</span> (bodys[i].pro == <span class="string">&#x27;s&#x27;</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;bodys[i].sc.score);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%d&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.score);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;bodys[i].sc.course);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%s&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.course);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Quote"><a href="#Quote" class="headerlink" title="Quote"></a>Quote</h1><ul>
+<li><p>definition </p>
+<p>give variables a another name after quoted ,the two variables are equivalent when one of them changed ,the other will change </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i =<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;j = i;		<span class="comment">//delcare j is a integer quote ,and initialize j with i</span></span><br></pre></td></tr></table></figure>
+<p>but j definited in following way is not allowed:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> &amp;j;			<span class="comment">//incorrect j is not linked some variables</span></span><br><span class="line">j = i;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>quote and pointer </p>
+<p>quote is another name for a variable ,but pointer is a tool pointing to variable </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">15</span>;</span><br><span class="line">	<span class="keyword">int</span> *iptr=&amp;i;			<span class="comment">//define a pointer </span></span><br><span class="line">	<span class="keyword">int</span> &amp;rptr = i;			<span class="comment">//define a quote </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;I is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	i=<span class="number">29</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After changing i to 29:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;i is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>quote: No need <code>&amp;</code> ,pointer : Need <code>*</code> .</p>
+</li>
+<li><p>warn</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i,k;</span><br><span class="line"><span class="keyword">int</span> &amp;j =i;</span><br><span class="line">j =&amp;k;   		<span class="comment">//incorrect , delcare j is the quotation of k is not allowed </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> &amp;r = <span class="number">10</span>; 	<span class="comment">//incorrect, void type is not allow </span></span><br><span class="line"><span class="keyword">int</span> &amp;r = <span class="number">10</span> ; 	<span class="comment">//incorrect,can&#x27;t assign quote &quot;r&quot; with value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t quote array</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>] = <span class="string">&quot;amd&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;a[<span class="number">4</span>] = a;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t define quotation to quotation</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r =n;</span><br><span class="line"><span class="keyword">int</span> &amp;*p = n;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>used as parameters of function</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp =a;</span><br><span class="line">	a =b;</span><br><span class="line">	b =temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>quotation is used as formal parameter for function variable transfer,but it seem that we have really passed a,b into the function “swap”</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C&amp;&amp;C++问题总汇(1)</title>
     <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
     <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
@@ -216,102 +312,6 @@
       </categories>
   </entry>
   <entry>
-    <title>C &amp;&amp; C++ (1)</title>
-    <url>/2021/09/03/C_C++/</url>
-    <content><![CDATA[<p>describe some differences between c and c++,(Function Union and Quote)</p>
-<span id="more"></span>
-<h1 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h1><ul>
-<li><p>Function declaration</p>
-<p>if Function declaration’s parameter is empty of <code>void</code>,This two declaration in c++ are same :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f();				<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br></pre></td></tr></table></figure>
-<p>but they are different in c:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f();				<span class="comment">//Don&#x27;t give the information of parameters ,It have chance to carrary 						//paramters</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Macro definition </p>
-<p>Macro definition may cause some error that we can’t  expect ,for example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> doub(x) x*2</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>in line 8 ,we are expecting the result is :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> doubled is <span class="number">6</span></span><br></pre></td></tr></table></figure>
-<p>but in fact ,the result is :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> <span class="keyword">double</span> is <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>because the macro definition is replace the expression in the place where it is called :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>*<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Inline function</p>
-<p>to avoid the unsafe of Marco definition ,We can use inline function to replace the macro function to achieve more safe :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>function with default value of parameters</p>
-<p>the parameters with default value must be in the right of parameters with no initial value:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i ,<span class="keyword">int</span> j=<span class="number">5</span>,<span class="keyword">int</span> k)</span></span>;     <span class="comment">//incorrect </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k=<span class="number">5</span>)</span></span>;      <span class="comment">//correct</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<ul>
-<li><p>Function Overloading</p>
-<p>The same function name can be used to define different tasks</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">square</span><span class="params">(<span class="keyword">long</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">square</span><span class="params">(<span class="keyword">double</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i =<span class="number">12</span>;</span><br><span class="line">    <span class="keyword">long</span> j =<span class="number">1234</span>;</span><br><span class="line">    <span class="keyword">double</span> k =<span class="number">1.23</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;int i&#x27;quare is &quot;</span>&lt;&lt;square(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;long j&#x27;s quare is &quot;</span>&lt;&lt;square(j)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;double k&#x27;s quare is &quot;</span>&lt;&lt;square(k)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if only the type of return is not the same ,the numbers of parameter and the type of parameters is same,The function couldn’t be overloaded:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;     <span class="comment">//That is incorrect ,because only the type of return is not the same </span></span><br></pre></td></tr></table></figure>
-<p>if the overloading function with default value parameter, it can be incorrect :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b=<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a)</span></span>;				<span class="comment">//This is also incorrect the compiler can&#x27;t decide which function should be choosed </span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="Scope-operator"><a href="#Scope-operator" class="headerlink" title="Scope operator ::"></a>Scope operator ::</h1><ul>
-<li><p>Priority</p>
-<p>Local variables have higher priority than global variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> avar =<span class="number">10</span>;			<span class="comment">//global variable</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> avar=<span class="number">3</span>;			<span class="comment">//local variable</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;avar is &quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if global variables wants to be called in function ,we can add <code>::</code> in the front of variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;local variable&quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;global variable&quot;</span>&lt;&lt;::avar&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="Union"><a href="#Union" class="headerlink" title="Union"></a>Union</h1><ul>
-<li><p>What is the Union </p>
-<p>Union is a custom type ,we can create union in two way in c:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>,<span class="title">b</span>,<span class="title">c</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//second way</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;a,b,c;</span><br></pre></td></tr></table></figure>
-<p>union’s space is the largest memory footprint  of all member ,<code>int</code>,<code>char</code>,<code>double</code>,the double’s  memory footprint is largest ,so the union data’s memory footprint is 8 bits(the size of <code>double</code>)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">short</span> m;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d,%d\n&quot;</span>,<span class="keyword">sizeof</span>(a),<span class="keyword">sizeof</span>(<span class="keyword">union</span> data));</span><br><span class="line">	a.n = <span class="number">0x40</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.ch =<span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.m = <span class="number">0x2059</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.n =<span class="number">0x3e25ad54</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>you may get the result as follows:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span>,<span class="number">4</span></span><br><span class="line"><span class="number">40</span>,@,<span class="number">40</span></span><br><span class="line"><span class="number">39</span>,<span class="number">9</span>,<span class="number">39</span></span><br><span class="line"><span class="number">2059</span>,Y,<span class="number">2059</span></span><br><span class="line"><span class="number">3E25</span>AD54,T,AD54</span><br></pre></td></tr></table></figure>
-<p>so the result prove that union members will have Influence each other, if  you change one member’s value ,the other member’s value is changed</p>
-</li>
-<li><p>How to store data</p>
-<p>Union ‘s data is shared for all member ,so one of they is changed ,others will be effected,but the process is how to go</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210903113323946.png" alt=""></p>
-</li>
-<li><p>Using union </p>
-<p>student information and teacher information is recorded by the same struct ,but some place are different,for example:</p>
-<p>| name | Num  | Sex  | Profession | Score/course |<br>| —— | —— | —— | ————— | —————— |<br>| A    | 1    | f    | s          | 89           |<br>| B    | 2    | m    | t          | math         |</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM 4</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">40</span>];</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">	<span class="keyword">char</span> pro;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">d</span>&#123;</span></span><br><span class="line">		<span class="keyword">int</span> score;</span><br><span class="line">		<span class="keyword">char</span> course[<span class="number">10</span>];</span><br><span class="line">	&#125;sc;</span><br><span class="line">&#125; bodys[NUM];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;NUM;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Please input info:&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s %d %c %c&quot;</span>,&amp;bodys[i].name,&amp;bodys[i].num,&amp;bodys[i].sex,&amp;bodys[i].pro);</span><br><span class="line">		<span class="keyword">if</span> (bodys[i].pro == <span class="string">&#x27;s&#x27;</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;bodys[i].sc.score);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%d&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.score);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;bodys[i].sc.course);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%s&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.course);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="Quote"><a href="#Quote" class="headerlink" title="Quote"></a>Quote</h1><ul>
-<li><p>definition </p>
-<p>give variables a another name after quoted ,the two variables are equivalent when one of them changed ,the other will change </p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i =<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;j = i;		<span class="comment">//delcare j is a integer quote ,and initialize j with i</span></span><br></pre></td></tr></table></figure>
-<p>but j definited in following way is not allowed:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> &amp;j;			<span class="comment">//incorrect j is not linked some variables</span></span><br><span class="line">j = i;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>quote and pointer </p>
-<p>quote is another name for a variable ,but pointer is a tool pointing to variable </p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">15</span>;</span><br><span class="line">	<span class="keyword">int</span> *iptr=&amp;i;			<span class="comment">//define a pointer </span></span><br><span class="line">	<span class="keyword">int</span> &amp;rptr = i;			<span class="comment">//define a quote </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;I is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	i=<span class="number">29</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After changing i to 29:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;i is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>quote: No need <code>&amp;</code> ,pointer : Need <code>*</code> .</p>
-</li>
-<li><p>warn</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i,k;</span><br><span class="line"><span class="keyword">int</span> &amp;j =i;</span><br><span class="line">j =&amp;k;   		<span class="comment">//incorrect , delcare j is the quotation of k is not allowed </span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> &amp;r = <span class="number">10</span>; 	<span class="comment">//incorrect, void type is not allow </span></span><br><span class="line"><span class="keyword">int</span> &amp;r = <span class="number">10</span> ; 	<span class="comment">//incorrect,can&#x27;t assign quote &quot;r&quot; with value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t quote array</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>] = <span class="string">&quot;amd&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;a[<span class="number">4</span>] = a;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t define quotation to quotation</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r =n;</span><br><span class="line"><span class="keyword">int</span> &amp;*p = n;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>used as parameters of function</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp =a;</span><br><span class="line">	a =b;</span><br><span class="line">	b =temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>quotation is used as formal parameter for function variable transfer,but it seem that we have really passed a,b into the function “swap”</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​        之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -385,45 +385,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
-<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
-</li>
-<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
-</li>
-<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
-</li>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
-</li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
-</li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
-</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -462,6 +423,45 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
+<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
+</li>
+<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
+</li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
+</li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
+</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -671,6 +671,29 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营 - 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" alt=""></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营 - 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python 机器学习</title>
     <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
@@ -713,26 +736,12 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营 - 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" alt=""></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营 - 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" alt=""></p>
-]]></content>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>]]></content>
       <categories>
-        <category>生活</category>
+        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -816,15 +825,6 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
 ]]></content>
       <categories>
         <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1583,42 +1583,6 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
       </categories>
   </entry>
   <entry>
-    <title>ISAC</title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<p>通感一体化</p>
-<span id="more"></span>
-<h1 id="什么是通感一体化（ISAC）"><a href="#什么是通感一体化（ISAC）" class="headerlink" title="什么是通感一体化（ISAC）"></a>什么是通感一体化（ISAC）</h1><p><a href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践 - 华为</a>。</p>
-<p><a href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息) 3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p> NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235^v38^pc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息) 5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235^v38^pc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息) 5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol>
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点 共享，通信与感知完全一体化，系统性能显著提升，网络系统 的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User Equipment，UE）之间更大规模的协同、通信感 知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技 术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -1664,6 +1628,42 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ISAC</title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<p>通感一体化</p>
+<span id="more"></span>
+<h1 id="什么是通感一体化（ISAC）"><a href="#什么是通感一体化（ISAC）" class="headerlink" title="什么是通感一体化（ISAC）"></a>什么是通感一体化（ISAC）</h1><p><a href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践 - 华为</a>。</p>
+<p><a href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息) 3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p> NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235^v38^pc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息) 5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235^v38^pc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息) 5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol>
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点 共享，通信与感知完全一体化，系统性能显著提升，网络系统 的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User Equipment，UE）之间更大规模的协同、通信感 知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技 术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
