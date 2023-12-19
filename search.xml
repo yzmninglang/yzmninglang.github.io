@@ -312,47 +312,6 @@
       </categories>
   </entry>
   <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
-<span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="First"><a href="#First" class="headerlink" title="First"></a>First</h1><p>Hello everyone, welcome to come here, today I will introduce a new technology for image translation, called cycle-gan, which is a project led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that, let’s introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by Google? What do they have in common? Yes, what they have in common is that they are all creative. The so-called creativity means that when you input the same sentence, it can give different results, so the first word of gpt is Generative, but CNN is not good at generative models. , when you give the same input, it is more likely to output the same result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to generalize and recognize other domains through a trained model, here involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two parts: the generator and the discriminator. The generator is used to generate content, and the discriminator mainly identifies whether the generated content is fake. The generator and the discriminator are two models, and they co-evolve with the prey just like in nature. When the discriminator cannot distinguish whether the generated content is fake or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B, GB-&gt;A,以及两个判别模型 DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x 域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models, namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative models DA and DB. This is the origin of cycle, but it is even more exciting What is popular is that cycle-gan does not require paired data pairs for training, that is to say, we only need to give cycle-gan enough data from the source domain and the target domain without a lot of labeling work on it, and it will Automatically learn and successfully convert the x domain to the y domain. Since it involves the two-way conversion of the two domains, the loss function used in its iteration is also a cycle consistent loss function.</p>
-<h1 id="second"><a href="#second" class="headerlink" title="second"></a>second</h1><blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in the field of video enhancement, black-and-white video becomes color video. Or scene transformation. Or convert an abstract painting into a concrete painting such as a building, these can be used as communication data compression, you can try the sender to transmit data similar to color blocks on the network, it may take up a lot of bandwidth Small, when you get these color patches at the receiving end, bring them back. This looks like a good way to compress video</p>
-<h1 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h1><p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is “此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展 [15]。</p>
-<p>”。</p>
-<p>The second sentence means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis “图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比 [19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​        之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -426,42 +385,44 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
 <span id="more"></span>
-<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
-<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
-</li>
-<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
-</li>
-<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
-</li>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
-</li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
-</li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
-</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="First"><a href="#First" class="headerlink" title="First"></a>First</h1><p>Hello everyone, welcome to come here, today I will introduce a new technology for image translation, called cycle-gan, which is a project led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that, let’s introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by Google? What do they have in common? Yes, what they have in common is that they are all creative. The so-called creativity means that when you input the same sentence, it can give different results, so the first word of gpt is Generative, but CNN is not good at generative models. , when you give the same input, it is more likely to output the same result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to generalize and recognize other domains through a trained model, here involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two parts: the generator and the discriminator. The generator is used to generate content, and the discriminator mainly identifies whether the generated content is fake. The generator and the discriminator are two models, and they co-evolve with the prey just like in nature. When the discriminator cannot distinguish whether the generated content is fake or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B, GB-&gt;A,以及两个判别模型 DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x 域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models, namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative models DA and DB. This is the origin of cycle, but it is even more exciting What is popular is that cycle-gan does not require paired data pairs for training, that is to say, we only need to give cycle-gan enough data from the source domain and the target domain without a lot of labeling work on it, and it will Automatically learn and successfully convert the x domain to the y domain. Since it involves the two-way conversion of the two domains, the loss function used in its iteration is also a cycle consistent loss function.</p>
+<h1 id="second"><a href="#second" class="headerlink" title="second"></a>second</h1><blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in the field of video enhancement, black-and-white video becomes color video. Or scene transformation. Or convert an abstract painting into a concrete painting such as a building, these can be used as communication data compression, you can try the sender to transmit data similar to color blocks on the network, it may take up a lot of bandwidth Small, when you get these color patches at the receiving end, bring them back. This looks like a good way to compress video</p>
+<h1 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h1><p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is “此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展 [15]。</p>
+<p>”。</p>
+<p>The second sentence means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis “图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比 [19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
 ]]></content>
       <categories>
-        <category>电子</category>
+        <category>code</category>
       </categories>
   </entry>
   <entry>
@@ -507,6 +468,45 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
+<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
+</li>
+<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
+</li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
+</li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
+</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>毛概实践课</title>
     <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
     <content><![CDATA[<p>毛概实践课🤗</p>
@@ -525,6 +525,20 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>]]></content>
+      <categories>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -590,20 +604,6 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
 ]]></content>
       <categories>
         <category>Neural Network</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>]]></content>
-      <categories>
-        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -1006,72 +1006,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m 
       </categories>
   </entry>
   <entry>
-    <title>Windows常用指令和工具</title>
-    <url>/2022/01/05/Windows_command/</url>
-    <content><![CDATA[<p>电脑常用的一些操作</p>
-<span id="more"></span>
-<h1 id="创建软链接（用来移动文件）"><a href="#创建软链接（用来移动文件）" class="headerlink" title="创建软链接（用来移动文件）"></a>创建软链接（用来移动文件）</h1><p>现在我的F盘里面有一个文件夹blog</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" alt=""></p>
-<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
-<p>指令如下</p>
-<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" alt=""></p>
-<h1 id="关闭Windows更新"><a href="#关闭Windows更新" class="headerlink" title="关闭Windows更新"></a>关闭Windows更新</h1><p>安装<code>wu10man</code>，点击该处访问其<a href="https://github.com/WereDev/Wu10Man">github</a>.</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" alt=""></p>
-<p>安装打开<code>wu10man</code>,选择即可</p>
-<h1 id="右键菜单规定"><a href="#右键菜单规定" class="headerlink" title="右键菜单规定"></a>右键菜单规定</h1><p>下载ccleaner</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" alt=""></p>
-<p>对其相应的进行调整即可</p>
-<h1 id="C盘清理"><a href="#C盘清理" class="headerlink" title="C盘清理"></a>C盘清理</h1><h2 id="清理Pagefile"><a href="#清理Pagefile" class="headerlink" title="清理Pagefile"></a>清理<code>Pagefile</code></h2><p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" alt=""></p>
-<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" alt=""></p>
-<p>然后打开环境变量的设置</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" alt=""></p>
-<p>就可以看到这个pagefile，点击更改。</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" alt=""></p>
-<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" alt=""></p>
-<h2 id="清理hiberfil"><a href="#清理hiberfil" class="headerlink" title="清理hiberfil"></a>清理<code>hiberfil</code></h2><p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
-<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
-<h1 id="磁盘分析软件"><a href="#磁盘分析软件" class="headerlink" title="磁盘分析软件"></a>磁盘分析软件</h1><p>这里，推荐一个磁盘分析软件，<a href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" alt=""></p>
-<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
-<h1 id="C盘扩容"><a href="#C盘扩容" class="headerlink" title="C盘扩容"></a>C盘扩容</h1><p>首先，下载<a href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini Partition Wizrd Free</a></p>
-<p>如果电脑显示Bitlocker，如下图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" alt=""></p>
-<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" alt=""></p>
-<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" alt=""></p>
-<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
-<p>右键C盘，选择分给的区扩容</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" alt=""></p>
-<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" alt=""></p>
-<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
-<h1 id="Latex语法"><a href="#Latex语法" class="headerlink" title="Latex语法"></a>Latex语法</h1><p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式</p>
-<script type="math/tex; mode=display">
-f(x,y,z)=\begin{cases}x&=&\cos(t)\\y&=&\sin(t)\\z&=&\tan(t)\end{cases}</script><p>这时，你需要在word里面输入下面的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
-<h1 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h1><p>这里使用这个超星的资源<a href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
-<h1 id="FFmpeg加速压缩"><a href="#FFmpeg加速压缩" class="headerlink" title="FFmpeg加速压缩"></a>FFmpeg加速压缩</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
-<p>其中18表示目标帧率</p>
-<h1 id="gitgnore的编写"><a href="#gitgnore的编写" class="headerlink" title="gitgnore的编写"></a>gitgnore的编写</h1><p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png" alt="image-20231017175719127"></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-  </entry>
-  <entry>
     <title>评价类数学模型总结</title>
     <url>/2022/01/22/common_model/</url>
     <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
@@ -1316,6 +1250,72 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
 <h3 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h3>]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Windows常用指令和工具</title>
+    <url>/2022/01/05/Windows_command/</url>
+    <content><![CDATA[<p>电脑常用的一些操作</p>
+<span id="more"></span>
+<h1 id="创建软链接（用来移动文件）"><a href="#创建软链接（用来移动文件）" class="headerlink" title="创建软链接（用来移动文件）"></a>创建软链接（用来移动文件）</h1><p>现在我的F盘里面有一个文件夹blog</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" alt=""></p>
+<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
+<p>指令如下</p>
+<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" alt=""></p>
+<h1 id="关闭Windows更新"><a href="#关闭Windows更新" class="headerlink" title="关闭Windows更新"></a>关闭Windows更新</h1><p>安装<code>wu10man</code>，点击该处访问其<a href="https://github.com/WereDev/Wu10Man">github</a>.</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" alt=""></p>
+<p>安装打开<code>wu10man</code>,选择即可</p>
+<h1 id="右键菜单规定"><a href="#右键菜单规定" class="headerlink" title="右键菜单规定"></a>右键菜单规定</h1><p>下载ccleaner</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" alt=""></p>
+<p>对其相应的进行调整即可</p>
+<h1 id="C盘清理"><a href="#C盘清理" class="headerlink" title="C盘清理"></a>C盘清理</h1><h2 id="清理Pagefile"><a href="#清理Pagefile" class="headerlink" title="清理Pagefile"></a>清理<code>Pagefile</code></h2><p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" alt=""></p>
+<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" alt=""></p>
+<p>然后打开环境变量的设置</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" alt=""></p>
+<p>就可以看到这个pagefile，点击更改。</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" alt=""></p>
+<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" alt=""></p>
+<h2 id="清理hiberfil"><a href="#清理hiberfil" class="headerlink" title="清理hiberfil"></a>清理<code>hiberfil</code></h2><p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
+<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘分析软件"><a href="#磁盘分析软件" class="headerlink" title="磁盘分析软件"></a>磁盘分析软件</h1><p>这里，推荐一个磁盘分析软件，<a href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" alt=""></p>
+<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
+<h1 id="C盘扩容"><a href="#C盘扩容" class="headerlink" title="C盘扩容"></a>C盘扩容</h1><p>首先，下载<a href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini Partition Wizrd Free</a></p>
+<p>如果电脑显示Bitlocker，如下图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" alt=""></p>
+<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" alt=""></p>
+<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" alt=""></p>
+<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
+<p>右键C盘，选择分给的区扩容</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" alt=""></p>
+<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" alt=""></p>
+<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
+<h1 id="Latex语法"><a href="#Latex语法" class="headerlink" title="Latex语法"></a>Latex语法</h1><p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式</p>
+<script type="math/tex; mode=display">
+f(x,y,z)=\begin{cases}x&=&\cos(t)\\y&=&\sin(t)\\z&=&\tan(t)\end{cases}</script><p>这时，你需要在word里面输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
+<h1 id="重装系统"><a href="#重装系统" class="headerlink" title="重装系统"></a>重装系统</h1><p>这里使用这个超星的资源<a href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
+<h1 id="FFmpeg加速压缩"><a href="#FFmpeg加速压缩" class="headerlink" title="FFmpeg加速压缩"></a>FFmpeg加速压缩</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
+<p>其中18表示目标帧率</p>
+<h1 id="gitgnore的编写"><a href="#gitgnore的编写" class="headerlink" title="gitgnore的编写"></a>gitgnore的编写</h1><p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png" alt="image-20231017175719127"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Windows</category>
       </categories>
   </entry>
   <entry>
@@ -1571,6 +1571,18 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
       </categories>
   </entry>
   <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN Explainer</a></p>
+<h1 id="SWim-Transform"><a href="#SWim-Transform" class="headerlink" title="SWim Transform"></a>SWim Transform</h1><p><a href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -1616,18 +1628,6 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
 ]]></content>
       <categories>
         <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN Explainer</a></p>
-<h1 id="SWim-Transform"><a href="#SWim-Transform" class="headerlink" title="SWim Transform"></a>SWim Transform</h1><p><a href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
