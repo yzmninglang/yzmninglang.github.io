@@ -98,160 +98,6 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
-    <title>C&amp;&amp;C++问题总汇(1)</title>
-    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
-    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
-<span id="more"></span>
-<h1 id="二维数组">二维数组</h1>
-<p>定义一个二维数组如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
-<p>如果采用一个指针去指向这个数组，可以这么做:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>那么访问这个二维数组的指针方法是:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
-<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
-<ul>
-<li>指针数组是这样子的吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
-<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
-<ul>
-<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
-<ul>
-<li>友元函数访问私有成员问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的指针">指针的指针</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所以说，这个<code>int</code>有用吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数的分号问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
-<li><p>答：</p></li>
-</ul>
-<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
-在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
-初始化完毕。</p>
-<ul>
-<li>问：动态联编和静态联编，可以访问派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：不能调用派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：这个可以算重载嘛？，结果值为第一个</li>
-<li>答:</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道">信道</h3>
-<blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
-Code
-Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
-Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型">波形成型</h3>
-<blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
-时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形">脉冲整形</h2>
-<p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
-href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
-失真严重导致采样判决出错，无法正确恢复数字信号。
-显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong> 其<a
-href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器">基带滤波器</h2>
-<p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
-发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
-<strong>例子</strong></p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a
-href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a
-href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
-- Riden - 博客园</a></p>
-<blockquote>
-<p>为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
-理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p>为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
-！</p>
-</blockquote>
-<p><a
-href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
-基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
-href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -386,111 +232,74 @@ transfer,but it seem that we have really passed a,b into the function
       </categories>
   </entry>
   <entry>
-    <title>动态规划入门</title>
-    <url>/2021/08/19/DP/</url>
-    <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
+    <title>C&amp;&amp;C++问题总汇(1)</title>
+    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
+    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
 <span id="more"></span>
-<h1 id="fibonacci-sequence">Fibonacci Sequence</h1>
+<h1 id="二维数组">二维数组</h1>
+<p>定义一个二维数组如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果采用一个指针去指向这个数组，可以这么做:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>那么访问这个二维数组的指针方法是:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
+<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
 <ul>
-<li>递归的思想
-<ul>
-<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
-<li>Fobonacci
-Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
-</ul></li>
+<li>指针数组是这样子的吗？</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>​
-既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-<p>​
-我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
-<h1 id="house-robber">House-robber</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
+<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
 <ul>
-<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你
-不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
-<li>输入：[1,2,3,1]</li>
+<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
 </ul>
-<p>输出：4</p>
-<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
-<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
-<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
-<h1 id="maximum-value-of-gifts">Maximum value of gifts</h1>
-<p>在一个 m*n
-的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于
-0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
-<p>输入:</p>
-<p>[]</p>
-<p>输出: 12</p>
-<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
-<p>​
-我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
-<h1 id="coins-exchange">Coins exchange</h1>
-<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount
-，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数
-。如果没有任何一种硬币组合能组成总金额，返回 -1
-。你可以认为每种硬币的数量是无限的。</p>
-<p>输入：coins = [1, 2, 5], S = 11</p>
-<p>输出：3</p>
-<p>解释：11 = 5 + 5 + 1</p>
-<p>输入：coins = [2], S = 3</p>
-<p>输出：-1</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
-<p><span class="math display">\[
-f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1
-\]</span></p>
-<p>如果<span class="math inline">\(x-c_i&lt;0\)</span>，则令<span
-class="math inline">\(f(x-c_i)=\infty\)</span>这样就不会选这个<span
-class="math inline">\(f(x-c_i)\)</span>了</p>
-<p>如果<span class="math inline">\(x-c_i=0\)</span>,那么<span
-class="math inline">\(f(x-c_i)=0\)</span>即<span
-class="math inline">\(f(0)=0\)</span></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
-<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
-<p>思路：
-我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
-<p>如何得到硬币的组合呢（5，5，1）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
-<h1 id="knapsack-problem">Knapsack Problem</h1>
-<p>​
-有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
-<p>如下表所示:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
-<p>​
-由于只有--辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
-<p>思路：</p>
-<p>​ 有m件物品，第i件物品的利润为<span
-class="math inline">\(v_i\)</span>重量为<span
-class="math inline">\(w_i\)</span>背包的总重量为W.</p>
-<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
-<p>子问题:在满足重量的约束条件下，将i(<span class="math inline">\(i\le
-m\)</span>)件物品选择性放入容量为j(<span class="math inline">\(j \le
-W\)</span>)的背包所获得的最大利润 <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png"
-alt="image-20210819174526184" /></p>
-<p>状态分析:</p>
-<p>​
-我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4...增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
-<p>​
-对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
-<p>​
-对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
-<p>​ 对于其它的列来说，需要用到状态转移方程，对于要求前<span
-class="math inline">\(i\)</span>件物品装进容量为<span
-class="math inline">\(j\)</span>的背包，在<span
-class="math inline">\(i-1\)</span>的基础上只需要考虑到底装不装第<span
-class="math inline">\(i\)</span>件物品，那么怎么考虑呢？要装第<span
-class="math inline">\(i\)</span>件物品首先，第<span
-class="math inline">\(i\)</span>件物品的重量必须小于背包的容量所以有: ​
-<span class="math inline">\(j-weight(i)&gt;=0\)</span>才去判断: <span
-class="math display">\[
-max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
-\]</span></p>
-<p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针">指针的指针</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
+<li><p>答：</p></li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
+在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
+初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -549,6 +358,86 @@ alt="TTL三态门" />
 ]]></content>
       <categories>
         <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道">信道</h3>
+<blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse
+Code
+Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase
+Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型">波形成型</h3>
+<blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）--
+时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形">脉冲整形</h2>
+<p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a
+href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。
+失真严重导致采样判决出错，无法正确恢复数字信号。
+显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong> 其<a
+href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器">基带滤波器</h2>
+<p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}
+发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示
+<strong>例子</strong></p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a
+href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a
+href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】
+- Riden - 博客园</a></p>
+<blockquote>
+<p>为什么对基带信号要成形滤波？</p>
+<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
+<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。
+理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
+<blockquote>
+<p>为什么要-&gt;这里有直接结论：</p>
+<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI）
+！</p>
+</blockquote>
+<p><a
+href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形
+基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
+<blockquote>
+<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
+<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a
+href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>电路</category>
       </categories>
   </entry>
   <entry>
@@ -666,6 +555,117 @@ alt="被删除视频" />
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>动态规划入门</title>
+    <url>/2021/08/19/DP/</url>
+    <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
+<span id="more"></span>
+<h1 id="fibonacci-sequence">Fibonacci Sequence</h1>
+<ul>
+<li>递归的思想
+<ul>
+<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
+<li>Fobonacci
+Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
+</ul></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>​
+既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>​
+我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
+<h1 id="house-robber">House-robber</h1>
+<ul>
+<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你
+不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
+<li>输入：[1,2,3,1]</li>
+</ul>
+<p>输出：4</p>
+<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
+<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
+<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
+<h1 id="maximum-value-of-gifts">Maximum value of gifts</h1>
+<p>在一个 m*n
+的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于
+0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
+<p>输入:</p>
+<p>[]</p>
+<p>输出: 12</p>
+<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
+<p>​
+我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
+<h1 id="coins-exchange">Coins exchange</h1>
+<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount
+，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数
+。如果没有任何一种硬币组合能组成总金额，返回 -1
+。你可以认为每种硬币的数量是无限的。</p>
+<p>输入：coins = [1, 2, 5], S = 11</p>
+<p>输出：3</p>
+<p>解释：11 = 5 + 5 + 1</p>
+<p>输入：coins = [2], S = 3</p>
+<p>输出：-1</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
+<p><span class="math display">\[
+f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1
+\]</span></p>
+<p>如果<span class="math inline">\(x-c_i&lt;0\)</span>，则令<span
+class="math inline">\(f(x-c_i)=\infty\)</span>这样就不会选这个<span
+class="math inline">\(f(x-c_i)\)</span>了</p>
+<p>如果<span class="math inline">\(x-c_i=0\)</span>,那么<span
+class="math inline">\(f(x-c_i)=0\)</span>即<span
+class="math inline">\(f(0)=0\)</span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
+<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
+<p>思路：
+我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
+<p>如何得到硬币的组合呢（5，5，1）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
+<h1 id="knapsack-problem">Knapsack Problem</h1>
+<p>​
+有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
+<p>如下表所示:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
+<p>​
+由于只有--辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
+<p>思路：</p>
+<p>​ 有m件物品，第i件物品的利润为<span
+class="math inline">\(v_i\)</span>重量为<span
+class="math inline">\(w_i\)</span>背包的总重量为W.</p>
+<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
+<p>子问题:在满足重量的约束条件下，将i(<span class="math inline">\(i\le
+m\)</span>)件物品选择性放入容量为j(<span class="math inline">\(j \le
+W\)</span>)的背包所获得的最大利润 <img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png"
+alt="image-20210819174526184" /></p>
+<p>状态分析:</p>
+<p>​
+我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4...增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
+<p>​
+对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
+<p>​
+对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
+<p>​ 对于其它的列来说，需要用到状态转移方程，对于要求前<span
+class="math inline">\(i\)</span>件物品装进容量为<span
+class="math inline">\(j\)</span>的背包，在<span
+class="math inline">\(i-1\)</span>的基础上只需要考虑到底装不装第<span
+class="math inline">\(i\)</span>件物品，那么怎么考虑呢？要装第<span
+class="math inline">\(i\)</span>件物品首先，第<span
+class="math inline">\(i\)</span>件物品的重量必须小于背包的容量所以有: ​
+<span class="math inline">\(j-weight(i)&gt;=0\)</span>才去判断: <span
+class="math display">\[
+max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
+\]</span></p>
+<p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1013,38 +1013,6 @@ can free the space</p>
       </categories>
   </entry>
   <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
-- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
-- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a
-href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python 机器学习</title>
     <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
@@ -1093,6 +1061,38 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
+- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
+- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a
+href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+]]></content>
+      <categories>
+        <category>生活</category>
       </categories>
   </entry>
   <entry>
@@ -1153,6 +1153,16 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DSP</title>
     <url>/2022/03/14/Signals%20and%20Systems/</url>
     <content><![CDATA[<p>信号与系统笔记</p>
@@ -1183,16 +1193,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1508,6 +1508,88 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1881,88 +1963,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
     <title></title>
     <url>/2023/10/17/index/</url>
     <content><![CDATA[<span id="more"></span>
@@ -2225,6 +2225,22 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>遗传算法</title>
     <url>/2022/02/20/yichuan/</url>
     <content><![CDATA[<p>遗传算法的初步了解</p>
@@ -2249,6 +2265,60 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>近代史实践总结</title>
+    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>🙄</p>
+<span id="more"></span>
+<center>
+先来看看整个效果吧😜
+</center>
+
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+
+<center>
+一些小细节
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
+<center>
+看国焘春风得意🤣
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
+<center>
+贺龙和代英胜利在握😏
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
+<center>
+哈哈，都不知道在笑什么😆
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
+<center>
+小伙伴们都被吓傻啦😅
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
+<center>
+集体照组合🤣
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
+<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -2323,76 +2393,6 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>近代史实践总结</title>
-    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>🙄</p>
-<span id="more"></span>
-<center>
-先来看看整个效果吧😜
-</center>
-
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-</div>
-
-<center>
-一些小细节
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
-<center>
-看国焘春风得意🤣
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
-<center>
-贺龙和代英胜利在握😏
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
-<center>
-哈哈，都不知道在笑什么😆
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
-<center>
-小伙伴们都被吓傻啦😅
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
-<center>
-集体照组合🤣
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
-<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
