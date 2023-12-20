@@ -771,6 +771,21 @@ alt="被删除视频" />
       </categories>
   </entry>
   <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>Product design</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Neural network(1)---Logistic Regression</title>
     <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
     <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic
@@ -916,21 +931,6 @@ figure,see whether it is overfit or not ?</li>
 ]]></content>
       <categories>
         <category>Neural Network</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -1090,6 +1090,63 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
 <p>下载方式</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Qt</title>
+    <url>/2021/09/20/Qt1/</url>
+    <content><![CDATA[<p>Qt问题总汇</p>
+<span id="more"></span>
+<h1 id="信号和槽">信号和槽</h1>
+<h2 id="连接函数connect">连接函数：connect</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<p>松散耦合：发送端和接受端的松散耦合</p>
+<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
+<ul>
+<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
+<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>定义槽和信号后，需要定义触发函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
+<h3 id="信号的重载">信号的重载</h3>
+<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：这里的两个函数指针是如何定义的？？？</li>
+<li>答：</li>
+</ul>
+<p>Qstring 转char *</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号">信号连接信号</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<p>直接将两个信号用connect相连</p>
+<ul>
+<li><p>断开信号 disconnect</p></li>
+<li><p>多个信号一个槽</p></li>
+<li><p>多个槽连接一个信号</p></li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
+</ul>
+<p>lambda函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
+<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
+</ul>
+<h1 id="模态与非模态">模态与非模态</h1>
+<h2 id="模态">模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态">非模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
+<li>答：</li>
+</ul>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -1372,63 +1429,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>Qt</title>
-    <url>/2021/09/20/Qt1/</url>
-    <content><![CDATA[<p>Qt问题总汇</p>
-<span id="more"></span>
-<h1 id="信号和槽">信号和槽</h1>
-<h2 id="连接函数connect">连接函数：connect</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
-<p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
-<ul>
-<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
-<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义槽和信号后，需要定义触发函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载">信号的重载</h3>
-<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：这里的两个函数指针是如何定义的？？？</li>
-<li>答：</li>
-</ul>
-<p>Qstring 转char *</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号">信号连接信号</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
-<p>直接将两个信号用connect相连</p>
-<ul>
-<li><p>断开信号 disconnect</p></li>
-<li><p>多个信号一个槽</p></li>
-<li><p>多个槽连接一个信号</p></li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
-</ul>
-<p>lambda函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
-<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
-</ul>
-<h1 id="模态与非模态">模态与非模态</h1>
-<h2 id="模态">模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态">非模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
-<li>答：</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>爬虫小结</title>
     <url>/2021/02/02/Web%20Crawler/</url>
     <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
@@ -1508,88 +1508,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1697,6 +1615,88 @@ alt="image-20231017175719127" />
 ]]></content>
       <categories>
         <category>Windows</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1963,12 +1963,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
     <title>Linux开发项目总结</title>
     <url>/2023/11/25/linux_problem/</url>
     <content><![CDATA[<p>欢迎交流</p>
@@ -2093,6 +2087,12 @@ verbose详细显示，-f file文件属性）</p>
       <categories>
         <category>Code</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
@@ -2252,60 +2252,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>近代史实践总结</title>
-    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>🙄</p>
-<span id="more"></span>
-<center>
-先来看看整个效果吧😜
-</center>
-
-
-<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
-<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-</div>
-
-<center>
-一些小细节
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
-<center>
-看国焘春风得意🤣
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
-<center>
-贺龙和代英胜利在握😏
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
-<center>
-哈哈，都不知道在笑什么😆
-</center>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
-<center>
-小伙伴们都被吓傻啦😅
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
-<center>
-集体照组合🤣
-</center>
-<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
-<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2380,6 +2326,76 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>近代史实践总结</title>
+    <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>🙄</p>
+<span id="more"></span>
+<center>
+先来看看整个效果吧😜
+</center>
+
+
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe src="//player.bilibili.com/player.html?aid=892959467&bvid=BV1nP4y1E7PM&cid=476772115&page=1&high_quality=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+</div>
+
+<center>
+一些小细节
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/jindaishi.png" /></p>
+<center>
+看国焘春风得意🤣
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220226072.png" /></p>
+<center>
+贺龙和代英胜利在握😏
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220435471.png" /></p>
+<center>
+哈哈，都不知道在笑什么😆
+</center>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103220539122.png" /></p>
+<center>
+小伙伴们都被吓傻啦😅
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/23.gif" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/1-min-1641220427188.gif" /></div></div></div>
+<center>
+集体照组合🤣
+</center>
+<div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223711885.png" /></div><div class="group-picture-column"><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223633199.png" /></div></div></div>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" /></p>
+<p>非常感谢那段时光大家的努力，我们的努力终究也会得到回报😊</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
     <title>ISAC</title>
     <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
     <content><![CDATA[<p>移动通信重点总结</p>
@@ -2426,22 +2442,6 @@ Equipment，UE）之间更大规模的协同、通信感
 术创新还可以进一步提升感知数据的处理能力。</li>
 </ol>
 <p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
 ]]></content>
       <categories>
         <category>Code</category>
