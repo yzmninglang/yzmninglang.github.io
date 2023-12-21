@@ -98,6 +98,80 @@ href="">ipforbidden</a>模块，刷入，即可</li>
       </categories>
   </entry>
   <entry>
+    <title>C&amp;&amp;C++问题总汇(1)</title>
+    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
+    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
+<span id="more"></span>
+<h1 id="二维数组">二维数组</h1>
+<p>定义一个二维数组如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果采用一个指针去指向这个数组，可以这么做:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>那么访问这个二维数组的指针方法是:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
+<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
+<ul>
+<li>指针数组是这样子的吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
+<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
+<ul>
+<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针">指针的指针</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
+<li><p>答：</p></li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
+在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
+初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C &amp;&amp; C++ (1)</title>
     <url>/2021/09/03/C_C++/</url>
     <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
@@ -226,191 +300,6 @@ transfer,but it seem that we have really passed a,b into the function
 "swap"</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>C&amp;&amp;C++问题总汇(1)</title>
-    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
-    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
-<span id="more"></span>
-<h1 id="二维数组">二维数组</h1>
-<p>定义一个二维数组如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
-<p>如果采用一个指针去指向这个数组，可以这么做:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>那么访问这个二维数组的指针方法是:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
-<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
-<ul>
-<li>指针数组是这样子的吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
-<h2 id="二维数组赋值的问题">二维数组赋值的问题</h2>
-<ul>
-<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
-<ul>
-<li>友元函数访问私有成员问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的指针">指针的指针</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所以说，这个<code>int</code>有用吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数的分号问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p></li>
-<li><p>答：</p></li>
-</ul>
-<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点，
-在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未
-初始化完毕。</p>
-<ul>
-<li>问：动态联编和静态联编，可以访问派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：不能调用派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：这个可以算重载嘛？，结果值为第一个</li>
-<li>答:</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>动态规划入门</title>
-    <url>/2021/08/19/DP/</url>
-    <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
-<span id="more"></span>
-<h1 id="fibonacci-sequence">Fibonacci Sequence</h1>
-<ul>
-<li>递归的思想
-<ul>
-<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
-<li>Fobonacci
-Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
-</ul></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>​
-既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-<p>​
-我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
-<h1 id="house-robber">House-robber</h1>
-<ul>
-<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你
-不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
-<li>输入：[1,2,3,1]</li>
-</ul>
-<p>输出：4</p>
-<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
-<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
-<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
-<h1 id="maximum-value-of-gifts">Maximum value of gifts</h1>
-<p>在一个 m*n
-的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于
-0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
-<p>输入:</p>
-<p>[]</p>
-<p>输出: 12</p>
-<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
-<p>​
-我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
-<h1 id="coins-exchange">Coins exchange</h1>
-<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount
-，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数
-。如果没有任何一种硬币组合能组成总金额，返回 -1
-。你可以认为每种硬币的数量是无限的。</p>
-<p>输入：coins = [1, 2, 5], S = 11</p>
-<p>输出：3</p>
-<p>解释：11 = 5 + 5 + 1</p>
-<p>输入：coins = [2], S = 3</p>
-<p>输出：-1</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
-<p><span class="math display">\[
-f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1
-\]</span></p>
-<p>如果<span class="math inline">\(x-c_i&lt;0\)</span>，则令<span
-class="math inline">\(f(x-c_i)=\infty\)</span>这样就不会选这个<span
-class="math inline">\(f(x-c_i)\)</span>了</p>
-<p>如果<span class="math inline">\(x-c_i=0\)</span>,那么<span
-class="math inline">\(f(x-c_i)=0\)</span>即<span
-class="math inline">\(f(0)=0\)</span></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
-<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
-<p>思路：
-我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
-<p>如何得到硬币的组合呢（5，5，1）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
-<h1 id="knapsack-problem">Knapsack Problem</h1>
-<p>​
-有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
-<p>如下表所示:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
-<p>​
-由于只有--辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
-<p>思路：</p>
-<p>​ 有m件物品，第i件物品的利润为<span
-class="math inline">\(v_i\)</span>重量为<span
-class="math inline">\(w_i\)</span>背包的总重量为W.</p>
-<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
-<p>子问题:在满足重量的约束条件下，将i(<span class="math inline">\(i\le
-m\)</span>)件物品选择性放入容量为j(<span class="math inline">\(j \le
-W\)</span>)的背包所获得的最大利润 <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png"
-alt="image-20210819174526184" /></p>
-<p>状态分析:</p>
-<p>​
-我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4...增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
-<p>​
-对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
-<p>​
-对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
-<p>​ 对于其它的列来说，需要用到状态转移方程，对于要求前<span
-class="math inline">\(i\)</span>件物品装进容量为<span
-class="math inline">\(j\)</span>的背包，在<span
-class="math inline">\(i-1\)</span>的基础上只需要考虑到底装不装第<span
-class="math inline">\(i\)</span>件物品，那么怎么考虑呢？要装第<span
-class="math inline">\(i\)</span>件物品首先，第<span
-class="math inline">\(i\)</span>件物品的重量必须小于背包的容量所以有: ​
-<span class="math inline">\(j-weight(i)&gt;=0\)</span>才去判断: <span
-class="math display">\[
-max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
-\]</span></p>
-<p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -552,6 +441,117 @@ alt="TTL三态门" />
       </categories>
   </entry>
   <entry>
+    <title>动态规划入门</title>
+    <url>/2021/08/19/DP/</url>
+    <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
+<span id="more"></span>
+<h1 id="fibonacci-sequence">Fibonacci Sequence</h1>
+<ul>
+<li>递归的思想
+<ul>
+<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
+<li>Fobonacci
+Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
+</ul></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>​
+既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>​
+我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
+<h1 id="house-robber">House-robber</h1>
+<ul>
+<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你
+不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
+<li>输入：[1,2,3,1]</li>
+</ul>
+<p>输出：4</p>
+<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
+<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
+<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
+<h1 id="maximum-value-of-gifts">Maximum value of gifts</h1>
+<p>在一个 m*n
+的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于
+0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
+<p>输入:</p>
+<p>[]</p>
+<p>输出: 12</p>
+<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
+<p>​
+我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
+<h1 id="coins-exchange">Coins exchange</h1>
+<p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount
+，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数
+。如果没有任何一种硬币组合能组成总金额，返回 -1
+。你可以认为每种硬币的数量是无限的。</p>
+<p>输入：coins = [1, 2, 5], S = 11</p>
+<p>输出：3</p>
+<p>解释：11 = 5 + 5 + 1</p>
+<p>输入：coins = [2], S = 3</p>
+<p>输出：-1</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
+<p><span class="math display">\[
+f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1
+\]</span></p>
+<p>如果<span class="math inline">\(x-c_i&lt;0\)</span>，则令<span
+class="math inline">\(f(x-c_i)=\infty\)</span>这样就不会选这个<span
+class="math inline">\(f(x-c_i)\)</span>了</p>
+<p>如果<span class="math inline">\(x-c_i=0\)</span>,那么<span
+class="math inline">\(f(x-c_i)=0\)</span>即<span
+class="math inline">\(f(0)=0\)</span></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
+<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
+<p>思路：
+我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
+<p>如何得到硬币的组合呢（5，5，1）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
+<h1 id="knapsack-problem">Knapsack Problem</h1>
+<p>​
+有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
+<p>如下表所示:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
+<p>​
+由于只有--辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
+<p>思路：</p>
+<p>​ 有m件物品，第i件物品的利润为<span
+class="math inline">\(v_i\)</span>重量为<span
+class="math inline">\(w_i\)</span>背包的总重量为W.</p>
+<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
+<p>子问题:在满足重量的约束条件下，将i(<span class="math inline">\(i\le
+m\)</span>)件物品选择性放入容量为j(<span class="math inline">\(j \le
+W\)</span>)的背包所获得的最大利润 <img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png"
+alt="image-20210819174526184" /></p>
+<p>状态分析:</p>
+<p>​
+我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4...增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
+<p>​
+对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
+<p>​
+对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
+<p>​ 对于其它的列来说，需要用到状态转移方程，对于要求前<span
+class="math inline">\(i\)</span>件物品装进容量为<span
+class="math inline">\(j\)</span>的背包，在<span
+class="math inline">\(i-1\)</span>的基础上只需要考虑到底装不装第<span
+class="math inline">\(i\)</span>件物品，那么怎么考虑呢？要装第<span
+class="math inline">\(i\)</span>件物品首先，第<span
+class="math inline">\(i\)</span>件物品的重量必须小于背包的容量所以有: ​
+<span class="math inline">\(j-weight(i)&gt;=0\)</span>才去判断: <span
+class="math display">\[
+max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
+\]</span></p>
+<p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -635,37 +635,6 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>毛概实践课</title>
-    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
-    <content><![CDATA[<p>毛概实践课🤗</p>
-<span id="more"></span>
-<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
-
-<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
-
-<p>看看我们的大合照😁:</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
-<p>​
-哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
-<p>​
-这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
-alt="被删除视频" />
-<figcaption aria-hidden="true">被删除视频</figcaption>
-</figure>
-<p>​
-这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
-<p>​
-总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -771,6 +740,37 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
       </categories>
   </entry>
   <entry>
+    <title>毛概实践课</title>
+    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
+    <content><![CDATA[<p>毛概实践课🤗</p>
+<span id="more"></span>
+<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
+
+<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
+
+<p>看看我们的大合照😁:</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
+<p>​
+哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
+<p>​
+这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
+alt="被删除视频" />
+<figcaption aria-hidden="true">被删除视频</figcaption>
+</figure>
+<p>​
+这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
+<p>​
+总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LinkWe Technology</title>
     <url>/2021/10/08/LinkWe/</url>
     <content><![CDATA[<p>LinkWe Technology product</p>
@@ -783,85 +783,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
 ]]></content>
       <categories>
         <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Pointer</title>
-    <url>/2021/09/03/Point/</url>
-    <content><![CDATA[<p>Review the knowledge of pointers</p>
-<span id="more"></span>
-<h1 id="pointer-category">Pointer Category</h1>
-<ul>
-<li><p>Pointer point the constant:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *name = <span class="string">&quot;chen&quot;</span>    <span class="comment">//statement a pointer point a constant</span></span><br></pre></td></tr></table></figure>
-<p>because using <code>const</code>,so the Pointer can't change variable
-in the address which it point ,so the statement as follows is incorrect
-:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;a&#x27;</span>					<span class="comment">//incorrect,pointer &quot;name&quot; can&#x27;t change constant </span></span><br></pre></td></tr></table></figure>
-<p>but name is a normal pointer ,so it could change the items it
-point,statement as follows are correct:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>				<span class="comment">//change the address the pointer point ,correct</span></span><br></pre></td></tr></table></figure>
-<p>Also,Even you have changed your string you point ,you still can't
-change the string, Please somebody tell me why ,Thank you !</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;y&#x27;</span>					<span class="comment">//incorrect,but I don&#x27;t know why!</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Constant Pointer</p>
-<p>A pointer can't change the address it point ,but it still can change
-the content it point,example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">const</span> name =<span class="string">&quot;chen&quot;</span>;     <span class="comment">//define a constant pointer</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;					<span class="comment">//correct ,it can change the constent of pointer</span></span><br><span class="line">name = <span class="string">&quot;zhang&quot;</span>;					<span class="comment">//incorrect ,it can&#x27;t change the address it points</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Constant Pointer points to constant</p>
-<p>A constant pointer points a constant ,the address pointer point is
-unchangeable and the content of address is unchangeable,example :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> name=<span class="string">&quot;chen&quot;</span>;	<span class="comment">//define a constant pointer point the constant</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;q&#x27;</span>;					<span class="comment">//incorrect ,the constant is unchangeable</span></span><br><span class="line">name =<span class="string">&#x27;ninglang&#x27;</span>;				<span class="comment">//incorrect ,the address pointed is unchangeable </span></span><br></pre></td></tr></table></figure></li>
-<li><p>Const</p>
-<p>Using a const to define a <code>integer</code> variable ,the keyword
-omitted is acceptable the definition as following is same:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-<p>formal parameters also can be describe by <code>const</code>,for
-example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
-<p>the method promise the array can't be changed ,only be read.</p></li>
-</ul>
-<h1 id="pointer-array">Pointer array</h1>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>in fact , you see the definition of Pointer array ,It is like as
-follows:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
-<p>At the same time :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
-<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
-so we can use the code to print 'a'</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="pointer-function">Pointer Function</h1>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
-<p>This function declaration is normal ,but There are some difference in
-next function declaration</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
-<p>This function declaration is pointer function ,the return is a
-pointer to <code>int</code> ,This is an address</p>
-<h1 id="pointer-to-function">Pointer To Function</h1>
-<p>To state a pointer to function ,which is a Pointer pointing function
-.declaration form:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
-<p>There are two ways to assign values to pointer variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
-<p>There are also two ways to call pointer to function</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
-<p>Example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="new-and-delete">New and Delete</h1>
-<p>operation <code>new</code> can get a space from heap and return the
-pointer to point the first address of the memory,and <code>delete</code>
-can free the space</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
-<p><code>new</code> assign space for multidimensional array:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
-<p><code>new</code> assign space with initial value:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1013,6 +934,85 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
+    <title>Pointer</title>
+    <url>/2021/09/03/Point/</url>
+    <content><![CDATA[<p>Review the knowledge of pointers</p>
+<span id="more"></span>
+<h1 id="pointer-category">Pointer Category</h1>
+<ul>
+<li><p>Pointer point the constant:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *name = <span class="string">&quot;chen&quot;</span>    <span class="comment">//statement a pointer point a constant</span></span><br></pre></td></tr></table></figure>
+<p>because using <code>const</code>,so the Pointer can't change variable
+in the address which it point ,so the statement as follows is incorrect
+:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;a&#x27;</span>					<span class="comment">//incorrect,pointer &quot;name&quot; can&#x27;t change constant </span></span><br></pre></td></tr></table></figure>
+<p>but name is a normal pointer ,so it could change the items it
+point,statement as follows are correct:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>				<span class="comment">//change the address the pointer point ,correct</span></span><br></pre></td></tr></table></figure>
+<p>Also,Even you have changed your string you point ,you still can't
+change the string, Please somebody tell me why ,Thank you !</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;y&#x27;</span>					<span class="comment">//incorrect,but I don&#x27;t know why!</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Constant Pointer</p>
+<p>A pointer can't change the address it point ,but it still can change
+the content it point,example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">const</span> name =<span class="string">&quot;chen&quot;</span>;     <span class="comment">//define a constant pointer</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;					<span class="comment">//correct ,it can change the constent of pointer</span></span><br><span class="line">name = <span class="string">&quot;zhang&quot;</span>;					<span class="comment">//incorrect ,it can&#x27;t change the address it points</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Constant Pointer points to constant</p>
+<p>A constant pointer points a constant ,the address pointer point is
+unchangeable and the content of address is unchangeable,example :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> name=<span class="string">&quot;chen&quot;</span>;	<span class="comment">//define a constant pointer point the constant</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;q&#x27;</span>;					<span class="comment">//incorrect ,the constant is unchangeable</span></span><br><span class="line">name =<span class="string">&#x27;ninglang&#x27;</span>;				<span class="comment">//incorrect ,the address pointed is unchangeable </span></span><br></pre></td></tr></table></figure></li>
+<li><p>Const</p>
+<p>Using a const to define a <code>integer</code> variable ,the keyword
+omitted is acceptable the definition as following is same:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>formal parameters also can be describe by <code>const</code>,for
+example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
+<p>the method promise the array can't be changed ,only be read.</p></li>
+</ul>
+<h1 id="pointer-array">Pointer array</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in fact , you see the definition of Pointer array ,It is like as
+follows:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
+<p>At the same time :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
+<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
+so we can use the code to print 'a'</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="pointer-function">Pointer Function</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is normal ,but There are some difference in
+next function declaration</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is pointer function ,the return is a
+pointer to <code>int</code> ,This is an address</p>
+<h1 id="pointer-to-function">Pointer To Function</h1>
+<p>To state a pointer to function ,which is a Pointer pointing function
+.declaration form:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
+<p>There are two ways to assign values to pointer variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
+<p>There are also two ways to call pointer to function</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
+<p>Example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="new-and-delete">New and Delete</h1>
+<p>operation <code>new</code> can get a space from heap and return the
+pointer to point the first address of the memory,and <code>delete</code>
+can free the space</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space for multidimensional array:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space with initial value:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>保研注意事项</title>
     <url>/2023/06/13/Postgraduate/</url>
     <content><![CDATA[<p>保研注意事项</p>
@@ -1042,57 +1042,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
 ]]></content>
       <categories>
         <category>生活</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1150,6 +1099,67 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1386,6 +1396,39 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>爬虫小结</title>
     <url>/2021/02/02/Web%20Crawler/</url>
     <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
@@ -1468,128 +1511,110 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
       </categories>
   </entry>
   <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
+    <title>Windows常用指令和工具</title>
+    <url>/2022/01/05/Windows_command/</url>
+    <content><![CDATA[<p>电脑常用的一些操作</p>
 <span id="more"></span>
+<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
+<p>现在我的F盘里面有一个文件夹blog</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
+<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
+<p>指令如下</p>
+<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
+<h1 id="关闭windows更新">关闭Windows更新</h1>
+<p>安装<code>wu10man</code>，点击该处访问其<a
+href="https://github.com/WereDev/Wu10Man">github</a>.</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
+<p>安装打开<code>wu10man</code>,选择即可</p>
+<h1 id="右键菜单规定">右键菜单规定</h1>
+<p>下载ccleaner</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
+<p>对其相应的进行调整即可</p>
+<h1 id="c盘清理">C盘清理</h1>
+<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
+<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
+<p>然后打开环境变量的设置</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
+<p>就可以看到这个pagefile，点击更改。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
+<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
+<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
+<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
+<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘分析软件">磁盘分析软件</h1>
+<p>这里，推荐一个磁盘分析软件，<a
+href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
+<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
+<h1 id="c盘扩容">C盘扩容</h1>
+<p>首先，下载<a
+href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
+Partition Wizrd Free</a></p>
+<p>如果电脑显示Bitlocker，如下图</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
+<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
+<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
+<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
+<p>右键C盘，选择分给的区扩容</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
+<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
+<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
+<h1 id="latex语法">Latex语法</h1>
+<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
+<span class="math display">\[
+f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
+\]</span> 这时，你需要在word里面输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
+<h1 id="重装系统">重装系统</h1>
+<p>这里使用这个超星的资源<a
+href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
+<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
+<p>其中18表示目标帧率</p>
+<h1 id="gitgnore的编写">gitgnore的编写</h1>
+<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
+alt="image-20231017175719127" />
+<figcaption aria-hidden="true">image-20231017175719127</figcaption>
+</figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
+        <category>Windows</category>
       </categories>
   </entry>
   <entry>
@@ -1856,110 +1881,85 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>Windows常用指令和工具</title>
-    <url>/2022/01/05/Windows_command/</url>
-    <content><![CDATA[<p>电脑常用的一些操作</p>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
 <span id="more"></span>
-<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
-<p>现在我的F盘里面有一个文件夹blog</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
-<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
-<p>指令如下</p>
-<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
-<h1 id="关闭windows更新">关闭Windows更新</h1>
-<p>安装<code>wu10man</code>，点击该处访问其<a
-href="https://github.com/WereDev/Wu10Man">github</a>.</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
-<p>安装打开<code>wu10man</code>,选择即可</p>
-<h1 id="右键菜单规定">右键菜单规定</h1>
-<p>下载ccleaner</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
-<p>对其相应的进行调整即可</p>
-<h1 id="c盘清理">C盘清理</h1>
-<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
-<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
-<p>然后打开环境变量的设置</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
-<p>就可以看到这个pagefile，点击更改。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
-<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
-<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
-<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
-<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
-<h1 id="磁盘分析软件">磁盘分析软件</h1>
-<p>这里，推荐一个磁盘分析软件，<a
-href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
-<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
-<h1 id="c盘扩容">C盘扩容</h1>
-<p>首先，下载<a
-href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
-Partition Wizrd Free</a></p>
-<p>如果电脑显示Bitlocker，如下图</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
-<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
-<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
-<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
-<p>右键C盘，选择分给的区扩容</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
-<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
-<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
-<h1 id="latex语法">Latex语法</h1>
-<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
-<span class="math display">\[
-f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
-\]</span> 这时，你需要在word里面输入下面的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
-<h1 id="重装系统">重装系统</h1>
-<p>这里使用这个超星的资源<a
-href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
-<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
-<p>其中18表示目标帧率</p>
-<h1 id="gitgnore的编写">gitgnore的编写</h1>
-<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
-alt="image-20231017175719127" />
-<figcaption aria-hidden="true">image-20231017175719127</figcaption>
-</figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
 ]]></content>
       <categories>
-        <category>Windows</category>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -2252,6 +2252,22 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2326,74 +2342,6 @@ class="math display">\[
       </categories>
   </entry>
   <entry>
-    <title>ISAC</title>
-    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<p>通感一体化</p>
-<span id="more"></span>
-<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
-<p><a
-href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
-- 华为</a>。</p>
-<p><a
-href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
-<p><a
-href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
-3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
-<blockquote>
-<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
-<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<p>NOMA:</p>
-<blockquote>
-<p>1、串行干扰删除（SIC）</p>
-<p>2、功率复用</p>
-</blockquote>
-<p><a
-href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
-5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
-<blockquote>
-<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
-</blockquote>
-<p><a
-href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
-<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
-<ol type="1">
-<li>通信与感知共享硬件和频谱</li>
-<li>实现波形和信号处理一体化</li>
-<li>信息可以跨层、跨模块、跨节点
-共享，通信与感知完全一体化，系统性能显著提升，网络系统
-的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
-Equipment，UE）之间更大规模的协同、通信感
-知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
-术创新还可以进一步提升感知数据的处理能力。</li>
-</ol>
-<p>ISAC的作用：在增强定位能力和毫米级</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>近代史实践总结</title>
     <url>/2022/01/03/%E8%BF%91%E4%BB%A3%E5%8F%B2%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p>🙄</p>
@@ -2445,6 +2393,58 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220103223731093.png" 
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ISAC</title>
+    <url>/2023/07/06/%E9%80%9A%E4%BF%A1%E6%84%9F%E7%9F%A5%E4%B8%80%E4%BD%93%E5%8C%96/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<p>通感一体化</p>
+<span id="more"></span>
+<h1 id="什么是通感一体化isac">什么是通感一体化（ISAC）</h1>
+<p><a
+href="https://www.huawei.com/cn/huaweitech/future-technologies/integrated-sensing-communication-concept-practice">通信感知一体化——从概念到实践
+- 华为</a>。</p>
+<p><a
+href="https://baike.baidu.com/item/%E5%A4%A9%E7%BA%BF%E6%8C%AF%E5%AD%90/4721920">天线振子_百度百科</a></p>
+<p><a
+href="https://blog.csdn.net/LinkEverything/article/details/125571808">(35条消息)
+3GPP信道模型路损基础知识_3gpp常用信道模型_LinkEverything的博客-CSDN博客</a>。</p>
+<blockquote>
+<p>即非正交多址接入(NOMA)。在正交多址技术（OMA）中，只能为一个用户分配单一的无线资源，例如按频率分割或按时间分割，而NOMA方式可将一个资源分配给多个用户。在某些场景中，比如远近效应场景和广覆盖多节点接入的场景，特别是上行密集场景，采用功率复用的非正交接入多址方式较传统的正交接入有明显的性能优势，更适合未来系统的部署。目前已经有研究验证了在城市地区采用NOMA的效果，并已证实，采用该方法可使无线接入宏蜂窝的总吞吐量提高50%左右。非正交多址复用通过结合串行干扰消除或类最大似然解调才能取得容量极限，因此技术实现的难点在于是否能设计出低复杂度且有效的接收机算法。</p>
+<p>NOMA不同于传统的正交传输，在发送端采用非正交发送，主动引入干扰信息，在接收端通过串行干扰删除技术实现正确解调。与正交传输相比，接收机复杂度有所提升，但可以获得更高的频谱效率。非正交传输的基本思想是利用复杂的接收机设计来换取更高的频谱效率，随着芯片处理能力的增强，将使非正交传输技术在实际系统中的应用成为可能。</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<p>NOMA:</p>
+<blockquote>
+<p>1、串行干扰删除（SIC）</p>
+<p>2、功率复用</p>
+</blockquote>
+<p><a
+href="https://blog.csdn.net/qq_28734159/article/details/82875242?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-82875242-blog-108223543.235%5Ev38%5Epc_relevant_sort_base2&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=7">(35条消息)
+5G:非正交多址接入（NOMA）与串行干扰删除（SIC）_串行干扰消除_sswzw_cll的博客-CSDN博客</a>.</p>
+<blockquote>
+<p>对于LTE架构来说，网元包含的很多，其中，基站也是其中的一个网元，除此外还有MME、SGW、PDN等等。基站就是一个网元，基站和网元的关系类似苹果和水果的关系。网元划分的粒度很多，看用途了，有物理网元，逻辑网元，等效网元数等</p>
+</blockquote>
+<p><a
+href="https://baike.baidu.com/item/%E7%BD%91%E5%85%83/11040242">网元_百度百科</a>.</p>
+<p>感知与通信从松耦合到完全一体化可分为三个等级:</p>
+<ol type="1">
+<li>通信与感知共享硬件和频谱</li>
+<li>实现波形和信号处理一体化</li>
+<li>信息可以跨层、跨模块、跨节点
+共享，通信与感知完全一体化，系统性能显著提升，网络系统
+的总体成本和能耗将大大减少、系统规模也更小，基站与用户 设备（User
+Equipment，UE）之间更大规模的协同、通信感
+知波形联合设计、先进的干扰消除技术、原生AI 技术等其他技
+术创新还可以进一步提升感知数据的处理能力。</li>
+</ol>
+<p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
