@@ -934,38 +934,6 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
-- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
-- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a
-href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -1042,6 +1010,38 @@ can free the space</p>
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
+- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
+- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a
+href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+]]></content>
+      <categories>
+        <category>生活</category>
       </categories>
   </entry>
   <entry>
@@ -1700,6 +1700,138 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux开发项目总结</title>
+    <url>/2023/11/25/linux_problem/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+<h1 id="python">Python</h1>
+<ul>
+<li>pip永久换源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
+<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
+<ol type="1">
+<li>安装<code>pipreqs</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>进入项目主要目录：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>生成requirement.txt</li>
+</ol>
+<h1 id="docker">Docker</h1>
+<p>​
+虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
+alt="image-20231125161329086" />
+<figcaption aria-hidden="true">image-20231125161329086</figcaption>
+</figure>
+<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
+<ul>
+<li>Docker search</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建并运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>杀掉</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker删除容器&amp;&amp;镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行多台docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>观察docker情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h1 id="linux">Linux</h1>
+<h2 id="解压tar包">解压tar包</h2>
+<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
+verbose详细显示，-f file文件属性）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
+<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="查看ip地址">查看ip地址</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
+<p>观察NAT转发表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
+<h2 id="path">PATH</h2>
+<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Python虚拟环境virtualenv4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看命令执行情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找<code>grep</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="进程">进程</h2>
+<p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
+<h2 id="git">git</h2>
+<ul>
+<li>git如何设置gitignore</li>
+</ul>
+<ol type="1">
+<li>新建<code>.gitgnore</code>文件</li>
+<li>添加如下代码排除所有工程文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="设置脚本自启动">设置脚本自启动</h2>
+<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1963,138 +2095,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
-    <title>Linux开发项目总结</title>
-    <url>/2023/11/25/linux_problem/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-<h1 id="python">Python</h1>
-<ul>
-<li>pip永久换源</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
-<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
-<ol type="1">
-<li>安装<code>pipreqs</code>:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>进入项目主要目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>生成requirement.txt</li>
-</ol>
-<h1 id="docker">Docker</h1>
-<p>​
-虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
-alt="image-20231125161329086" />
-<figcaption aria-hidden="true">image-20231125161329086</figcaption>
-</figure>
-<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
-<ul>
-<li>Docker search</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建并运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>停止运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>杀掉</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker删除容器&amp;&amp;镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行多台docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>观察docker情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<h1 id="linux">Linux</h1>
-<h2 id="解压tar包">解压tar包</h2>
-<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
-verbose详细显示，-f file文件属性）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
-<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="查看ip地址">查看ip地址</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
-<p>观察NAT转发表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
-<h2 id="path">PATH</h2>
-<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Python虚拟环境virtualenv4</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看命令执行情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找<code>grep</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
-<h2 id="进程">进程</h2>
-<p>查看进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
-<h2 id="git">git</h2>
-<ul>
-<li>git如何设置gitignore</li>
-</ul>
-<ol type="1">
-<li>新建<code>.gitgnore</code>文件</li>
-<li>添加如下代码排除所有工程文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="设置脚本自启动">设置脚本自启动</h2>
-<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2225,33 +2225,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
-<span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2323,6 +2296,33 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
+<span id="more"></span>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
