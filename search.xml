@@ -385,6 +385,45 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
+<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
+</li>
+<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
+</li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
+</li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
+</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -468,59 +507,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>]]></content>
-      <categories>
-        <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
-<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
-</li>
-<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
-</li>
-<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
-</li>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
-</li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
-</li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
-</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>毛概实践课</title>
     <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
     <content><![CDATA[<p>毛概实践课🤗</p>
@@ -539,6 +525,85 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>]]></content>
+      <categories>
+        <category>Product design</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Neural network(1)---Logistic Regression</title>
+    <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
+    <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic way</p>
+<span id="more"></span>
+<h1 id="Lead-to"><a href="#Lead-to" class="headerlink" title="Lead to"></a>Lead to</h1><p>When I first talk about this topic, I want to use a Mathematical way to explain the algorithm—-the <a href="https://en.wikipedia.iwiki.eu.org/wiki/Logistic_regression">Logistic Regression</a>.fisrtly , I want to introduce this algorithm to you ,it is a tool to solve binary classification problem,firstly ,for a binary classification problem you may recall the function $y=wx+b$,that is linear regression which is the simplest binary classification function ,if you have got the $w,b$,and you input a $x$,you will  get a $\hat y$, and if the actual value of $y$ corresponding to $x$ is bigger  then $\hat y$,or is smaller then $\hat y$,you will use this way to get two two categories in much data </p>
+<h1 id="Overview-of-logistic-regression"><a href="#Overview-of-logistic-regression" class="headerlink" title="Overview of logistic regression"></a>Overview of logistic regression</h1><p>Today we will introduce a new algorithm to solve this problem:</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+z=w^{\top} x+b \\
+\hat{y}=a=\sigma(z) \\
+L(a, y)=-(y \log (a)+(1-y) \log (1-a))
+\end{array}\right.</script><p>you give the x and y ,you need give the initialization of $w,b$ and program will help you to solve the $\hat y$ and the loss function $L(a,y)$ ,and the function $\sigma(z)$ is </p>
+<script type="math/tex; mode=display">
+\sigma(z)=\frac{e^z}{e^z+1}</script><p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Transparent-2.png" style="zoom: 80%;" /></p>
+<p>$L$ is just like the $\frac{1}{2}(y-\hat y)^2$,which represent how closer two points is ? if $L$ is very small ,which represent the points is very closer. But why we don’t choose $\frac{1}{2}(y-\hat y)^2$,because if we choose this function ,the loss function is maybe not a convex function ,which exist many local minimize solve ,just like this picture :</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823212505129.png" style="zoom: 25%;" /></p>
+<p>when the loss function is non-convex ,the gradient can’t work very well ,so we choose the another function as the loos function  ,So why $L(a,y)$ can be used to describe the distance ? just see two picture:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
+<p>the  two picture is the $L(a,y)$,when I assume that y=0 and y=1 and the value of $L$ is dependent on the value of a,</p>
+<p>with different a,the $L$ have different value ,when $y=0$, only when $a=0$,then the Probability also the $L$ is equal to 1</p>
+<p>1 represent <code>True</code>,0 represents <code>False</code>,so this is the reason why we choose this function to represents our “Loss function”.</p>
+<p>But unfortunately ,this value can’t represent the overall performance on the model, so we need another function to reflect the accuracy of model ,so we introduce the $J$ ,which is mean “<a href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost function</a>“ ,Its expression is :</p>
+<script type="math/tex; mode=display">
+J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))</script><script type="math/tex; mode=display">
+dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}</script><p>so  we can get :</p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{aligned}dz &=\frac{dl}{da}\cdot\frac{da}{dz}\\&=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot \frac{e^z}{(e^z+1)^2}\\&=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&=a-y\end{aligned}\nonumber\end{equation}</script><p>ok, we get the $dz$,then we can get some other import information like this :</p>
+<script type="math/tex; mode=display">
+dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can use Gradient descent to update the $w,b$:</p>
+<script type="math/tex; mode=display">
+\cases{w=w-\alpha w\\b=b-\alpha b}</script><p>in this expression $a^{(i)}=\hat y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})$.and we can calculate the derivative of $J$ with respect to $w$  and $b$:</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))</script><p>you can see :</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)</script><p>so forward propagation just like this  :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
+<h1 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h1><p>whenever possible avoid explicit <code>for loops</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
+<p>if we use <code>python-numpy</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
+<p>python-numpy’s syntax is simpler, and calculation is more efficient,That is pretty good,deep learning need a lots of calculations ,so matrix syntax by numpy is recommended </p>
+<h1 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h1><p>Building this model neural network  , let’s do from the structure</p>
+<ul>
+<li>read the data and define the sigmoid function</li>
+<li>use data and sigmoid function to propagate the $J$</li>
+<li>use $J$ to backpagate $dw$ and $db$ </li>
+<li>set number of iteration and learning rate  to update the $J$ (makes it smaller)</li>
+<li>predict the train data and the test data ,get the accuracy of model’s prediction</li>
+<li>plot the $J-n_{iteration}$ figure,see whether it is overfit or not ?</li>
+</ul>
+<h2 id="import-lib-and-read-data"><a href="#import-lib-and-read-data" class="headerlink" title="import lib and read data"></a>import lib and read data</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
+<h2 id="data-normalization"><a href="#data-normalization" class="headerlink" title="data normalization"></a>data normalization</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
+<h2 id="define-sigmoid"><a href="#define-sigmoid" class="headerlink" title="define sigmoid"></a>define sigmoid</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
+<h2 id="propagation"><a href="#propagation" class="headerlink" title="propagation"></a>propagation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-optimize"><a href="#define-optimize" class="headerlink" title="define optimize"></a>define optimize</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-predict"><a href="#define-predict" class="headerlink" title="define predict"></a>define predict</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
+<h2 id="model"><a href="#model" class="headerlink" title="model"></a>model</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Neural Network</category>
       </categories>
   </entry>
   <entry>
@@ -626,71 +691,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>生活</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Neural network(1)---Logistic Regression</title>
-    <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
-    <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic way</p>
-<span id="more"></span>
-<h1 id="Lead-to"><a href="#Lead-to" class="headerlink" title="Lead to"></a>Lead to</h1><p>When I first talk about this topic, I want to use a Mathematical way to explain the algorithm—-the <a href="https://en.wikipedia.iwiki.eu.org/wiki/Logistic_regression">Logistic Regression</a>.fisrtly , I want to introduce this algorithm to you ,it is a tool to solve binary classification problem,firstly ,for a binary classification problem you may recall the function $y=wx+b$,that is linear regression which is the simplest binary classification function ,if you have got the $w,b$,and you input a $x$,you will  get a $\hat y$, and if the actual value of $y$ corresponding to $x$ is bigger  then $\hat y$,or is smaller then $\hat y$,you will use this way to get two two categories in much data </p>
-<h1 id="Overview-of-logistic-regression"><a href="#Overview-of-logistic-regression" class="headerlink" title="Overview of logistic regression"></a>Overview of logistic regression</h1><p>Today we will introduce a new algorithm to solve this problem:</p>
-<script type="math/tex; mode=display">
-\left\{\begin{array}{l}
-z=w^{\top} x+b \\
-\hat{y}=a=\sigma(z) \\
-L(a, y)=-(y \log (a)+(1-y) \log (1-a))
-\end{array}\right.</script><p>you give the x and y ,you need give the initialization of $w,b$ and program will help you to solve the $\hat y$ and the loss function $L(a,y)$ ,and the function $\sigma(z)$ is </p>
-<script type="math/tex; mode=display">
-\sigma(z)=\frac{e^z}{e^z+1}</script><p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Transparent-2.png" style="zoom: 80%;" /></p>
-<p>$L$ is just like the $\frac{1}{2}(y-\hat y)^2$,which represent how closer two points is ? if $L$ is very small ,which represent the points is very closer. But why we don’t choose $\frac{1}{2}(y-\hat y)^2$,because if we choose this function ,the loss function is maybe not a convex function ,which exist many local minimize solve ,just like this picture :</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823212505129.png" style="zoom: 25%;" /></p>
-<p>when the loss function is non-convex ,the gradient can’t work very well ,so we choose the another function as the loos function  ,So why $L(a,y)$ can be used to describe the distance ? just see two picture:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
-<p>the  two picture is the $L(a,y)$,when I assume that y=0 and y=1 and the value of $L$ is dependent on the value of a,</p>
-<p>with different a,the $L$ have different value ,when $y=0$, only when $a=0$,then the Probability also the $L$ is equal to 1</p>
-<p>1 represent <code>True</code>,0 represents <code>False</code>,so this is the reason why we choose this function to represents our “Loss function”.</p>
-<p>But unfortunately ,this value can’t represent the overall performance on the model, so we need another function to reflect the accuracy of model ,so we introduce the $J$ ,which is mean “<a href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost function</a>“ ,Its expression is :</p>
-<script type="math/tex; mode=display">
-J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))</script><script type="math/tex; mode=display">
-dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}</script><p>so  we can get :</p>
-<script type="math/tex; mode=display">
-\begin{equation}\begin{aligned}dz &=\frac{dl}{da}\cdot\frac{da}{dz}\\&=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot \frac{e^z}{(e^z+1)^2}\\&=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&=a-y\end{aligned}\nonumber\end{equation}</script><p>ok, we get the $dz$,then we can get some other import information like this :</p>
-<script type="math/tex; mode=display">
-dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can use Gradient descent to update the $w,b$:</p>
-<script type="math/tex; mode=display">
-\cases{w=w-\alpha w\\b=b-\alpha b}</script><p>in this expression $a^{(i)}=\hat y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})$.and we can calculate the derivative of $J$ with respect to $w$  and $b$:</p>
-<script type="math/tex; mode=display">
-\frac{\partial}{\partial w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))</script><p>you can see :</p>
-<script type="math/tex; mode=display">
-\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)</script><p>so forward propagation just like this  :</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
-<h1 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h1><p>whenever possible avoid explicit <code>for loops</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
-<p>if we use <code>python-numpy</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
-<p>python-numpy’s syntax is simpler, and calculation is more efficient,That is pretty good,deep learning need a lots of calculations ,so matrix syntax by numpy is recommended </p>
-<h1 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h1><p>Building this model neural network  , let’s do from the structure</p>
-<ul>
-<li>read the data and define the sigmoid function</li>
-<li>use data and sigmoid function to propagate the $J$</li>
-<li>use $J$ to backpagate $dw$ and $db$ </li>
-<li>set number of iteration and learning rate  to update the $J$ (makes it smaller)</li>
-<li>predict the train data and the test data ,get the accuracy of model’s prediction</li>
-<li>plot the $J-n_{iteration}$ figure,see whether it is overfit or not ?</li>
-</ul>
-<h2 id="import-lib-and-read-data"><a href="#import-lib-and-read-data" class="headerlink" title="import lib and read data"></a>import lib and read data</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
-<h2 id="data-normalization"><a href="#data-normalization" class="headerlink" title="data normalization"></a>data normalization</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
-<h2 id="define-sigmoid"><a href="#define-sigmoid" class="headerlink" title="define sigmoid"></a>define sigmoid</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
-<h2 id="propagation"><a href="#propagation" class="headerlink" title="propagation"></a>propagation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
-<h2 id="define-optimize"><a href="#define-optimize" class="headerlink" title="define optimize"></a>define optimize</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
-<h2 id="define-predict"><a href="#define-predict" class="headerlink" title="define predict"></a>define predict</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
-<h2 id="model"><a href="#model" class="headerlink" title="model"></a>model</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Neural Network</category>
       </categories>
   </entry>
   <entry>
@@ -1108,115 +1108,6 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title>Linux开发项目总结</title>
-    <url>/2023/11/25/linux_problem/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><ul>
-<li>pip永久换源</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
-<h2 id="生成项目所需要的各种包"><a href="#生成项目所需要的各种包" class="headerlink" title="生成项目所需要的各种包"></a>生成项目所需要的各种包</h2><ol>
-<li>安装<code>pipreqs</code>:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<ol>
-<li>进入项目主要目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
-<ol>
-<li>生成requirement.txt</li>
-</ol>
-<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>​    虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png" alt="image-20231125161329086"></p>
-<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
-<ul>
-<li>Docker search</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建并运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>停止运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>杀掉</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker删除容器&amp;&amp;镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行多台docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>观察docker情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="解压tar包"><a href="#解压tar包" class="headerlink" title="解压tar包"></a>解压tar包</h2><p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v verbose详细显示，-f file文件属性）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
-<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="查看ip地址"><a href="#查看ip地址" class="headerlink" title="查看ip地址"></a>查看ip地址</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
-<p>观察NAT转发表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
-<h2 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h2><p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Python虚拟环境virtualenv4</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看命令执行情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找<code>grep</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
-<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>查看进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
-<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><ul>
-<li>git如何设置gitignore</li>
-</ul>
-<ol>
-<li>新建<code>.gitgnore</code>文件</li>
-<li>添加如下代码排除所有工程文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="设置脚本自启动"><a href="#设置脚本自启动" class="headerlink" title="设置脚本自启动"></a>设置脚本自启动</h2><p>​    修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1428,6 +1319,120 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>]]></content>
+  </entry>
+  <entry>
+    <title>Linux开发项目总结</title>
+    <url>/2023/11/25/linux_problem/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+<h1 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h1><ul>
+<li>pip永久换源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
+<h2 id="生成项目所需要的各种包"><a href="#生成项目所需要的各种包" class="headerlink" title="生成项目所需要的各种包"></a>生成项目所需要的各种包</h2><ol>
+<li>安装<code>pipreqs</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<ol>
+<li>进入项目主要目录：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
+<ol>
+<li>生成requirement.txt</li>
+</ol>
+<h1 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h1><p>​    虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png" alt="image-20231125161329086"></p>
+<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
+<ul>
+<li>Docker search</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建并运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>杀掉</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker删除容器&amp;&amp;镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行多台docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>观察docker情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h1 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h1><h2 id="解压tar包"><a href="#解压tar包" class="headerlink" title="解压tar包"></a>解压tar包</h2><p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v verbose详细显示，-f file文件属性）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
+<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="查看ip地址"><a href="#查看ip地址" class="headerlink" title="查看ip地址"></a>查看ip地址</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
+<p>观察NAT转发表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
+<h2 id="PATH"><a href="#PATH" class="headerlink" title="PATH"></a>PATH</h2><p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Python虚拟环境virtualenv4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看命令执行情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找<code>grep</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h2><p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><ul>
+<li>git如何设置gitignore</li>
+</ul>
+<ol>
+<li>新建<code>.gitgnore</code>文件</li>
+<li>添加如下代码排除所有工程文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="设置脚本自启动"><a href="#设置脚本自启动" class="headerlink" title="设置脚本自启动"></a>设置脚本自启动</h2><p>​    修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -1576,11 +1581,6 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
       <categories>
         <category>Code</category>
       </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>]]></content>
   </entry>
   <entry>
     <title>近代史实践总结</title>
