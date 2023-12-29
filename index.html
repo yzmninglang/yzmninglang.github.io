@@ -237,7 +237,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2023-12-29 16:54:13 / Modified: 16:59:16" itemprop="dateCreated datePublished" datetime="2023-12-29T16:54:13+08:00">2023-12-29</time>
+      <time title="Created: 2023-12-29 16:54:13 / Modified: 19:03:17" itemprop="dateCreated datePublished" datetime="2023-12-29T16:54:13+08:00">2023-12-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -262,6 +262,12 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="miniconda-安装">MiniConda 安装</h1>
+<p>设置conda为环境变量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/miniconda3/bin</span><br></pre></td></tr></table></figure>
+<p>编辑<code>~/.bashrc</code>,追加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>保存，输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name yourEnv python=2.7</span><br></pre></td></tr></table></figure>
 
       
