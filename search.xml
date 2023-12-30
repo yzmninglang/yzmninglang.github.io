@@ -1153,6 +1153,31 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>树莓派实现联邦学习</title>
+    <url>/2023/12/29/Raspberry_federated_learning/</url>
+    <content><![CDATA[<h1 id="miniconda-安装">MiniConda 安装</h1>
+<p>设置conda为环境变量</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/miniconda3/bin</span><br></pre></td></tr></table></figure>
+<p>编辑<code>~/.bashrc</code>,追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>保存，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
+<p>conda换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>新建conda环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name Federated_Learn python=3.8</span><br></pre></td></tr></table></figure>
+<p>conda查看环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<p>conda激活环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
+<p>pip换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DSP</title>
     <url>/2022/03/14/Signals%20and%20Systems/</url>
     <content><![CDATA[<p>信号与系统笔记</p>
@@ -1183,31 +1208,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>树莓派实现联邦学习</title>
-    <url>/2023/12/29/Raspberry_federated_learning/</url>
-    <content><![CDATA[<h1 id="miniconda-安装">MiniConda 安装</h1>
-<p>设置conda为环境变量</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/miniconda3/bin</span><br></pre></td></tr></table></figure>
-<p>编辑<code>~/.bashrc</code>,追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
-<p>保存，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
-<p>conda换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>新建conda环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name Federated_Learn python=3.8</span><br></pre></td></tr></table></figure>
-<p>conda查看环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
-<p>conda激活环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
-<p>pip换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
