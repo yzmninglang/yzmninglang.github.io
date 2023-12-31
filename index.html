@@ -235,9 +235,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-12-29 16:54:13 / Modified: 20:09:55" itemprop="dateCreated datePublished" datetime="2023-12-29T16:54:13+08:00">2023-12-29</time>
+      <time title="Created: 2023-12-29 16:54:13" itemprop="dateCreated datePublished" datetime="2023-12-29T16:54:13+08:00">2023-12-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-12-31 16:08:36" itemprop="dateModified" datetime="2023-12-31T16:08:36+08:00">2023-12-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,7 +267,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="MiniConda-安装"><a href="#MiniConda-安装" class="headerlink" title="MiniConda 安装"></a>MiniConda 安装</h1><p>设置conda为环境变量</p>
+          <h1 id="miniconda-安装">MiniConda 安装</h1>
+<p>设置conda为环境变量</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/miniconda3/bin</span><br></pre></td></tr></table></figure>
 <p>编辑<code>~/.bashrc</code>,追加</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
@@ -277,6 +284,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
 <p>pip换源</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h1 id="torch的安装">Torch的安装</h1>
+<p>对于没有GPU的板子，直接安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -506,6 +516,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <span id="more"></span>
+
       
     </div>
 
