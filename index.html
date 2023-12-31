@@ -243,7 +243,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-12-31 18:10:00" itemprop="dateModified" datetime="2023-12-31T18:10:00+08:00">2023-12-31</time>
+      <time title="Modified: 2023-12-31 18:11:49" itemprop="dateModified" datetime="2023-12-31T18:11:49+08:00">2023-12-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -294,11 +294,19 @@ target="_blank" rel="noopener" href="https://pypi.org/project/torch/1.8.0/#modal
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
 <h2 id="jupyter配置">jupyter配置</h2>
-<p>先生成jupyter的配置文件夹</p>
+<ul>
+<li>先生成jupyter的配置文件夹</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
-<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>,设置jupyter的密码</p>
+<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
+<ul>
+<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
+</ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
-<p>输入密码即可</p>
+<ul>
+<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
