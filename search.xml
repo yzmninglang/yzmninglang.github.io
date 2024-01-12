@@ -1045,57 +1045,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
       </categories>
   </entry>
   <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1147,6 +1096,57 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 <li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
 <li>答：</li>
 </ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -1748,151 +1748,10 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
       </categories>
   </entry>
   <entry>
-    <title>Linux开发项目总结</title>
-    <url>/2023/11/25/linux_problem/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-<h1 id="python">Python</h1>
-<ul>
-<li>pip永久换源</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
-<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
-<ol type="1">
-<li>安装<code>pipreqs</code>:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>进入项目主要目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>生成requirement.txt</li>
-</ol>
-<h1 id="docker">Docker</h1>
-<p>​
-虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
-alt="image-20231125161329086" />
-<figcaption aria-hidden="true">image-20231125161329086</figcaption>
-</figure>
-<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
-<ul>
-<li>Docker search</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker 换源</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://frd9mvwo.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建并运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>停止运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>杀掉</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker删除容器&amp;&amp;镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行多台docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>观察docker情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<h1 id="linux">Linux</h1>
-<h2 id="解压tar包">解压tar包</h2>
-<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
-verbose详细显示，-f file文件属性）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
-<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="查看ip地址">查看ip地址</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
-<p>观察NAT转发表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
-<h2 id="path">PATH</h2>
-<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Python虚拟环境virtualenv4</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看命令执行情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找<code>grep</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
-<h2 id="进程">进程</h2>
-<p>查看进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
-<h2 id="git">git</h2>
-<ul>
-<li>git如何设置gitignore</li>
-</ul>
-<ol type="1">
-<li>新建<code>.gitgnore</code>文件</li>
-<li>添加如下代码排除所有工程文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="设置脚本自启动">设置脚本自启动</h2>
-<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="部署seafileonlyoffice">部署seafile+onlyoffice</h1>
-<ol type="1">
-<li>先下载<code>docker-compose</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  office-preview:</span><br><span class="line">    image: seafileltd/office-preview:latest</span><br><span class="line">    container_name: seafile-office-preview</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8086:8089&quot;</span></span><br><span class="line">    <span class="built_in">command</span>: bash start.sh</span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/office-preview/shared:/shared  <span class="comment">##宿主机路径可以自定义</span></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.11</span><br><span class="line">    container_name: seafile-mysql</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=db_dev  <span class="comment"># Requested, set the root&#x27;s password of MySQL service.</span></span><br><span class="line">      - MYSQL_LOG_CONSOLE=<span class="literal">true</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-mysql/db:/var/lib/mysql  <span class="comment"># Requested, specifies the path to MySQL data persistent store.</span></span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line"></span><br><span class="line">  memcached:</span><br><span class="line">    image: memcached:1.6</span><br><span class="line">    container_name: seafile-memcached</span><br><span class="line">    entrypoint: memcached -m 256</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  onlyoffice: </span><br><span class="line">    image: onlyoffice/documentserver</span><br><span class="line">    container_name: onlyoffice </span><br><span class="line">    environment:</span><br><span class="line">      - JWT_SECRET=seafile123</span><br><span class="line">      - JWT_ENABLED=<span class="literal">true</span></span><br><span class="line">      - JWT_HEADER=Authorization</span><br><span class="line">      - JWT_IN_BODY=<span class="literal">true</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-onlyoffice/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/data:/var/www/onlyoffice/Data</span><br><span class="line">      - ./opt/seafile-onlyoffice/lib:/var/lib/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/db:/var/lib/postgresql</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  seafile:</span><br><span class="line">    image: seafileltd/seafile-mc:latest</span><br><span class="line">    container_name: seafile</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8089:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;8090:8080&quot;</span></span><br><span class="line"><span class="comment">#      - &quot;443:443&quot;  # If https is enabled, cancel the comment.</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-data:/shared   <span class="comment"># Requested, specifies the path to Seafile data persistent store.</span></span><br><span class="line">    environment:</span><br><span class="line">      - DB_HOST=db</span><br><span class="line">      - DB_ROOT_PASSWD=db_dev  <span class="comment"># Requested, the value shuold be root&#x27;s password of MySQL service.</span></span><br><span class="line"><span class="comment">#      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.</span></span><br><span class="line">      - SEAFILE_ADMIN_EMAIL=ninglang@qq.com <span class="comment"># Specifies Seafile admin user, default is &#x27;me@example.com&#x27;.</span></span><br><span class="line">      - SEAFILE_ADMIN_PASSWORD=3761234yzm     <span class="comment"># Specifies Seafile admin password, default is &#x27;asecret&#x27;.</span></span><br><span class="line">      - SEAFILE_SERVER_LETSENCRYPT=<span class="literal">false</span>   <span class="comment"># Whether use letsencrypt to generate cert.</span></span><br><span class="line">      - SEAFILE_SERVER_HOSTNAME=3865.ninglang.fun:8089 <span class="comment"># Specifies your host name.</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">      - memcached</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  seafile-net:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>修改seahub</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#进入seafile</span></span><br><span class="line">docker <span class="built_in">exec</span> -it seafile /bin/bash</span><br><span class="line"><span class="comment">#进入conf</span></span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">vim seahub_settings.py</span><br></pre></td></tr></table></figure>
-<p>追加<code>seahub_settings.py</code>内容如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Enable Only Office</span></span><br><span class="line">ENABLE_ONLYOFFICE = <span class="literal">True</span></span><br><span class="line">VERIFY_ONLYOFFICE_CERTIFICATE = <span class="literal">True</span></span><br><span class="line">ONLYOFFICE_JWT_SECRET = <span class="string">&#x27;seafile123&#x27;</span></span><br><span class="line"><span class="comment"># ONLYOFFICE_APIJS_URL = &#x27;http&#123;s&#125;://&#123;your OnlyOffice server&#x27;s domain or IP&#125;/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_APIJS_URL = <span class="string">&#x27;http://3865.ninglang.fun:8080/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_FILE_EXTENSION = (<span class="string">&#x27;doc&#x27;</span>, <span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;ppt&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xls&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>, <span class="string">&#x27;odt&#x27;</span>, <span class="string">&#x27;fodt&#x27;</span>, <span class="string">&#x27;odp&#x27;</span>, <span class="string">&#x27;fodp&#x27;</span>, <span class="string">&#x27;ods&#x27;</span>, <span class="string">&#x27;fods&#x27;</span>)</span><br><span class="line">ONLYOFFICE_EDIT_FILE_EXTENSION = (<span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
 ]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
   </entry>
   <entry>
     <title>数据结构</title>
@@ -2158,10 +2017,151 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
+    <title>Linux开发项目总结</title>
+    <url>/2023/11/25/linux_problem/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+<h1 id="python">Python</h1>
+<ul>
+<li>pip永久换源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
+<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
+<ol type="1">
+<li>安装<code>pipreqs</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>进入项目主要目录：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>生成requirement.txt</li>
+</ol>
+<h1 id="docker">Docker</h1>
+<p>​
+虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
+alt="image-20231125161329086" />
+<figcaption aria-hidden="true">image-20231125161329086</figcaption>
+</figure>
+<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
+<ul>
+<li>Docker search</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker 换源</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://frd9mvwo.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启docker</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建并运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>杀掉</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker删除容器&amp;&amp;镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行多台docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>观察docker情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h1 id="linux">Linux</h1>
+<h2 id="解压tar包">解压tar包</h2>
+<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
+verbose详细显示，-f file文件属性）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
+<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="查看ip地址">查看ip地址</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
+<p>观察NAT转发表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
+<h2 id="path">PATH</h2>
+<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Python虚拟环境virtualenv4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看命令执行情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找<code>grep</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="进程">进程</h2>
+<p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
+<h2 id="git">git</h2>
+<ul>
+<li>git如何设置gitignore</li>
+</ul>
+<ol type="1">
+<li>新建<code>.gitgnore</code>文件</li>
+<li>添加如下代码排除所有工程文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="设置脚本自启动">设置脚本自启动</h2>
+<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="部署seafileonlyoffice">部署seafile+onlyoffice</h1>
+<ol type="1">
+<li>先下载<code>docker-compose</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  office-preview:</span><br><span class="line">    image: seafileltd/office-preview:latest</span><br><span class="line">    container_name: seafile-office-preview</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8086:8089&quot;</span></span><br><span class="line">    <span class="built_in">command</span>: bash start.sh</span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/office-preview/shared:/shared  <span class="comment">##宿主机路径可以自定义</span></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.11</span><br><span class="line">    container_name: seafile-mysql</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=db_dev  <span class="comment"># Requested, set the root&#x27;s password of MySQL service.</span></span><br><span class="line">      - MYSQL_LOG_CONSOLE=<span class="literal">true</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-mysql/db:/var/lib/mysql  <span class="comment"># Requested, specifies the path to MySQL data persistent store.</span></span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line"></span><br><span class="line">  memcached:</span><br><span class="line">    image: memcached:1.6</span><br><span class="line">    container_name: seafile-memcached</span><br><span class="line">    entrypoint: memcached -m 256</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  onlyoffice: </span><br><span class="line">    image: onlyoffice/documentserver</span><br><span class="line">    container_name: onlyoffice </span><br><span class="line">    environment:</span><br><span class="line">      - JWT_SECRET=seafile123</span><br><span class="line">      - JWT_ENABLED=<span class="literal">true</span></span><br><span class="line">      - JWT_HEADER=Authorization</span><br><span class="line">      - JWT_IN_BODY=<span class="literal">true</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-onlyoffice/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/data:/var/www/onlyoffice/Data</span><br><span class="line">      - ./opt/seafile-onlyoffice/lib:/var/lib/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/db:/var/lib/postgresql</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  seafile:</span><br><span class="line">    image: seafileltd/seafile-mc:latest</span><br><span class="line">    container_name: seafile</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8089:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;8090:8080&quot;</span></span><br><span class="line"><span class="comment">#      - &quot;443:443&quot;  # If https is enabled, cancel the comment.</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-data:/shared   <span class="comment"># Requested, specifies the path to Seafile data persistent store.</span></span><br><span class="line">    environment:</span><br><span class="line">      - DB_HOST=db</span><br><span class="line">      - DB_ROOT_PASSWD=db_dev  <span class="comment"># Requested, the value shuold be root&#x27;s password of MySQL service.</span></span><br><span class="line"><span class="comment">#      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.</span></span><br><span class="line">      - SEAFILE_ADMIN_EMAIL=ninglang@qq.com <span class="comment"># Specifies Seafile admin user, default is &#x27;me@example.com&#x27;.</span></span><br><span class="line">      - SEAFILE_ADMIN_PASSWORD=3761234yzm     <span class="comment"># Specifies Seafile admin password, default is &#x27;asecret&#x27;.</span></span><br><span class="line">      - SEAFILE_SERVER_LETSENCRYPT=<span class="literal">false</span>   <span class="comment"># Whether use letsencrypt to generate cert.</span></span><br><span class="line">      - SEAFILE_SERVER_HOSTNAME=3865.ninglang.fun:8089 <span class="comment"># Specifies your host name.</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">      - memcached</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  seafile-net:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>修改seahub</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#进入seafile</span></span><br><span class="line">docker <span class="built_in">exec</span> -it seafile /bin/bash</span><br><span class="line"><span class="comment">#进入conf</span></span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">vim seahub_settings.py</span><br></pre></td></tr></table></figure>
+<p>追加<code>seahub_settings.py</code>内容如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Enable Only Office</span></span><br><span class="line">ENABLE_ONLYOFFICE = <span class="literal">True</span></span><br><span class="line">VERIFY_ONLYOFFICE_CERTIFICATE = <span class="literal">True</span></span><br><span class="line">ONLYOFFICE_JWT_SECRET = <span class="string">&#x27;seafile123&#x27;</span></span><br><span class="line"><span class="comment"># ONLYOFFICE_APIJS_URL = &#x27;http&#123;s&#125;://&#123;your OnlyOffice server&#x27;s domain or IP&#125;/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_APIJS_URL = <span class="string">&#x27;http://3865.ninglang.fun:8080/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_FILE_EXTENSION = (<span class="string">&#x27;doc&#x27;</span>, <span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;ppt&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xls&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>, <span class="string">&#x27;odt&#x27;</span>, <span class="string">&#x27;fodt&#x27;</span>, <span class="string">&#x27;odp&#x27;</span>, <span class="string">&#x27;fodp&#x27;</span>, <span class="string">&#x27;ods&#x27;</span>, <span class="string">&#x27;fods&#x27;</span>)</span><br><span class="line">ONLYOFFICE_EDIT_FILE_EXTENSION = (<span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>重启docker</p>
 ]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
   </entry>
   <entry>
     <title>移动通信三级项目</title>
@@ -2321,22 +2321,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2408,6 +2392,22 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
