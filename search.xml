@@ -386,61 +386,6 @@ href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​ 之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -549,6 +494,92 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>毛概实践课</title>
+    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
+    <content><![CDATA[<p>毛概实践课🤗</p>
+<span id="more"></span>
+<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
+
+<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
+
+<p>看看我们的大合照😁:</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
+<p>​
+哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
+<p>​
+这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
+alt="被删除视频" />
+<figcaption aria-hidden="true">被删除视频</figcaption>
+</figure>
+<p>​
+这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
+<p>​
+总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -737,37 +768,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>毛概实践课</title>
-    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
-    <content><![CDATA[<p>毛概实践课🤗</p>
-<span id="more"></span>
-<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
-
-<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
-
-<p>看看我们的大合照😁:</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
-<p>​
-哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
-<p>​
-这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
-alt="被删除视频" />
-<figcaption aria-hidden="true">被删除视频</figcaption>
-</figure>
-<p>​
-这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
-<p>​
-总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -1013,63 +1013,6 @@ can free the space</p>
       </categories>
   </entry>
   <entry>
-    <title>Qt</title>
-    <url>/2021/09/20/Qt1/</url>
-    <content><![CDATA[<p>Qt问题总汇</p>
-<span id="more"></span>
-<h1 id="信号和槽">信号和槽</h1>
-<h2 id="连接函数connect">连接函数：connect</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
-<p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
-<ul>
-<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
-<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义槽和信号后，需要定义触发函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载">信号的重载</h3>
-<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：这里的两个函数指针是如何定义的？？？</li>
-<li>答：</li>
-</ul>
-<p>Qstring 转char *</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号">信号连接信号</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
-<p>直接将两个信号用connect相连</p>
-<ul>
-<li><p>断开信号 disconnect</p></li>
-<li><p>多个信号一个槽</p></li>
-<li><p>多个槽连接一个信号</p></li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
-</ul>
-<p>lambda函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
-<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
-</ul>
-<h1 id="模态与非模态">模态与非模态</h1>
-<h2 id="模态">模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态">非模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
-<li>答：</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>保研注意事项</title>
     <url>/2023/06/13/Postgraduate/</url>
     <content><![CDATA[<p>保研注意事项</p>
@@ -1153,6 +1096,106 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Qt</title>
+    <url>/2021/09/20/Qt1/</url>
+    <content><![CDATA[<p>Qt问题总汇</p>
+<span id="more"></span>
+<h1 id="信号和槽">信号和槽</h1>
+<h2 id="连接函数connect">连接函数：connect</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<p>松散耦合：发送端和接受端的松散耦合</p>
+<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
+<ul>
+<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
+<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>定义槽和信号后，需要定义触发函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
+<h3 id="信号的重载">信号的重载</h3>
+<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：这里的两个函数指针是如何定义的？？？</li>
+<li>答：</li>
+</ul>
+<p>Qstring 转char *</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号">信号连接信号</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<p>直接将两个信号用connect相连</p>
+<ul>
+<li><p>断开信号 disconnect</p></li>
+<li><p>多个信号一个槽</p></li>
+<li><p>多个槽连接一个信号</p></li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
+</ul>
+<p>lambda函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
+<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
+</ul>
+<h1 id="模态与非模态">模态与非模态</h1>
+<h2 id="模态">模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态">非模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
+<li>答：</li>
+</ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>树莓派实现联邦学习</title>
     <url>/2023/12/29/Raspberry_federated_learning/</url>
     <content><![CDATA[<h1 id="miniconda-安装">MiniConda 安装</h1>
@@ -1201,46 +1244,85 @@ href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
+    <title>爬虫小结</title>
+    <url>/2021/02/02/Web%20Crawler/</url>
+    <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
 <span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
+<h2 id="前言">前言</h2>
+<p>​
+在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
+<h2 id="爬虫">爬虫</h2>
+<h3 id="有道翻译">有道翻译</h3>
+<p>​ 打开开发者工具后，我们对我们输入的字符“are you
+ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png"
+alt="有道翻译抓包分析" />
+<figcaption aria-hidden="true">有道翻译抓包分析</figcaption>
+</figure>
+<p>观察Response
+,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" /></p>
+<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" /></p>
+<p>观察webform，把它复制粘贴到代码就可以了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" /></p>
+<p>​
+但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code>
+,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制）</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" /></p>
+<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" /></p>
+<h3 id="百度图片">百度图片</h3>
+<p>​ <img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" />如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" /></p>
+<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" /></p>
+<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" /></p>
+<h3 id="b站视频">B站视频</h3>
+<p>​
+刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
+<p>先下载这个<a href="">压缩包</a></p>
+<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" /></p>
+<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a
+href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" /></p>
+<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code>
+目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" /></p>
+<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
+<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
+<h2 id="抓包">抓包</h2>
 ]]></content>
       <categories>
-        <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>学习</category>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1477,88 +1559,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>爬虫小结</title>
-    <url>/2021/02/02/Web%20Crawler/</url>
-    <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
-<span id="more"></span>
-<h2 id="前言">前言</h2>
-<p>​
-在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
-<h2 id="爬虫">爬虫</h2>
-<h3 id="有道翻译">有道翻译</h3>
-<p>​ 打开开发者工具后，我们对我们输入的字符“are you
-ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png"
-alt="有道翻译抓包分析" />
-<figcaption aria-hidden="true">有道翻译抓包分析</figcaption>
-</figure>
-<p>观察Response
-,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" /></p>
-<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" /></p>
-<p>观察webform，把它复制粘贴到代码就可以了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" /></p>
-<p>​
-但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code>
-,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制）</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" /></p>
-<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" /></p>
-<h3 id="百度图片">百度图片</h3>
-<p>​ <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" />如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" /></p>
-<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" /></p>
-<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" /></p>
-<h3 id="b站视频">B站视频</h3>
-<p>​
-刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
-<p>先下载这个<a href="">压缩包</a></p>
-<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" /></p>
-<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a
-href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" /></p>
-<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code>
-目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" /></p>
-<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
-<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
-<h2 id="抓包">抓包</h2>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Windows常用指令和工具</title>
     <url>/2022/01/05/Windows_command/</url>
     <content><![CDATA[<p>电脑常用的一些操作</p>
@@ -1663,6 +1663,159 @@ alt="image-20231017175719127" />
 ]]></content>
       <categories>
         <category>Windows</category>
+      </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux开发项目总结</title>
+    <url>/2023/11/25/linux_problem/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+<h1 id="python">Python</h1>
+<ul>
+<li>pip永久换源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
+<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
+<ol type="1">
+<li>安装<code>pipreqs</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>进入项目主要目录：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>生成requirement.txt</li>
+</ol>
+<h1 id="docker">Docker</h1>
+<p>​
+虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
+alt="image-20231125161329086" />
+<figcaption aria-hidden="true">image-20231125161329086</figcaption>
+</figure>
+<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
+<ul>
+<li>Docker search</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker 换源</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://frd9mvwo.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启docker</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建并运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>杀掉</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker删除容器&amp;&amp;镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行多台docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>观察docker情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h1 id="linux">Linux</h1>
+<h2 id="解压tar包">解压tar包</h2>
+<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
+verbose详细显示，-f file文件属性）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
+<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="查看ip地址">查看ip地址</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
+<p>观察NAT转发表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
+<h2 id="path">PATH</h2>
+<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Python虚拟环境virtualenv4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看命令执行情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找<code>grep</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="进程">进程</h2>
+<p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
+<h2 id="git">git</h2>
+<ul>
+<li>git如何设置gitignore</li>
+</ul>
+<ol type="1">
+<li>新建<code>.gitgnore</code>文件</li>
+<li>添加如下代码排除所有工程文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="设置脚本自启动">设置脚本自启动</h2>
+<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="部署seafileonlyoffice">部署seafile+onlyoffice</h1>
+<ol type="1">
+<li>先下载<code>docker-compose</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  office-preview:</span><br><span class="line">    image: seafileltd/office-preview:latest</span><br><span class="line">    container_name: seafile-office-preview</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8086:8089&quot;</span></span><br><span class="line">    <span class="built_in">command</span>: bash start.sh</span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/office-preview/shared:/shared  <span class="comment">##宿主机路径可以自定义</span></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.11</span><br><span class="line">    container_name: seafile-mysql</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=db_dev  <span class="comment"># Requested, set the root&#x27;s password of MySQL service.</span></span><br><span class="line">      - MYSQL_LOG_CONSOLE=<span class="literal">true</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-mysql/db:/var/lib/mysql  <span class="comment"># Requested, specifies the path to MySQL data persistent store.</span></span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line"></span><br><span class="line">  memcached:</span><br><span class="line">    image: memcached:1.6</span><br><span class="line">    container_name: seafile-memcached</span><br><span class="line">    entrypoint: memcached -m 256</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  onlyoffice: </span><br><span class="line">    image: onlyoffice/documentserver</span><br><span class="line">    container_name: onlyoffice </span><br><span class="line">    environment:</span><br><span class="line">      - JWT_SECRET=seafile123</span><br><span class="line">      - JWT_ENABLED=<span class="literal">true</span></span><br><span class="line">      - JWT_HEADER=Authorization</span><br><span class="line">      - JWT_IN_BODY=<span class="literal">true</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-onlyoffice/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/data:/var/www/onlyoffice/Data</span><br><span class="line">      - ./opt/seafile-onlyoffice/lib:/var/lib/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/db:/var/lib/postgresql</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  seafile:</span><br><span class="line">    image: seafileltd/seafile-mc:latest</span><br><span class="line">    container_name: seafile</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8089:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;8090:8080&quot;</span></span><br><span class="line"><span class="comment">#      - &quot;443:443&quot;  # If https is enabled, cancel the comment.</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-data:/shared   <span class="comment"># Requested, specifies the path to Seafile data persistent store.</span></span><br><span class="line">    environment:</span><br><span class="line">      - DB_HOST=db</span><br><span class="line">      - DB_ROOT_PASSWD=db_dev  <span class="comment"># Requested, the value shuold be root&#x27;s password of MySQL service.</span></span><br><span class="line"><span class="comment">#      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.</span></span><br><span class="line">      - SEAFILE_ADMIN_EMAIL=ninglang@qq.com <span class="comment"># Specifies Seafile admin user, default is &#x27;me@example.com&#x27;.</span></span><br><span class="line">      - SEAFILE_ADMIN_PASSWORD=3761234yzm     <span class="comment"># Specifies Seafile admin password, default is &#x27;asecret&#x27;.</span></span><br><span class="line">      - SEAFILE_SERVER_LETSENCRYPT=<span class="literal">false</span>   <span class="comment"># Whether use letsencrypt to generate cert.</span></span><br><span class="line">      - SEAFILE_SERVER_HOSTNAME=3865.ninglang.fun:8089 <span class="comment"># Specifies your host name.</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">      - memcached</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  seafile-net:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>修改seahub</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#进入seafile</span></span><br><span class="line">docker <span class="built_in">exec</span> -it seafile /bin/bash</span><br><span class="line"><span class="comment">#进入conf</span></span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">vim seahub_settings.py</span><br></pre></td></tr></table></figure>
+<p>追加<code>seahub_settings.py</code>内容如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Enable Only Office</span></span><br><span class="line">ENABLE_ONLYOFFICE = <span class="literal">True</span></span><br><span class="line">VERIFY_ONLYOFFICE_CERTIFICATE = <span class="literal">True</span></span><br><span class="line">ONLYOFFICE_JWT_SECRET = <span class="string">&#x27;seafile123&#x27;</span></span><br><span class="line"><span class="comment"># ONLYOFFICE_APIJS_URL = &#x27;http&#123;s&#125;://&#123;your OnlyOffice server&#x27;s domain or IP&#125;/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_APIJS_URL = <span class="string">&#x27;http://3865.ninglang.fun:8080/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_FILE_EXTENSION = (<span class="string">&#x27;doc&#x27;</span>, <span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;ppt&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xls&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>, <span class="string">&#x27;odt&#x27;</span>, <span class="string">&#x27;fodt&#x27;</span>, <span class="string">&#x27;odp&#x27;</span>, <span class="string">&#x27;fodp&#x27;</span>, <span class="string">&#x27;ods&#x27;</span>, <span class="string">&#x27;fods&#x27;</span>)</span><br><span class="line">ONLYOFFICE_EDIT_FILE_EXTENSION = (<span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>重启docker</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2008,159 +2161,6 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
 ]]></content>
       <categories>
         <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
-    <title>Linux开发项目总结</title>
-    <url>/2023/11/25/linux_problem/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-<h1 id="python">Python</h1>
-<ul>
-<li>pip永久换源</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
-<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
-<ol type="1">
-<li>安装<code>pipreqs</code>:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>进入项目主要目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>生成requirement.txt</li>
-</ol>
-<h1 id="docker">Docker</h1>
-<p>​
-虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
-alt="image-20231125161329086" />
-<figcaption aria-hidden="true">image-20231125161329086</figcaption>
-</figure>
-<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
-<ul>
-<li>Docker search</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker 换源</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://frd9mvwo.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建并运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>停止运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>杀掉</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker删除容器&amp;&amp;镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行多台docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>观察docker情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<h1 id="linux">Linux</h1>
-<h2 id="解压tar包">解压tar包</h2>
-<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
-verbose详细显示，-f file文件属性）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
-<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="查看ip地址">查看ip地址</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
-<p>观察NAT转发表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
-<h2 id="path">PATH</h2>
-<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Python虚拟环境virtualenv4</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看命令执行情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找<code>grep</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
-<h2 id="进程">进程</h2>
-<p>查看进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
-<h2 id="git">git</h2>
-<ul>
-<li>git如何设置gitignore</li>
-</ul>
-<ol type="1">
-<li>新建<code>.gitgnore</code>文件</li>
-<li>添加如下代码排除所有工程文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="设置脚本自启动">设置脚本自启动</h2>
-<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="部署seafileonlyoffice">部署seafile+onlyoffice</h1>
-<ol type="1">
-<li>先下载<code>docker-compose</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  office-preview:</span><br><span class="line">    image: seafileltd/office-preview:latest</span><br><span class="line">    container_name: seafile-office-preview</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8086:8089&quot;</span></span><br><span class="line">    <span class="built_in">command</span>: bash start.sh</span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/office-preview/shared:/shared  <span class="comment">##宿主机路径可以自定义</span></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.11</span><br><span class="line">    container_name: seafile-mysql</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=db_dev  <span class="comment"># Requested, set the root&#x27;s password of MySQL service.</span></span><br><span class="line">      - MYSQL_LOG_CONSOLE=<span class="literal">true</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-mysql/db:/var/lib/mysql  <span class="comment"># Requested, specifies the path to MySQL data persistent store.</span></span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line"></span><br><span class="line">  memcached:</span><br><span class="line">    image: memcached:1.6</span><br><span class="line">    container_name: seafile-memcached</span><br><span class="line">    entrypoint: memcached -m 256</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  onlyoffice: </span><br><span class="line">    image: onlyoffice/documentserver</span><br><span class="line">    container_name: onlyoffice </span><br><span class="line">    environment:</span><br><span class="line">      - JWT_SECRET=seafile123</span><br><span class="line">      - JWT_ENABLED=<span class="literal">true</span></span><br><span class="line">      - JWT_HEADER=Authorization</span><br><span class="line">      - JWT_IN_BODY=<span class="literal">true</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-onlyoffice/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/data:/var/www/onlyoffice/Data</span><br><span class="line">      - ./opt/seafile-onlyoffice/lib:/var/lib/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/db:/var/lib/postgresql</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  seafile:</span><br><span class="line">    image: seafileltd/seafile-mc:latest</span><br><span class="line">    container_name: seafile</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8089:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;8090:8080&quot;</span></span><br><span class="line"><span class="comment">#      - &quot;443:443&quot;  # If https is enabled, cancel the comment.</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-data:/shared   <span class="comment"># Requested, specifies the path to Seafile data persistent store.</span></span><br><span class="line">    environment:</span><br><span class="line">      - DB_HOST=db</span><br><span class="line">      - DB_ROOT_PASSWD=db_dev  <span class="comment"># Requested, the value shuold be root&#x27;s password of MySQL service.</span></span><br><span class="line"><span class="comment">#      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.</span></span><br><span class="line">      - SEAFILE_ADMIN_EMAIL=ninglang@qq.com <span class="comment"># Specifies Seafile admin user, default is &#x27;me@example.com&#x27;.</span></span><br><span class="line">      - SEAFILE_ADMIN_PASSWORD=3761234yzm     <span class="comment"># Specifies Seafile admin password, default is &#x27;asecret&#x27;.</span></span><br><span class="line">      - SEAFILE_SERVER_LETSENCRYPT=<span class="literal">false</span>   <span class="comment"># Whether use letsencrypt to generate cert.</span></span><br><span class="line">      - SEAFILE_SERVER_HOSTNAME=3865.ninglang.fun:8089 <span class="comment"># Specifies your host name.</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">      - memcached</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  seafile-net:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>修改seahub</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#进入seafile</span></span><br><span class="line">docker <span class="built_in">exec</span> -it seafile /bin/bash</span><br><span class="line"><span class="comment">#进入conf</span></span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">vim seahub_settings.py</span><br></pre></td></tr></table></figure>
-<p>追加<code>seahub_settings.py</code>内容如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Enable Only Office</span></span><br><span class="line">ENABLE_ONLYOFFICE = <span class="literal">True</span></span><br><span class="line">VERIFY_ONLYOFFICE_CERTIFICATE = <span class="literal">True</span></span><br><span class="line">ONLYOFFICE_JWT_SECRET = <span class="string">&#x27;seafile123&#x27;</span></span><br><span class="line"><span class="comment"># ONLYOFFICE_APIJS_URL = &#x27;http&#123;s&#125;://&#123;your OnlyOffice server&#x27;s domain or IP&#125;/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_APIJS_URL = <span class="string">&#x27;http://3865.ninglang.fun:8080/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_FILE_EXTENSION = (<span class="string">&#x27;doc&#x27;</span>, <span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;ppt&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xls&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>, <span class="string">&#x27;odt&#x27;</span>, <span class="string">&#x27;fodt&#x27;</span>, <span class="string">&#x27;odp&#x27;</span>, <span class="string">&#x27;fodp&#x27;</span>, <span class="string">&#x27;ods&#x27;</span>, <span class="string">&#x27;fods&#x27;</span>)</span><br><span class="line">ONLYOFFICE_EDIT_FILE_EXTENSION = (<span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2514,307 +2514,6 @@ Equipment，UE）之间更大规模的协同、通信感
 ]]></content>
       <categories>
         <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>移动通信重点总结</title>
-    <url>/2023/06/09/mobile%20commuciation/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<h1 id="第一章">第一章</h1>
-<ol type="1">
-<li><p>移动通信的概念、特点；</p>
-<ul>
-<li>概念：所谓移动通信，是指通信双方或至少有一方处于移动中进行信息传输和交换的通信方式。</li>
-<li>移动通信的特点：
-<ul>
-<li>移动通信利用无线电波进行信息传输；</li>
-<li>移动通信是在复杂的干扰环境中运行；</li>
-<li>随着业务量的增加，可利用的频谱资源会出现受限；</li>
-<li>对移动台的要求高；</li>
-<li>通信容量有限；</li>
-<li>通信系统复杂</li>
-</ul></li>
-</ul></li>
-<li><p>移动通信的发展历程及发展趋势；</p></li>
-<li><p>无线频谱的规划及第四代移动通信的工作频段；</p>
-<ul>
-<li>TD-LTE频段：中国移动分配130MHz带宽，分别为1880-1900MHz、2320-2370MHz、2575-2635MHz；中国联通分配40MHz带宽，分别为2300-2320MHz、2555-2575MHz；中国电信分配40MHz带宽，分别为2370-2390MHz、2635-2655MHz.</li>
-<li>FDD
-LTE频段：中国电信分配1.8GHz频段（1755-1785MHZ/1850-1880MHz），中国联通分配2.1GHz频段（1955-1980MHz/2145-2170MHz）</li>
-</ul></li>
-<li><p>移动通信的几种工作方式；</p>
-<ul>
-<li>单工：同频单工、双频单工</li>
-<li>双工：通信双方均同时进行收发工作。即任一方讲话时，可以听到对方的话音。</li>
-<li>半双工：通信双方中，一方使用双频双工方式，即收发信机同时工作；另一方使用双频单工方式，即收发信机交替工作。</li>
-<li>移动中继：增加通信距离</li>
-</ul></li>
-<li><p>移动通信的应用系统。</p>
-<ul>
-<li>蜂窝式公用移动通信系统</li>
-<li>集群调度移动通信系统</li>
-<li>无绳电话系统</li>
-<li>无线电寻呼系统</li>
-<li>卫星移动通信系统</li>
-<li>无线LAN/WAN</li>
-</ul></li>
-</ol>
-<h1 id="第二章">第二章</h1>
-<ol type="1">
-<li><p>电波传播的基本特性；</p>
-<ul>
-<li>移动通信信道</li>
-<li>衰落的原因</li>
-<li>无线电波传播方式:直射、反射绕射和散射以及它们的合成</li>
-<li>衰落的表现：传播损耗和弥散
-<ul>
-<li>阴影衰落</li>
-<li>多径衰落</li>
-<li>多普勒频移</li>
-</ul></li>
-</ul></li>
-<li><p>3种电波传播的机制；</p>
-<ul>
-<li>反射：阻挡体比传输波长大的多的物体</li>
-<li>绕射：阻挡体为尖利边缘</li>
-<li>散射：产生于粗糙表面、小物体或其它不规则物体</li>
-</ul></li>
-<li><p>对数距离路径损耗模型及参数；</p>
-<svg xmlns="http://www.w3.org/2000/svg" width="28.177ex" height="5.428ex" role="img" focusable="false" viewBox="0 -1449.5 12454.2 2399" style="vertical-align: -2.148ex;">
-<p><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="4C" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="TeXAtom" transform="translate(681, -150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(520, 0)"><path data-c="42" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g></g></g><g data-mml-node="mo" transform="translate(1913.2, 0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2968.9, 0)"><path data-c="4C" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mrow" transform="translate(3649.9, 0)"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msub" transform="translate(389, 0)"><g data-mml-node="mi"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mn" transform="translate(520, -150) scale(0.707)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g><g data-mml-node="mo" transform="translate(1312.6, 0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><g data-mml-node="mo" transform="translate(5573.7, 0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(6573.9, 0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500, 0)"></path></g><g data-mml-node="mi" transform="translate(7573.9, 0)"><path data-c="6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(8340.6, 0)"><path data-c="6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(278, 0)"></path><path data-c="67" d="M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z" transform="translate(778, 0)"></path></g><g data-mml-node="mo" transform="translate(9618.6, 0)"><path data-c="2061" d=""></path></g><g data-mml-node="mrow" transform="translate(9618.6, 0)"><g data-mml-node="mo"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"></path></g><g data-mml-node="mfrac" transform="translate(736, 0)"><g data-mml-node="mi" transform="translate(421.8, 676)"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="msub" transform="translate(220, -686)"><g data-mml-node="mi"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mn" transform="translate(520, -150) scale(0.707)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g><rect width="1123.6" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(2099.6, 0)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"></path></g></g></g></g></p>
-</svg>
-<ul>
-<li>其中，<span
-class="math inline">\(d_0\)</span>是一个参考距离，在参考距离或接近参考距离的位置，路径损耗具有自由空间损耗的特点；<span
-class="math inline">\(d\)</span>是发射天线到接收天线间的距离；是路径损耗指数，表明路径损耗随距离增长的速率，其取值主要取决于传播环境，其变化范围为2~6</li>
-</ul></li>
-<li><p>多径衰落信道的主要参数及多径衰落信道分类、多径信道的统计分析；</p>
-<ul>
-<li><p>多径信道的主要参数:</p>
-<ol type="1">
-<li>时间色散参数和相关带宽：
-<ol type="1">
-<li>（1）时间色散参数</li>
-<li>（2）相关带宽</li>
-</ol></li>
-<li>频率色散参数和相关时间
-<ol type="1">
-<li>（1）多普勒扩展</li>
-<li>（2）相关时间</li>
-</ol></li>
-<li>角度色散参数和相关距离
-<ol type="1">
-<li>（1）角度扩展</li>
-<li>（2）相关距离</li>
-</ol></li>
-</ol></li>
-<li><p>分类：</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609164847.png" /></p>
-<ol type="1">
-<li><p>1.平坦衰落和频率选择性衰落:</p>
-<ol type="1">
-<li><p>平坦衰落:<span class="math inline">\(B_{\mathrm{s}} \ll
-B_{\mathrm{c}},T_{\mathrm{s}} \gg \sigma_\tau\)</span></p>
-<p><span class="math inline">\(T_s\)</span>为信号周期（信号带宽<span
-class="math inline">\(B_s\)</span>的倒数）；<span
-class="math inline">\(\sigma_\tau\)</span>是信道的时延扩展；<span
-class="math inline">\(B_c\)</span>为相关带宽</p></li>
-</ol></li>
-<li><p>2.快衰落和慢衰落</p>
-<ol type="1">
-<li><p>快衰落:<span class="math inline">\(\begin{aligned} &amp;
-T_{\mathrm{s}}&gt;T_{\mathrm{c}} \\ &amp;
-B_{\mathrm{s}}&lt;B_{\mathrm{D}}\end{aligned}\)</span></p>
-<p><span class="math inline">\(B_D\)</span>为多普勒扩展，<span
-class="math inline">\(T_c\)</span>为发送信号的周期</p></li>
-</ol></li>
-</ol></li>
-<li><p>多径信道的统计分析</p>
-<ol type="1">
-<li>1.瑞利分布：1.发射机和接收机之间没有直射波路径；有大量的反射波存在，且到达接收机天线的方向角是随机的（0一2π均匀分布）；各个反射波的幅度和相位都是统计独立的。</li>
-<li>2.莱斯分布:视距信号成为主接收信号分量</li>
-<li>3.Nakagami-m分布</li>
-</ol></li>
-</ul></li>
-<li><p>自由空间和阴影衰落的概念；</p>
-<ul>
-<li>阴影衰落：地形起伏、建筑物及其它障碍物对电波传播路径的阻挡而形成</li>
-<li>自由空间：在理想的、均匀的、各向同性的介质中传播，只存在电磁波能量扩散而引起的传播损耗。（不发生反射、折射、绕射、散射和吸收现象）</li>
-</ul></li>
-<li><p>多径衰落的特性和多普勒频移；</p>
-<p>多径衰落的特性</p>
-<ol type="1">
-<li>幅度衰落</li>
-<li>时延扩展</li>
-</ol>
-<p>多普勒频移：<span class="math inline">\(f_d=\frac{v}{\lambda} \cos
-\alpha\)</span></p></li>
-<li><p>课上习题。</p></li>
-</ol>
-<h1 id="第三章">第三章</h1>
-<ol type="1">
-<li><p>信源编码的目的；</p>
-<ol type="1">
-<li>信源编码的目的：将信源中的冗余信息进行压缩</li>
-<li>调制目的：是使携带信息的信号与信道特性相匹配以及有效地利用信道。</li>
-</ol></li>
-<li><p>影响调制方式选择的主要因素；</p>
-<ol type="1">
-<li>频带利用率：<span class="math inline">\(\eta_b=R_b /
-B\)</span>。其中<span class="math inline">\(R_b\)</span>为比特速率</li>
-<li>功率效率:指保持信息精确度的情况下所需的最小信号功率或者说最小信噪比</li>
-<li>己调信号恒包络:具有恒包络特性的信号对放大器的非线性不敏感，功率效率高。</li>
-<li>易于解调：相干解调和非相干解调</li>
-<li>带外辐射：一般要求达到-60到-70dB</li>
-</ol></li>
-<li><p>2FSK、CPFSK信号及特点；</p>
-<ol type="1">
-<li>2FSK:</li>
-</ol>
-<p><span class="math display">\[
-\left.\begin{array}{ll}
-a_k=+1: &amp; s_{F S K}(t)=\cos \left(\omega_1 t+\varphi_1\right) \\
-a_k=-1: &amp; s_{F S K}(t)=\cos \left(\omega_2 t+\varphi_2\right)
-\end{array}\right\} \quad\left(k T_b \leq t \leq(k+1) T_b\right)
-\]</span></p>
-<ol start="2" type="1">
-<li><p>cpfsk:即要求当前码元的初相位由前一码元的初相位、当前码元<span
-class="math inline">\(a_k\)</span>和前一码元<span
-class="math inline">\(a_{k-1}\)</span>来决定，该关系称为相位约束条件
-<span class="math display">\[
-\varphi_k=\left(a_{k-1}-a_k\right) \pi h \cdot k+\varphi_{k-1}
-\]</span></p></li>
-<li><p>总结：可以发现，在相同的调制指数h情况下，CPFSK的带宽要比一般的
-2FSK带宽要窄。这意味着前者的频带效率要高于后者。所以，在移动通信
-系统中，2FSK调制常常采用相位连续的调制方式</p>
-<p>随着调制指数h的增加，信号的带宽也在增加。从频带效率考虑，调
-制指数h不宜太大。但过小又因两个信号频率过于接近而不利于信号的检测。
-所以应当从它们的<strong>相关系数</strong>以及信号的<strong>带宽</strong>综合考虑进行选择</p></li>
-</ol></li>
-<li><p>MSK信号的相位路径、频率关系及功率谱特点；</p>
-<ol type="1">
-<li>相位路径:由于h=0.5，MSK的相位约束条件：</li>
-</ol>
-<p><span class="math display">\[
-\varphi_k=\left(a_{k-1}-a_k\right) \frac{\pi}{2} \cdot k+\varphi_{k-1}
-\]</span></p>
-<ol start="2" type="1">
-<li><p>频率关系 <span class="math display">\[
-\left.\begin{array}{l}
-f_c=m \cdot R_b / 4 \\
-f_2=(m+1) R_b / 4 \\
-f_1=(m-1) R_b / 4
-\end{array}\right\}
-\]</span> 载波频率fc应当是Rb/4的整数倍</p></li>
-<li><p>功率谱特点</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609172345.png" /></p>
-<p>由图可见，MSK信号比一般2FSK信号有更高的带宽效率。MSK旁瓣辐射功率仍然较大，会造成邻道干扰</p></li>
-</ol></li>
-<li><p>GMSK信号特点和功率谱特性</p>
-<ul>
-<li><p>GMSK信号:GMSK是基带信号经过高斯低通滤波器的MSK</p></li>
-<li><p>功率谱特性:</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609172609.png" /></p>
-<ol type="1">
-<li><p>MSK引入高斯滤波器后，平滑了相位路径，使得信号的频率变化平稳，大大减少了发射信号频谱的边带辐射。高斯低通滤波器的通带越窄，对邻信道的干扰越小</p></li>
-<li><p>GMSK
-最吸引人的地方是具有恒包络特性，功率效率高，可用非线性功率放大器和非相干检测。GMSK
-的缺点是频谱效率还不够高。当频率资源紧缺</p></li>
-<li><p>归一化3dB带宽:<span class="math inline">\(x_b=B_b / R_b=B_b
-T_b\)</span></p></li>
-<li><p>随着xb
-的减小频谱效率越高，但xb过小会使码间干扰（ISI）增加(基带信号高斯滤波后，使波形在时间上扩展，引入了ISI）。</p></li>
-</ol></li>
-</ul></li>
-<li><p>正交频分复用原理、优缺点、框图；</p>
-<ol type="1">
-<li><p>概念：系统把整个可用信道频带Ｂ划分为N个带宽为△f
-的子信道。把N个串行码元变换为N个并行的码元，分别调制这N
-个子信道载波进行同步传输，这就是频分复用。</p></li>
-<li><p>正交频分复用的原理：如果子载波的间隔等于并行码元长度的倒数1/Ts，使用相干检测，采用子载波的频谱重叠可以使并行系统获得更高的带宽效率，这就是正交频分复用。</p></li>
-<li><p>框图：</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609173212.png" /></p></li>
-<li><p>优缺点</p>
-<ol type="1">
-<li>优点：
-<ol type="1">
-<li>OFDM有比较高的带宽效率</li>
-<li>瑞利衰落对码元的损伤较单载波容易恢复</li>
-<li>系统因时延所产生的码间干扰不那么严重</li>
-<li>当信道在某个频率出现较大幅度衰减或较强的窄带干扰时，只是影响个别的子信道</li>
-<li>由于可以采用DFT实现OFDM信号，极大简化了系统的硬件结构</li>
-</ol></li>
-<li>缺点：
-<ol type="1">
-<li>OFDM存在发射信号的峰值功率和平均功率比值（PAR）过大的问题和由于多谱勒频谱扩展破坏子载波正交的问题。</li>
-</ol></li>
-</ol></li>
-</ol></li>
-<li><p>课上习题。</p></li>
-</ol>
-<h1 id="第四章">第四章</h1>
-<ol type="1">
-<li><p>分集接收技术的基本思想；</p>
-<p>在移动环境中，通过不同途径所接收到的多个信号其衰落情况是不同的、衰落独立的。设其中某一信号分量的强度低于检测门限的概率为<span
-class="math inline">\(p\)</span>，则所有<span
-class="math inline">\(M\)</span>个信号分量的强度都低于检测门限的概率<span
-class="math inline">\(p^M\)</span>远低于<span
-class="math inline">\(p\)</span>。综合利用各信号分量，就有可能明显地改善接收信号的质量，这就是分集接收的基本思想。分集接收的代价是增加了接收机的复杂度，因为要对各径信号进行跟踪并及时对更多的信号分量进行处理，但它可以提高通信的可靠性.</p>
-<ul>
-<li>宏观分集—对抗阴影衰落</li>
-<li>微观分集—对抗多径衰落</li>
-</ul></li>
-<li><p>微观分集的类型；</p>
-<ol type="1">
-<li>时间分集:移动的时间足够长（或移动的距离足够大），大于信道的相干时间。</li>
-<li>频率分集:两个载波的间隔大于信道的相干带宽。举例：跳频通信。</li>
-<li>空间分集:相隔足够大的距离，信号衰落相互独立。实际测量表明，通常在市区，取天线距离d=0.5，在郊区可以取d=0.81。</li>
-</ol></li>
-<li><p>分集的合并方式；</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609180554.png" /></p>
-<ol type="1">
-<li>选择合并:在所接收的多路信号中，合并器选择<strong>信噪比最高</strong>的一路输出这相当于在M个系数（中，只有一个等于1，其余的为0。)</li>
-<li>最大比值合并和:在信号合并前，对各路载波相位进行调整并使之同相，然后相加。合并器输出信号</li>
-<li>等增益合并:等增益合并器的各路加权系数均为1，合并器输出的信号</li>
-<li>性能比较：最大比值合并改善最多，其次是等增益合并，最差是选择合并，这是因为选择合并只利用其中一个信号，其余没有被利用，而前两者使各支路信号的能量都得到利用</li>
-</ol></li>
-<li><p>分组码的编译码原理；</p></li>
-<li><p>卷积码的编译码原理；</p></li>
-<li><p>状态图、网格图、卷积码编码器框图、维特比译码；</p></li>
-<li><p>CRC编码；</p></li>
-<li><p>生成多项式、生成矩阵、监督矩阵；</p></li>
-<li><p>直接序列扩频技术原理、抗多径衰落原理、框图；</p>
-<p>直接序列扩频原理：</p></li>
-<li><p>m序列的随机性质</p>
-<ol type="1">
-<li><p>（1）平衡特性：在m序列的一个完整周期N=2m一1内，0的个数和1的个数总是相差1。</p></li>
-<li><p>（2）游程特性：在每个周期内，符号1或0连续相同的一段子序列称为一个游程。连续相同符号的个数称为游程的长度。m序列游程总数为（N十1）/2。其中长度为1的游程数等于游程总数的1/2；长度为2的游程数等于游程总数的1/4；长度为3的游程数等于游程总数的1/8，等等。最长的游程是m个连1（只有一个），最长连0的游程长度为m一1（也只有一个）。</p></li>
-<li><p>相关特性：m序列的自相关函数是周期性的二值函数。可以证明，对长度为N的m序列都有结果：
-<span class="math display">\[
-R_{a, a}(n)=\left\{\begin{array}{lll}
-1 &amp; n=l \cdot N \quad l=0, \pm 1, \pm 2, \ldots \\
-\frac{-1}{N} &amp; \text { 其余 } n
-\end{array}\right.
-\]</span></p></li>
-<li></li>
-</ol></li>
-<li><p>课上习题。</p></li>
-</ol>
-<h1 id="第五章">第五章</h1>
-<h1 id="第六章">第六章</h1>
-<h1 id="第七章">第七章</h1>
-<p># 第八章</p>
-<h1 id="第九章">第九章</h1>
-<h1 id="第十章">第十章</h1>
-]]></content>
-      <categories>
-        <category>code</category>
       </categories>
   </entry>
   <entry>
@@ -3311,6 +3010,307 @@ virtual说明，并在派生类中重新定义的函数。虚函数的作用是�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>移动通信重点总结</title>
+    <url>/2023/06/09/mobile%20commuciation/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<h1 id="第一章">第一章</h1>
+<ol type="1">
+<li><p>移动通信的概念、特点；</p>
+<ul>
+<li>概念：所谓移动通信，是指通信双方或至少有一方处于移动中进行信息传输和交换的通信方式。</li>
+<li>移动通信的特点：
+<ul>
+<li>移动通信利用无线电波进行信息传输；</li>
+<li>移动通信是在复杂的干扰环境中运行；</li>
+<li>随着业务量的增加，可利用的频谱资源会出现受限；</li>
+<li>对移动台的要求高；</li>
+<li>通信容量有限；</li>
+<li>通信系统复杂</li>
+</ul></li>
+</ul></li>
+<li><p>移动通信的发展历程及发展趋势；</p></li>
+<li><p>无线频谱的规划及第四代移动通信的工作频段；</p>
+<ul>
+<li>TD-LTE频段：中国移动分配130MHz带宽，分别为1880-1900MHz、2320-2370MHz、2575-2635MHz；中国联通分配40MHz带宽，分别为2300-2320MHz、2555-2575MHz；中国电信分配40MHz带宽，分别为2370-2390MHz、2635-2655MHz.</li>
+<li>FDD
+LTE频段：中国电信分配1.8GHz频段（1755-1785MHZ/1850-1880MHz），中国联通分配2.1GHz频段（1955-1980MHz/2145-2170MHz）</li>
+</ul></li>
+<li><p>移动通信的几种工作方式；</p>
+<ul>
+<li>单工：同频单工、双频单工</li>
+<li>双工：通信双方均同时进行收发工作。即任一方讲话时，可以听到对方的话音。</li>
+<li>半双工：通信双方中，一方使用双频双工方式，即收发信机同时工作；另一方使用双频单工方式，即收发信机交替工作。</li>
+<li>移动中继：增加通信距离</li>
+</ul></li>
+<li><p>移动通信的应用系统。</p>
+<ul>
+<li>蜂窝式公用移动通信系统</li>
+<li>集群调度移动通信系统</li>
+<li>无绳电话系统</li>
+<li>无线电寻呼系统</li>
+<li>卫星移动通信系统</li>
+<li>无线LAN/WAN</li>
+</ul></li>
+</ol>
+<h1 id="第二章">第二章</h1>
+<ol type="1">
+<li><p>电波传播的基本特性；</p>
+<ul>
+<li>移动通信信道</li>
+<li>衰落的原因</li>
+<li>无线电波传播方式:直射、反射绕射和散射以及它们的合成</li>
+<li>衰落的表现：传播损耗和弥散
+<ul>
+<li>阴影衰落</li>
+<li>多径衰落</li>
+<li>多普勒频移</li>
+</ul></li>
+</ul></li>
+<li><p>3种电波传播的机制；</p>
+<ul>
+<li>反射：阻挡体比传输波长大的多的物体</li>
+<li>绕射：阻挡体为尖利边缘</li>
+<li>散射：产生于粗糙表面、小物体或其它不规则物体</li>
+</ul></li>
+<li><p>对数距离路径损耗模型及参数；</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="28.177ex" height="5.428ex" role="img" focusable="false" viewBox="0 -1449.5 12454.2 2399" style="vertical-align: -2.148ex;">
+<p><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="matrix(1 0 0 -1 0 0)"><g data-mml-node="math"><g data-mml-node="msub"><g data-mml-node="mi"><path data-c="4C" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="TeXAtom" transform="translate(681, -150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mi" transform="translate(520, 0)"><path data-c="42" d="M231 637Q204 637 199 638T194 649Q194 676 205 682Q206 683 335 683Q594 683 608 681Q671 671 713 636T756 544Q756 480 698 429T565 360L555 357Q619 348 660 311T702 219Q702 146 630 78T453 1Q446 0 242 0Q42 0 39 2Q35 5 35 10Q35 17 37 24Q42 43 47 45Q51 46 62 46H68Q95 46 128 49Q142 52 147 61Q150 65 219 339T288 628Q288 635 231 637ZM649 544Q649 574 634 600T585 634Q578 636 493 637Q473 637 451 637T416 636H403Q388 635 384 626Q382 622 352 506Q352 503 351 500L320 374H401Q482 374 494 376Q554 386 601 434T649 544ZM595 229Q595 273 572 302T512 336Q506 337 429 337Q311 337 310 336Q310 334 293 263T258 122L240 52Q240 48 252 48T333 46Q422 46 429 47Q491 54 543 105T595 229Z"></path></g></g></g><g data-mml-node="mo" transform="translate(1913.2, 0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(2968.9, 0)"><path data-c="4C" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mrow" transform="translate(3649.9, 0)"><g data-mml-node="mo"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="msub" transform="translate(389, 0)"><g data-mml-node="mi"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mn" transform="translate(520, -150) scale(0.707)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g><g data-mml-node="mo" transform="translate(1312.6, 0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g><g data-mml-node="mo" transform="translate(5573.7, 0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mn" transform="translate(6573.9, 0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500, 0)"></path></g><g data-mml-node="mi" transform="translate(7573.9, 0)"><path data-c="6E" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mi" transform="translate(8340.6, 0)"><path data-c="6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path data-c="6F" d="M28 214Q28 309 93 378T250 448Q340 448 405 380T471 215Q471 120 407 55T250 -10Q153 -10 91 57T28 214ZM250 30Q372 30 372 193V225V250Q372 272 371 288T364 326T348 362T317 390T268 410Q263 411 252 411Q222 411 195 399Q152 377 139 338T126 246V226Q126 130 145 91Q177 30 250 30Z" transform="translate(278, 0)"></path><path data-c="67" d="M329 409Q373 453 429 453Q459 453 472 434T485 396Q485 382 476 371T449 360Q416 360 412 390Q410 404 415 411Q415 412 416 414V415Q388 412 363 393Q355 388 355 386Q355 385 359 381T368 369T379 351T388 325T392 292Q392 230 343 187T222 143Q172 143 123 171Q112 153 112 133Q112 98 138 81Q147 75 155 75T227 73Q311 72 335 67Q396 58 431 26Q470 -13 470 -72Q470 -139 392 -175Q332 -206 250 -206Q167 -206 107 -175Q29 -140 29 -75Q29 -39 50 -15T92 18L103 24Q67 55 67 108Q67 155 96 193Q52 237 52 292Q52 355 102 398T223 442Q274 442 318 416L329 409ZM299 343Q294 371 273 387T221 404Q192 404 171 388T145 343Q142 326 142 292Q142 248 149 227T179 192Q196 182 222 182Q244 182 260 189T283 207T294 227T299 242Q302 258 302 292T299 343ZM403 -75Q403 -50 389 -34T348 -11T299 -2T245 0H218Q151 0 138 -6Q118 -15 107 -34T95 -74Q95 -84 101 -97T122 -127T170 -155T250 -167Q319 -167 361 -139T403 -75Z" transform="translate(778, 0)"></path></g><g data-mml-node="mo" transform="translate(9618.6, 0)"><path data-c="2061" d=""></path></g><g data-mml-node="mrow" transform="translate(9618.6, 0)"><g data-mml-node="mo"><path data-c="28" d="M701 -940Q701 -943 695 -949H664Q662 -947 636 -922T591 -879T537 -818T475 -737T412 -636T350 -511T295 -362T250 -186T221 17T209 251Q209 962 573 1361Q596 1386 616 1405T649 1437T664 1450H695Q701 1444 701 1441Q701 1436 681 1415T629 1356T557 1261T476 1118T400 927T340 675T308 359Q306 321 306 250Q306 -139 400 -430T690 -924Q701 -936 701 -940Z"></path></g><g data-mml-node="mfrac" transform="translate(736, 0)"><g data-mml-node="mi" transform="translate(421.8, 676)"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="msub" transform="translate(220, -686)"><g data-mml-node="mi"><path data-c="64" d="M366 683Q367 683 438 688T511 694Q523 694 523 686Q523 679 450 384T375 83T374 68Q374 26 402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487H491Q506 153 506 145Q506 140 503 129Q490 79 473 48T445 8T417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157Q33 205 53 255T101 341Q148 398 195 420T280 442Q336 442 364 400Q369 394 369 396Q370 400 396 505T424 616Q424 629 417 632T378 637H357Q351 643 351 645T353 664Q358 683 366 683ZM352 326Q329 405 277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q233 26 290 98L298 109L352 326Z"></path></g><g data-mml-node="mn" transform="translate(520, -150) scale(0.707)"><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z"></path></g></g><rect width="1123.6" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(2099.6, 0)"><path data-c="29" d="M34 1438Q34 1446 37 1448T50 1450H56H71Q73 1448 99 1423T144 1380T198 1319T260 1238T323 1137T385 1013T440 864T485 688T514 485T526 251Q526 134 519 53Q472 -519 162 -860Q139 -885 119 -904T86 -936T71 -949H56Q43 -949 39 -947T34 -937Q88 -883 140 -813Q428 -430 428 251Q428 453 402 628T338 922T245 1146T145 1309T46 1425Q44 1427 42 1429T39 1433T36 1436L34 1438Z"></path></g></g></g></g></p>
+</svg>
+<ul>
+<li>其中，<span
+class="math inline">\(d_0\)</span>是一个参考距离，在参考距离或接近参考距离的位置，路径损耗具有自由空间损耗的特点；<span
+class="math inline">\(d\)</span>是发射天线到接收天线间的距离；是路径损耗指数，表明路径损耗随距离增长的速率，其取值主要取决于传播环境，其变化范围为2~6</li>
+</ul></li>
+<li><p>多径衰落信道的主要参数及多径衰落信道分类、多径信道的统计分析；</p>
+<ul>
+<li><p>多径信道的主要参数:</p>
+<ol type="1">
+<li>时间色散参数和相关带宽：
+<ol type="1">
+<li>（1）时间色散参数</li>
+<li>（2）相关带宽</li>
+</ol></li>
+<li>频率色散参数和相关时间
+<ol type="1">
+<li>（1）多普勒扩展</li>
+<li>（2）相关时间</li>
+</ol></li>
+<li>角度色散参数和相关距离
+<ol type="1">
+<li>（1）角度扩展</li>
+<li>（2）相关距离</li>
+</ol></li>
+</ol></li>
+<li><p>分类：</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609164847.png" /></p>
+<ol type="1">
+<li><p>1.平坦衰落和频率选择性衰落:</p>
+<ol type="1">
+<li><p>平坦衰落:<span class="math inline">\(B_{\mathrm{s}} \ll
+B_{\mathrm{c}},T_{\mathrm{s}} \gg \sigma_\tau\)</span></p>
+<p><span class="math inline">\(T_s\)</span>为信号周期（信号带宽<span
+class="math inline">\(B_s\)</span>的倒数）；<span
+class="math inline">\(\sigma_\tau\)</span>是信道的时延扩展；<span
+class="math inline">\(B_c\)</span>为相关带宽</p></li>
+</ol></li>
+<li><p>2.快衰落和慢衰落</p>
+<ol type="1">
+<li><p>快衰落:<span class="math inline">\(\begin{aligned} &amp;
+T_{\mathrm{s}}&gt;T_{\mathrm{c}} \\ &amp;
+B_{\mathrm{s}}&lt;B_{\mathrm{D}}\end{aligned}\)</span></p>
+<p><span class="math inline">\(B_D\)</span>为多普勒扩展，<span
+class="math inline">\(T_c\)</span>为发送信号的周期</p></li>
+</ol></li>
+</ol></li>
+<li><p>多径信道的统计分析</p>
+<ol type="1">
+<li>1.瑞利分布：1.发射机和接收机之间没有直射波路径；有大量的反射波存在，且到达接收机天线的方向角是随机的（0一2π均匀分布）；各个反射波的幅度和相位都是统计独立的。</li>
+<li>2.莱斯分布:视距信号成为主接收信号分量</li>
+<li>3.Nakagami-m分布</li>
+</ol></li>
+</ul></li>
+<li><p>自由空间和阴影衰落的概念；</p>
+<ul>
+<li>阴影衰落：地形起伏、建筑物及其它障碍物对电波传播路径的阻挡而形成</li>
+<li>自由空间：在理想的、均匀的、各向同性的介质中传播，只存在电磁波能量扩散而引起的传播损耗。（不发生反射、折射、绕射、散射和吸收现象）</li>
+</ul></li>
+<li><p>多径衰落的特性和多普勒频移；</p>
+<p>多径衰落的特性</p>
+<ol type="1">
+<li>幅度衰落</li>
+<li>时延扩展</li>
+</ol>
+<p>多普勒频移：<span class="math inline">\(f_d=\frac{v}{\lambda} \cos
+\alpha\)</span></p></li>
+<li><p>课上习题。</p></li>
+</ol>
+<h1 id="第三章">第三章</h1>
+<ol type="1">
+<li><p>信源编码的目的；</p>
+<ol type="1">
+<li>信源编码的目的：将信源中的冗余信息进行压缩</li>
+<li>调制目的：是使携带信息的信号与信道特性相匹配以及有效地利用信道。</li>
+</ol></li>
+<li><p>影响调制方式选择的主要因素；</p>
+<ol type="1">
+<li>频带利用率：<span class="math inline">\(\eta_b=R_b /
+B\)</span>。其中<span class="math inline">\(R_b\)</span>为比特速率</li>
+<li>功率效率:指保持信息精确度的情况下所需的最小信号功率或者说最小信噪比</li>
+<li>己调信号恒包络:具有恒包络特性的信号对放大器的非线性不敏感，功率效率高。</li>
+<li>易于解调：相干解调和非相干解调</li>
+<li>带外辐射：一般要求达到-60到-70dB</li>
+</ol></li>
+<li><p>2FSK、CPFSK信号及特点；</p>
+<ol type="1">
+<li>2FSK:</li>
+</ol>
+<p><span class="math display">\[
+\left.\begin{array}{ll}
+a_k=+1: &amp; s_{F S K}(t)=\cos \left(\omega_1 t+\varphi_1\right) \\
+a_k=-1: &amp; s_{F S K}(t)=\cos \left(\omega_2 t+\varphi_2\right)
+\end{array}\right\} \quad\left(k T_b \leq t \leq(k+1) T_b\right)
+\]</span></p>
+<ol start="2" type="1">
+<li><p>cpfsk:即要求当前码元的初相位由前一码元的初相位、当前码元<span
+class="math inline">\(a_k\)</span>和前一码元<span
+class="math inline">\(a_{k-1}\)</span>来决定，该关系称为相位约束条件
+<span class="math display">\[
+\varphi_k=\left(a_{k-1}-a_k\right) \pi h \cdot k+\varphi_{k-1}
+\]</span></p></li>
+<li><p>总结：可以发现，在相同的调制指数h情况下，CPFSK的带宽要比一般的
+2FSK带宽要窄。这意味着前者的频带效率要高于后者。所以，在移动通信
+系统中，2FSK调制常常采用相位连续的调制方式</p>
+<p>随着调制指数h的增加，信号的带宽也在增加。从频带效率考虑，调
+制指数h不宜太大。但过小又因两个信号频率过于接近而不利于信号的检测。
+所以应当从它们的<strong>相关系数</strong>以及信号的<strong>带宽</strong>综合考虑进行选择</p></li>
+</ol></li>
+<li><p>MSK信号的相位路径、频率关系及功率谱特点；</p>
+<ol type="1">
+<li>相位路径:由于h=0.5，MSK的相位约束条件：</li>
+</ol>
+<p><span class="math display">\[
+\varphi_k=\left(a_{k-1}-a_k\right) \frac{\pi}{2} \cdot k+\varphi_{k-1}
+\]</span></p>
+<ol start="2" type="1">
+<li><p>频率关系 <span class="math display">\[
+\left.\begin{array}{l}
+f_c=m \cdot R_b / 4 \\
+f_2=(m+1) R_b / 4 \\
+f_1=(m-1) R_b / 4
+\end{array}\right\}
+\]</span> 载波频率fc应当是Rb/4的整数倍</p></li>
+<li><p>功率谱特点</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609172345.png" /></p>
+<p>由图可见，MSK信号比一般2FSK信号有更高的带宽效率。MSK旁瓣辐射功率仍然较大，会造成邻道干扰</p></li>
+</ol></li>
+<li><p>GMSK信号特点和功率谱特性</p>
+<ul>
+<li><p>GMSK信号:GMSK是基带信号经过高斯低通滤波器的MSK</p></li>
+<li><p>功率谱特性:</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609172609.png" /></p>
+<ol type="1">
+<li><p>MSK引入高斯滤波器后，平滑了相位路径，使得信号的频率变化平稳，大大减少了发射信号频谱的边带辐射。高斯低通滤波器的通带越窄，对邻信道的干扰越小</p></li>
+<li><p>GMSK
+最吸引人的地方是具有恒包络特性，功率效率高，可用非线性功率放大器和非相干检测。GMSK
+的缺点是频谱效率还不够高。当频率资源紧缺</p></li>
+<li><p>归一化3dB带宽:<span class="math inline">\(x_b=B_b / R_b=B_b
+T_b\)</span></p></li>
+<li><p>随着xb
+的减小频谱效率越高，但xb过小会使码间干扰（ISI）增加(基带信号高斯滤波后，使波形在时间上扩展，引入了ISI）。</p></li>
+</ol></li>
+</ul></li>
+<li><p>正交频分复用原理、优缺点、框图；</p>
+<ol type="1">
+<li><p>概念：系统把整个可用信道频带Ｂ划分为N个带宽为△f
+的子信道。把N个串行码元变换为N个并行的码元，分别调制这N
+个子信道载波进行同步传输，这就是频分复用。</p></li>
+<li><p>正交频分复用的原理：如果子载波的间隔等于并行码元长度的倒数1/Ts，使用相干检测，采用子载波的频谱重叠可以使并行系统获得更高的带宽效率，这就是正交频分复用。</p></li>
+<li><p>框图：</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609173212.png" /></p></li>
+<li><p>优缺点</p>
+<ol type="1">
+<li>优点：
+<ol type="1">
+<li>OFDM有比较高的带宽效率</li>
+<li>瑞利衰落对码元的损伤较单载波容易恢复</li>
+<li>系统因时延所产生的码间干扰不那么严重</li>
+<li>当信道在某个频率出现较大幅度衰减或较强的窄带干扰时，只是影响个别的子信道</li>
+<li>由于可以采用DFT实现OFDM信号，极大简化了系统的硬件结构</li>
+</ol></li>
+<li>缺点：
+<ol type="1">
+<li>OFDM存在发射信号的峰值功率和平均功率比值（PAR）过大的问题和由于多谱勒频谱扩展破坏子载波正交的问题。</li>
+</ol></li>
+</ol></li>
+</ol></li>
+<li><p>课上习题。</p></li>
+</ol>
+<h1 id="第四章">第四章</h1>
+<ol type="1">
+<li><p>分集接收技术的基本思想；</p>
+<p>在移动环境中，通过不同途径所接收到的多个信号其衰落情况是不同的、衰落独立的。设其中某一信号分量的强度低于检测门限的概率为<span
+class="math inline">\(p\)</span>，则所有<span
+class="math inline">\(M\)</span>个信号分量的强度都低于检测门限的概率<span
+class="math inline">\(p^M\)</span>远低于<span
+class="math inline">\(p\)</span>。综合利用各信号分量，就有可能明显地改善接收信号的质量，这就是分集接收的基本思想。分集接收的代价是增加了接收机的复杂度，因为要对各径信号进行跟踪并及时对更多的信号分量进行处理，但它可以提高通信的可靠性.</p>
+<ul>
+<li>宏观分集—对抗阴影衰落</li>
+<li>微观分集—对抗多径衰落</li>
+</ul></li>
+<li><p>微观分集的类型；</p>
+<ol type="1">
+<li>时间分集:移动的时间足够长（或移动的距离足够大），大于信道的相干时间。</li>
+<li>频率分集:两个载波的间隔大于信道的相干带宽。举例：跳频通信。</li>
+<li>空间分集:相隔足够大的距离，信号衰落相互独立。实际测量表明，通常在市区，取天线距离d=0.5，在郊区可以取d=0.81。</li>
+</ol></li>
+<li><p>分集的合并方式；</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230609180554.png" /></p>
+<ol type="1">
+<li>选择合并:在所接收的多路信号中，合并器选择<strong>信噪比最高</strong>的一路输出这相当于在M个系数（中，只有一个等于1，其余的为0。)</li>
+<li>最大比值合并和:在信号合并前，对各路载波相位进行调整并使之同相，然后相加。合并器输出信号</li>
+<li>等增益合并:等增益合并器的各路加权系数均为1，合并器输出的信号</li>
+<li>性能比较：最大比值合并改善最多，其次是等增益合并，最差是选择合并，这是因为选择合并只利用其中一个信号，其余没有被利用，而前两者使各支路信号的能量都得到利用</li>
+</ol></li>
+<li><p>分组码的编译码原理；</p></li>
+<li><p>卷积码的编译码原理；</p></li>
+<li><p>状态图、网格图、卷积码编码器框图、维特比译码；</p></li>
+<li><p>CRC编码；</p></li>
+<li><p>生成多项式、生成矩阵、监督矩阵；</p></li>
+<li><p>直接序列扩频技术原理、抗多径衰落原理、框图；</p>
+<p>直接序列扩频原理：</p></li>
+<li><p>m序列的随机性质</p>
+<ol type="1">
+<li><p>（1）平衡特性：在m序列的一个完整周期N=2m一1内，0的个数和1的个数总是相差1。</p></li>
+<li><p>（2）游程特性：在每个周期内，符号1或0连续相同的一段子序列称为一个游程。连续相同符号的个数称为游程的长度。m序列游程总数为（N十1）/2。其中长度为1的游程数等于游程总数的1/2；长度为2的游程数等于游程总数的1/4；长度为3的游程数等于游程总数的1/8，等等。最长的游程是m个连1（只有一个），最长连0的游程长度为m一1（也只有一个）。</p></li>
+<li><p>相关特性：m序列的自相关函数是周期性的二值函数。可以证明，对长度为N的m序列都有结果：
+<span class="math display">\[
+R_{a, a}(n)=\left\{\begin{array}{lll}
+1 &amp; n=l \cdot N \quad l=0, \pm 1, \pm 2, \ldots \\
+\frac{-1}{N} &amp; \text { 其余 } n
+\end{array}\right.
+\]</span></p></li>
+<li></li>
+</ol></li>
+<li><p>课上习题。</p></li>
+</ol>
+<h1 id="第五章">第五章</h1>
+<h1 id="第六章">第六章</h1>
+<h1 id="第七章">第七章</h1>
+<p># 第八章</p>
+<h1 id="第九章">第九章</h1>
+<h1 id="第十章">第十章</h1>
+]]></content>
+      <categories>
+        <category>code</category>
       </categories>
   </entry>
   <entry>
