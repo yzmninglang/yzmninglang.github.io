@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="nav-number">1.</span> <span class="nav-text">信号和槽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0connect"><span class="nav-number">1.1.</span> <span class="nav-text">连接函数：connect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A7%BD%E5%87%BD%E6%95%B0%E5%92%8C%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.2.</span> <span class="nav-text">自定义槽函数和信号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="nav-number">1.2.1.</span> <span class="nav-text">信号的重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E8%BF%9E%E6%8E%A5%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.2.2.</span> <span class="nav-text">信号连接信号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%80%81%E4%B8%8E%E9%9D%9E%E6%A8%A1%E6%80%81"><span class="nav-number">2.</span> <span class="nav-text">模态与非模态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%80%81"><span class="nav-number">2.1.</span> <span class="nav-text">模态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E6%A8%A1%E6%80%81"><span class="nav-number">2.2.</span> <span class="nav-text">非模态</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E5%92%8C%E6%A7%BD"><span class="nav-number">1.</span> <span class="nav-text">信号和槽</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0%EF%BC%9Aconnect"><span class="nav-number">1.1.</span> <span class="nav-text">连接函数：connect</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%A7%BD%E5%87%BD%E6%95%B0%E5%92%8C%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.2.</span> <span class="nav-text">自定义槽函数和信号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E7%9A%84%E9%87%8D%E8%BD%BD"><span class="nav-number">1.2.1.</span> <span class="nav-text">信号的重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E8%BF%9E%E6%8E%A5%E4%BF%A1%E5%8F%B7"><span class="nav-number">1.2.2.</span> <span class="nav-text">信号连接信号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%80%81%E4%B8%8E%E9%9D%9E%E6%A8%A1%E6%80%81"><span class="nav-number">2.</span> <span class="nav-text">模态与非模态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E6%80%81"><span class="nav-number">2.1.</span> <span class="nav-text">模态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E6%A8%A1%E6%80%81"><span class="nav-number">2.2.</span> <span class="nav-text">非模态</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -287,12 +287,9 @@
     <div class="post-body" itemprop="articleBody">
         <p>Qt问题总汇</p>
 <span id="more"></span>
-<h1 id="信号和槽">信号和槽</h1>
-<h2 id="连接函数connect">连接函数：connect</h2>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<h1 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h1><h2 id="连接函数：connect"><a href="#连接函数：connect" class="headerlink" title="连接函数：connect"></a>连接函数：connect</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
 <p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
-<ul>
+<h2 id="自定义槽函数和信号"><a href="#自定义槽函数和信号" class="headerlink" title="自定义槽函数和信号"></a>自定义槽函数和信号</h2><ul>
 <li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
 <li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
 </ul>
@@ -301,23 +298,23 @@
 <p>定义槽和信号后，需要定义触发函数</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载">信号的重载</h3>
-<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<h3 id="信号的重载"><a href="#信号的重载" class="headerlink" title="信号的重载"></a>信号的重载</h3><p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
 <ul>
 <li>问题：这里的两个函数指针是如何定义的？？？</li>
 <li>答：</li>
 </ul>
-<p>Qstring 转char *</p>
+<p>Qstring 转char * </p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号">信号连接信号</h3>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号"><a href="#信号连接信号" class="headerlink" title="信号连接信号"></a>信号连接信号</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
 <p>直接将两个信号用connect相连</p>
 <ul>
-<li><p>断开信号 disconnect</p></li>
-<li><p>多个信号一个槽</p></li>
-<li><p>多个槽连接一个信号</p></li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
+<li>断开信号 disconnect</li>
+<li>多个信号一个槽</li>
+<li><p>多个槽连接一个信号</p>
+</li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p>
+</li>
 </ul>
 <p>lambda函数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
@@ -325,11 +322,8 @@
 <li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
 <li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
 </ul>
-<h1 id="模态与非模态">模态与非模态</h1>
-<h2 id="模态">模态</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态">非模态</h2>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<h1 id="模态与非模态"><a href="#模态与非模态" class="headerlink" title="模态与非模态"></a>模态与非模态</h1><h2 id="模态"><a href="#模态" class="headerlink" title="模态"></a>模态</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态"><a href="#非模态" class="headerlink" title="非模态"></a>非模态</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
 <li>答：</li>
