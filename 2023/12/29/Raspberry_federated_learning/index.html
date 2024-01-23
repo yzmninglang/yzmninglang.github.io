@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MiniConda-%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">MiniConda 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAPython3-8"><span class="nav-number">2.</span> <span class="nav-text">创建Python3.8</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Torch%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Torch的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">jupyter配置</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#miniconda-%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">MiniConda 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BApython3.8"><span class="nav-number">2.</span> <span class="nav-text">创建Python3.8</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#torch%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">3.</span> <span class="nav-text">Torch的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter%E9%85%8D%E7%BD%AE"><span class="nav-number">3.1.</span> <span class="nav-text">jupyter配置</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,8 +286,9 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>树莓派联邦学习部署</p>
-<span id="more"></span> 
-<h1 id="MiniConda-安装"><a href="#MiniConda-安装" class="headerlink" title="MiniConda 安装"></a>MiniConda 安装</h1><p>设置conda为环境变量</p>
+<span id="more"></span>
+<h1 id="miniconda-安装">MiniConda 安装</h1>
+<p>设置conda为环境变量</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
 <p>编辑<code>~/.bashrc</code>,追加</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
@@ -303,13 +304,17 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
 <p>pip换源</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<h1 id="创建Python3-8"><a href="#创建Python3-8" class="headerlink" title="创建Python3.8"></a>创建Python3.8</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name fl python=3.8.8</span><br></pre></td></tr></table></figure>
-<h1 id="Torch的安装"><a href="#Torch的安装" class="headerlink" title="Torch的安装"></a>Torch的安装</h1><p>对于树莓派(使用arrch64的ubuntu或者raspberryos),先到<a target="_blank" rel="noopener" href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
+<h1 id="创建python3.8">创建Python3.8</h1>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name fl python=3.8.8</span><br></pre></td></tr></table></figure>
+<h1 id="torch的安装">Torch的安装</h1>
+<p>对于树莓派(使用arrch64的ubuntu或者raspberryos),先到<a
+target="_blank" rel="noopener" href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
 <ul>
 <li>对于没有GPU的板子，直接安装</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
-<h2 id="jupyter配置"><a href="#jupyter配置" class="headerlink" title="jupyter配置"></a>jupyter配置</h2><ul>
+<h2 id="jupyter配置">jupyter配置</h2>
+<ul>
 <li>先生成jupyter的配置文件夹</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
