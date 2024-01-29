@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#STEP1%EF%BC%9A%E5%AE%89%E8%A3%85openssh-server"><span class="nav-number">1.</span> <span class="nav-text">STEP1：安装openssh-server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#STEP2%EF%BC%9A%E8%AE%BE%E7%BD%AE%E5%85%81%E8%AE%B8root%E7%99%BB%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">STEP2：设置允许root登录</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#step1%E5%AE%89%E8%A3%85openssh-server"><span class="nav-number">1.</span> <span class="nav-text">STEP1：安装openssh-server</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#step2%E8%AE%BE%E7%BD%AE%E5%85%81%E8%AE%B8root%E7%99%BB%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">STEP2：设置允许root登录</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -287,7 +287,8 @@
     <div class="post-body" itemprop="articleBody">
         <p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
 <span id="more"></span>
-<h1 id="STEP1：安装openssh-server"><a href="#STEP1：安装openssh-server" class="headerlink" title="STEP1：安装openssh-server"></a>STEP1：安装openssh-server</h1><p>1.更新源</p>
+<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
+<p>1.更新源</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
 <p>2.安装openssh-server</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
@@ -295,9 +296,10 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
 <p>还需安装openrc</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<h1 id="STEP2：设置允许root登录"><a href="#STEP2：设置允许root登录" class="headerlink" title="STEP2：设置允许root登录"></a>STEP2：设置允许root登录</h1><p>设置<code>/etc/ssh/sshd_config</code></p>
+<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
+<p>设置<code>/etc/ssh/sshd_config</code></p>
 <p>追加如下指令</p>
-<p>— <code>PermitRootLogin yes</code></p>
+<p>-- <code>PermitRootLogin yes</code></p>
 
     </div>
 
@@ -311,8 +313,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" rel="prev" title="">
-                  <i class="fa fa-chevron-left"></i> 
+                <a href="/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/" rel="prev" title="ikuai搭建seafile-docker">
+                  <i class="fa fa-chevron-left"></i> ikuai搭建seafile-docker
                 </a>
             </div>
             <div class="post-nav-item">
