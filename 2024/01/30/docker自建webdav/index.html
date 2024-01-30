@@ -29,7 +29,7 @@
 <meta property="og:description" content="这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-01-30T07:46:29.677Z">
-<meta property="article:modified_time" content="2024-01-30T07:57:06.613Z">
+<meta property="article:modified_time" content="2024-01-30T08:05:21.664Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
 
@@ -242,7 +242,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2024-01-30 15:46:29 / Modified: 15:57:06" itemprop="dateCreated datePublished" datetime="2024-01-30T15:46:29+08:00">2024-01-30</time>
+      <time title="Created: 2024-01-30 15:46:29 / Modified: 16:05:21" itemprop="dateCreated datePublished" datetime="2024-01-30T15:46:29+08:00">2024-01-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -287,7 +287,11 @@
 <p><code>PASSWORD</code></p>
 <p><code>ANONYMOUS_METHODS</code>:<code>GET</code></p>
 <p><code>LOCATION</code></p>
-<p><code>AUTH_TYPE</code>:<code>Digest</code></p>
+<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
+<p>修改编码为utf8</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
+<p>修改为utf8</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
 
     </div>
 
