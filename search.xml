@@ -2013,28 +2013,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>ikuai-docker自建webdav</title>
-    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<p>镜像：<code>bytemark/webdav:latest</code></p>
-<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
-<p>环境变量：</p>
-<p><code>USERNAME</code></p>
-<p><code>PASSWORD</code></p>
-<p><code>ANONYMOUS_METHODS</code>:<code>GET</code></p>
-<p><code>LOCATION</code></p>
-<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
-<p>修改编码为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
-<p>修改为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Docker-ubuntu安装ssh</title>
     <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
@@ -2052,6 +2030,28 @@ class="math inline">\(O(1)\)</span></li>
 <p>设置<code>/etc/ssh/sshd_config</code></p>
 <p>追加如下指令</p>
 <p>-- <code>PermitRootLogin yes</code></p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ikuai-docker自建webdav</title>
+    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<p>镜像：<code>bytemark/webdav:latest</code></p>
+<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
+<p>环境变量：</p>
+<p><code>USERNAME</code></p>
+<p><code>PASSWORD</code></p>
+<p><code>ANONYMOUS_METHODS</code>:<code>GET</code></p>
+<p><code>LOCATION</code></p>
+<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
+<p>修改编码为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
+<p>修改为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Code</category>
