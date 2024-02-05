@@ -287,21 +287,18 @@
     <div class="post-body" itemprop="articleBody">
         <p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
 <span id="more"></span>
-<h1 id="安装webdav">安装webdav</h1>
-<p>镜像：<code>bytemark/webdav:latest</code></p>
+<h1 id="安装webdav"><a href="#安装webdav" class="headerlink" title="安装webdav"></a>安装webdav</h1><p>镜像：<code>bytemark/webdav:latest</code></p>
 <p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
 <p>环境变量：</p>
-<p><code>USERNAME</code></p>
-<p><code>PASSWORD</code></p>
+<p><code>USERNAME</code> </p>
+<p><code>PASSWORD</code> </p>
 <p><code>LOCATION</code></p>
 <p><code>AUTH_TYPE</code>:<code>Basic</code></p>
 <p>修改编码为utf8</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
 <p>修改为utf8</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="配置alpine-linux">配置alpine-linux</h1>
-<h2 id="换源">换源</h2>
-<p>更换为UESTC源</p>
+<h1 id="配置alpine-linux"><a href="#配置alpine-linux" class="headerlink" title="配置alpine-linux"></a>配置alpine-linux</h1><h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>更换为UESTC源</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
 <p>执行<code>update</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
