@@ -2013,6 +2013,40 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
+    <title>Docker-ubuntu安装ssh</title>
+    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
+<span id="more"></span>
+<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
+<p>1.更新源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p>2.安装openssh-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
+<p>对于Alpine-linux，则用下面命令安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
+<p>还需安装openrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
+<p>设置<code>/etc/ssh/sshd_config</code></p>
+<p>追加如下指令</p>
+<p>-- <code>PermitRootLogin yes</code></p>
+<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
+<p>:star:先换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
+<p>生成source文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
+<p>写入源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
+<p>删除缓存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+<p>在更新</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>ikuai-docker自建webdav</title>
     <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
     <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
@@ -2043,40 +2077,6 @@ class="math inline">\(O(1)\)</span></li>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 <p>更新一下</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Docker-ubuntu安装ssh</title>
-    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
-<span id="more"></span>
-<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
-<p>1.更新源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p>2.安装openssh-server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
-<p>对于Alpine-linux，则用下面命令安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
-<p>还需安装openrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
-<p>设置<code>/etc/ssh/sshd_config</code></p>
-<p>追加如下指令</p>
-<p>-- <code>PermitRootLogin yes</code></p>
-<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
-<p>:star:先换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
-<p>生成source文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
-<p>写入源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
-<p>删除缓存</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
-<p>在更新</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Code</category>
