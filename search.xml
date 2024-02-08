@@ -1045,56 +1045,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
       </categories>
   </entry>
   <entry>
-    <title>树莓派实现联邦学习</title>
-    <url>/2023/12/29/Raspberry_federated_learning/</url>
-    <content><![CDATA[<p>树莓派联邦学习部署</p>
-<span id="more"></span>
-<h1 id="miniconda-安装">MiniConda 安装</h1>
-<p>设置conda为环境变量</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
-<p>编辑<code>~/.bashrc</code>,追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
-<p>保存，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
-<p>conda换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>新建conda环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8</span><br></pre></td></tr></table></figure>
-<p>conda查看环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
-<p>conda激活环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
-<p>pip换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<h1 id="创建python3.8">创建Python3.8</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8.8</span><br></pre></td></tr></table></figure>
-<h1 id="torch的安装">Torch的安装</h1>
-<p>对于树莓派(使用arrch64的ubuntu或者raspberryos),先到<a
-href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
-<ul>
-<li>对于没有GPU的板子，直接安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
-<h2 id="jupyter配置">jupyter配置</h2>
-<ul>
-<li>先生成jupyter的配置文件夹</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
-<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
-<ul>
-<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python 机器学习</title>
     <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
     <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
@@ -1200,6 +1150,56 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>树莓派实现联邦学习</title>
+    <url>/2023/12/29/Raspberry_federated_learning/</url>
+    <content><![CDATA[<p>树莓派联邦学习部署</p>
+<span id="more"></span>
+<h1 id="miniconda-安装">MiniConda 安装</h1>
+<p>设置conda为环境变量</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
+<p>编辑<code>~/.bashrc</code>,追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>保存，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
+<p>conda换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>新建conda环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8</span><br></pre></td></tr></table></figure>
+<p>conda查看环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<p>conda激活环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
+<p>pip换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h1 id="创建python3.8">创建Python3.8</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8.8</span><br></pre></td></tr></table></figure>
+<h1 id="torch的安装">Torch的安装</h1>
+<p>对于树莓派(使用arrch64的ubuntu或者raspberryos),先到<a
+href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
+<ul>
+<li>对于没有GPU的板子，直接安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
+<h2 id="jupyter配置">jupyter配置</h2>
+<ul>
+<li>先生成jupyter的配置文件夹</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
+<ul>
+<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2013,40 +2013,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>Docker-ubuntu安装ssh</title>
-    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
-<span id="more"></span>
-<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
-<p>1.更新源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p>2.安装openssh-server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
-<p>对于Alpine-linux，则用下面命令安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
-<p>还需安装openrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
-<p>设置<code>/etc/ssh/sshd_config</code></p>
-<p>追加如下指令</p>
-<p>-- <code>PermitRootLogin yes</code></p>
-<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
-<p>:star:先换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
-<p>生成source文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
-<p>写入源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
-<p>删除缓存</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
-<p>在更新</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ikuai-docker自建webdav</title>
     <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
     <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
@@ -2077,6 +2043,40 @@ class="math inline">\(O(1)\)</span></li>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 <p>更新一下</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Docker-ubuntu安装ssh</title>
+    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
+<span id="more"></span>
+<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
+<p>1.更新源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p>2.安装openssh-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
+<p>对于Alpine-linux，则用下面命令安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
+<p>还需安装openrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
+<p>设置<code>/etc/ssh/sshd_config</code></p>
+<p>追加如下指令</p>
+<p>-- <code>PermitRootLogin yes</code></p>
+<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
+<p>:star:先换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
+<p>生成source文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
+<p>写入源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
+<p>删除缓存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+<p>在更新</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Code</category>
