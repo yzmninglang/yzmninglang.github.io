@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88%E5%9E%83%E5%9C%BE%E5%88%86%E7%B1%BB%E9%A1%B9%E7%9B%AE%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">环境配置（垃圾分类项目）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu%E9%85%8D%E7%BD%AEopencv"><span class="nav-number">1.1.</span> <span class="nav-text">ubuntu配置opencv</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E5%9E%83%E5%9C%BE%E5%88%86%E7%B1%BB%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">环境配置（垃圾分类项目）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu%E9%85%8D%E7%BD%AEopencv"><span class="nav-number">1.1.</span> <span class="nav-text">ubuntu配置opencv</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -287,14 +287,21 @@
     <div class="post-body" itemprop="articleBody">
         <p>下面是本人总结的Python机器学习-图像处理的步骤</p>
 <span id="more"></span>
-<h1 id="环境配置（垃圾分类项目）"><a href="#环境配置（垃圾分类项目）" class="headerlink" title="环境配置（垃圾分类项目）"></a>环境配置（垃圾分类项目）</h1><p>项目使用树莓派4B，具体流程如下</p>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
 <ul>
-<li>下载<a target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>下载<a
+target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+target="_blank" rel="noopener" href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+target="_blank" rel="noopener" href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
 <li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
 </ul>
-<ol>
+<ol type="1">
 <li>修改<code>deb</code>镜像源</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
@@ -309,9 +316,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
 <p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv"><a href="#ubuntu配置opencv" class="headerlink" title="ubuntu配置opencv"></a>ubuntu配置opencv</h2><ul>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
 <li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a target="_blank" rel="noopener" href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>首先去<a
+target="_blank" rel="noopener" href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
 <li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
 <li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
 </ul>
