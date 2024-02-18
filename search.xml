@@ -385,6 +385,45 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
+<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
+</li>
+<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
+</li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
+</li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
+</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -423,45 +462,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
-<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
-</li>
-<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
-</li>
-<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
-</li>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
-</li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
-</li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
-</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -832,6 +832,15 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>DSP</title>
     <url>/2022/03/14/Signals%20and%20Systems/</url>
     <content><![CDATA[<p>信号与系统笔记</p>
@@ -861,15 +870,6 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
 ]]></content>
       <categories>
         <category>电子</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1364,6 +1364,11 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>]]></content>
+  </entry>
+  <entry>
     <title>Docker-ubuntu安装ssh</title>
     <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
@@ -1393,44 +1398,6 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       <categories>
         <category>Code</category>
       </categories>
-  </entry>
-  <entry>
-    <title>ikuai-docker自建webdav</title>
-    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="安装webdav"><a href="#安装webdav" class="headerlink" title="安装webdav"></a>安装webdav</h1><p>镜像：<code>bytemark/webdav:latest</code></p>
-<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
-<p>环境变量：</p>
-<p><code>USERNAME</code> </p>
-<p><code>PASSWORD</code> </p>
-<p><code>LOCATION</code></p>
-<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
-<p>修改编码为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
-<p>修改为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="配置alpine-linux"><a href="#配置alpine-linux" class="headerlink" title="配置alpine-linux"></a>配置alpine-linux</h1><h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>更换为UESTC源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
-<p>执行<code>update</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
-<p>安装<code>openrc</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<p>添加 auto-docker 为自启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add auto-docker</span><br></pre></td></tr></table></figure>
-<p>在<code>/etc/loacal.d/</code>中添加start结尾的脚本,如<code>docker.start</code>,内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>更新一下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>]]></content>
   </entry>
   <entry>
     <title>Linux开发项目总结</title>
@@ -1556,6 +1523,39 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
 <p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 <p>重启docker</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ikuai-docker自建webdav</title>
+    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="安装webdav"><a href="#安装webdav" class="headerlink" title="安装webdav"></a>安装webdav</h1><p>镜像：<code>bytemark/webdav:latest</code></p>
+<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
+<p>环境变量：</p>
+<p><code>USERNAME</code> </p>
+<p><code>PASSWORD</code> </p>
+<p><code>LOCATION</code></p>
+<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
+<p>修改编码为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
+<p>修改为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="配置alpine-linux"><a href="#配置alpine-linux" class="headerlink" title="配置alpine-linux"></a>配置alpine-linux</h1><h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>更换为UESTC源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
+<p>执行<code>update</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
+<p>安装<code>openrc</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<p>添加 auto-docker 为自启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add auto-docker</span><br></pre></td></tr></table></figure>
+<p>在<code>/etc/loacal.d/</code>中添加start结尾的脚本,如<code>docker.start</code>,内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>更新一下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Code</category>
