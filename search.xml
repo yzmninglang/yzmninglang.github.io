@@ -1096,6 +1096,56 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
       </categories>
   </entry>
   <entry>
+    <title>树莓派实现联邦学习</title>
+    <url>/2023/12/29/Raspberry_federated_learning/</url>
+    <content><![CDATA[<p>树莓派联邦学习部署</p>
+<span id="more"></span>
+<h1 id="miniconda-安装">MiniConda 安装</h1>
+<p>设置conda为环境变量</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
+<p>编辑<code>~/.bashrc</code>,追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>保存，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
+<p>conda换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>新建conda环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8</span><br></pre></td></tr></table></figure>
+<p>conda查看环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<p>conda激活环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
+<p>pip换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<h1 id="创建python3.8">创建Python3.8</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8.8</span><br></pre></td></tr></table></figure>
+<h1 id="torch的安装">Torch的安装</h1>
+<p>对于树莓派(使用arrch64的ubuntu或者raspberryos),先到<a
+href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
+<ul>
+<li>对于没有GPU的板子，直接安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
+<h2 id="jupyter配置">jupyter配置</h2>
+<ul>
+<li>先生成jupyter的配置文件夹</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
+<ul>
+<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1150,56 +1200,6 @@ href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载�
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>树莓派实现联邦学习</title>
-    <url>/2023/12/29/Raspberry_federated_learning/</url>
-    <content><![CDATA[<p>树莓派联邦学习部署</p>
-<span id="more"></span>
-<h1 id="miniconda-安装">MiniConda 安装</h1>
-<p>设置conda为环境变量</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
-<p>编辑<code>~/.bashrc</code>,追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
-<p>保存，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
-<p>conda换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/main/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/conda-forge/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/msys2/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/bioconda/</span><br><span class="line">conda config --add channels https://mirrors.ustc.edu.cn/anaconda/cloud/menpo/</span><br><span class="line">conda config --<span class="built_in">set</span> show_channel_urls yes</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>新建conda环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8</span><br></pre></td></tr></table></figure>
-<p>conda查看环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
-<p>conda激活环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate Federated_Learn</span><br></pre></td></tr></table></figure>
-<p>pip换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<h1 id="创建python3.8">创建Python3.8</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.8.8</span><br></pre></td></tr></table></figure>
-<h1 id="torch的安装">Torch的安装</h1>
-<p>对于树莓派(使用arrch64的ubuntu或者raspberryos),先到<a
-href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
-<ul>
-<li>对于没有GPU的板子，直接安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
-<h2 id="jupyter配置">jupyter配置</h2>
-<ul>
-<li>先生成jupyter的配置文件夹</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
-<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
-<ul>
-<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
