@@ -29,7 +29,7 @@
 <meta property="og:description" content="树莓派联邦学习部署">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-12-29T08:54:13.143Z">
-<meta property="article:modified_time" content="2024-02-29T15:26:10.369Z">
+<meta property="article:modified_time" content="2024-02-29T15:29:37.128Z">
 <meta property="article:author" content="ninglang">
 <meta name="twitter:card" content="summary">
 
@@ -250,7 +250,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-29 23:26:10" itemprop="dateModified" datetime="2024-02-29T23:26:10+08:00">2024-02-29</time>
+      <time title="Modified: 2024-02-29 23:29:37" itemprop="dateModified" datetime="2024-02-29T23:29:37+08:00">2024-02-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,7 +312,9 @@ id="安装系统依赖十分重要建议所有任务开始之前必须安装">�
 <p><strong>安装必要的wheel包(可以不安装，但是为了减少编译时间，可以先安装已经编译好的)</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/gevent-23.9.1-cp39-cp39-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/psutil-5.9.6-cp39-abi3-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
-<p>安装syft</p>
+<p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
+<p>安装torch,参考torch官网</p>
 <h1 id="miniconda-安装树莓派5-ubunturaspberry-os系统">MiniConda
 安装（树莓派5 ubuntu/raspberry OS系统）</h1>
 <p><strong>树莓派系统</strong></p>
