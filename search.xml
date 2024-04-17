@@ -775,21 +775,6 @@ alt="被删除视频" />
       </categories>
   </entry>
   <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Neural network(1)---Logistic Regression</title>
     <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
     <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic
@@ -938,6 +923,53 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>Product design</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
+- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
+- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a
+href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Pointer</title>
     <url>/2021/09/03/Point/</url>
     <content><![CDATA[<p>Review the knowledge of pointers</p>
@@ -1014,38 +1046,6 @@ can free the space</p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
-- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
-- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a
-href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
-]]></content>
-      <categories>
-        <category>生活</category>
       </categories>
   </entry>
   <entry>
@@ -1275,16 +1275,6 @@ href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载�
       </categories>
   </entry>
   <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>DSP</title>
     <url>/2022/03/14/Signals%20and%20Systems/</url>
     <content><![CDATA[<p>信号与系统笔记</p>
@@ -1315,6 +1305,98 @@ href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载�
 ]]></content>
       <categories>
         <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1397,6 +1479,159 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Windows常用指令和工具</title>
+    <url>/2022/01/05/Windows_command/</url>
+    <content><![CDATA[<p>电脑常用的一些操作</p>
+<span id="more"></span>
+<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
+<p>现在我的F盘里面有一个文件夹blog</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
+<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
+<p>指令如下</p>
+<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
+<h1 id="关闭windows更新">关闭Windows更新</h1>
+<p>安装<code>wu10man</code>，点击该处访问其<a
+href="https://github.com/WereDev/Wu10Man">github</a>.</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
+<p>安装打开<code>wu10man</code>,选择即可</p>
+<h1 id="右键菜单规定">右键菜单规定</h1>
+<p>下载ccleaner</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
+<p>对其相应的进行调整即可</p>
+<h1 id="c盘清理">C盘清理</h1>
+<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
+<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
+<p>然后打开环境变量的设置</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
+<p>就可以看到这个pagefile，点击更改。</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
+<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
+<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
+<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
+<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
+<h1 id="磁盘分析软件">磁盘分析软件</h1>
+<p>这里，推荐一个磁盘分析软件，<a
+href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
+<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
+<h1 id="c盘扩容">C盘扩容</h1>
+<p>首先，下载<a
+href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
+Partition Wizrd Free</a></p>
+<p>如果电脑显示Bitlocker，如下图</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
+<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
+<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
+<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
+<p>右键C盘，选择分给的区扩容</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
+<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
+<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
+<h1 id="latex语法">Latex语法</h1>
+<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
+<span class="math display">\[
+f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
+\]</span> 这时，你需要在word里面输入下面的代码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
+<h1 id="重装系统">重装系统</h1>
+<p>这里使用这个超星的资源<a
+href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
+<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
+<p>其中18表示目标帧率</p>
+<h1 id="gitgnore的编写">gitgnore的编写</h1>
+<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
+alt="image-20231017175719127" />
+<figcaption aria-hidden="true">image-20231017175719127</figcaption>
+</figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
+<h1 id="windows设置cmd的字体">windows设置cmd的字体</h1>
+<p>输入<code>win+r</code>，输入<code>regedit</code>。然后复制如下地址进入导航栏</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor</span><br></pre></td></tr></table></figure>
+<p>新建字符串值<code>Autorun</code></p>
+<p>里面输入<code>chcp 437</code>,即可修改为<code>Consolas</code></p>
+<p>可能会导致部分的应用无法正常工作：特别是破解软件“净化时”，这时候需要更改回来，将AutoRun留空就行</p>
+<h1 id="window设置edge不自动更新">window设置edge不自动更新</h1>
+<p>打开<code>C:\Program Files (x86)\Microsoft\EdgeUpdate</code></p>
+<p>修改<code>MicrosoftEdgeUpdate.exe</code>为<code>123MicrosoftEdgeUpdate.exe</code>即可</p>
+<h1 id="typora破解版教程">typora破解版教程</h1>
+<p>参考<strong>Typora破解版安装教程（仅供学习） -
+知乎</strong>https://zhuanlan.zhihu.com/p/648915268</p>
+<p>用app.asar.txt D:中的app.asar，输入注册码即可，安装包网址为(<a
+href="http://share.ninglang.fun/windows/typora破解激活.7z">typora破解激活.7z</a>)</p>
+<h1 id="wls2子系统安装教程">wls2子系统安装教程</h1>
+<p>打开虚拟机功能（Powershell管理员启动）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
+<p>下载wsl内核 <a
+href="https://github.com/microsoft/WSL2-Linux-Kernel">WSL 2 Linux
+内核</a></p>
+<p>最后在ms store中下载ubuntu20.04</p>
+<h1 id="wls安装cuda">Wls安装cuda</h1>
+<p>进入<a href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA
+Toolkit Archive | NVIDIA Developer</a>，选择合适的cuda，选择的版本按照<a
+href="https://pytorch.org/">PyTorch</a>的版本来决定</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/img/image-20240302143021373.png"
+alt="image-20240302143021373" />
+<figcaption aria-hidden="true">image-20240302143021373</figcaption>
+</figure>
+<p>以GTX1650,torch版本如下:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">torch              2.2.1</span><br><span class="line">torchaudio         2.2.1</span><br><span class="line">torchvision        0.17.1</span><br></pre></td></tr></table></figure>
+<p>选择<a
+href="https://developer.nvidia.com/cuda-11-8-0-download-archive">CUDA
+Toolkit 11.8 Downloads | NVIDIA
+Developer</a>，选择如图所示的命令即可</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/img/image-20240302141718235.png"
+alt="image-20240302141718235" />
+<figcaption aria-hidden="true">image-20240302141718235</figcaption>
+</figure>
+<p>执行如下命令即可</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin</span><br><span class="line"></span><br><span class="line">sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600</span><br><span class="line"></span><br><span class="line">wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda-repo-wsl-ubuntu-11-8-local_11.8.0-1_amd64.deb</span><br><span class="line"></span><br><span class="line">sudo dpkg -i cuda-repo-wsl-ubuntu-11-8-local_11.8.0-1_amd64.deb</span><br><span class="line"></span><br><span class="line">sudo cp /var/cuda-repo-wsl-ubuntu-11-8-local/cuda-*-keyring.gpg /usr/share/keyrings/</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get -y install cuda</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Windows</category>
       </categories>
   </entry>
   <entry>
@@ -1633,156 +1868,38 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
-    <title>Windows常用指令和工具</title>
-    <url>/2022/01/05/Windows_command/</url>
-    <content><![CDATA[<p>电脑常用的一些操作</p>
+    <title>Docker-ubuntu安装ssh</title>
+    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
 <span id="more"></span>
-<h1 id="创建软链接用来移动文件">创建软链接（用来移动文件）</h1>
-<p>现在我的F盘里面有一个文件夹blog</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142049865.png" /></p>
-<p>然后这时我需要给它在C盘的user的ninglang目录下面创建一个软链接，方便我访问</p>
-<p>指令如下</p>
-<p><code>mklink /j 链接的地址 链接所指的地方</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j </span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mklink /j <span class="string">&quot;C:\Users\ninglang\Blog&quot;</span> <span class="string">&quot;F:\Blog&quot;</span></span><br></pre></td></tr></table></figure>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142604261.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105142414142.png" /></p>
-<h1 id="关闭windows更新">关闭Windows更新</h1>
-<p>安装<code>wu10man</code>，点击该处访问其<a
-href="https://github.com/WereDev/Wu10Man">github</a>.</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143006087.png" /></p>
-<p>安装打开<code>wu10man</code>,选择即可</p>
-<h1 id="右键菜单规定">右键菜单规定</h1>
-<p>下载ccleaner</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220105143224777.png" /></p>
-<p>对其相应的进行调整即可</p>
-<h1 id="c盘清理">C盘清理</h1>
-<h2 id="清理pagefile">清理<code>Pagefile</code></h2>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084122466.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084143390.png" /></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084103204.png" /></p>
-<p>这样，你就可以看到c盘的系统文件，其中有两个文件比较大，共占据了20G</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084624348.png" /></p>
-<p>然后打开环境变量的设置</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084332611.png" /></p>
-<p>就可以看到这个pagefile，点击更改。</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084430193.png" /></p>
-<p>通过操作这几个按钮，将其他盘设置为<code>system managed</code>,将C设置为<code>None</code>点击OK，重启电脑</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110084852791.png" /></p>
-<h2 id="清理hiberfil">清理<code>hiberfil</code></h2>
-<p>hiberfil占用的储存也挺大，我的电脑高达6G，只需要管理员运行<code>cmd</code>，然后运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate off</span><br></pre></td></tr></table></figure>
-<p>即可，这个选项会关闭休眠，C盘文件将会自动删除，具体好坏自行取舍，如需恢复，请输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">powercfg.exe /hibernate on</span><br></pre></td></tr></table></figure>
-<h1 id="磁盘分析软件">磁盘分析软件</h1>
-<p>这里，推荐一个磁盘分析软件，<a
-href="https://ninglang.lanzouq.com/i2Z7gykzh5g">SpaceSniffer</a>,需要管理员运行程序</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110085625011.png" /></p>
-<p>选择一个自己需要分析的盘符，即可，随后令其分析即可</p>
-<h1 id="c盘扩容">C盘扩容</h1>
-<p>首先，下载<a
-href="https://link.jscdn.cn/lanzou/aHR0cHM6Ly9uaW5nbGFuZy5sYW56b3VmLmNvbS9pN3RYNHlsMDVyYw.exe">Mini
-Partition Wizrd Free</a></p>
-<p>如果电脑显示Bitlocker，如下图</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315203922337.png" /></p>
-<p>那么，你需要打开windows设置，安全与更新，然后选择设备加密，关闭加密</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220315204111792.png" /></p>
-<p>关闭加密完成之后，　<font color='red'>管理员身份 </font>打开上面的软件，应该可以分区了</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110090955027.png" /></p>
-<p>选择有多余空间的盘<code>D</code>,右键，<code>move/resize</code>，然后输入你想要的<code>d</code>盘的大小，一定要大于里面已用空间！！！</p>
-<p>右键C盘，选择分给的区扩容</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220316074023822.png" /></p>
-<p>将进度条拉到最大，点击<code>OK</code>,点击左下角<code>apply</code>，如果出现报错，请在三个选项中点击<code>restart</code></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220110091354258.png" /></p>
-<p>重启期间可能会出现代码，你无需理会，让它自动跑完即可。</p>
-<h1 id="latex语法">Latex语法</h1>
-<p>word中输入公式十分重要，但是部分语法和原生latex不太一致，下面介绍一种很重要的公式
-<span class="math display">\[
-f(x,y,z)=\begin{cases}x&amp;=&amp;\cos(t)\\y&amp;=&amp;\sin(t)\\z&amp;=&amp;\tan(t)\end{cases}
-\]</span> 这时，你需要在word里面输入下面的代码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">f(x)=&#123;\matrix&#123;x&amp;=&amp;cos(t)\\y&amp;=&amp;sin(t)\\z&amp;=&amp;tan(t)&#125;\close </span><br></pre></td></tr></table></figure>
-<h1 id="重装系统">重装系统</h1>
-<p>这里使用这个超星的资源<a
-href="https://sharewh2.xuexi365.com/share/6665231b-b691-4429-9059-c67575a4344c?c=08be16fb-4b08-4fd8-9639-722c0759b02f&amp;t=2">点击即可跳转</a></p>
-<h1 id="ffmpeg加速压缩">FFmpeg加速压缩</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ffmpeg -hwaccel cuvid -c:v h264_cuvid -i input.mp4 -c:v h264_nvenc -r 18  -y ouput.mp4</span><br></pre></td></tr></table></figure>
-<p>其中18表示目标帧率</p>
-<h1 id="gitgnore的编写">gitgnore的编写</h1>
-<p>首先，在目标文件夹里新建一个<code>.gitgnore</code>。然后打开写入</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231017175719127.png"
-alt="image-20231017175719127" />
-<figcaption aria-hidden="true">image-20231017175719127</figcaption>
-</figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"><span class="comment">#写入想要git的后缀</span></span><br><span class="line"><span class="comment">#VHDL &amp;&amp; Verilog</span></span><br><span class="line">!*.vhd</span><br><span class="line">!*.v</span><br><span class="line">!*.bd</span><br><span class="line">!*.edif</span><br><span class="line"><span class="comment">#xilinx</span></span><br><span class="line">!*.xpr</span><br><span class="line">!*.xdc</span><br><span class="line"></span><br><span class="line"><span class="comment">#Python文件</span></span><br><span class="line">!*.py</span><br></pre></td></tr></table></figure>
-<h1 id="windows设置cmd的字体">windows设置cmd的字体</h1>
-<p>输入<code>win+r</code>，输入<code>regedit</code>。然后复制如下地址进入导航栏</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">计算机\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Command Processor</span><br></pre></td></tr></table></figure>
-<p>新建字符串值<code>Autorun</code></p>
-<p>里面输入<code>chcp 437</code>,即可修改为<code>Consolas</code></p>
-<p>可能会导致部分的应用无法正常工作：特别是破解软件“净化时”，这时候需要更改回来，将AutoRun留空就行</p>
-<h1 id="window设置edge不自动更新">window设置edge不自动更新</h1>
-<p>打开<code>C:\Program Files (x86)\Microsoft\EdgeUpdate</code></p>
-<p>修改<code>MicrosoftEdgeUpdate.exe</code>为<code>123MicrosoftEdgeUpdate.exe</code>即可</p>
-<h1 id="typora破解版教程">typora破解版教程</h1>
-<p>参考<strong>Typora破解版安装教程（仅供学习） -
-知乎</strong>https://zhuanlan.zhihu.com/p/648915268</p>
-<p>用app.asar.txt D:中的app.asar，输入注册码即可，安装包网址为(<a
-href="http://share.ninglang.fun/windows/typora破解激活.7z">typora破解激活.7z</a>)</p>
-<h1 id="wls2子系统安装教程">wls2子系统安装教程</h1>
-<p>打开虚拟机功能（Powershell管理员启动）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart</span><br></pre></td></tr></table></figure>
-<p>下载wsl内核 <a
-href="https://github.com/microsoft/WSL2-Linux-Kernel">WSL 2 Linux
-内核</a></p>
-<p>最后在ms store中下载ubuntu20.04</p>
-<h1 id="wls安装cuda">Wls安装cuda</h1>
-<p>进入<a href="https://developer.nvidia.com/cuda-toolkit-archive">CUDA
-Toolkit Archive | NVIDIA Developer</a>，选择合适的cuda，选择的版本按照<a
-href="https://pytorch.org/">PyTorch</a>的版本来决定</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/img/image-20240302143021373.png"
-alt="image-20240302143021373" />
-<figcaption aria-hidden="true">image-20240302143021373</figcaption>
-</figure>
-<p>以GTX1650,torch版本如下:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">torch              2.2.1</span><br><span class="line">torchaudio         2.2.1</span><br><span class="line">torchvision        0.17.1</span><br></pre></td></tr></table></figure>
-<p>选择<a
-href="https://developer.nvidia.com/cuda-11-8-0-download-archive">CUDA
-Toolkit 11.8 Downloads | NVIDIA
-Developer</a>，选择如图所示的命令即可</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/img/image-20240302141718235.png"
-alt="image-20240302141718235" />
-<figcaption aria-hidden="true">image-20240302141718235</figcaption>
-</figure>
-<p>执行如下命令即可</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin</span><br><span class="line"></span><br><span class="line">sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600</span><br><span class="line"></span><br><span class="line">wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda-repo-wsl-ubuntu-11-8-local_11.8.0-1_amd64.deb</span><br><span class="line"></span><br><span class="line">sudo dpkg -i cuda-repo-wsl-ubuntu-11-8-local_11.8.0-1_amd64.deb</span><br><span class="line"></span><br><span class="line">sudo cp /var/cuda-repo-wsl-ubuntu-11-8-local/cuda-*-keyring.gpg /usr/share/keyrings/</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get -y install cuda</span><br></pre></td></tr></table></figure>
+<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
+<p>1.更新源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p>2.安装openssh-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
+<p>对于Alpine-linux，则用下面命令安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
+<p>还需安装openrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
+<p>设置<code>/etc/ssh/sshd_config</code></p>
+<p>追加如下指令</p>
+<p>-- <code>PermitRootLogin yes</code></p>
+<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
+<p>:star:先换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
+<p>生成source文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
+<p>写入源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
+<p>删除缓存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+<p>在更新</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -v6 -w 1 www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>Windows</category>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2049,129 +2166,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Docker-ubuntu安装ssh</title>
-    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
-<span id="more"></span>
-<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
-<p>1.更新源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p>2.安装openssh-server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
-<p>对于Alpine-linux，则用下面命令安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
-<p>还需安装openrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
-<p>设置<code>/etc/ssh/sshd_config</code></p>
-<p>追加如下指令</p>
-<p>-- <code>PermitRootLogin yes</code></p>
-<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
-<p>:star:先换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
-<p>生成source文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
-<p>写入源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
-<p>删除缓存</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
-<p>在更新</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -v6 -w 1 www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
     <title>ikuai-docker自建webdav</title>
     <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
     <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
@@ -2206,6 +2200,12 @@ href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信�
       <categories>
         <category>Code</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
   </entry>
   <entry>
     <title>Linux开发项目总结</title>
@@ -2355,6 +2355,68 @@ verbose详细显示，-f file文件属性）</p>
       </categories>
   </entry>
   <entry>
+    <title>ikuai搭建seafile-docker</title>
+    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="step1-安装seafile-docker">step1： 安装seafile-docker</h1>
+<p>下载<code>seafileltd/seafile:latest</code>镜像</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png"
+alt="image-20240120202506712" />
+<figcaption aria-hidden="true">image-20240120202506712</figcaption>
+</figure>
+<p>在容器设置中挂载目录</p>
+<ul>
+<li><code>/shared</code></li>
+</ul>
+<p>如下环境变量设置账号和密码</p>
+<ul>
+<li><code>SEAFILE_ADMIN_EMAIL</code></li>
+<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
+</ul>
+<h1 id="step2安装-iputils-ping">step2：安装 iputils-ping</h1>
+<p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
+<p><strong>1.更新apt包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p><strong>2.安装iputils-ping</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
+<p><strong>3.测试ping百度</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
+<p><strong>4.修改ping.sh为可执行文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
+<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png"
+alt="image-20240120203717758" /><strong>6.修改自启动脚本</strong></p>
+<p>在<code>/root/.bashrc</code>中追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo "Seafile server started"</code>的前面.</p>
+<h1 id="step3设置nginx反向代理">step3：设置nginx反向代理</h1>
+<p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2.测试文件格式正常</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
+<p>重启docker容器</p>
+<h1 id="step4设置seafile">step4：设置seafile</h1>
+<p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
+<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
+<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
+<h1 id="step5设置seafdav">step5：设置seafdav</h1>
+<p>设置<code>/conf/seafdav.conf</code>中为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
+<p>在手机端设置</p>
+<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
+<p>账号密码如实填写</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2482,84 +2544,6 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ikuai搭建seafile-docker</title>
-    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="step1-安装seafile-docker">step1： 安装seafile-docker</h1>
-<p>下载<code>seafileltd/seafile:latest</code>镜像</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png"
-alt="image-20240120202506712" />
-<figcaption aria-hidden="true">image-20240120202506712</figcaption>
-</figure>
-<p>在容器设置中挂载目录</p>
-<ul>
-<li><code>/shared</code></li>
-</ul>
-<p>如下环境变量设置账号和密码</p>
-<ul>
-<li><code>SEAFILE_ADMIN_EMAIL</code></li>
-<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
-</ul>
-<h1 id="step2安装-iputils-ping">step2：安装 iputils-ping</h1>
-<p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
-<p><strong>1.更新apt包</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p><strong>2.安装iputils-ping</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
-<p><strong>3.测试ping百度</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
-<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-<p><strong>4.修改ping.sh为可执行文件</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
-<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png"
-alt="image-20240120203717758" /><strong>6.修改自启动脚本</strong></p>
-<p>在<code>/root/.bashrc</code>中追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo "Seafile server started"</code>的前面.</p>
-<h1 id="step3设置nginx反向代理">step3：设置nginx反向代理</h1>
-<p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>2.测试文件格式正常</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
-<p>重启docker容器</p>
-<h1 id="step4设置seafile">step4：设置seafile</h1>
-<p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
-<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
-<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
-<h1 id="step5设置seafdav">step5：设置seafdav</h1>
-<p>设置<code>/conf/seafdav.conf</code>中为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
-<p>在手机端设置</p>
-<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
-<p>账号密码如实填写</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>卷积神经网络</title>
-    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
-    <content><![CDATA[<p>移动通信重点总结</p>
-<span id="more"></span>
-<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
-Explainer</a></p>
-<h1 id="swim-transform">SWim Transform</h1>
-<p><a
-href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
-Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
-]]></content>
-      <categories>
-        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -2710,6 +2694,22 @@ Equipment，UE）之间更大规模的协同、通信感
 术创新还可以进一步提升感知数据的处理能力。</li>
 </ol>
 <p>ISAC的作用：在增强定位能力和毫米级</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>卷积神经网络</title>
+    <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<p>移动通信重点总结</p>
+<span id="more"></span>
+<p>CNN可视化：<a href="https://poloclub.github.io/cnn-explainer/">CNN
+Explainer</a></p>
+<h1 id="swim-transform">SWim Transform</h1>
+<p><a
+href="https://www.msra.cn/zh-cn/news/features/swin-transformer-v2#:~:text=Swin%20Transformer,%E6%98%AF%E4%B8%80%E4%B8%AA%E9%80%9A%E7%94%A8%E7%9A%84%E8%A7%86%E8%A7%89%20Transformer%20%E9%AA%A8%E5%B9%B2%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%AE%83%E5%9C%A8%E7%89%A9%E4%BD%93%E6%A3%80%E6%B5%8B%E5%92%8C%E8%AF%AD%E4%B9%89%E5%88%86%E5%89%B2%E4%BB%BB%E5%8A%A1%E4%B8%AD%E5%A4%A7%E5%B9%85%E5%88%B7%E6%96%B0%E4%BA%86%E6%AD%A4%E5%89%8D%E7%9A%84%E7%BA%AA%E5%BD%95%EF%BC%8C%E5%B9%B6%E8%A2%AB%E5%B9%BF%E6%B3%9B%E5%BA%94%E7%94%A8%E4%BA%8E%E4%BC%97%E5%A4%9A%E8%A7%86%E8%A7%89%E4%BB%BB%E5%8A%A1%E4%B8%AD%EF%BC%8C%E5%A6%82%E5%9B%BE%E5%83%8F%E7%94%9F%E6%88%90%E3%80%81%E8%A7%86%E9%A2%91%E5%8A%A8%E4%BD%9C%E8%AF%86%E5%88%AB%E3%80%81%E8%A7%86%E8%A7%89%E8%87%AA%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E3%80%81%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F%E3%80%81%E5%8C%BB%E7%96%97%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%E7%AD%89%E3%80%82">Swin
+Transformer迎来30亿参数的v2.0，我们应该拥抱视觉大模型吗？</a>.</p>
 ]]></content>
       <categories>
         <category>Code</category>
