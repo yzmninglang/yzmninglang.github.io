@@ -144,7 +144,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96-%E5%8D%81%E5%88%86%E9%87%8D%E8%A6%81%EF%BC%8C%E5%BB%BA%E8%AE%AE%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D%E5%BF%85%E9%A1%BB%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装系统依赖(十分重要，建议所有任务开始之前必须安装)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE4B"><span class="nav-number">2.</span> <span class="nav-text">树莓派4B</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Miniforge%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">Miniforge安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAPython3-9%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="nav-number">2.2.</span> <span class="nav-text">创建Python3.9的环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85syft%E7%9A%84%E7%8E%AF%E5%A2%83%EF%BC%88conda%E5%90%8C%E5%B9%B3%E5%8F%B0%E8%BF%81%E7%A7%BB%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">打包syft的环境（conda同平台迁移）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE5"><span class="nav-number">3.</span> <span class="nav-text">树莓派5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MiniConda-%E5%AE%89%E8%A3%85%EF%BC%88-ubuntu-raspberry-OS%E7%B3%BB%E7%BB%9F%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">MiniConda 安装（  ubuntu&#x2F;raspberry OS系统）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAPython3-9%E7%8E%AF%E5%A2%83"><span class="nav-number">3.2.</span> <span class="nav-text">创建Python3.9环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E5%AE%89%E8%A3%85%E7%95%A5%E8%BF%87%E2%80%A6%E2%80%A6"><span class="nav-number">3.3.</span> <span class="nav-text">正常安装略过……</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Torch%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">Torch的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">jupyter配置</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E5%8D%81%E5%88%86%E9%87%8D%E8%A6%81%E5%BB%BA%E8%AE%AE%E6%89%80%E6%9C%89%E4%BB%BB%E5%8A%A1%E5%BC%80%E5%A7%8B%E4%B9%8B%E5%89%8D%E5%BF%85%E9%A1%BB%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">安装系统依赖(十分重要，建议所有任务开始之前必须安装)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE4b"><span class="nav-number">2.</span> <span class="nav-text">树莓派4B</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#miniforge%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">Miniforge安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BApython3.9%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="nav-number">2.2.</span> <span class="nav-text">创建Python3.9的环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%93%E5%8C%85syft%E7%9A%84%E7%8E%AF%E5%A2%83conda%E5%90%8C%E5%B9%B3%E5%8F%B0%E8%BF%81%E7%A7%BB"><span class="nav-number">2.3.</span> <span class="nav-text">打包syft的环境（conda同平台迁移）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91%E8%8E%93%E6%B4%BE5"><span class="nav-number">3.</span> <span class="nav-text">树莓派5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#miniconda-%E5%AE%89%E8%A3%85-ubunturaspberry-os%E7%B3%BB%E7%BB%9F"><span class="nav-number">3.1.</span> <span class="nav-text">MiniConda 安装（
+ubuntu&#x2F;raspberry OS系统）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BApython3.9%E7%8E%AF%E5%A2%83"><span class="nav-number">3.2.</span> <span class="nav-text">创建Python3.9环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E5%AE%89%E8%A3%85%E7%95%A5%E8%BF%87......"><span class="nav-number">3.3.</span> <span class="nav-text">正常安装略过......</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#torch%E7%9A%84%E5%AE%89%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">Torch的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jupyter%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.</span> <span class="nav-text">jupyter配置</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -286,33 +287,44 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>树莓派联邦学习部署</p>
-<span id="more"></span> 
-<h1 id="安装系统依赖-十分重要，建议所有任务开始之前必须安装"><a href="#安装系统依赖-十分重要，建议所有任务开始之前必须安装" class="headerlink" title="安装系统依赖(十分重要，建议所有任务开始之前必须安装)"></a>安装系统依赖(十分重要，建议所有任务开始之前必须安装)</h1><p><strong>设置代理</strong></p>
+<span id="more"></span>
+<h1
+id="安装系统依赖十分重要建议所有任务开始之前必须安装">安装系统依赖(十分重要，建议所有任务开始之前必须安装)</h1>
+<p><strong>设置代理</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://192.168.10.4:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://192.168.10.4:7890</span><br></pre></td></tr></table></figure>
 <p>更新库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 <p>安装依赖</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libopenblas-dev m4 libblas-dev cmake libatlas-base-dev gfortran libffi-dev libavformat-dev libavdevice-dev</span><br></pre></td></tr></table></figure>
-<p>对于Raspberry os lite而言，不自带<code>git</code>,因此需要提前下载</p>
+<p>对于Raspberry os
+lite而言，不自带<code>git</code>,因此需要提前下载</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
-<h1 id="树莓派4B"><a href="#树莓派4B" class="headerlink" title="树莓派4B"></a>树莓派4B</h1><p><strong>Rasp4(树莓派系统 Raspberry Pi OS Lite 2023-12-11 64 bit system) </strong>,下载地址：<a target="_blank" rel="noopener" href="http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz">http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz</a></p>
-<h2 id="Miniforge安装"><a href="#Miniforge安装" class="headerlink" title="Miniforge安装"></a>Miniforge安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Raspberry OS</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-v8 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<h1 id="树莓派4b">树莓派4B</h1>
+<p><strong>Rasp4(树莓派系统 Raspberry Pi OS Lite 2023-12-11 64 bit
+system)
+</strong>,下载地址：http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz</p>
+<h2 id="miniforge安装">Miniforge安装</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Raspberry OS</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-v8 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
 <p>下载 Miniforge</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Miniforge3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
 <p>安装Miniforge</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash ./Miniforge3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
 <p>安装树莓派系统</p>
-<h2 id="创建Python3-9的环境"><a href="#创建Python3-9的环境" class="headerlink" title="创建Python3.9的环境"></a>创建Python3.9的环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
-<p> <strong>安装必要的wheel包(可以不安装，但是为了减少编译时间，可以先安装已经编译好的)</strong></p>
+<h2 id="创建python3.9的环境">创建Python3.9的环境</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
+<p><strong>安装必要的wheel包(可以不安装，但是为了减少编译时间，可以先安装已经编译好的)</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/gevent-23.9.1-cp39-cp39-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/psutil-5.9.6-cp39-abi3-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
 <p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
-<p>安装torch,参考torch官网<a target="_blank" rel="noopener" href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
+<p>安装torch,参考torch官网<a
+target="_blank" rel="noopener" href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure>
 <p>pip安装正常,所有的依赖包为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Federal_learning/requirements.txt</span><br></pre></td></tr></table></figure>
-<h2 id="打包syft的环境（conda同平台迁移）"><a href="#打包syft的环境（conda同平台迁移）" class="headerlink" title="打包syft的环境（conda同平台迁移）"></a>打包syft的环境（conda同平台迁移）</h2><p>安装打包软件包</p>
+<h2
+id="打包syft的环境conda同平台迁移">打包syft的环境（conda同平台迁移）</h2>
+<p>安装打包软件包</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install conda-pack</span><br></pre></td></tr></table></figure>
 <p>打包环境<code>fl</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda pack -n fl</span><br></pre></td></tr></table></figure>
@@ -324,17 +336,26 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzf syft0.8.4.tar.gz -C syft/</span><br></pre></td></tr></table></figure>
 <p>激活环境</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/syft/bin/activate</span><br></pre></td></tr></table></figure>
-<h1 id="树莓派5"><a href="#树莓派5" class="headerlink" title="树莓派5"></a>树莓派5</h1><p><strong>Rasp5/Rasp4B(Ubuntu 23.10 (GNU/Linux 6.5.0-1011-raspi aarch64)) </strong>,下载地址：<a target="_blank" rel="noopener" href="http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz">http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz</a></p>
-<h2 id="MiniConda-安装（-ubuntu-raspberry-OS系统）"><a href="#MiniConda-安装（-ubuntu-raspberry-OS系统）" class="headerlink" title="MiniConda 安装（  ubuntu/raspberry OS系统）"></a>MiniConda 安装（  ubuntu/raspberry OS系统）</h2><p><strong>树莓派系统（如果已经设置代理，则下面步骤中无需设置源）</strong></p>
+<h1 id="树莓派5">树莓派5</h1>
+<p><strong>Rasp5/Rasp4B(Ubuntu 23.10 (GNU/Linux 6.5.0-1011-raspi
+aarch64))
+</strong>,下载地址：http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz</p>
+<h2 id="miniconda-安装-ubunturaspberry-os系统">MiniConda 安装（
+ubuntu/raspberry OS系统）</h2>
+<p><strong>树莓派系统（如果已经设置代理，则下面步骤中无需设置源）</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#树莓派系统（和上面树莓派4B一样）</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-2712 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ubuntu系统</span></span><br><span class="line">Linux ubuntu 6.5.0-1011-raspi <span class="comment">#14-Ubuntu SMP PREEMPT_DYNAMIC Fri Feb  9 14:06:28 UTC 2024 aarch64 aarch64 aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
-<p>进入<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">miniconda下载地址</a>，，使用wget下载Miniconda，对于树莓派4B而言</p>
+<p>进入<a
+target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">miniconda下载地址</a>，，使用wget下载Miniconda，对于树莓派4B而言</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://share.ninglang.fun/rasp5/Miniconda3-py38_23.11.0-2-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
-<h2 id="创建Python3-9环境"><a href="#创建Python3-9环境" class="headerlink" title="创建Python3.9环境"></a>创建Python3.9环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
+<h2 id="创建python3.9环境">创建Python3.9环境</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
 <p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
-<p>安装torch,参考torch官网<a target="_blank" rel="noopener" href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
+<p>安装torch,参考torch官网<a
+target="_blank" rel="noopener" href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure>
-<h2 id="正常安装略过……"><a href="#正常安装略过……" class="headerlink" title="正常安装略过……"></a>正常安装略过……</h2><p>设置conda为环境变量</p>
+<h2 id="正常安装略过......">正常安装略过......</h2>
+<p>设置conda为环境变量</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
 <p>编辑<code>~/.bashrc</code>,追加</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
@@ -352,14 +373,17 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda activate fl</span><br></pre></td></tr></table></figure>
 <p>pip换源（如果设置代理则无需更换源）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url http://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
-<h1 id="Torch的安装"><a href="#Torch的安装" class="headerlink" title="Torch的安装"></a>Torch的安装</h1><p>对于树莓派(使用arrch64的ubuntu或者raspberry os),先到<a target="_blank" rel="noopener" href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
+<h1 id="torch的安装">Torch的安装</h1>
+<p>对于树莓派(使用arrch64的ubuntu或者raspberry os),先到<a
+target="_blank" rel="noopener" href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
 <ul>
 <li>对于没有GPU的板子，直接安装</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
 <p>设置代理</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://192.168.10.4:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://192.168.10.4:7890</span><br></pre></td></tr></table></figure>
-<h2 id="jupyter配置"><a href="#jupyter配置" class="headerlink" title="jupyter配置"></a>jupyter配置</h2><ul>
+<h2 id="jupyter配置">jupyter配置</h2>
+<ul>
 <li>先生成jupyter的配置文件夹</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
