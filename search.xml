@@ -1,6 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>C&amp;&amp;C++问题总汇(1)</title>
+    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
+    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
+<span id="more"></span>
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>定义一个二维数组如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果采用一个指针去指向这个数组，可以这么做:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>那么访问这个二维数组的指针方法是:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
+<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
+<ul>
+<li>指针数组是这样子的吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
+<h2 id="二维数组赋值的问题"><a href="#二维数组赋值的问题" class="headerlink" title="二维数组赋值的问题"></a>二维数组赋值的问题</h2><ul>
+<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针"><a href="#指针的指针" class="headerlink" title="指针的指针"></a>指针的指针</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p>
+</li>
+<li><p>答：</p>
+</li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点， 在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未<br>初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Android Adb Command</title>
     <url>/2021/10/24/Android-Adb-Command/</url>
     <content><![CDATA[<p>安卓小技巧</p>
@@ -88,77 +159,6 @@
 ]]></content>
       <categories>
         <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>C&amp;&amp;C++问题总汇(1)</title>
-    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
-    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
-<span id="more"></span>
-<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>定义一个二维数组如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
-<p>如果采用一个指针去指向这个数组，可以这么做:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>那么访问这个二维数组的指针方法是:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
-<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
-<ul>
-<li>指针数组是这样子的吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
-<h2 id="二维数组赋值的问题"><a href="#二维数组赋值的问题" class="headerlink" title="二维数组赋值的问题"></a>二维数组赋值的问题</h2><ul>
-<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
-<ul>
-<li>友元函数访问私有成员问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的指针"><a href="#指针的指针" class="headerlink" title="指针的指针"></a>指针的指针</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所以说，这个<code>int</code>有用吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数的分号问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p>
-</li>
-<li><p>答：</p>
-</li>
-</ul>
-<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点， 在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未<br>初始化完毕。</p>
-<ul>
-<li>问：动态联编和静态联编，可以访问派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：不能调用派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：这个可以算重载嘛？，结果值为第一个</li>
-<li>答:</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -736,57 +736,6 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>Qt</title>
-    <url>/2021/09/20/Qt1/</url>
-    <content><![CDATA[<p>Qt问题总汇</p>
-<span id="more"></span>
-<h1 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h1><h2 id="连接函数：connect"><a href="#连接函数：connect" class="headerlink" title="连接函数：connect"></a>连接函数：connect</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
-<p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号"><a href="#自定义槽函数和信号" class="headerlink" title="自定义槽函数和信号"></a>自定义槽函数和信号</h2><ul>
-<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
-<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义槽和信号后，需要定义触发函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载"><a href="#信号的重载" class="headerlink" title="信号的重载"></a>信号的重载</h3><p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：这里的两个函数指针是如何定义的？？？</li>
-<li>答：</li>
-</ul>
-<p>Qstring 转char * </p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号"><a href="#信号连接信号" class="headerlink" title="信号连接信号"></a>信号连接信号</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
-<p>直接将两个信号用connect相连</p>
-<ul>
-<li>断开信号 disconnect</li>
-<li>多个信号一个槽</li>
-<li><p>多个槽连接一个信号</p>
-</li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p>
-</li>
-</ul>
-<p>lambda函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
-<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
-</ul>
-<h1 id="模态与非模态"><a href="#模态与非模态" class="headerlink" title="模态与非模态"></a>模态与非模态</h1><h2 id="模态"><a href="#模态" class="headerlink" title="模态"></a>模态</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态"><a href="#非模态" class="headerlink" title="非模态"></a>非模态</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
-<li>答：</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>树莓派实现联邦学习</title>
     <url>/2023/12/29/Raspberry_federated_learning/</url>
     <content><![CDATA[<p>树莓派联邦学习部署</p>
@@ -882,12 +831,54 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>]]></content>
+    <title>Qt</title>
+    <url>/2021/09/20/Qt1/</url>
+    <content><![CDATA[<p>Qt问题总汇</p>
+<span id="more"></span>
+<h1 id="信号和槽"><a href="#信号和槽" class="headerlink" title="信号和槽"></a>信号和槽</h1><h2 id="连接函数：connect"><a href="#连接函数：connect" class="headerlink" title="连接函数：connect"></a>连接函数：connect</h2><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<p>松散耦合：发送端和接受端的松散耦合</p>
+<h2 id="自定义槽函数和信号"><a href="#自定义槽函数和信号" class="headerlink" title="自定义槽函数和信号"></a>自定义槽函数和信号</h2><ul>
+<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
+<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>定义槽和信号后，需要定义触发函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
+<h3 id="信号的重载"><a href="#信号的重载" class="headerlink" title="信号的重载"></a>信号的重载</h3><p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：这里的两个函数指针是如何定义的？？？</li>
+<li>答：</li>
+</ul>
+<p>Qstring 转char * </p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号"><a href="#信号连接信号" class="headerlink" title="信号连接信号"></a>信号连接信号</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<p>直接将两个信号用connect相连</p>
+<ul>
+<li>断开信号 disconnect</li>
+<li>多个信号一个槽</li>
+<li><p>多个槽连接一个信号</p>
+</li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p>
+</li>
+</ul>
+<p>lambda函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
+<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
+</ul>
+<h1 id="模态与非模态"><a href="#模态与非模态" class="headerlink" title="模态与非模态"></a>模态与非模态</h1><h2 id="模态"><a href="#模态" class="headerlink" title="模态"></a>模态</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态"><a href="#非模态" class="headerlink" title="非模态"></a>非模态</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
+<li>答：</li>
+</ul>
+]]></content>
       <categories>
-        <category>学习</category>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -920,6 +911,15 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
 ]]></content>
       <categories>
         <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1225,38 +1225,6 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title>Docker-ubuntu安装ssh</title>
-    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
-<span id="more"></span>
-<h1 id="STEP1：安装openssh-server"><a href="#STEP1：安装openssh-server" class="headerlink" title="STEP1：安装openssh-server"></a>STEP1：安装openssh-server</h1><p>1.更新源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p>2.安装openssh-server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
-<p>对于Alpine-linux，则用下面命令安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
-<p>还需安装openrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<h1 id="STEP2：设置允许root登录"><a href="#STEP2：设置允许root登录" class="headerlink" title="STEP2：设置允许root登录"></a>STEP2：设置允许root登录</h1><p>设置<code>/etc/ssh/sshd_config</code></p>
-<p>追加如下指令</p>
-<p>— <code>PermitRootLogin yes</code></p>
-<h1 id="NGINX-Docker无法使用apt问题"><a href="#NGINX-Docker无法使用apt问题" class="headerlink" title="NGINX-Docker无法使用apt问题"></a>NGINX-Docker无法使用apt问题</h1><p>:star:先换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
-<p>生成source文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
-<p>写入源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
-<p>删除缓存</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
-<p>在更新</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -v6 -w 1 www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>数据结构</title>
     <url>/2022/04/26/data%20struct/</url>
     <content><![CDATA[<p>数据结构总结</p>
@@ -1465,6 +1433,38 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
 <h3 id="N皇后问题"><a href="#N皇后问题" class="headerlink" title="N皇后问题"></a>N皇后问题</h3>]]></content>
       <categories>
         <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Docker-ubuntu安装ssh</title>
+    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
+<span id="more"></span>
+<h1 id="STEP1：安装openssh-server"><a href="#STEP1：安装openssh-server" class="headerlink" title="STEP1：安装openssh-server"></a>STEP1：安装openssh-server</h1><p>1.更新源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p>2.安装openssh-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
+<p>对于Alpine-linux，则用下面命令安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
+<p>还需安装openrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<h1 id="STEP2：设置允许root登录"><a href="#STEP2：设置允许root登录" class="headerlink" title="STEP2：设置允许root登录"></a>STEP2：设置允许root登录</h1><p>设置<code>/etc/ssh/sshd_config</code></p>
+<p>追加如下指令</p>
+<p>— <code>PermitRootLogin yes</code></p>
+<h1 id="NGINX-Docker无法使用apt问题"><a href="#NGINX-Docker无法使用apt问题" class="headerlink" title="NGINX-Docker无法使用apt问题"></a>NGINX-Docker无法使用apt问题</h1><p>:star:先换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
+<p>生成source文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
+<p>写入源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
+<p>删除缓存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+<p>在更新</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -v6 -w 1 www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -1782,47 +1782,6 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title>时间预测模型</title>
-    <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
-    <content><![CDATA[<p>美赛的一种预测模型</p>
-<span id="more"></span>
-<p>基于时间序列模型对黄金和比特币的预测</p>
-<p>黄金和比特币这一类的产品，一般来说，是自身会随着时间发生变化的产品，而时间序列的预测，主要适用于自身的发展趋势会随着自己的情况发展变化，于是，我们这个时候可以使用时间预测模型对该种情况进行预测，</p>
-<p>这个时候我们可以着手判断产品随着时间变化的自我相关问题,根据查阅各样文献,可以得到,最常用的方法还是ARMA的方式。,这种方法比较适用于小规模单变量的预测，如股票的走势。</p>
-<h2 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h2><p>  AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量$x_{t}$主要受前$p$期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前$p$期的$x_t$之间的相关性。如果$x_t$主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
-<h2 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h2><p>​    MA模型主要研究的是$x_t$的取值与前Q期的随机扰动有关,认为是$x_t$主要受过去Q期的干扰项的影响，所以对于MA模型</p>
-<h2 id="ARMA模型（Autoregressive-moving-average-model）"><a href="#ARMA模型（Autoregressive-moving-average-model）" class="headerlink" title="ARMA模型（Autoregressive moving average model）"></a>ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive <strong>m</strong>oving <strong>a</strong>verage model）</h2><p>ARMA 模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为$x_1,x_2,x_3….,x_k$,由自回归分析可得</p>
-<script type="math/tex; mode=display">
-Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z</script><p>其中Y是预测对象的观测值，$Z$为误差项</p>
-<script type="math/tex; mode=display">
-Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}</script><p>误差的表达方式为</p>
-<script type="math/tex; mode=display">
-Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2} \epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}</script><p>我们最终获得ARMA模型的表达式是</p>
-<script type="math/tex; mode=display">
-Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2} \epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}</script><h2 id="黄金股票预测"><a href="#黄金股票预测" class="headerlink" title="黄金股票预测"></a>黄金股票预测</h2><p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
-<h3 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h3><p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为</p>
-<script type="math/tex; mode=display">
-\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}</script><p>其中$d \in Z , d&gt;0$,记作ARMA(P,D,Q)</p>
-<p>在确定使用哪一种方式之前，我们做出了原数据，一阶差分，二阶差分的图像，如图所示（其中为比特币的处理图像）</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download.png" alt="各阶差分图" style="zoom:50%;" /></p>
-<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即$d_{diff}=1$，即$d_{diff} \neq 0$</p>
-<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的 statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (1).png" alt="download (1)" style="zoom:50%;" /></p>
-<p>图中淡蓝色的阴影区域，表示阶数的置信区间，通过观察，对于自相关而言q=1,2,3,4,5都有可能，p=1,2,3,4也都有可能，显然，仅通过图像观察并不是十分的直观，于是，我们来计算对于不同的q和p的情况下，计算模型的相关系数</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (2).png" alt="download (2)" style="zoom:50%;" /></p>
-<p>可以看出当Lag=3的时候，相关系数$corr$最大，结合上图这是我们断定$q$=3,$p$=2即构建ARMA模型的三个参数</p>
-<script type="math/tex; mode=display">
-(P,D,Q):(2,1,3)</script><p>使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (4).png" alt="预测图" style="zoom:50%;" /></p>
-<p>最后，对模型进行残差分析，可以得到残差图，如图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (3).png" alt="download (3)"  /></p>
-<p>可以看出，我们研究的模型线性关系较好，说明模型预测具有较好的准确性.</p>
-]]></content>
-      <categories>
-        <category>Math Model</category>
-      </categories>
-  </entry>
-  <entry>
     <title>卷积神经网络</title>
     <url>/2023/06/25/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<p>移动通信重点总结</p>
@@ -1880,6 +1839,47 @@ Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\ep
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>时间预测模型</title>
+    <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<p>美赛的一种预测模型</p>
+<span id="more"></span>
+<p>基于时间序列模型对黄金和比特币的预测</p>
+<p>黄金和比特币这一类的产品，一般来说，是自身会随着时间发生变化的产品，而时间序列的预测，主要适用于自身的发展趋势会随着自己的情况发展变化，于是，我们这个时候可以使用时间预测模型对该种情况进行预测，</p>
+<p>这个时候我们可以着手判断产品随着时间变化的自我相关问题,根据查阅各样文献,可以得到,最常用的方法还是ARMA的方式。,这种方法比较适用于小规模单变量的预测，如股票的走势。</p>
+<h2 id="AR模型"><a href="#AR模型" class="headerlink" title="AR模型"></a>AR模型</h2><p>  AR模型是一种自回归模型,简称它表述的是随机变量与前P期的多元线性回归。说明了随机变量$x_{t}$主要受前$p$期序列的影响。我们可以通过这种方式。将黄金和比特币的前几期作为自变量。然后将该天的黄金和比特币的售价作为因变量。通过AR模型。我们可以计算出前$p$期的$x_t$之间的相关性。如果$x_t$主要受过去P阶序列的影响，那么相关系数corre将会更接近一。这个时候我们就认为。当天的售价受前P期的影响。</p>
+<h2 id="MA模型"><a href="#MA模型" class="headerlink" title="MA模型"></a>MA模型</h2><p>​    MA模型主要研究的是$x_t$的取值与前Q期的随机扰动有关,认为是$x_t$主要受过去Q期的干扰项的影响，所以对于MA模型</p>
+<h2 id="ARMA模型（Autoregressive-moving-average-model）"><a href="#ARMA模型（Autoregressive-moving-average-model）" class="headerlink" title="ARMA模型（Autoregressive moving average model）"></a>ARMA模型（<strong>A</strong>uto<strong>r</strong>egressive <strong>m</strong>oving <strong>a</strong>verage model）</h2><p>ARMA 模型，主要是结合AR模型自回归问题，也结合MA模型的平行移动的问题，一方面体现了时间的延续性，另一方面，又有自身变动的规律，假设影响因素为$x_1,x_2,x_3….,x_k$,由自回归分析可得</p>
+<script type="math/tex; mode=display">
+Y_{t}=\beta_{1} x_{1}+\beta_{2} x_{2}+\cdots+\beta_{p} x_{p}+Z</script><p>其中Y是预测对象的观测值，$Z$为误差项</p>
+<script type="math/tex; mode=display">
+Y_{t}=\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+Z_{t}</script><p>误差的表达方式为</p>
+<script type="math/tex; mode=display">
+Z_{t}=\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2} \epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}</script><p>我们最终获得ARMA模型的表达式是</p>
+<script type="math/tex; mode=display">
+Y_{t}=\beta_{0}+\beta_{1} Y_{t-1}+\beta_{2} Y_{t-2}+\cdots+\beta_{p} Y_{t-p}+\epsilon_{t}+\alpha_{1} \epsilon_{t-1}+\alpha_{2} \epsilon_{t-2}+\cdots+\alpha_{q} \epsilon_{t-q}</script><h2 id="黄金股票预测"><a href="#黄金股票预测" class="headerlink" title="黄金股票预测"></a>黄金股票预测</h2><p>要想建立ARMA模型，首先，需要判断已有数据是否遵循时间序列数据的特点，第一步，判断数据是否具有稳定，而判断的标准，其一、要求经由样本时间序列所得到的拟合曲线在未来的一段期间内仍能顺着现有的形态“惯性″地延续下去，其二、平稳性要求序列的均值和方差不发生明显变化，只有满足这两个条件，这个数据才能被认为可以使用时间序列模型进行预测。</p>
+<h3 id="ARIMA"><a href="#ARIMA" class="headerlink" title="ARIMA"></a>ARIMA</h3><p>当原来的数据不具有明显的平衡性的时候，我们可以利用原数据的差分运算之后结果的稳定，利用研究差分运算之后数据来进行构建时间序列的模型，即ARIMA，它是ARMA的扩展,其模型可以表示为</p>
+<script type="math/tex; mode=display">
+\left(1-\sum_{i=1}^{p} \phi_{i} L^{i}\right)(1-L)^{d} X_{t}=\left(1+\sum_{i=1}^{q} \theta_{i} L^{i}\right) \varepsilon_{t}</script><p>其中$d \in Z , d&gt;0$,记作ARMA(P,D,Q)</p>
+<p>在确定使用哪一种方式之前，我们做出了原数据，一阶差分，二阶差分的图像，如图所示（其中为比特币的处理图像）</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download.png" alt="各阶差分图" style="zoom:50%;" /></p>
+<p>可以明显看出，一阶差分的稳定性和二阶差分的稳定要远远大于原始数据的稳定性，所以，这时我们可以选择一阶差分或者是二阶差分，遵循所给的最低标准，我们可以将阶数设置为1，即$d_{diff}=1$，即$d_{diff} \neq 0$</p>
+<p>接下来，利用自相关模型MA来研究MA模型受前q期相关的参数q，通过Python的 statsmodels.tsa.stattools 研究一阶差分的自相关阶数和偏相关阶数，如图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (1).png" alt="download (1)" style="zoom:50%;" /></p>
+<p>图中淡蓝色的阴影区域，表示阶数的置信区间，通过观察，对于自相关而言q=1,2,3,4,5都有可能，p=1,2,3,4也都有可能，显然，仅通过图像观察并不是十分的直观，于是，我们来计算对于不同的q和p的情况下，计算模型的相关系数</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (2).png" alt="download (2)" style="zoom:50%;" /></p>
+<p>可以看出当Lag=3的时候，相关系数$corr$最大，结合上图这是我们断定$q$=3,$p$=2即构建ARMA模型的三个参数</p>
+<script type="math/tex; mode=display">
+(P,D,Q):(2,1,3)</script><p>使用Python的sm库中的ARIMA来预测模型，可以得到模型，并且选用其中的七天作为训练集，然后对第八天、九天、十天做出预测</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (4).png" alt="预测图" style="zoom:50%;" /></p>
+<p>最后，对模型进行残差分析，可以得到残差图，如图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/download (3).png" alt="download (3)"  /></p>
+<p>可以看出，我们研究的模型线性关系较好，说明模型预测具有较好的准确性.</p>
+]]></content>
+      <categories>
+        <category>Math Model</category>
       </categories>
   </entry>
   <entry>
