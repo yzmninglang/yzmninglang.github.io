@@ -1,60 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>通信原理笔记</title>
-    <url>/2023/05/23/Communication%20principle/</url>
-    <content><![CDATA[<p>通信原理理解性笔记</p>
-<span id="more"></span>
-<h3 id="信道"><a href="#信道" class="headerlink" title="信道"></a>信道</h3><blockquote>
-<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
-<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse Code Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase Shift)的方法转换为模拟信号。</p>
-<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
-<h3 id="波形成型"><a href="#波形成型" class="headerlink" title="波形成型"></a>波形成型</h3><blockquote>
-<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
-<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
-<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
-<blockquote>
-<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
-</blockquote>
-</blockquote>
-<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）— 时延扩展，相关带宽，ISI - 知乎</a></p>
-<blockquote>
-<h2 id="脉冲整形"><a href="#脉冲整形" class="headerlink" title="脉冲整形"></a>脉冲整形</h2><p><strong>一、矩形脉冲</strong></p>
-<p>实际上矩形脉冲无失真传输是不可能的，因为由<a href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。<br>失真严重导致采样判决出错，无法正确恢复数字信号。<br>显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
-<p><strong>二、sinc脉冲</strong><br>其<a href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
-<h2 id="基带滤波器"><a href="#基带滤波器" class="headerlink" title="基带滤波器"></a>基带滤波器</h2><p>一般使用基带滤波器来实现脉冲整形</p>
-<p>假设发送序列{1 1 1 -1 1 -1 -1 1}<br>发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示    <strong>例子</strong></p>
-</blockquote>
-<p><a href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
-<blockquote>
-<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
-</blockquote>
-<p><a href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形 基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
-<p>有点难，待会看</p>
-<p><a href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】 - Riden - 博客园</a></p>
-<blockquote>
-<p> 为什么对基带信号要成形滤波？</p>
-<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
-<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。<br>  理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
-</blockquote>
-<p><a href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
-<blockquote>
-<p> 为什么要-&gt;这里有直接结论：</p>
-<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI） ！</p>
-</blockquote>
-<p><a href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形 基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
-<blockquote>
-<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
-<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>电路</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Android Adb Command</title>
     <url>/2021/10/24/Android-Adb-Command/</url>
     <content><![CDATA[<p>安卓小技巧</p>
@@ -142,77 +88,6 @@
 ]]></content>
       <categories>
         <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>C&amp;&amp;C++问题总汇(1)</title>
-    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
-    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
-<span id="more"></span>
-<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>定义一个二维数组如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
-<p>如果采用一个指针去指向这个数组，可以这么做:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
-<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
-<p>那么访问这个二维数组的指针方法是:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
-<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
-<ul>
-<li>指针数组是这样子的吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
-<h2 id="二维数组赋值的问题"><a href="#二维数组赋值的问题" class="headerlink" title="二维数组赋值的问题"></a>二维数组赋值的问题</h2><ul>
-<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
-<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
-<ul>
-<li>友元函数访问私有成员问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="指针的指针"><a href="#指针的指针" class="headerlink" title="指针的指针"></a>指针的指针</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>所以说，这个<code>int</code>有用吗？</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
-<ul>
-<li>函数的分号问题</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p>
-</li>
-<li><p>答：</p>
-</li>
-</ul>
-<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点， 在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未<br>初始化完毕。</p>
-<ul>
-<li>问：动态联编和静态联编，可以访问派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：不能调用派生类函数</li>
-<li>答：</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：这个可以算重载嘛？，结果值为第一个</li>
-<li>答:</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -312,6 +187,170 @@
       </categories>
   </entry>
   <entry>
+    <title>通信原理笔记</title>
+    <url>/2023/05/23/Communication%20principle/</url>
+    <content><![CDATA[<p>通信原理理解性笔记</p>
+<span id="more"></span>
+<h3 id="信道"><a href="#信道" class="headerlink" title="信道"></a>信道</h3><blockquote>
+<p>将发送端数字脉冲信号转换成模拟信号的过程称为调制(Modulation)；将接收端模拟信号还原成数字脉冲信号的过程称为解调(Demodulation)。将调制和解调两种功能结合在一起的设备称为调制解调器(Modem)</p>
+<p>模拟信号和数字信号之间可以相互转换：模拟信号一般通过PCM脉码调制(Pulse Code Modulation)方法量化为数字信号，即让模拟信号的不同幅度分别对应不同的二进制值，例如采用8位编码可将模拟信号量化为2^8=256个量级，实用中常采取24位或30位编码；数字信号一般通过对载波进行移相(Phase Shift)的方法转换为模拟信号。</p>
+<p>数字信道占用信道频带较宽。<strong>一路模拟电话的频带为4kHz带宽，一路数字电话约占64kHz</strong>，这是模拟通信目前仍有生命力的主要原因。</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/qq_20411471/article/details/100893530">数字信道与模拟信道_模拟信道和数字信道_偷轮子的博客-CSDN博客</a></p>
+<h3 id="波形成型"><a href="#波形成型" class="headerlink" title="波形成型"></a>波形成型</h3><blockquote>
+<p>从上图可以看出，<strong>相关时延大于符号持续时间</strong>，因此，当两个信号在接收侧相加时，来自于时延为的符号将会和来自于时延为的符号相加。</p>
+<p>不同的符号相加，或者说，不同的符号相互干扰，即为<strong>符号间干扰(ISI)</strong>。</p>
+<p><strong>一般将多径信号最大时延的倒数定义为多径信道的相关带宽。</strong></p>
+<blockquote>
+<p><strong>频率选择性失真</strong>和<strong>ISI</strong>是<strong>一体两面</strong>，其中，<strong>频率选择性失真</strong>发生在<strong>频域</strong>，对应的<strong>时域结果</strong>为<strong>ISI</strong></p>
+</blockquote>
+</blockquote>
+<p><a href="https://zhuanlan.zhihu.com/p/515351041">衰落（2）— 时延扩展，相关带宽，ISI - 知乎</a></p>
+<blockquote>
+<h2 id="脉冲整形"><a href="#脉冲整形" class="headerlink" title="脉冲整形"></a>脉冲整形</h2><p><strong>一、矩形脉冲</strong></p>
+<p>实际上矩形脉冲无失真传输是不可能的，因为由<a href="https://so.csdn.net/so/search?q=傅里叶&amp;spm=1001.2101.3001.7020">傅里叶</a>变换可知，时域矩形脉冲，频域是sinc函数，带宽无限，而信道带宽总是有限的。<br>失真严重导致采样判决出错，无法正确恢复数字信号。<br>显然矩形脉冲信号不合适，sinc脉冲信号合适</p>
+<p><strong>二、sinc脉冲</strong><br>其<a href="https://so.csdn.net/so/search?q=频谱&amp;spm=1001.2101.3001.7020">频谱</a>有限，一个码元达到最大幅值时其他所有码元幅值刚好为零，码元之间不会相互影响，实现了无码间串扰。</p>
+<h2 id="基带滤波器"><a href="#基带滤波器" class="headerlink" title="基带滤波器"></a>基带滤波器</h2><p>一般使用基带滤波器来实现脉冲整形</p>
+<p>假设发送序列{1 1 1 -1 1 -1 -1 1}<br>发送序列、输入滤波器的冲激信号、每个冲激信号的冲激响应，和输出信号如图所示    <strong>例子</strong></p>
+</blockquote>
+<p><a href="https://blog.csdn.net/qq_41824183/article/details/107182725">基带信号的发送和接收的有效理解和掌握_滚降因子为0的系统可以算是理想低通系统吗_BIT小小书童的博客-CSDN博客</a></p>
+<blockquote>
+<p>最初，信号是以矩形脉冲通过带限信道，必然会出现脉冲时延扩展引起S1，频域上看是Sa函数的旁瓣千扰。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/TGWWX/p/16155667.html">简单概述：脉冲成形 基带成形 （脉冲成型 基带成型） - HQU小西西 - 博客园</a></p>
+<p>有点难，待会看</p>
+<p><a href="https://www.cnblogs.com/riden/p/4653744.html">为什么要对基带信号进行脉冲成型【转载】 - Riden - 博客园</a></p>
+<blockquote>
+<p> 为什么对基带信号要成形滤波？</p>
+<p>基带信号带宽无限，需要限制带宽。成形滤波器也叫限带滤波器</p>
+<p>实际中通信传输的信号大都是带通信号，也就是中心频带远大于频带宽度的信号。而这些带通信号的频谱结构只取决于等效低通信号的频谱结构。这里的等效低通信号就是你这里所指的基带数字信号。而基带数字信号的频率特性又取决于两个因素，一个是基带信号中构成每个脉冲符号的基本信号的频谱，另一个就是脉冲信号之间的相关性。换句话说可以通过设计不同的基本脉冲信号的波形和符号之间的相关性，达到改变基带信号频谱结构的目的，从而改变调制后带通信号的频谱特性。<br>  理解了这一点，你就可以理解为什么要对基带信号进行不同的滤波生成符号脉冲了。</p>
+</blockquote>
+<p><a href="https://blog.csdn.net/wordwarwordwar/article/details/54755642">基带传输与成形滤波_基带成型滤波器_长弓的坚持的博客-CSDN博客</a></p>
+<blockquote>
+<p> 为什么要-&gt;这里有直接结论：</p>
+<p>（个人简单理解，脉冲成型（形），就是将脉冲变成其他的传输波形，理由就是压缩频谱来降低ISI） ！</p>
+</blockquote>
+<p><a href="https://www.1024sou.com/article/914269.html">简单概述：脉冲成形 基带成形 （脉冲成型 基带成型） - 1024搜-程序员专属的搜索引擎</a></p>
+<blockquote>
+<p>数字信号想要在信道中传输，必须在发射机的基带部分进行脉冲成形，将数字信号转换成脉冲信号，脉冲信号到达接收机后，在基带部分进行采样判决，将数字信号恢复出来。</p>
+<p>如下图所示，脉冲成形需要用到脉冲波形，实现脉冲成形要用到基带滤波器，评估基带滤波器要用到眼图。<a href="https://blog.csdn.net/duanduann/article/details/123384959">【深入浅出通信原理-学习笔记】基带信号的发送和接收_脉冲怎么发送和接受_DUANDAUNNN的博客-CSDN博客</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>电路</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>C&amp;&amp;C++问题总汇(1)</title>
+    <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
+    <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
+<span id="more"></span>
+<h1 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h1><p>定义一个二维数组如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>][<span class="number">4</span>] = &#123; &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;, &#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>&#125;, &#123;<span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>&#125; &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果采用一个指针去指向这个数组，可以这么做:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">4</span>]=a; <span class="comment">//4代表了一行有多少个元素</span></span><br></pre></td></tr></table></figure>
+<p>其中<code>*p</code>要加括号，因为不加括号就是指针数组,而且但是，这时候的<code>*p</code>（p指针指向的数据不在是一个<code>int</code>的数，而是一个数组，代表的是第i行的所有元素）</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">sizeof</span>(*p);</span><br><span class="line">Output: <span class="number">16</span></span><br></pre></td></tr></table></figure>
+<p>那么访问这个二维数组的指针方法是:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=*(*(p+i)+j);</span><br></pre></td></tr></table></figure>
+<p>当然，下面这种方式也对(和一维数组的指针一样)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">a[i][j]=p[i][j];</span><br></pre></td></tr></table></figure>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Y7D20b8621AY6CYryYagUED1.jpg" alt="Y7D20b8621AY6CYryYagUED1" style="zoom: 33%;" /></p>
+<ul>
+<li>指针数组是这样子的吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *strs[<span class="number">3</span>] =&#123;<span class="string">&quot;chinese&quot;</span>,<span class="string">&quot;zhonguo&quot;</span> &#125; ;<span class="comment">//3代表两个string元素，一个&#x27;\0&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>这里使用的就是指针数组,所以这里是3（数组中元素的个数+1），而上面的那个是4数组个每个元素的下一级个数。</p>
+<h2 id="二维数组赋值的问题"><a href="#二维数组赋值的问题" class="headerlink" title="二维数组赋值的问题"></a>二维数组赋值的问题</h2><ul>
+<li>二维数组有两个维度，当然可以按照一个一个去赋值，但那样毕竟太慢，所以有没有更好的赋值方法呢？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br></pre></td></tr></table></figure>
+<p>这是我现在使用的方法，并不是十分的好，希望有所改进</p>
+<ul>
+<li>友元函数访问私有成员问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//习题5-18</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//报错，a[2][2]是私有成员，不可在operator中访问</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">List</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		List(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k ,<span class="keyword">int</span> m)&#123;</span><br><span class="line">			a[<span class="number">0</span>][<span class="number">0</span>]=i,a[<span class="number">0</span>][<span class="number">1</span>]=j,a[<span class="number">1</span>][<span class="number">0</span>]=k,a[<span class="number">1</span>][<span class="number">1</span>]=m;</span><br><span class="line">		&#125;</span><br><span class="line">		List(<span class="keyword">int</span> (*p)[<span class="number">2</span>])&#123;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					a[i][j]=p[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		List()&#123;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>+(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="keyword">friend</span> <span class="keyword">operator</span>-(List &amp;a,List &amp;b);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">disp</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">0</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">0</span>]&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">			</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">&#125;;</span><br><span class="line">List <span class="keyword">operator</span>+(List a,List b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>; i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]+b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line">List <span class="keyword">operator</span>-(List &amp;a,List &amp;b)&#123;</span><br><span class="line">	<span class="keyword">int</span> c[<span class="number">2</span>][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">2</span>;j++)&#123;</span><br><span class="line">					c[i][j]=a.a[i][j]-b.a[i][j];</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> List(c);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">List <span class="title">a</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> q[<span class="number">4</span>];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">	</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;q[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> b1[][<span class="number">2</span>]=&#123;&#123;q[<span class="number">0</span>],q[<span class="number">1</span>]&#125;,&#123;q[<span class="number">3</span>],q[<span class="number">4</span>]&#125;&#125;;</span><br><span class="line">	<span class="function">List <span class="title">b</span><span class="params">(b1)</span></span>;</span><br><span class="line">	List c;</span><br><span class="line">	c = a+b;</span><br><span class="line">	c.disp();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="指针的指针"><a href="#指针的指针" class="headerlink" title="指针的指针"></a>指针的指针</h2><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> **p;</span><br><span class="line"><span class="comment">//使用方法</span></span><br><span class="line"><span class="keyword">int</span> **p; <span class="comment">//定义一个指针的指针</span></span><br><span class="line"><span class="keyword">int</span> *q;	<span class="comment">//定义一个int型的指针</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line">q = a;	<span class="comment">//q指向a</span></span><br><span class="line">p =&amp;q; <span class="comment">//p指向q</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*(*p+<span class="number">1</span>)); <span class="comment">//所以*p展现了q，*（*p）为q展现自己储存的地址的内容</span></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>所以说，这个<code>int</code>有用吗？</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">*((<span class="keyword">int</span> *)a+n*i+j);  </span><br></pre></td></tr></table></figure>
+<ul>
+<li>函数的分号问题</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">()</span></span>&#123;</span><br><span class="line">    .....</span><br><span class="line">&#125;;   <span class="comment">//这个分号是否有必要？</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">//为什么Base和Derived的虚函数地址一样呢 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">func1</span><span class="params">()</span></span>&#123;</span><br><span class="line">		&#125;;</span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	<span class="keyword">if</span> (d.Base::_vptr==d._vptr)&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;yes&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  <span class="comment">//显示yes</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>问：Base中的虚函数和Derived的虚函数的地址为什么是一样的呢</p>
+</li>
+<li><p>答：</p>
+</li>
+</ul>
+<p>虚表指针指向了一个虚表，虚表中存放着类中的虚函数。如果类中存在虚函数，那么构造对象的时候，就会生一个虚表指针指向虚表，虚表中存放虚函数。所以，要注意的一-点， 在类的构造函数中不要调用虚函数，这是一一个危险的动作，因为很可能它还未<br>初始化完毕。</p>
+<ul>
+<li>问：动态联编和静态联编，可以访问派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;1,2,3&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span>:</span><span class="keyword">public</span> A&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    	<span class="function"><span class="keyword">void</span> <span class="title">print1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;4,5,6&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    A *ptr;</span><br><span class="line">    B a1;</span><br><span class="line">    ptr =&amp;a1;</span><br><span class="line">    ptr-&gt;<span class="built_in">print1</span>();   <span class="comment">//can&#x27;t called</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：不能调用派生类函数</li>
+<li>答：</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base</span>&#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;nihao&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span><span class="keyword">public</span> Base&#123;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">func4</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot; nihao!&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Base d1, *bp;</span><br><span class="line">	Derived d2;</span><br><span class="line">	bp=&amp;d2;</span><br><span class="line">	bp-&gt;func4();   <span class="comment">//这里直接调用了Base里面的func4()，这个算重载吗？ </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：这个可以算重载嘛？，结果值为第一个</li>
+<li>答:</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
+<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
+</li>
+<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
+</li>
+<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
+</li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
+</li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
+</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>动态规划入门</title>
     <url>/2021/08/19/DP/</url>
     <content><![CDATA[<p>​        之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
@@ -385,6 +424,27 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
+    <title>毛概实践课</title>
+    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
+    <content><![CDATA[<p>毛概实践课🤗</p>
+<span id="more"></span>
+<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
+
+<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
+
+<p>看看我们的大合照😁:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3" alt="">.png)</p>
+<p>​    哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
+<p>​    这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png" alt="被删除视频"></p>
+<p>​    这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
+<p>​    总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
+]]></content>
+      <categories>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -423,45 +483,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器"><a href="#反相器" class="headerlink" title="反相器"></a>反相器</h1><h2 id="COMS电路"><a href="#COMS电路" class="headerlink" title="COMS电路"></a>COMS电路</h2><ul>
-<li>CMOS的<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li>$V_{OH}\quad V_{OL}…$的取法<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="TTL电路"><a href="#TTL电路" class="headerlink" title="TTL电路"></a>TTL电路</h2><ul>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p>
-</li>
-<li><p><a href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p>
-</li>
-<li><p>$T_{cd}和T_{pd}$,为什么$T_{cd}=0$的时候，将<a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为$T_{cd}=0$，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，$T_{cd}可以变大点$</p>
-</li>
-<li><p><a href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p>
-</li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p>
-</li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p>
-</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png" alt="输入电流特性"></p>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png" alt="TTL三态门"></p>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -507,27 +528,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>毛概实践课</title>
-    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
-    <content><![CDATA[<p>毛概实践课🤗</p>
-<span id="more"></span>
-<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
-
-<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
-
-<p>看看我们的大合照😁:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3" alt="">.png)</p>
-<p>​    哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
-<p>​    这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png" alt="被删除视频"></p>
-<p>​    这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
-<p>​    总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
-      </categories>
-  </entry>
-  <entry>
     <title>LinkWe Technology</title>
     <url>/2021/10/08/LinkWe/</url>
     <content><![CDATA[<p>LinkWe Technology product</p>
@@ -539,71 +539,6 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 </div></div>]]></content>
       <categories>
         <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Neural network(1)---Logistic Regression</title>
-    <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
-    <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic way</p>
-<span id="more"></span>
-<h1 id="Lead-to"><a href="#Lead-to" class="headerlink" title="Lead to"></a>Lead to</h1><p>When I first talk about this topic, I want to use a Mathematical way to explain the algorithm—-the <a href="https://en.wikipedia.iwiki.eu.org/wiki/Logistic_regression">Logistic Regression</a>.fisrtly , I want to introduce this algorithm to you ,it is a tool to solve binary classification problem,firstly ,for a binary classification problem you may recall the function $y=wx+b$,that is linear regression which is the simplest binary classification function ,if you have got the $w,b$,and you input a $x$,you will  get a $\hat y$, and if the actual value of $y$ corresponding to $x$ is bigger  then $\hat y$,or is smaller then $\hat y$,you will use this way to get two two categories in much data </p>
-<h1 id="Overview-of-logistic-regression"><a href="#Overview-of-logistic-regression" class="headerlink" title="Overview of logistic regression"></a>Overview of logistic regression</h1><p>Today we will introduce a new algorithm to solve this problem:</p>
-<script type="math/tex; mode=display">
-\left\{\begin{array}{l}
-z=w^{\top} x+b \\
-\hat{y}=a=\sigma(z) \\
-L(a, y)=-(y \log (a)+(1-y) \log (1-a))
-\end{array}\right.</script><p>you give the x and y ,you need give the initialization of $w,b$ and program will help you to solve the $\hat y$ and the loss function $L(a,y)$ ,and the function $\sigma(z)$ is </p>
-<script type="math/tex; mode=display">
-\sigma(z)=\frac{e^z}{e^z+1}</script><p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Transparent-2.png" style="zoom: 80%;" /></p>
-<p>$L$ is just like the $\frac{1}{2}(y-\hat y)^2$,which represent how closer two points is ? if $L$ is very small ,which represent the points is very closer. But why we don’t choose $\frac{1}{2}(y-\hat y)^2$,because if we choose this function ,the loss function is maybe not a convex function ,which exist many local minimize solve ,just like this picture :</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823212505129.png" style="zoom: 25%;" /></p>
-<p>when the loss function is non-convex ,the gradient can’t work very well ,so we choose the another function as the loos function  ,So why $L(a,y)$ can be used to describe the distance ? just see two picture:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
-<p>the  two picture is the $L(a,y)$,when I assume that y=0 and y=1 and the value of $L$ is dependent on the value of a,</p>
-<p>with different a,the $L$ have different value ,when $y=0$, only when $a=0$,then the Probability also the $L$ is equal to 1</p>
-<p>1 represent <code>True</code>,0 represents <code>False</code>,so this is the reason why we choose this function to represents our “Loss function”.</p>
-<p>But unfortunately ,this value can’t represent the overall performance on the model, so we need another function to reflect the accuracy of model ,so we introduce the $J$ ,which is mean “<a href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost function</a>“ ,Its expression is :</p>
-<script type="math/tex; mode=display">
-J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))</script><script type="math/tex; mode=display">
-dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}</script><p>so  we can get :</p>
-<script type="math/tex; mode=display">
-\begin{equation}\begin{aligned}dz &=\frac{dl}{da}\cdot\frac{da}{dz}\\&=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot \frac{e^z}{(e^z+1)^2}\\&=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&=a-y\end{aligned}\nonumber\end{equation}</script><p>ok, we get the $dz$,then we can get some other import information like this :</p>
-<script type="math/tex; mode=display">
-dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can use Gradient descent to update the $w,b$:</p>
-<script type="math/tex; mode=display">
-\cases{w=w-\alpha w\\b=b-\alpha b}</script><p>in this expression $a^{(i)}=\hat y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})$.and we can calculate the derivative of $J$ with respect to $w$  and $b$:</p>
-<script type="math/tex; mode=display">
-\frac{\partial}{\partial w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))</script><p>you can see :</p>
-<script type="math/tex; mode=display">
-\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)</script><p>so forward propagation just like this  :</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
-<h1 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h1><p>whenever possible avoid explicit <code>for loops</code></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
-<p>if we use <code>python-numpy</code>:</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
-<p>python-numpy’s syntax is simpler, and calculation is more efficient,That is pretty good,deep learning need a lots of calculations ,so matrix syntax by numpy is recommended </p>
-<h1 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h1><p>Building this model neural network  , let’s do from the structure</p>
-<ul>
-<li>read the data and define the sigmoid function</li>
-<li>use data and sigmoid function to propagate the $J$</li>
-<li>use $J$ to backpagate $dw$ and $db$ </li>
-<li>set number of iteration and learning rate  to update the $J$ (makes it smaller)</li>
-<li>predict the train data and the test data ,get the accuracy of model’s prediction</li>
-<li>plot the $J-n_{iteration}$ figure,see whether it is overfit or not ?</li>
-</ul>
-<h2 id="import-lib-and-read-data"><a href="#import-lib-and-read-data" class="headerlink" title="import lib and read data"></a>import lib and read data</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
-<h2 id="data-normalization"><a href="#data-normalization" class="headerlink" title="data normalization"></a>data normalization</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
-<h2 id="define-sigmoid"><a href="#define-sigmoid" class="headerlink" title="define sigmoid"></a>define sigmoid</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
-<h2 id="propagation"><a href="#propagation" class="headerlink" title="propagation"></a>propagation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
-<h2 id="define-optimize"><a href="#define-optimize" class="headerlink" title="define optimize"></a>define optimize</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
-<h2 id="define-predict"><a href="#define-predict" class="headerlink" title="define predict"></a>define predict</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
-<h2 id="model"><a href="#model" class="headerlink" title="model"></a>model</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Neural Network</category>
       </categories>
   </entry>
   <entry>
@@ -671,45 +606,68 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+    <title>Neural network(1)---Logistic Regression</title>
+    <url>/2021/08/24/Neural-network(1)---Logistic-Regression/</url>
+    <content><![CDATA[<p>After a long time ,I decide to study Neural Network in a systematic way</p>
 <span id="more"></span>
-<h1 id="环境配置（垃圾分类项目）"><a href="#环境配置（垃圾分类项目）" class="headerlink" title="环境配置（垃圾分类项目）"></a>环境配置（垃圾分类项目）</h1><p>项目使用树莓派4B，具体流程如下</p>
+<h1 id="Lead-to"><a href="#Lead-to" class="headerlink" title="Lead to"></a>Lead to</h1><p>When I first talk about this topic, I want to use a Mathematical way to explain the algorithm—-the <a href="https://en.wikipedia.iwiki.eu.org/wiki/Logistic_regression">Logistic Regression</a>.fisrtly , I want to introduce this algorithm to you ,it is a tool to solve binary classification problem,firstly ,for a binary classification problem you may recall the function $y=wx+b$,that is linear regression which is the simplest binary classification function ,if you have got the $w,b$,and you input a $x$,you will  get a $\hat y$, and if the actual value of $y$ corresponding to $x$ is bigger  then $\hat y$,or is smaller then $\hat y$,you will use this way to get two two categories in much data </p>
+<h1 id="Overview-of-logistic-regression"><a href="#Overview-of-logistic-regression" class="headerlink" title="Overview of logistic regression"></a>Overview of logistic regression</h1><p>Today we will introduce a new algorithm to solve this problem:</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{l}
+z=w^{\top} x+b \\
+\hat{y}=a=\sigma(z) \\
+L(a, y)=-(y \log (a)+(1-y) \log (1-a))
+\end{array}\right.</script><p>you give the x and y ,you need give the initialization of $w,b$ and program will help you to solve the $\hat y$ and the loss function $L(a,y)$ ,and the function $\sigma(z)$ is </p>
+<script type="math/tex; mode=display">
+\sigma(z)=\frac{e^z}{e^z+1}</script><p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/Transparent-2.png" style="zoom: 80%;" /></p>
+<p>$L$ is just like the $\frac{1}{2}(y-\hat y)^2$,which represent how closer two points is ? if $L$ is very small ,which represent the points is very closer. But why we don’t choose $\frac{1}{2}(y-\hat y)^2$,because if we choose this function ,the loss function is maybe not a convex function ,which exist many local minimize solve ,just like this picture :</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823212505129.png" style="zoom: 25%;" /></p>
+<p>when the loss function is non-convex ,the gradient can’t work very well ,so we choose the another function as the loos function  ,So why $L(a,y)$ can be used to describe the distance ? just see two picture:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210823211540362.png" style="zoom: 50%;" /></p>
+<p>the  two picture is the $L(a,y)$,when I assume that y=0 and y=1 and the value of $L$ is dependent on the value of a,</p>
+<p>with different a,the $L$ have different value ,when $y=0$, only when $a=0$,then the Probability also the $L$ is equal to 1</p>
+<p>1 represent <code>True</code>,0 represents <code>False</code>,so this is the reason why we choose this function to represents our “Loss function”.</p>
+<p>But unfortunately ,this value can’t represent the overall performance on the model, so we need another function to reflect the accuracy of model ,so we introduce the $J$ ,which is mean “<a href="https://en.wikipedia.iwiki.eu.org/wiki/Cost_function">Cost function</a>“ ,Its expression is :</p>
+<script type="math/tex; mode=display">
+J(w,b)=-\frac{1}{m}\sum_{i=1}^{m}(L(a^{(i)},y^{(i)}))</script><script type="math/tex; mode=display">
+dz=\frac{dl}{dz}=\frac{dl}{da}\cdot\frac{da}{dz}\\da=-\frac{y}{a}+\frac{1-y}{1-a}</script><p>so  we can get :</p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{aligned}dz &=\frac{dl}{da}\cdot\frac{da}{dz}\\&=(-\frac{y}{a}+\frac{1-y}{1-a})\cdot \frac{e^z}{(e^z+1)^2}\\&=a(1-a)(-\frac{y}{a}+\frac{1-y}{1-a})\\&=a-y\end{aligned}\nonumber\end{equation}</script><p>ok, we get the $dz$,then we can get some other import information like this :</p>
+<script type="math/tex; mode=display">
+dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can use Gradient descent to update the $w,b$:</p>
+<script type="math/tex; mode=display">
+\cases{w=w-\alpha w\\b=b-\alpha b}</script><p>in this expression $a^{(i)}=\hat y^{(i)}=\sigma(z^{(i)})=\sigma(w^Tx^{(i)+b})$.and we can calculate the derivative of $J$ with respect to $w$  and $b$:</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial w_i}J(w,b)=\frac{1}{m}\sum_{i=1}^{m}\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))</script><p>you can see :</p>
+<script type="math/tex; mode=display">
+\frac{\partial}{\partial w_i}(L(a^{(i)},y^{(i)}))=d w_{i}^{(i)}-\left(x^{(i)} \cdot y^{(i)}\right)</script><p>so forward propagation just like this  :</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">J=0 dw_1=0 dw_2=0 db=0</span><br><span class="line">For  i=0  to m:</span><br><span class="line">	z_i=w_T*x_i + b   #w_T is the transpose of w</span><br><span class="line">	a_i=sigmoid(z_i)</span><br><span class="line">	J+=-[y_i*log(a_i)+(1-y_i)*log(1-a_i)]</span><br><span class="line">	dz_i=a_i - y_i</span><br><span class="line">	dw_i +=x_1i*dz_i</span><br><span class="line">	dw_2 +=x_2i*dz_i</span><br><span class="line">	db+=dz_i</span><br><span class="line">	J/=m</span><br><span class="line">	dw_1/=m   dw_2/=m   db=m</span><br><span class="line">	w_1=w_1-learning_rate*dw_1 w_2=w_2-learning_rate*dw_2 b=b-learning_rate*db</span><br></pre></td></tr></table></figure>
+<h1 id="Vectorization"><a href="#Vectorization" class="headerlink" title="Vectorization"></a>Vectorization</h1><p>whenever possible avoid explicit <code>for loops</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">For loop:</span><br><span class="line">	U_i=sum(A_i,V_i)</span><br><span class="line">	U=np.zeros((n,1))</span><br><span class="line">	for i in ...n:</span><br><span class="line">		for j .....m:</span><br><span class="line">			u[i]+=A[i][j]*V[i]</span><br></pre></td></tr></table></figure>
+<p>if we use <code>python-numpy</code>:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">u=np.dot(A,V)</span><br></pre></td></tr></table></figure>
+<p>python-numpy’s syntax is simpler, and calculation is more efficient,That is pretty good,deep learning need a lots of calculations ,so matrix syntax by numpy is recommended </p>
+<h1 id="Coding"><a href="#Coding" class="headerlink" title="Coding"></a>Coding</h1><p>Building this model neural network  , let’s do from the structure</p>
 <ul>
-<li>下载<a href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+<li>read the data and define the sigmoid function</li>
+<li>use data and sigmoid function to propagate the $J$</li>
+<li>use $J$ to backpagate $dw$ and $db$ </li>
+<li>set number of iteration and learning rate  to update the $J$ (makes it smaller)</li>
+<li>predict the train data and the test data ,get the accuracy of model’s prediction</li>
+<li>plot the $J-n_{iteration}$ figure,see whether it is overfit or not ?</li>
 </ul>
-<ol>
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv"><a href="#ubuntu配置opencv" class="headerlink" title="ubuntu配置opencv"></a>ubuntu配置opencv</h2><ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+<h2 id="import-lib-and-read-data"><a href="#import-lib-and-read-data" class="headerlink" title="import lib and read data"></a>import lib and read data</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"><span class="keyword">from</span> lr_utils <span class="keyword">import</span> load_dataset</span><br><span class="line">%matplotlib inline</span><br><span class="line">train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()</span><br><span class="line">train_set_y.shape</span><br><span class="line">index =<span class="number">2</span></span><br><span class="line">plt.imshow(train_set_x_orig[index])</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y = &quot;</span>+<span class="built_in">str</span>(train_set_y[:,index]))</span><br><span class="line">m_train=train_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">m_test=test_set_x_orig.shape[<span class="number">0</span>]</span><br><span class="line">num_px=train_set_x_orig.shape[<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;x_train:&quot;</span>,m_train,<span class="string">&quot;x_test:&quot;</span>,m_test,<span class="string">&quot;shape:&quot;</span>,num_px)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;y_train:&quot;</span>,)</span><br><span class="line"><span class="comment"># print(train_set_x_orig[0].shape)</span></span><br><span class="line">train_set_x_flatten=train_set_x_orig.reshape(m_train,-<span class="number">1</span>).T   <span class="comment">#flatten the image ,just want to make it 3*width*height</span></span><br><span class="line"><span class="comment"># print(train_set_x_flatten.shape)</span></span><br><span class="line">test_set_x_flatten=test_set_x_orig.reshape(m_test,-<span class="number">1</span>).T</span><br></pre></td></tr></table></figure>
+<h2 id="data-normalization"><a href="#data-normalization" class="headerlink" title="data normalization"></a>data normalization</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_set_x=train_set_x_flatten/<span class="number">255</span></span><br><span class="line">test_set_x=test_set_x_flatten/<span class="number">255</span></span><br></pre></td></tr></table></figure>
+<h2 id="define-sigmoid"><a href="#define-sigmoid" class="headerlink" title="define sigmoid"></a>define sigmoid</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sigmoid</span>(<span class="params">Z</span>):</span>     <span class="comment">#define sigmoid function</span></span><br><span class="line">    s=<span class="number">1</span>/(<span class="number">1</span>+np.exp(-Z))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"><span class="built_in">print</span>(sigmoid(np.array([<span class="number">1</span>,<span class="number">2</span>])))  <span class="comment">#test sigmoid fuction </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">initialize_with_zeros</span>(<span class="params">dim</span>):</span>      <span class="comment">#Column vector</span></span><br><span class="line">    w=np.zeros((dim,<span class="number">1</span>))</span><br><span class="line">    b=<span class="number">0</span></span><br><span class="line">    <span class="keyword">assert</span>(w.shape==(dim,<span class="number">1</span>))</span><br><span class="line">    <span class="keyword">assert</span>(<span class="built_in">isinstance</span>(b,<span class="built_in">float</span>) <span class="keyword">or</span> <span class="built_in">isinstance</span>(b,<span class="built_in">int</span>))</span><br><span class="line">    <span class="keyword">return</span> w,b</span><br></pre></td></tr></table></figure>
+<h2 id="propagation"><a href="#propagation" class="headerlink" title="propagation"></a>propagation</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-optimize"><a href="#define-optimize" class="headerlink" title="define optimize"></a>define optimize</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Propagation</span>(<span class="params">w,b,X,Y</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Z=np.dot(w.T,X)+b</span><br><span class="line">    A=sigmoid(Z)       <span class="comment">#pay attention to </span></span><br><span class="line">    J=<span class="number">1</span>/m*np.<span class="built_in">sum</span>(-(Y*np.log(A)+(<span class="number">1</span>-Y)*np.log(<span class="number">1</span>-A)))</span><br><span class="line">    dz=A-Y</span><br><span class="line">    dw=(<span class="number">1</span>/m)*np.dot(X,dz.T)</span><br><span class="line">    db=(<span class="number">1</span>/m)*np.<span class="built_in">sum</span>(dz)</span><br><span class="line">    grads=&#123;<span class="string">&quot;dw&quot;</span>:dw,</span><br><span class="line">            <span class="string">&quot;db&quot;</span>:db</span><br><span class="line">          &#125;</span><br><span class="line">    <span class="keyword">return</span> grads,J</span><br><span class="line">w,b,X,Y = np.array([[<span class="number">1</span>],[<span class="number">2</span>]]),<span class="number">2.</span>,np.array([[<span class="number">1</span>,<span class="number">2</span>,-<span class="number">1</span>],[<span class="number">3</span>,<span class="number">4</span>,-<span class="number">3.2</span>]]),np.array([[<span class="number">1</span>,<span class="number">0</span>,<span class="number">1</span>]])</span><br><span class="line">grads,J=Propagation(w,b,X,Y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;dw=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;dw&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;db=&quot;</span>,<span class="built_in">str</span>(grads[<span class="string">&#x27;db&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;J=&#x27;</span>,<span class="built_in">str</span>(J))</span><br></pre></td></tr></table></figure>
+<h2 id="define-predict"><a href="#define-predict" class="headerlink" title="define predict"></a>define predict</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span>(<span class="params">w,b,X</span>):</span></span><br><span class="line">    m=X.shape[<span class="number">1</span>]</span><br><span class="line">    Y_predict=np.zeros((<span class="number">1</span>,m))</span><br><span class="line">    A=sigmoid(np.dot(w.T,X)+b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(A.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> A[<span class="number">0</span>,i]&gt;<span class="number">0.5</span>:</span><br><span class="line">            Y_predict[<span class="number">0</span>,i]=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> Y_predict</span><br></pre></td></tr></table></figure>
+<h2 id="model"><a href="#model" class="headerlink" title="model"></a>model</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span>(<span class="params">X_train,Y_train,X_test,Y_test,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.5</span>,print_cost=<span class="literal">False</span></span>):</span></span><br><span class="line">    w,b=initialize_with_zeros(X_train.shape[<span class="number">0</span>])</span><br><span class="line">    parameters,grads,costs=optimize(w,b,X_train,Y_train,num_iterations,learning_rate,print_cost)</span><br><span class="line">    w =parameters[<span class="string">&#x27;w&#x27;</span>]</span><br><span class="line">    b =parameters[<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line">    Y_predict_train=predict(w,b,X_train)</span><br><span class="line">    Y_predict_test=predict(w,b,X_test)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_test-Y_test))*<span class="number">100</span>))</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;train accuracy:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">100</span>-np.mean(np.<span class="built_in">abs</span>(Y_predict_train-Y_train))*<span class="number">100</span>))</span><br><span class="line">    d=&#123;<span class="string">&quot;costs&quot;</span>:costs,</span><br><span class="line">      <span class="string">&quot;Y_predict_test&quot;</span>:Y_predict_test,</span><br><span class="line">       <span class="string">&quot;Y_predict_train&quot;</span>:Y_predict_train,</span><br><span class="line">       <span class="string">&quot;w&quot;</span>:w,</span><br><span class="line">       <span class="string">&quot;b&quot;</span>:b,</span><br><span class="line">       <span class="string">&quot;learning_rate&quot;</span>:learning_rate,</span><br><span class="line">       <span class="string">&quot;num_iterations&quot;</span>:num_iterations      </span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">return</span> d</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#test model </span></span><br><span class="line">d=model(train_set_x,train_set_y,test_set_x,test_set_y,num_iterations=<span class="number">2000</span>,learning_rate=<span class="number">0.005</span>,print_cost=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;train&quot;</span>,d[<span class="string">&quot;Y_predict_test&quot;</span>])</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>coding</category>
+        <category>Neural Network</category>
       </categories>
   </entry>
   <entry>
@@ -781,6 +739,48 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
 <li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
 <li>答：</li>
 </ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置（垃圾分类项目）"><a href="#环境配置（垃圾分类项目）" class="headerlink" title="环境配置（垃圾分类项目）"></a>环境配置（垃圾分类项目）</h1><p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol>
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv"><a href="#ubuntu配置opencv" class="headerlink" title="ubuntu配置opencv"></a>ubuntu配置opencv</h2><ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -914,15 +914,6 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>学业生涯规划指导经验交流贴</title>
-    <url>/2023/10/31/Study%20exchange%20meeting/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-  </entry>
-  <entry>
     <title>出租车载客模型</title>
     <url>/2021/08/15/Taxi%20passenger%20model/</url>
     <content><![CDATA[<p>数学建模.Are you kidding me ?   😭我要疯了！</p>
@@ -1053,6 +1044,15 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m 
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1>]]></content>
       <categories>
         <category>Math model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>学业生涯规划指导经验交流贴</title>
+    <url>/2023/10/31/Study%20exchange%20meeting/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>]]></content>
+      <categories>
+        <category>学习</category>
       </categories>
   </entry>
   <entry>
@@ -1436,11 +1436,6 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>]]></content>
-  </entry>
-  <entry>
     <title>Docker-ubuntu安装ssh</title>
     <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
@@ -1504,6 +1499,11 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       <categories>
         <category>Code</category>
       </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>]]></content>
   </entry>
   <entry>
     <title>Linux开发项目总结</title>
