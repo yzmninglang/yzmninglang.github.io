@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android Adb Command</title>
+    <url>/2021/10/24/Android-Adb-Command/</url>
+    <content><![CDATA[<p>安卓小技巧</p>
+<span id="more"></span>
+<h1 id="recovery-模式下使用adb"><a href="#recovery-模式下使用adb" class="headerlink" title="recovery 模式下使用adb"></a>recovery 模式下使用adb</h1><p>首先在电脑中找到<code>adbkey.pub</code>文件，我的默认地址是<code>.android</code>,通过一些手段移入安卓设备的一个分区<code>/data/misc/adb/</code>的<code>adb_keys</code>文件中，下面是push的的方法，当然也可以用第三方<code>rec</code>直接导入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ~/.android/adbkey.pub /data/misc/adb/adb_keys</span><br></pre></td></tr></table></figure>
+<p>wifi连接adb</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect ip:5555</span><br></pre></td></tr></table></figure>
+<p>断开连接</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb disconnect ip:5555</span><br></pre></td></tr></table></figure>
+<h1 id="备份文件"><a href="#备份文件" class="headerlink" title="备份文件"></a>备份文件</h1><p>备份文件的方法主要用<code>adb pull</code>，这里以<code>tim</code>为例，可以这样做</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/data/com.tencent.tim ./tim</span><br></pre></td></tr></table></figure>
+<p>切记，备份时最好用linux操作系统，Windows总是会有一些莫名的错误,备份安装包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/app/  ./app</span><br></pre></td></tr></table></figure>
+<p>备份<code>sdcard</code>的数据</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull ./sdcard/Android/data/com.tencent.tim ./com.tencent.tim </span><br></pre></td></tr></table></figure>
+<p>使用脚本备份文件,下载下面的<a href="https://ninglang.lanzoui.com/iHmmuvpiygj">脚本</a>，将备份的文件导入电脑</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /storage/emulated/0/back/ ./back</span><br></pre></td></tr></table></figure>
+<p><a href="https://picturnl.oss-cn-shanghai.aliyuncs.com/contacts.csv">联系人备份</a></p>
+<h1 id="恢复App"><a href="#恢复App" class="headerlink" title="恢复App"></a>恢复App</h1><p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
+<p>然后使用下面的语句对应用进行安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
+<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
+<p>卸载app但保留数据和缓存文件：</p>
+<p><code>adb shell pm uninstall -k 包名</code></p>
+<h2 id="恢复data的app"><a href="#恢复data的app" class="headerlink" title="恢复data的app"></a>恢复data的app</h2><p>首先安装apk，打开，然后用push将data push到手机中去</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>微信降级</p>
+<p>首先，将<code>data</code> push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
+<p>重新启动手机</p>
+<p>然后使用adb安装软件（微信）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
+<p>可以完成无需登录的降级</p>
+<h2 id="钛备份恢复文件"><a href="#钛备份恢复文件" class="headerlink" title="钛备份恢复文件"></a>钛备份恢复文件</h2><p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
+<h1 id="输入内核"><a href="#输入内核" class="headerlink" title="输入内核"></a>输入内核</h1><p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
+<h1 id="adb-su"><a href="#adb-su" class="headerlink" title="adb su"></a>adb su</h1><p>adb su由于某些原因打不开，这时候要强制打开使用这个<a href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
+<p>然后使用</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
+<p>即可完成整个提权，文件读写权限</p>
+<h1 id="Magisk"><a href="#Magisk" class="headerlink" title="Magisk"></a>Magisk</h1><ol>
+<li>先下载<code>HttpCanary</code>，<a href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
+<ol>
+<li>禁止某个ip（magisk20.3）:下载<a href="">ipforbidden</a>模块，刷入，即可</li>
+</ol>
+<h1 id="开机模式下软件操作"><a href="#开机模式下软件操作" class="headerlink" title="开机模式下软件操作"></a>开机模式下软件操作</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
+<p>可以加上查询字</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>获取<code>root</code>权限</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
+<p>保留数据卸载,此方法可用于微信降级</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
+<p>安装apk</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
+<h1 id="安卓分区"><a href="#安卓分区" class="headerlink" title="安卓分区"></a>安卓分区</h1><ul>
+<li><p>system</p>
+<p>这个分区无所谓，每次刷机刷的就是这个</p>
+</li>
+<li><p>data</p>
+<p>这个分区就是软件数据放的地方，小心格式化</p>
+</li>
+<li><p>persist</p>
+<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p>
+</li>
+<li><p>vendor</p>
+</li>
+<li><p>recovery</p>
+<p>这个是在fastboot模式下刷入的分区</p>
+</li>
+<li><p>boot</p>
+</li>
+<li><p>cache</p>
+<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p>
+</li>
+<li><p>misc</p>
+<p>这个分区是放硬件配置信息的，USB，adb</p>
+</li>
+<li><p>sdcard</p>
+<p>这个分区就是存储卡分区，没什么特别的</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+  </entry>
+  <entry>
     <title>C&amp;&amp;C++问题总汇(1)</title>
     <url>/2021/09/20/C&amp;&amp;C++%E9%97%AE%E9%A2%98%E6%80%BB%E6%B1%87(1)/</url>
     <content><![CDATA[<p>C&amp;&amp;C++问题总汇🙄</p>
@@ -168,169 +258,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Android Adb Command</title>
-    <url>/2021/10/24/Android-Adb-Command/</url>
-    <content><![CDATA[<p>安卓小技巧</p>
-<span id="more"></span>
-<h1 id="recovery-模式下使用adb"><a href="#recovery-模式下使用adb" class="headerlink" title="recovery 模式下使用adb"></a>recovery 模式下使用adb</h1><p>首先在电脑中找到<code>adbkey.pub</code>文件，我的默认地址是<code>.android</code>,通过一些手段移入安卓设备的一个分区<code>/data/misc/adb/</code>的<code>adb_keys</code>文件中，下面是push的的方法，当然也可以用第三方<code>rec</code>直接导入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ~/.android/adbkey.pub /data/misc/adb/adb_keys</span><br></pre></td></tr></table></figure>
-<p>wifi连接adb</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb connect ip:5555</span><br></pre></td></tr></table></figure>
-<p>断开连接</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb disconnect ip:5555</span><br></pre></td></tr></table></figure>
-<h1 id="备份文件"><a href="#备份文件" class="headerlink" title="备份文件"></a>备份文件</h1><p>备份文件的方法主要用<code>adb pull</code>，这里以<code>tim</code>为例，可以这样做</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/data/com.tencent.tim ./tim</span><br></pre></td></tr></table></figure>
-<p>切记，备份时最好用linux操作系统，Windows总是会有一些莫名的错误,备份安装包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /data/app/  ./app</span><br></pre></td></tr></table></figure>
-<p>备份<code>sdcard</code>的数据</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull ./sdcard/Android/data/com.tencent.tim ./com.tencent.tim </span><br></pre></td></tr></table></figure>
-<p>使用脚本备份文件,下载下面的<a href="https://ninglang.lanzoui.com/iHmmuvpiygj">脚本</a>，将备份的文件导入电脑</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb pull /storage/emulated/0/back/ ./back</span><br></pre></td></tr></table></figure>
-<p><a href="https://picturnl.oss-cn-shanghai.aliyuncs.com/contacts.csv">联系人备份</a></p>
-<h1 id="恢复App"><a href="#恢复App" class="headerlink" title="恢复App"></a>恢复App</h1><p>微信等软件不支持降级，可以先用下面命令将数据传入（需要在安装magisk之后）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb push ./tim /data/com.tencent.tim </span><br></pre></td></tr></table></figure>
-<p>然后使用下面的语句对应用进行安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install ./tim.apk</span><br></pre></td></tr></table></figure>
-<p>登录时可能会报错，这时可以采用<code>TitaniumBackup</code>对这个软件备份，卸载整个软件，数据，用<code>TitaniumBackup</code>恢复应用程序</p>
-<p>卸载app但保留数据和缓存文件：</p>
-<p><code>adb shell pm uninstall -k 包名</code></p>
-<h2 id="恢复data的app"><a href="#恢复data的app" class="headerlink" title="恢复data的app"></a>恢复data的app</h2><p>首先安装apk，打开，然后用push将data push到手机中去</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">push ./mm/* /data/data/com.tencent.mm</span><br></pre></td></tr></table></figure>
-<p>微信降级</p>
-<p>首先，将<code>data</code> push之后，应该可以看到最新版本的微信的聊天记录是<code>data</code>里面的,然后，使用</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">adb shell pm uninstall -k com.tencent.mm</span><br></pre></td></tr></table></figure>
-<p>重新启动手机</p>
-<p>然后使用adb安装软件（微信）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb install weixing.apk</span><br></pre></td></tr></table></figure>
-<p>可以完成无需登录的降级</p>
-<h2 id="钛备份恢复文件"><a href="#钛备份恢复文件" class="headerlink" title="钛备份恢复文件"></a>钛备份恢复文件</h2><p>之前之所以没有用钛备份，是考虑到钛备份没有一些很必要的功能，例如，我的微信的语音、以及图片，都没有办法备份，现在，只需要开启钛备份中设置的<code>preferences-&gt;backup app external data-&gt;enabled(always)</code>.就可以，这事，就会备份语音，而且，在微信等软件的高版本的情况下，可以直接使用钛备份使用恢复历史版本仅<code>APP</code>即可。</p>
-<h1 id="输入内核"><a href="#输入内核" class="headerlink" title="输入内核"></a>输入内核</h1><p>首先，将内核文件<code>*.zip</code>移动到手机中，然后用在用<code>twrp</code>对它进行刷入，直接刷入即可</p>
-<h1 id="adb-su"><a href="#adb-su" class="headerlink" title="adb su"></a>adb su</h1><p>adb su由于某些原因打不开，这时候要强制打开使用这个<a href="https://github.com/evdenis/adb_root">链接</a>中release中的zip,然后用面具刷入，即可</p>
-<p>然后使用</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br><span class="line">adb remount</span><br></pre></td></tr></table></figure>
-<p>即可完成整个提权，文件读写权限</p>
-<h1 id="Magisk"><a href="#Magisk" class="headerlink" title="Magisk"></a>Magisk</h1><ol>
-<li>先下载<code>HttpCanary</code>，<a href="https://ninglang.lanzoup.com/iOlriyzokud">点击下载</a>,再用这个命令对证书进行移动</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mv -f /data/misc/user/0/cacerts-added/12abc345.0 <span class="variable">$MODDIR</span>/system/etc/security/cacerts</span><br></pre></td></tr></table></figure>
-<ol>
-<li>禁止某个ip（magisk20.3）:下载<a href="">ipforbidden</a>模块，刷入，即可</li>
-</ol>
-<h1 id="开机模式下软件操作"><a href="#开机模式下软件操作" class="headerlink" title="开机模式下软件操作"></a>开机模式下软件操作</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages</span><br></pre></td></tr></table></figure>
-<p>可以加上查询字</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb shell pm list packages | grep <span class="string">&#x27;miui&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>获取<code>root</code>权限</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb root</span><br></pre></td></tr></table></figure>
-<p>保留数据卸载,此方法可用于微信降级</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  uninstall -k com.tencent.tim</span><br></pre></td></tr></table></figure>
-<p>安装apk</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">adb  install  com.tencent.tim</span><br></pre></td></tr></table></figure>
-<h1 id="安卓分区"><a href="#安卓分区" class="headerlink" title="安卓分区"></a>安卓分区</h1><ul>
-<li><p>system</p>
-<p>这个分区无所谓，每次刷机刷的就是这个</p>
-</li>
-<li><p>data</p>
-<p>这个分区就是软件数据放的地方，小心格式化</p>
-</li>
-<li><p>persist</p>
-<p>储存账户密码，如果这个分区损坏，会出现储存读取错误，使用官方的线刷包中的persist即可以恢复。</p>
-</li>
-<li><p>vendor</p>
-</li>
-<li><p>recovery</p>
-<p>这个是在fastboot模式下刷入的分区</p>
-</li>
-<li><p>boot</p>
-</li>
-<li><p>cache</p>
-<p>这个分区只是具有记录功能，擦除不影响使用，不会影响任何数据</p>
-</li>
-<li><p>misc</p>
-<p>这个分区是放硬件配置信息的，USB，adb</p>
-</li>
-<li><p>sdcard</p>
-<p>这个分区就是存储卡分区，没什么特别的</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Android</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>动态规划入门</title>
-    <url>/2021/08/19/DP/</url>
-    <content><![CDATA[<p>​        之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
-<span id="more"></span>
-<h1 id="Fibonacci-Sequence"><a href="#Fibonacci-Sequence" class="headerlink" title="Fibonacci Sequence"></a>Fibonacci Sequence</h1><ul>
-<li>递归的思想<ul>
-<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
-<li>Fobonacci Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>​        既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-<p>​        我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
-<h1 id="House-robber"><a href="#House-robber" class="headerlink" title="House-robber"></a>House-robber</h1><ul>
-<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
-<li>输入：[1,2,3,1]</li>
-</ul>
-<p>输出：4</p>
-<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
-<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
-<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
-<h1 id="Maximum-value-of-gifts"><a href="#Maximum-value-of-gifts" class="headerlink" title="Maximum value of gifts"></a>Maximum value of gifts</h1><p>在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
-<p>输入: </p>
-<p>[</p>
-<p>  [1,3,1],</p>
-<p>  [1,5,1],</p>
-<p>  [4,2,1]</p>
-<p>]</p>
-<p>输出: 12</p>
-<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
-<p>​            我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
-<h1 id="Coins-exchange"><a href="#Coins-exchange" class="headerlink" title="Coins exchange"></a>Coins exchange</h1><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。你可以认为每种硬币的数量是无限的。</p>
-<p>输入：coins = [1, 2, 5], S = 11</p>
-<p>输出：3</p>
-<p>解释：11 = 5 + 5 + 1</p>
-<p>输入：coins = [2], S = 3</p>
-<p>输出：-1</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
-<script type="math/tex; mode=display">
-f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1</script><p>如果$x-c_i&lt;0$，则令$f(x-c_i)=\infty$这样就不会选这个$f(x-c_i)$了</p>
-<p>如果$x-c_i=0$,那么$f(x-c_i)=0$即$f(0)=0$</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
-<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
-<p>思路：<br>            我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
-<p>如何得到硬币的组合呢（5，5，1）</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
-<h1 id="Knapsack-Problem"><a href="#Knapsack-Problem" class="headerlink" title="Knapsack Problem"></a>Knapsack Problem</h1><p>​        有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
-<p>如下表所示:</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
-<p>​            由于只有—辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
-<p>思路：</p>
-<p>​        有m件物品，第i件物品的利润为$v_i$重量为$w_i$背包的总重量为W.</p>
-<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
-<p>子问题:在满足重量的约束条件下，将i($i\le m$)件物品选择性放入容量为j($j \le W$)的背包所获得的最大利润<br><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png" alt="image-20210819174526184"></p>
-<p>状态分析:</p>
-<p>​            我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4…增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
-<p>​        对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
-<p>​            对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
-<p>​            对于其它的列来说，需要用到状态转移方程，对于要求前$i$件物品装进容量为$j$的背包，在$i-1$的基础上只需要考虑到底装不装第$i$件物品，那么怎么考虑呢？要装第$i$件物品首先，第$i$件物品的重量必须小于背包的容量所以有:<br>​                $j-weight(i)&gt;=0$才去判断:</p>
-<script type="math/tex; mode=display">
-max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>通信原理笔记</title>
     <url>/2023/05/23/Communication%20principle/</url>
     <content><![CDATA[<p>通信原理理解性笔记</p>
@@ -424,44 +351,76 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>专业英语</title>
-    <url>/2023/06/05/English_profess/</url>
-    <content><![CDATA[<p>GANs</p>
-<p>专业英语答辩</p>
+    <title>动态规划入门</title>
+    <url>/2021/08/19/DP/</url>
+    <content><![CDATA[<p>​        之前没搞懂的动态规划，现在强行试了一下，欢迎大家指导！</p>
 <span id="more"></span>
-<blockquote>
-<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
-</blockquote>
-<h1 id="First"><a href="#First" class="headerlink" title="First"></a>First</h1><p>Hello everyone, welcome to come here, today I will introduce a new technology for image translation, called cycle-gan, which is a project led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that, let’s introduce some relatively similar fields to you.</p>
-<blockquote>
-<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
-</blockquote>
-<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by Google? What do they have in common? Yes, what they have in common is that they are all creative. The so-called creativity means that when you input the same sentence, it can give different results, so the first word of gpt is Generative, but CNN is not good at generative models. , when you give the same input, it is more likely to output the same result.</p>
-<blockquote>
-<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
-</blockquote>
-<p>Another example is the problem of cross-domain recognition. How to generalize and recognize other domains through a trained model, here involves domain adaptation, and gan is used to solve this problem.</p>
-<blockquote>
-<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
-</blockquote>
-<p>This is a model framework of Gan, which is mainly composed of two parts: the generator and the discriminator. The generator is used to generate content, and the discriminator mainly identifies whether the generated content is fake. The generator and the discriminator are two models, and they co-evolve with the prey just like in nature. When the discriminator cannot distinguish whether the generated content is fake or not, it means that the model has performed very well</p>
-<blockquote>
-<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B, GB-&gt;A,以及两个判别模型 DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x 域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
-</blockquote>
-<p>Cycle-gan uses cycle consistency and requires a total of four models, namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative models DA and DB. This is the origin of cycle, but it is even more exciting What is popular is that cycle-gan does not require paired data pairs for training, that is to say, we only need to give cycle-gan enough data from the source domain and the target domain without a lot of labeling work on it, and it will Automatically learn and successfully convert the x domain to the y domain. Since it involves the two-way conversion of the two domains, the loss function used in its iteration is also a cycle consistent loss function.</p>
-<h1 id="second"><a href="#second" class="headerlink" title="second"></a>second</h1><blockquote>
-<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
-</blockquote>
-<p>Next, I will introduce some cycle-gan applications: for example, in the field of video enhancement, black-and-white video becomes color video. Or scene transformation. Or convert an abstract painting into a concrete painting such as a building, these can be used as communication data compression, you can try the sender to transmit data similar to color blocks on the network, it may take up a lot of bandwidth Small, when you get these color patches at the receiving end, bring them back. This looks like a good way to compress video</p>
-<h1 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h1><p>The third part is sentence analysis，</p>
-<p>The meaning of the first sentence is “此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展 [15]。</p>
-<p>”。</p>
-<p>The second sentence means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
-<p>The third part is sentence analysis “图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比 [19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
-<p>Here are some references. thanks for listening！</p>
+<h1 id="Fibonacci-Sequence"><a href="#Fibonacci-Sequence" class="headerlink" title="Fibonacci Sequence"></a>Fibonacci Sequence</h1><ul>
+<li>递归的思想<ul>
+<li>要求第n项，先求n-1和n-2项，若n-1和n-2项为1,2则都令为1</li>
+<li>Fobonacci Sequence复杂度比较高，不适合大数据计算，例如当n=100时，计算起来就十分的慢</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span>  <span class="title">fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> n==<span class="number">1</span> <span class="keyword">or</span> n==<span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> fibo(n-<span class="number">1</span>)+fibo(n-<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>​        既然Fibonacci数列的递归计算如此复杂，那么，我们应该想什么办法来优化整个算法呢，我们考虑到，Fibonacci之所以复杂，是因为递归的存在，导致整个程序的时间复杂度都十分的高那么我们有没有简单一点的方法呢,对了，我们可以采用记录的方式，将每一个点之前的Fibonacci的数值都保存下来</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Fibo</span>(<span class="params">n</span>):</span></span><br><span class="line">    memo=[<span class="number">1</span>]*n     <span class="comment">#新建一个备忘录，记录每一个点的斐波拉切数列值，初始为[1,1,1,1....]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">if</span> i&lt;=<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="number">1</span>   <span class="comment">#给备忘录的第一个元素和第二个元素附一个1的初值</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=memo[i-<span class="number">1</span>]+memo[i-<span class="number">2</span>] <span class="comment">#生成整个memo数组</span></span><br><span class="line">    <span class="keyword">return</span> memo[i]   <span class="comment">#返回memo最后一个值，就是整个要求的的最大值</span></span><br><span class="line"><span class="comment">#调用一下</span></span><br><span class="line">Fibo(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<p>​        我们调用了相关的带有memo的Fibo函数之后，明显发现，整个速度提升了很多，整个计算没有超过一秒钟，显然，这种方法是很有效的，我们称这个memo为DP数组</p>
+<h1 id="House-robber"><a href="#House-robber" class="headerlink" title="House-robber"></a>House-robber</h1><ul>
+<li>你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。</li>
+<li>输入：[1,2,3,1]</li>
+</ul>
+<p>输出：4</p>
+<p>解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。</p>
+<p>偷窃到的最高金额 = 1 + 3 = 4 。</p>
+<p>对于小偷问题，我们可以这么去思考，就是我们新建一个DP数组，用来储存小偷走到这个点时之前可以得到的最大的收益，如果按照这种思路，然后去整个数组的最大值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">steal</span>():</span></span><br><span class="line">    nums=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>]   <span class="comment">#每个房子有的金额（金额数组）</span></span><br><span class="line">    memo=[<span class="number">1</span>]*<span class="built_in">len</span>(nums)    <span class="comment">#新建一个DP数组，这个数组就是记录到那个点的最大值</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="built_in">len</span>(memo)):     <span class="comment">#完善数组，for循环，开始从第一个位置开始填充数组</span></span><br><span class="line">        <span class="keyword">if</span> i==<span class="number">0</span>:</span><br><span class="line">            memo[i]=nums[i]         <span class="comment">#前两家偷的时候，只能偷其中一家，所以最大值为两家中的一家</span></span><br><span class="line">        <span class="keyword">elif</span> i==<span class="number">1</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(nums[i],nums[i-<span class="number">1</span>])     <span class="comment">#第二家的最大金额，应该是偷第一家和偷第二家的最大之一</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            memo[i]=<span class="built_in">max</span>(memo[i-<span class="number">2</span>]+nums[i],memo[i-<span class="number">1</span>])    <span class="comment">#用户大于第三家之后，数组的值应该为偷这一家(不能连续偷)(memo[i-2]+nums[i])</span></span><br><span class="line">            <span class="comment">#如果偷了的金额没有不偷多，那就不偷</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">max</span>(memo))</span><br><span class="line">    <span class="built_in">print</span>(memo)  </span><br><span class="line">steal()</span><br></pre></td></tr></table></figure>
+<h1 id="Maximum-value-of-gifts"><a href="#Maximum-value-of-gifts" class="headerlink" title="Maximum value of gifts"></a>Maximum value of gifts</h1><p>在一个 m*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？</p>
+<p>输入: </p>
+<p>[</p>
+<p>  [1,3,1],</p>
+<p>  [1,5,1],</p>
+<p>  [4,2,1]</p>
+<p>]</p>
+<p>输出: 12</p>
+<p>解释: 路径 1→3→5→2→1 可以拿到最多价值的礼物</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174221935.png" alt="image-20210819174221935" style="zoom: 33%;" /></p>
+<p>​            我们要计算从左上角到右下角最大的礼物价值，我们不妨这么思考，我们还是新建一个DP数组，这个DP数组应该是二维的，然后考虑DP数组是左上角到达每个点的最大价值，又因为路线只能右走或者下走。所以当其为横向、纵向的边界时，我们只要考虑左边、上面</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gift</span>():</span></span><br><span class="line">    a=[</span><br><span class="line">      [<span class="number">1</span>,<span class="number">3</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">1</span>,<span class="number">5</span>,<span class="number">1</span>],</span><br><span class="line">      [<span class="number">4</span>,<span class="number">2</span>,<span class="number">1</span>]</span><br><span class="line">    ]</span><br><span class="line">    r,c=<span class="built_in">len</span>(a),<span class="built_in">len</span>(a[<span class="number">0</span>])   <span class="comment">#读取出数组的长度r代表row，c代表column</span></span><br><span class="line">    memo=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        memo.append([<span class="number">1</span>]*c)   <span class="comment">#初始化DP数组，让DP数组的大小为原来a的大小</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):       <span class="comment">#遍历整个二维的a，然后开始填充memo的每一个地方</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">and</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=a[i][j]    <span class="comment">#第一个位置为起点，所以必须为a的第一个值</span></span><br><span class="line">            <span class="keyword">elif</span> i==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i][j-<span class="number">1</span>]+a[i][j]    <span class="comment">#当i=0时，说明第一行数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是右走</span></span><br><span class="line">            <span class="keyword">elif</span> j==<span class="number">0</span>:</span><br><span class="line">                memo[i][j]=memo[i-<span class="number">1</span>][j]+a[i][j]    <span class="comment">#当i=0时，说明第一列数据，由于只能右走和下走，所以</span></span><br><span class="line">                                                    <span class="comment">#这里是下走</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                memo[i][j]=<span class="built_in">max</span>(memo[i][j-<span class="number">1</span>]+a[i][j],memo[i-<span class="number">1</span>][j]+a[i][j])</span><br><span class="line">                                                <span class="comment">#当i!=0,j!=0时，可以右走和下走</span></span><br><span class="line">                </span><br><span class="line">    <span class="built_in">print</span>(memo)</span><br></pre></td></tr></table></figure>
+<h1 id="Coins-exchange"><a href="#Coins-exchange" class="headerlink" title="Coins exchange"></a>Coins exchange</h1><p>给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。你可以认为每种硬币的数量是无限的。</p>
+<p>输入：coins = [1, 2, 5], S = 11</p>
+<p>输出：3</p>
+<p>解释：11 = 5 + 5 + 1</p>
+<p>输入：coins = [2], S = 3</p>
+<p>输出：-1</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174323036.png" alt="image-20210819174503970" style="zoom: 50%;" /></p>
+<script type="math/tex; mode=display">
+f(x)=min\{f(x-c_1),f(x-c_2),...f(x-c_m)\}+1</script><p>如果$x-c_i&lt;0$，则令$f(x-c_i)=\infty$这样就不会选这个$f(x-c_i)$了</p>
+<p>如果$x-c_i=0$,那么$f(x-c_i)=0$即$f(0)=0$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change_coins</span>():</span></span><br><span class="line">    coins,S=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>],<span class="number">11</span>    <span class="comment">#拥有的硬币的种类，个数</span></span><br><span class="line">    dp=&#123;&#125;                 <span class="comment">#定义一个dp的字典，记录到每一元钱，所需要的硬币个数</span></span><br><span class="line">    temp=[]</span><br><span class="line">    <span class="keyword">for</span> i  <span class="keyword">in</span> <span class="built_in">range</span>(S+<span class="number">1</span>):   <span class="comment">#一直需要到11，所以这里是0-12</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> coins:</span><br><span class="line">            <span class="keyword">if</span> i-j==<span class="number">0</span>:     <span class="comment">#先判断这个x-c_i是不是等于0，如果是，令min&#123;....&#125;的数组中添加0</span></span><br><span class="line">                temp.append(<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">elif</span> i-j&lt;<span class="number">0</span>:    <span class="comment">#在判断i-j是不是小于0，如果是，这说明这条路不行，于是令min&#123;...&#125;的...中添加一个数1000</span></span><br><span class="line">                temp.append(<span class="number">1000</span>) </span><br><span class="line">            <span class="keyword">else</span>:          <span class="comment">#在其他的情况下都是满足的，那么可以按照上面的公式，在这个可能的结果中添加一个数为dp.get(i-j)</span></span><br><span class="line">                temp.append(dp.get(i-j))</span><br><span class="line">        dp[i]=<span class="built_in">min</span>(temp)+<span class="number">1</span>  <span class="comment">#dp[i]则应该为上面的一个数组中的一个数的最小值加一即min&#123;[....]&#125;+1</span></span><br><span class="line">        temp=[]            <span class="comment">#记得给数组归0</span></span><br><span class="line"><span class="comment">#     print(dp)</span></span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line">change_coins()</span><br></pre></td></tr></table></figure>
+<p>现在我们已经知道硬币的最少组合为3，那我们如何得到是哪些硬币的组合</p>
+<p>思路：<br>            我们可以将S=11的最小硬币数是3分解一下，例如，硬币数是3，说明[1,2,5]中的三个可以组成，于是我们可以一个一个的遍历，看当11减去其中的一些数之后判断一下剩余的需要的最小硬币数是不是2，例如:11-1,然后:凑成10元的所需硬币数最小是2吗，是的话，跳出遍历，选择这一10继续分解，不是的话，继续遍历下面的，直到S=0说明已经遍历到0了，可以结束</p>
+<p>如何得到硬币的组合呢（5，5，1）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">find_coins</span>(<span class="params">S</span>):</span></span><br><span class="line">    dp=change_coins()    <span class="comment">#调用上面的硬币交换得到dp数组</span></span><br><span class="line">    coins=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">5</span>]       <span class="comment">#硬币的种类为1,2,5</span></span><br><span class="line">    n=dp.get(S)         <span class="comment">#第一步先调出S的最小硬币数</span></span><br><span class="line">    dp[<span class="number">0</span>]=<span class="number">0</span>             <span class="comment">#给dp数组的0元素归0</span></span><br><span class="line">    go,coin_cate=[],[]   <span class="comment">#go数组可以记录整个换钱的过程，coin_cate可以看出每个过程所使用的硬币的金额</span></span><br><span class="line">    <span class="keyword">while</span> dp.get(S,<span class="number">0</span>)-<span class="number">1</span>&gt;=<span class="number">0</span>:     <span class="comment">#当dp.get(S,0)-1=0时，说明S为非零且属于[1,2,5]</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> coins:         <span class="comment">#从[1,2,5]中一个个取数</span></span><br><span class="line">            <span class="keyword">if</span> n-<span class="number">1</span>==dp.get(S-i):    <span class="comment">#如果有需要凑成S-i的钱的最小个数与S需要的最小个数只相差1，那么符合</span></span><br><span class="line">                                    <span class="comment">#取其中一种情况即可</span></span><br><span class="line">                go.append(S-i)      <span class="comment">#把这个可以凑成的金额添加到路径里</span></span><br><span class="line">                coin_cate.append(i)  <span class="comment">#把这次使用的种类添加到硬币的种类里</span></span><br><span class="line">                S=S-i                <span class="comment">#给S从新赋值，让S=S-i，以便寻找下一轮循环</span></span><br><span class="line">                <span class="keyword">break</span>                <span class="comment">#只要找到满足条件的一个coins即可，不需要全部找到</span></span><br><span class="line">        n=dp.get(S,<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> S==<span class="number">0</span>:                     <span class="comment">#如果S=0，说明整个分解可凑的钱程序已经已经走到需要凑0元的情况，</span></span><br><span class="line">                                    <span class="comment">#显然这种情况可以直接结束程序</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(go,coin_cate)</span><br><span class="line">find_coins(<span class="number">11</span>)  </span><br></pre></td></tr></table></figure>
+<h1 id="Knapsack-Problem"><a href="#Knapsack-Problem" class="headerlink" title="Knapsack Problem"></a>Knapsack Problem</h1><p>​        有10件货物要从甲地运送到乙地，每件货物的重量(单位:吨)和利润(单位:元)</p>
+<p>如下表所示:</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174503970.png" alt="image-20210819174323036" style="zoom: 80%;" /></p>
+<p>​            由于只有—辆最大载重为30t的货车能用来运送货物，所以只能选择部分货物配送，要求确定运送哪些货物，使得运送这些货物的总利润最大。</p>
+<p>思路：</p>
+<p>​        有m件物品，第i件物品的利润为$v_i$重量为$w_i$背包的总重量为W.</p>
+<p>原问题:在满足重量约束的条件下，将这m个物品选择性放入容量为W的背包所能获得的最大利润</p>
+<p>子问题:在满足重量的约束条件下，将i($i\le m$)件物品选择性放入容量为j($j \le W$)的背包所获得的最大利润<br><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210819174526184.png" alt="image-20210819174526184"></p>
+<p>状态分析:</p>
+<p>​            我们要讲m件商品装进容量为W的背包，我们可以假设背包是从1,2,3,4…增大的容量，物品从第一次只装第一个产品，然后慢慢推广到前i个产品，所以DP表格其实是在背包容量为i的情况下，能装的礼物的最大价值</p>
+<p>​        对于第一行来说，装的物品为第一个物品，所以只需要判断背包容量是否大于第一件物品的重量，若大于，则最大价值为第一件物品的价值</p>
+<p>​            对于第一列来说，背包容量为1，装进前i件物品的最大价值，由于物品的重量始终为整数，所以在前i件物品里，我们要看有没有总量为1的物品，若没有，则什么也装不进去，那么最大价值为0，若有(可能有几个)，则去前i个产品中重量为1的所有物品中价值最大的那个为该点dp表的值</p>
+<p>​            对于其它的列来说，需要用到状态转移方程，对于要求前$i$件物品装进容量为$j$的背包，在$i-1$的基础上只需要考虑到底装不装第$i$件物品，那么怎么考虑呢？要装第$i$件物品首先，第$i$件物品的重量必须小于背包的容量所以有:<br>​                $j-weight(i)&gt;=0$才去判断:</p>
+<script type="math/tex; mode=display">
+max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果第i件物品装的下，那么就去判断不装这件物品和在没装这件物品，也就是dp[i-1][j-weight[i]]的最大价值，然后加上这件物品的价值。这样就可推出整个dp数组，而数组的最后一个元素，就是我们要求的最大价值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">items=[(<span class="number">1</span>,<span class="number">6</span>,<span class="number">540</span>),(<span class="number">2</span>,<span class="number">3</span>,<span class="number">200</span>),(<span class="number">3</span>,<span class="number">4</span>,<span class="number">180</span>),(<span class="number">4</span>,<span class="number">5</span>,<span class="number">350</span>),(<span class="number">5</span>,<span class="number">1</span>,<span class="number">60</span>),(<span class="number">6</span>,<span class="number">2</span>,<span class="number">150</span>),(<span class="number">7</span>,<span class="number">3</span>,<span class="number">280</span>),(<span class="number">8</span>,<span class="number">5</span>,<span class="number">450</span>),(<span class="number">9</span>,<span class="number">4</span>,<span class="number">320</span>),(<span class="number">10</span>,<span class="number">2</span>,<span class="number">120</span>)]</span><br><span class="line"><span class="comment"># 定义一个含有所有的价值的数组</span></span><br><span class="line">weight=<span class="number">30</span>   <span class="comment"># 定义背包的重量</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bag_problem</span>():</span></span><br><span class="line">    dp=[]     <span class="comment">#定义dp数组</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):    <span class="comment">#初始化dp数组</span></span><br><span class="line">        dp.append([<span class="number">0</span>]*weight)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):      <span class="comment">#双重遍历开始填充数组</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(weight):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> :</span><br><span class="line">                <span class="keyword">if</span> j&gt;=items[<span class="number">0</span>][<span class="number">1</span>]-<span class="number">1</span>:    <span class="comment">#背包大小大于等于物体的大小，物体大小为定值，则为items的价值</span></span><br><span class="line">                    dp[i][j]=items[<span class="number">0</span>][<span class="number">2</span>]</span><br><span class="line">                <span class="keyword">else</span> :</span><br><span class="line">                    dp[i][j]=<span class="number">0</span>          <span class="comment">#如果背包太小，那就价值为0</span></span><br><span class="line">            <span class="keyword">if</span> j==<span class="number">0</span> :                   <span class="comment">#探究第一列的值</span></span><br><span class="line">                <span class="keyword">if</span> items[i][<span class="number">1</span>]==<span class="number">1</span>:</span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][<span class="number">0</span>],items[i][<span class="number">2</span>])      <span class="comment">#如果可以装进去，前i个产品中重量为1的所有物品中价值最大</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]             <span class="comment">#重量超过一的物品无法装入，直接用重量为1的物体价值最大的那个作为dp[i][j]</span></span><br><span class="line">            <span class="keyword">else</span>:                      <span class="comment">#探究其它列</span></span><br><span class="line"><span class="comment">#                 print(j)</span></span><br><span class="line">                <span class="keyword">if</span> j+<span class="number">1</span>-items[i][<span class="number">1</span>]&lt;<span class="number">0</span>:   <span class="comment">#如果背包转不下就只能是dp[i-1][j],相当于不装第i件</span></span><br><span class="line">                    dp[i][j]=dp[i-<span class="number">1</span>][j]</span><br><span class="line">                <span class="keyword">else</span>:                   <span class="comment">#其它情况判断背包产生的价值是否大于没装时候产生的价值</span></span><br><span class="line">                    dp[i][j]=<span class="built_in">max</span>(dp[i-<span class="number">1</span>][j],dp[i-<span class="number">1</span>][j-items[i][<span class="number">1</span>]]+items[i][<span class="number">2</span>])</span><br><span class="line">    <span class="keyword">return</span> dp</span><br><span class="line"><span class="comment">#     for c in dp:</span></span><br><span class="line"><span class="comment">#         print(c)</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> bag_problem():</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>code</category>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -507,6 +466,47 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
+    <title>专业英语</title>
+    <url>/2023/06/05/English_profess/</url>
+    <content><![CDATA[<p>GANs</p>
+<p>专业英语答辩</p>
+<span id="more"></span>
+<blockquote>
+<p>大家好，欢迎大家来到这里，今天我将为大家介绍一个用于图像翻译的新的技术，叫做cycle-gan,其是由AI华人青年学者Jun-Yan Zhu主导的项目，在介绍这篇paper之前，我们先和大家介绍一些较为相近的领域。</p>
+</blockquote>
+<h1 id="First"><a href="#First" class="headerlink" title="First"></a>First</h1><p>Hello everyone, welcome to come here, today I will introduce a new technology for image translation, called cycle-gan, which is a project led by young AI Chinese scholar Jun-Yan Zhu, in this paper Before that, let’s introduce some relatively similar fields to you.</p>
+<blockquote>
+<p>你们了解文心一言、或者是chatgpt，或许是由Google开发的bard吗？他们的共性是什么呢？没错，他们的共性就是都具有创造性，所谓的创造性，就是当你输入同一句话的时候，它能给出不同的结果，所以gpt的第一个单词就是Generative，但是CNN可不擅长生成式模型，当你给出同一个输入时，它更倾向于输出同一结果。</p>
+</blockquote>
+<p>Do you guys know Wenxinyiyan, or chatgpt, maybe bard developed by Google? What do they have in common? Yes, what they have in common is that they are all creative. The so-called creativity means that when you input the same sentence, it can give different results, so the first word of gpt is Generative, but CNN is not good at generative models. , when you give the same input, it is more likely to output the same result.</p>
+<blockquote>
+<p>另一个例子就是跨域识别问题，如何通过一个训练的模型，去泛化识别其它域的问题，这里就涉及到域适应，而gan就是用来解决这种问题的。</p>
+</blockquote>
+<p>Another example is the problem of cross-domain recognition. How to generalize and recognize other domains through a trained model, here involves domain adaptation, and gan is used to solve this problem.</p>
+<blockquote>
+<p>这是Gan的一个模型框架，主要是由生成器和判别器两部分组成，生成器用来生成内容，而判别器主要识别生成的内容是否是假的。生成器和判别器是两个模型，他们就如自然界一样捕食者与被捕食者共同进化。当判别器无法区分生成的内容是否为假，说明模型已经表现十分良好了</p>
+</blockquote>
+<p>This is a model framework of Gan, which is mainly composed of two parts: the generator and the discriminator. The generator is used to generate content, and the discriminator mainly identifies whether the generated content is fake. The generator and the discriminator are two models, and they co-evolve with the prey just like in nature. When the discriminator cannot distinguish whether the generated content is fake or not, it means that the model has performed very well</p>
+<blockquote>
+<p>Cycle-gan 使用了循环一致性，共需要四个模型，即两个生成模型GA-&gt;B, GB-&gt;A,以及两个判别模型 DA和DB，这就是cycle的由来，但是更加令人振奋人心的是：cycle-gan不需要配对的数据对进行训练，也就是说我们只需要给cycle-gan足够多的源域和目的域的数据，而不需要对其进行大量标签工作，它就会自动学习并且成功x 域到y域的转化规则，由于其涉及到两个域的双向转化，因而其迭代中使用的损失函数也是循环一致损失函数。</p>
+</blockquote>
+<p>Cycle-gan uses cycle consistency and requires a total of four models, namely two generative models GA-&gt;B, GB-&gt;A, and two discriminative models DA and DB. This is the origin of cycle, but it is even more exciting What is popular is that cycle-gan does not require paired data pairs for training, that is to say, we only need to give cycle-gan enough data from the source domain and the target domain without a lot of labeling work on it, and it will Automatically learn and successfully convert the x domain to the y domain. Since it involves the two-way conversion of the two domains, the loss function used in its iteration is also a cycle consistent loss function.</p>
+<h1 id="second"><a href="#second" class="headerlink" title="second"></a>second</h1><blockquote>
+<p>接下来给大家介绍一些cycle-gan应用:如视频增强领域，黑白视频变成彩色视频。或者是场景转化。或者是将抽象的画转化为一个具象的画如房屋建筑，这些都可以作为通信数据压缩，你可以试着一下发送方在网路上传送类似于色块一样的数据，它可能占用的带宽十分的小，当你在接收端受到这些色块时，再将其恢复出来。这样看起来是一个不错的视频压缩方法</p>
+</blockquote>
+<p>Next, I will introduce some cycle-gan applications: for example, in the field of video enhancement, black-and-white video becomes color video. Or scene transformation. Or convert an abstract painting into a concrete painting such as a building, these can be used as communication data compression, you can try the sender to transmit data similar to color blocks on the network, it may take up a lot of bandwidth Small, when you get these color patches at the receiving end, bring them back. This looks like a good way to compress video</p>
+<h1 id="Third"><a href="#Third" class="headerlink" title="Third"></a>Third</h1><p>The third part is sentence analysis，</p>
+<p>The meaning of the first sentence is “此外，在实践中，我们发现很难优化对抗目标隔离：标准程序通常会导致众所周知的模式崩溃问题，其中所有输入图像都映射到相同的输出图像，优化无法取得进展 [15]。</p>
+<p>”。</p>
+<p>The second sentence means：“我们还与以前依赖于手动定义的样式和内容分解或共享嵌入函数的方法进行了比较，并表明我们的方法优于这些基线。”。</p>
+<p>The third part is sentence analysis “图像到图像转换的想法至少可以追溯到 Hertzmann 等人的图像类比 [19]，他们在单个输入输出训练图像对上采用非参数纹理模型 [10]。”</p>
+<p>Here are some references. thanks for listening！</p>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+  </entry>
+  <entry>
     <title>毛概实践课</title>
     <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
     <content><![CDATA[<p>毛概实践课🤗</p>
@@ -525,6 +525,20 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
 ]]></content>
       <categories>
         <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>]]></content>
+      <categories>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -592,17 +606,26 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])</script><p>它的意思是如果�
       </categories>
   </entry>
   <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
 <span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>]]></content>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营 - 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" alt=""></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营 - 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" alt=""></p>
+]]></content>
       <categories>
-        <category>Product design</category>
+        <category>生活</category>
       </categories>
   </entry>
   <entry>
@@ -671,26 +694,98 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
+    <title>树莓派实现联邦学习</title>
+    <url>/2023/12/29/Raspberry_federated_learning/</url>
+    <content><![CDATA[<p>树莓派联邦学习部署</p>
+<span id="more"></span> 
+<h1 id="安装系统依赖-十分重要，建议所有任务开始之前必须安装"><a href="#安装系统依赖-十分重要，建议所有任务开始之前必须安装" class="headerlink" title="安装系统依赖(十分重要，建议所有任务开始之前必须安装)"></a>安装系统依赖(十分重要，建议所有任务开始之前必须安装)</h1><p><strong>设置代理</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://192.168.10.4:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://192.168.10.4:7890</span><br></pre></td></tr></table></figure>
+<p>更新库</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>安装依赖</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install libopenblas-dev m4 libblas-dev cmake libatlas-base-dev gfortran libffi-dev libavformat-dev libavdevice-dev</span><br></pre></td></tr></table></figure>
+<p>对于Raspberry os lite而言，不自带<code>git</code>,因此需要提前下载</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
+<h1 id="树莓派4B"><a href="#树莓派4B" class="headerlink" title="树莓派4B"></a>树莓派4B</h1><p><strong>Rasp4(树莓派系统 Raspberry Pi OS Lite 2023-12-11 64 bit system) </strong>,下载地址：<a href="http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz">http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz</a></p>
+<h2 id="Miniforge安装"><a href="#Miniforge安装" class="headerlink" title="Miniforge安装"></a>Miniforge安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Raspberry OS</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-v8 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<p>下载 Miniforge</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Miniforge3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
+<p>安装Miniforge</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash ./Miniforge3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
+<p>安装树莓派系统</p>
+<h2 id="创建Python3-9的环境"><a href="#创建Python3-9的环境" class="headerlink" title="创建Python3.9的环境"></a>创建Python3.9的环境</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
+<p> <strong>安装必要的wheel包(可以不安装，但是为了减少编译时间，可以先安装已经编译好的)</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/gevent-23.9.1-cp39-cp39-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/psutil-5.9.6-cp39-abi3-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
+<p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
+<p>安装torch,参考torch官网<a href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure>
+<p>pip安装正常,所有的依赖包为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Federal_learning/requirements.txt</span><br></pre></td></tr></table></figure>
+<h2 id="打包syft的环境（conda同平台迁移）"><a href="#打包syft的环境（conda同平台迁移）" class="headerlink" title="打包syft的环境（conda同平台迁移）"></a>打包syft的环境（conda同平台迁移）</h2><p>安装打包软件包</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install conda-pack</span><br></pre></td></tr></table></figure>
+<p>打包环境<code>fl</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda pack -n fl</span><br></pre></td></tr></table></figure>
+<p>得到fl.tar.gz，已上传至服务器，下载命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Federal_learning/syft0.8.4.tar.gz</span><br></pre></td></tr></table></figure>
+<p>新建项目文件夹</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p syft</span><br></pre></td></tr></table></figure>
+<p>解压项目</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzf syft0.8.4.tar.gz -C syft/</span><br></pre></td></tr></table></figure>
+<p>激活环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/syft/bin/activate</span><br></pre></td></tr></table></figure>
+<h1 id="树莓派5"><a href="#树莓派5" class="headerlink" title="树莓派5"></a>树莓派5</h1><p><strong>Rasp5/Rasp4B(Ubuntu 23.10 (GNU/Linux 6.5.0-1011-raspi aarch64)) </strong>,下载地址：<a href="http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz">http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz</a></p>
+<h2 id="MiniConda-安装（-ubuntu-raspberry-OS系统）"><a href="#MiniConda-安装（-ubuntu-raspberry-OS系统）" class="headerlink" title="MiniConda 安装（  ubuntu/raspberry OS系统）"></a>MiniConda 安装（  ubuntu/raspberry OS系统）</h2><p><strong>树莓派系统（如果已经设置代理，则下面步骤中无需设置源）</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#树莓派系统（和上面树莓派4B一样）</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-2712 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ubuntu系统</span></span><br><span class="line">Linux ubuntu 6.5.0-1011-raspi <span class="comment">#14-Ubuntu SMP PREEMPT_DYNAMIC Fri Feb  9 14:06:28 UTC 2024 aarch64 aarch64 aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
+<p>进入<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">miniconda下载地址</a>，，使用wget下载Miniconda，对于树莓派4B而言</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo wget http://share.ninglang.fun/rasp5/Miniconda3-py38_23.11.0-2-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
+<h2 id="创建Python3-9环境"><a href="#创建Python3-9环境" class="headerlink" title="创建Python3.9环境"></a>创建Python3.9环境</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
+<p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
+<p>安装torch,参考torch官网<a href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure>
+<h2 id="正常安装略过……"><a href="#正常安装略过……" class="headerlink" title="正常安装略过……"></a>正常安装略过……</h2><p>设置conda为环境变量</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
+<p>编辑<code>~/.bashrc</code>,追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<p>保存，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
+<p>conda换源，修改<code>~/.condarc</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">default_channels:</span><br><span class="line">  - http://mirrors.aliyun.com/anaconda/pkgs/main</span><br><span class="line">  - http://mirrors.aliyun.com/anaconda/pkgs/r</span><br><span class="line">  - http://mirrors.aliyun.com/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  msys2: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  bioconda: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  menpo: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  pytorch: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  simpleitk: http://mirrors.aliyun.com/anaconda/cloud</span><br></pre></td></tr></table></figure>
+<p>如果需要安装<code>torch</code>，设置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br></pre></td></tr></table></figure>
+<p>新建conda环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.9</span><br></pre></td></tr></table></figure>
+<p>conda查看环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
+<p>conda激活环境</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate fl</span><br></pre></td></tr></table></figure>
+<p>pip换源（如果设置代理则无需更换源）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url http://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
+<h1 id="Torch的安装"><a href="#Torch的安装" class="headerlink" title="Torch的安装"></a>Torch的安装</h1><p>对于树莓派(使用arrch64的ubuntu或者raspberry os),先到<a href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
 <ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
+<li>对于没有GPU的板子，直接安装</li>
 </ul>
-<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营 - 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
+<p>设置代理</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://192.168.10.4:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://192.168.10.4:7890</span><br></pre></td></tr></table></figure>
+<h2 id="jupyter配置"><a href="#jupyter配置" class="headerlink" title="jupyter配置"></a>jupyter配置</h2><ul>
+<li>先生成jupyter的配置文件夹</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
 <ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
+<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
 </ul>
-<p><a href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营 - 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" alt=""></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>生活</category>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
@@ -819,98 +914,48 @@ dw_1=\frac{\partial L}{\partial w_1}=x_1dz \qquad db =dz</script><p>then we can 
       </categories>
   </entry>
   <entry>
-    <title>树莓派实现联邦学习</title>
-    <url>/2023/12/29/Raspberry_federated_learning/</url>
-    <content><![CDATA[<p>树莓派联邦学习部署</p>
-<span id="more"></span> 
-<h1 id="安装系统依赖-十分重要，建议所有任务开始之前必须安装"><a href="#安装系统依赖-十分重要，建议所有任务开始之前必须安装" class="headerlink" title="安装系统依赖(十分重要，建议所有任务开始之前必须安装)"></a>安装系统依赖(十分重要，建议所有任务开始之前必须安装)</h1><p><strong>设置代理</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://192.168.10.4:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://192.168.10.4:7890</span><br></pre></td></tr></table></figure>
-<p>更新库</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-<p>安装依赖</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install libopenblas-dev m4 libblas-dev cmake libatlas-base-dev gfortran libffi-dev libavformat-dev libavdevice-dev</span><br></pre></td></tr></table></figure>
-<p>对于Raspberry os lite而言，不自带<code>git</code>,因此需要提前下载</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
-<h1 id="树莓派4B"><a href="#树莓派4B" class="headerlink" title="树莓派4B"></a>树莓派4B</h1><p><strong>Rasp4(树莓派系统 Raspberry Pi OS Lite 2023-12-11 64 bit system) </strong>,下载地址：<a href="http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz">http://share.ninglang.fun/rasp4b/image/2023-12-11-raspios-bookworm-arm64-lite.img.xz</a></p>
-<h2 id="Miniforge安装"><a href="#Miniforge安装" class="headerlink" title="Miniforge安装"></a>Miniforge安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#Raspberry OS</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-v8 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
-<p>下载 Miniforge</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Miniforge3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
-<p>安装Miniforge</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash ./Miniforge3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
-<p>安装树莓派系统</p>
-<h2 id="创建Python3-9的环境"><a href="#创建Python3-9的环境" class="headerlink" title="创建Python3.9的环境"></a>创建Python3.9的环境</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
-<p> <strong>安装必要的wheel包(可以不安装，但是为了减少编译时间，可以先安装已经编译好的)</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/gevent-23.9.1-cp39-cp39-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/wheel/psutil-5.9.6-cp39-abi3-linux_aarch64.whl</span><br></pre></td></tr></table></figure>
-<p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
-<p>安装torch,参考torch官网<a href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure>
-<p>pip安装正常,所有的依赖包为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Federal_learning/requirements.txt</span><br></pre></td></tr></table></figure>
-<h2 id="打包syft的环境（conda同平台迁移）"><a href="#打包syft的环境（conda同平台迁移）" class="headerlink" title="打包syft的环境（conda同平台迁移）"></a>打包syft的环境（conda同平台迁移）</h2><p>安装打包软件包</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install conda-pack</span><br></pre></td></tr></table></figure>
-<p>打包环境<code>fl</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda pack -n fl</span><br></pre></td></tr></table></figure>
-<p>得到fl.tar.gz，已上传至服务器，下载命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget http://share.ninglang.fun/rasp4b/Federal_learning/syft0.8.4.tar.gz</span><br></pre></td></tr></table></figure>
-<p>新建项目文件夹</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir -p syft</span><br></pre></td></tr></table></figure>
-<p>解压项目</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzf syft0.8.4.tar.gz -C syft/</span><br></pre></td></tr></table></figure>
-<p>激活环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/syft/bin/activate</span><br></pre></td></tr></table></figure>
-<h1 id="树莓派5"><a href="#树莓派5" class="headerlink" title="树莓派5"></a>树莓派5</h1><p><strong>Rasp5/Rasp4B(Ubuntu 23.10 (GNU/Linux 6.5.0-1011-raspi aarch64)) </strong>,下载地址：<a href="http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz">http://share.ninglang.fun/rasp5/image/ubuntu-23.10-preinstalled-server-arm64+raspi.img.xz</a></p>
-<h2 id="MiniConda-安装（-ubuntu-raspberry-OS系统）"><a href="#MiniConda-安装（-ubuntu-raspberry-OS系统）" class="headerlink" title="MiniConda 安装（  ubuntu/raspberry OS系统）"></a>MiniConda 安装（  ubuntu/raspberry OS系统）</h2><p><strong>树莓派系统（如果已经设置代理，则下面步骤中无需设置源）</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#树莓派系统（和上面树莓派4B一样）</span></span><br><span class="line">Linux raspberrypi 6.1.0-rpi7-rpi-2712 <span class="comment">#1 SMP PREEMPT Debian 1:6.1.63-1+rpt1 (2023-11-24) aarch64 GNU/Linux</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#ubuntu系统</span></span><br><span class="line">Linux ubuntu 6.5.0-1011-raspi <span class="comment">#14-Ubuntu SMP PREEMPT_DYNAMIC Fri Feb  9 14:06:28 UTC 2024 aarch64 aarch64 aarch64 GNU/Linux</span></span><br></pre></td></tr></table></figure>
-<p>进入<a href="https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/">miniconda下载地址</a>，，使用wget下载Miniconda，对于树莓派4B而言</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo wget http://share.ninglang.fun/rasp5/Miniconda3-py38_23.11.0-2-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
-<h2 id="创建Python3-9环境"><a href="#创建Python3-9环境" class="headerlink" title="创建Python3.9环境"></a>创建Python3.9环境</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name=fl python=3.9</span><br></pre></td></tr></table></figure>
-<p>安装<code>syft==0.8.4</code>,默认安装<code>numpy==1.24.4</code>,但是无<code>torch</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install syft==0.8.4</span><br></pre></td></tr></table></figure>
-<p>安装torch,参考torch官网<a href="https://pytorch.org/">PyTorch</a>,conda无法正常安装，采用<code>pip</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu</span><br></pre></td></tr></table></figure>
-<h2 id="正常安装略过……"><a href="#正常安装略过……" class="headerlink" title="正常安装略过……"></a>正常安装略过……</h2><p>设置conda为环境变量</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#conda安装路径</span></span><br><span class="line">/home/ninglang/minisconda3/bin</span><br></pre></td></tr></table></figure>
-<p>编辑<code>~/.bashrc</code>,追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/home/ninglang/miniconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br></pre></td></tr></table></figure>
-<p>保存，输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ./.bashrc</span><br></pre></td></tr></table></figure>
-<p>conda换源，修改<code>~/.condarc</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">channels:</span><br><span class="line">  - defaults</span><br><span class="line">show_channel_urls: <span class="literal">true</span></span><br><span class="line">default_channels:</span><br><span class="line">  - http://mirrors.aliyun.com/anaconda/pkgs/main</span><br><span class="line">  - http://mirrors.aliyun.com/anaconda/pkgs/r</span><br><span class="line">  - http://mirrors.aliyun.com/anaconda/pkgs/msys2</span><br><span class="line">custom_channels:</span><br><span class="line">  conda-forge: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  msys2: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  bioconda: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  menpo: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  pytorch: http://mirrors.aliyun.com/anaconda/cloud</span><br><span class="line">  simpleitk: http://mirrors.aliyun.com/anaconda/cloud</span><br></pre></td></tr></table></figure>
-<p>如果需要安装<code>torch</code>，设置</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/pytorch/</span><br></pre></td></tr></table></figure>
-<p>新建conda环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda create --name fl python=3.9</span><br></pre></td></tr></table></figure>
-<p>conda查看环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda env list</span><br></pre></td></tr></table></figure>
-<p>conda激活环境</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda activate fl</span><br></pre></td></tr></table></figure>
-<p>pip换源（如果设置代理则无需更换源）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url http://mirrors.aliyun.com/pypi/simple/</span><br></pre></td></tr></table></figure>
-<h1 id="Torch的安装"><a href="#Torch的安装" class="headerlink" title="Torch的安装"></a>Torch的安装</h1><p>对于树莓派(使用arrch64的ubuntu或者raspberry os),先到<a href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载文件，再手动安装</p>
-<ul>
-<li>对于没有GPU的板子，直接安装</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#注意:torch和torchvision一一对应，请安装对应的版本</span></span><br><span class="line">pip install torch==1.10.0+cpu torchvision==0.11.1+cpu -f https://download.pytorch.org/whl/torch_stable.html</span><br></pre></td></tr></table></figure>
-<p>设置代理</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=http://192.168.10.4:7890</span><br><span class="line"><span class="built_in">export</span> https_proxy=http://192.168.10.4:7890</span><br></pre></td></tr></table></figure>
-<h2 id="jupyter配置"><a href="#jupyter配置" class="headerlink" title="jupyter配置"></a>jupyter配置</h2><ul>
-<li>先生成jupyter的配置文件夹</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
-<p>可以看到生成了<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>.</p>
-<ul>
-<li>设置jupyter的密码,运行下面命令之后输入密码即可</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
-<ul>
-<li>修改配置文件（端口，ip，外部访问）修改<code>/home/ninglang/.jupyter/jupyter_notebook_config.py</code>文件</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.ip=<span class="string">&#x27;*&#x27;</span>       <span class="comment">#在所有的网卡接口上开启服务</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.port =8888 <span class="comment">#可自行指定一个端口, 访问时使用该端口7777</span></span><br><span class="line"> </span><br><span class="line">c.NotebookApp.allow_remote_access = True  <span class="comment">#允许远程</span></span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>爬虫小结</title>
+    <url>/2021/02/02/Web%20Crawler/</url>
+    <content><![CDATA[<p>爬着爬着，就进局子里了………..</p>
+<span id="more"></span>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
+<h2 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h2><h3 id="有道翻译"><a href="#有道翻译" class="headerlink" title="有道翻译"></a>有道翻译</h3><p>​    打开开发者工具后，我们对我们输入的字符“are you ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png" alt="有道翻译抓包分析"></p>
+<p>观察Response ,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" alt=""></p>
+<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" alt=""></p>
+<p>观察webform，把它复制粘贴到代码就可以了</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" alt=""></p>
+<p>​    但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code> ,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制） </p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" alt=""></p>
+<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" alt=""></p>
+<h3 id="百度图片"><a href="#百度图片" class="headerlink" title="百度图片"></a>百度图片</h3><p>​    <img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" alt="">如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" alt=""></p>
+<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" alt=""></p>
+<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" alt=""></p>
+<h3 id="B站视频"><a href="#B站视频" class="headerlink" title="B站视频"></a>B站视频</h3><p>​    刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
+<p>先下载这个<a href="">压缩包</a></p>
+<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" alt=""></p>
+<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" alt=""></p>
+<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code> 目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" alt=""></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" alt=""></p>
+<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" alt=""></p>
+<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
+<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2>]]></content>
       <categories>
-        <category>Code</category>
+        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1053,51 +1098,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text {taxi }}+m 
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1>]]></content>
       <categories>
         <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>爬虫小结</title>
-    <url>/2021/02/02/Web%20Crawler/</url>
-    <content><![CDATA[<p>爬着爬着，就进局子里了………..</p>
-<span id="more"></span>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    在刚开始学python的时候就对这一方面非常感兴趣，但是奈何当时实力太水，跟着mooc学了很久，也才刚刚把基础学完，连数据处理都不太会，而且在这次之前又学了一下c，三斤八两，啥都不会，刚开始在中国慕课mooc上跟着嵩天老师学习，发现他好多的例子都已经过时，很多之前能够爬取的网站现在已经无法爬取，当然也不是没有办法，只是我太水了，BeautifulSoup库也一直没有搞懂，因为我对html并不是很了解，于是乎chrome的审查工具用得也不是太好，刚好上次尝试了今日校园自动签到后，在优化那位大佬的程序时，我突然意识到里面很多的语法其实很有逻辑和体系，而他之所以能写出300多行的代码来造福广大学子，在于他强调的：“我模拟的整个今日校园的过程”，而这个过程，就是抓包，于是我在突然想起了点什么，我的fiddle，好像躺在我的电脑中睡了很久😂，后来在这个过程我想起的很多去年CTF教我的一些知识（但是我没学会），还有那个可爱的nmap</p>
-<h2 id="爬虫"><a href="#爬虫" class="headerlink" title="爬虫"></a>爬虫</h2><h3 id="有道翻译"><a href="#有道翻译" class="headerlink" title="有道翻译"></a>有道翻译</h3><p>​    打开开发者工具后，我们对我们输入的字符“are you ok”,进行抓包，马上我们可以看到，其他的数据都是以图片的形式，而这里是一个多次出现，但是咋们不清楚的包，于是我们查看一下headers，发现是post方法，</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202122437.png" alt="有道翻译抓包分析"></p>
-<p>观察Response ,发现里面刚好有我们想要的翻译结果，于是我们只要模拟浏览器去post，然后接受相应的json数据格式，即可！</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202130928.png" alt=""></p>
-<p>我们首先还是要去看看这个post到底上传了什么form，然后这个header到底有什么要求，首先我们观察到了这个post的地址，但这里还是有坑，这是我后面的才发现的</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131331.png" alt=""></p>
-<p>观察webform，把它复制粘贴到代码就可以了</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131808.png" alt=""></p>
-<p>​    但是，这里有问题了：返回值有问题，百度一下，原来那个网址有问题，只能是<code>http://fanyi.youdao.com/translate?smartresult=dict&amp;smartresult=rule</code> ,<code>_o</code>必须要被去掉 （这里是因为有道翻译的反爬虫机制） </p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202131936.png" alt=""></p>
-<p>把url改回来，再使用json的loads函数将数据转化为字典，提取出翻译就可以了，把它改的更人性化一点，例如接受输入可以多次输入，ok,这样咋们就实现了在cmd里翻译啦！</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202132940.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134012.png" alt=""></p>
-<h3 id="百度图片"><a href="#百度图片" class="headerlink" title="百度图片"></a>百度图片</h3><p>​    <img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134401.png" alt="">如图，爬取百度图片结果的所有图片，打开开发者工具，找出图片的实际地址，多观察几张，发现这个图片都在<code>&lt;li&gt;</code>标签下</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134718.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202134951.png" alt=""></p>
-<p>这时候我们可以选择BeautifulSoup或者re正则表达式，我使用了正则表达式，提取了所有的图片url，然后把这些链接全部get即可</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140041.png" alt=""></p>
-<p>这样就把一页的图片全部爬取下来啦，至于为什么只有把29张，是因为百度的图片加载使用了一种叫做<code>Ajax</code>技术，这样的话只能采取别的方法去爬取了，我现在还不知道如何突破😂</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202140538.png" alt=""></p>
-<h3 id="B站视频"><a href="#B站视频" class="headerlink" title="B站视频"></a>B站视频</h3><p>​    刚好看到B站也有相关的学习视频，方法和上面的第一个第二一样，算是两者的综合吧，需要用到re(或者BeautifulSoup),设置好请求头，我自己做这个的时候，并没有添加很多对用户界面很友好的东西，但是还是去借鉴了一下前辈的经验，弄了个进度条</p>
-<p>先下载这个<a href="">压缩包</a></p>
-<p>整体来说网速还是不是错的，我家是100兆的光纤，由于我的电脑离路由器比较远，网速只有这个效果，但是这个这个爬虫还是能够把我家的网爬满。</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202141946.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202142502.png" alt=""></p>
-<p>先把压缩包解压，一个放在D盘，一个放在桌面，第二，配置<a href="https://jingyan.baidu.com/article/a3f121e4ceda4ffc9052bbc5.html">环境变量</a>，再上方的用户变量的PATH中双击然后打开</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202143548.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144106.png" alt=""></p>
-<p>找到D盘里的刚刚放进去的<code>ffmpeg</code> 打开<code>bin</code> 目录，把那个文件夹地址复制，例如我的是<code>D:\ffmpeg-N-100892-g44e27d937d-win64-lgpl-shared-vulkan\bin</code>粘贴到新增的Path中，然后一路ok，添加完用户变量，就可以使用软件了</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144456.png" alt=""></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202144215.png" alt=""></p>
-<p>软件的使用很简单，它的界面只是一个终端界面，你只要将B站视频网址粘贴，回车即可，默认视频的最高画质(不开会员的情况下)😂</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" alt=""></p>
-<p>为什么要把它添加到环境变量呢，因为B站爬取的视频其实是分音频和视频的，而ffmpeg是一个音视频处理软件，我是先将音频(<code>1.mp3</code>)和视频(<code>2.mp4</code>)分别爬取，然后用ffmpeg把它们拼接在一起<code>(自动删除1.mp3和1.mp4)</code>，我找了很多教程，实在不会把ffmpeg源代码整合到我的代码中，于是就需要它的存在，并且要把它配置为用户变量，否则</p>
-<h2 id="抓包"><a href="#抓包" class="headerlink" title="抓包"></a>抓包</h2>]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
@@ -1436,9 +1436,37 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>]]></content>
+    <title>ikuai-docker自建webdav</title>
+    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="安装webdav"><a href="#安装webdav" class="headerlink" title="安装webdav"></a>安装webdav</h1><p>镜像：<code>bytemark/webdav:latest</code></p>
+<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
+<p>环境变量：</p>
+<p><code>USERNAME</code> </p>
+<p><code>PASSWORD</code> </p>
+<p><code>LOCATION</code></p>
+<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
+<p>修改编码为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
+<p>修改为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="配置alpine-linux"><a href="#配置alpine-linux" class="headerlink" title="配置alpine-linux"></a>配置alpine-linux</h1><h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>更换为UESTC源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
+<p>执行<code>update</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
+<p>安装<code>openrc</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<p>添加 auto-docker 为自启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add auto-docker</span><br></pre></td></tr></table></figure>
+<p>在<code>/etc/loacal.d/</code>中添加start结尾的脚本,如<code>docker.start</code>,内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>更新一下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
   </entry>
   <entry>
     <title>Docker-ubuntu安装ssh</title>
@@ -1473,37 +1501,9 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title>ikuai-docker自建webdav</title>
-    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="安装webdav"><a href="#安装webdav" class="headerlink" title="安装webdav"></a>安装webdav</h1><p>镜像：<code>bytemark/webdav:latest</code></p>
-<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
-<p>环境变量：</p>
-<p><code>USERNAME</code> </p>
-<p><code>PASSWORD</code> </p>
-<p><code>LOCATION</code></p>
-<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
-<p>修改编码为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
-<p>修改为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="配置alpine-linux"><a href="#配置alpine-linux" class="headerlink" title="配置alpine-linux"></a>配置alpine-linux</h1><h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p>更换为UESTC源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
-<p>执行<code>update</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
-<p>安装<code>openrc</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<p>添加 auto-docker 为自启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add auto-docker</span><br></pre></td></tr></table></figure>
-<p>在<code>/etc/loacal.d/</code>中添加start结尾的脚本,如<code>docker.start</code>,内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>更新一下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>]]></content>
   </entry>
   <entry>
     <title>Linux开发项目总结</title>
@@ -1635,56 +1635,6 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
       </categories>
   </entry>
   <entry>
-    <title>ikuai搭建seafile-docker</title>
-    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="step1：-安装seafile-docker"><a href="#step1：-安装seafile-docker" class="headerlink" title="step1： 安装seafile-docker"></a>step1： 安装seafile-docker</h1><p>下载<code>seafileltd/seafile:latest</code>镜像</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png" alt="image-20240120202506712"></p>
-<p>在容器设置中挂载目录</p>
-<ul>
-<li><code>/shared</code></li>
-</ul>
-<p>如下环境变量设置账号和密码</p>
-<ul>
-<li><code>SEAFILE_ADMIN_EMAIL</code></li>
-<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
-</ul>
-<h1 id="step2：安装-iputils-ping"><a href="#step2：安装-iputils-ping" class="headerlink" title="step2：安装 iputils-ping"></a>step2：安装 iputils-ping</h1><p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
-<p><strong>1.更新apt包</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p><strong>2.安装iputils-ping</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
-<p><strong>3.测试ping百度</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
-<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-<p><strong>4.修改ping.sh为可执行文件</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
-<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png" alt="image-20240120203717758"><strong>6.修改自启动脚本</strong></p>
-<p>在<code>/root/.bashrc</code>中追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo &quot;Seafile server started&quot;</code>的前面.</p>
-<h1 id="step3：设置nginx反向代理"><a href="#step3：设置nginx反向代理" class="headerlink" title="step3：设置nginx反向代理"></a>step3：设置nginx反向代理</h1><p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>2.测试文件格式正常</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
-<p>重启docker容器</p>
-<h1 id="step4：设置seafile"><a href="#step4：设置seafile" class="headerlink" title="step4：设置seafile"></a>step4：设置seafile</h1><p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
-<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
-<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
-<h1 id="step5：设置seafdav"><a href="#step5：设置seafdav" class="headerlink" title="step5：设置seafdav"></a>step5：设置seafdav</h1><p>设置<code>/conf/seafdav.conf</code>中为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
-<p>在手机端设置</p>
-<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
-<p>账号密码如实填写</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -1752,6 +1702,56 @@ w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)</script><p>参考文�
 ]]></content>
       <categories>
         <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ikuai搭建seafile-docker</title>
+    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="step1：-安装seafile-docker"><a href="#step1：-安装seafile-docker" class="headerlink" title="step1： 安装seafile-docker"></a>step1： 安装seafile-docker</h1><p>下载<code>seafileltd/seafile:latest</code>镜像</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png" alt="image-20240120202506712"></p>
+<p>在容器设置中挂载目录</p>
+<ul>
+<li><code>/shared</code></li>
+</ul>
+<p>如下环境变量设置账号和密码</p>
+<ul>
+<li><code>SEAFILE_ADMIN_EMAIL</code></li>
+<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
+</ul>
+<h1 id="step2：安装-iputils-ping"><a href="#step2：安装-iputils-ping" class="headerlink" title="step2：安装 iputils-ping"></a>step2：安装 iputils-ping</h1><p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
+<p><strong>1.更新apt包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p><strong>2.安装iputils-ping</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
+<p><strong>3.测试ping百度</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
+<p><strong>4.修改ping.sh为可执行文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
+<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png" alt="image-20240120203717758"><strong>6.修改自启动脚本</strong></p>
+<p>在<code>/root/.bashrc</code>中追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo &quot;Seafile server started&quot;</code>的前面.</p>
+<h1 id="step3：设置nginx反向代理"><a href="#step3：设置nginx反向代理" class="headerlink" title="step3：设置nginx反向代理"></a>step3：设置nginx反向代理</h1><p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2.测试文件格式正常</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
+<p>重启docker容器</p>
+<h1 id="step4：设置seafile"><a href="#step4：设置seafile" class="headerlink" title="step4：设置seafile"></a>step4：设置seafile</h1><p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
+<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
+<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
+<h1 id="step5：设置seafdav"><a href="#step5：设置seafdav" class="headerlink" title="step5：设置seafdav"></a>step5：设置seafdav</h1><p>设置<code>/conf/seafdav.conf</code>中为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
+<p>在手机端设置</p>
+<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
+<p>账号密码如实填写</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
