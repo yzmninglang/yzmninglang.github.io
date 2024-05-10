@@ -501,6 +501,61 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -587,58 +642,49 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
       </categories>
   </entry>
   <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+    <title>毛概实践课</title>
+    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
+    <content><![CDATA[<p>毛概实践课🤗</p>
 <span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
+<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
+
+<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
+
+<p>看看我们的大合照😁:</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
+<p>​
+哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
+<p>​
+这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
 <figure>
 <img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
+alt="被删除视频" />
+<figcaption aria-hidden="true">被删除视频</figcaption>
 </figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
+<p>​
+这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
+<p>​
+总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
 ]]></content>
       <categories>
-        <category>电子</category>
+        <category>思想觉悟</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
+<span id="more"></span>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
+]]></content>
+      <categories>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -741,52 +787,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>毛概实践课</title>
-    <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
-    <content><![CDATA[<p>毛概实践课🤗</p>
-<span id="more"></span>
-<p>经过我们小组接近三个星期的努力，没错！它来了，毛概实践课的成果😁，它可能不是那么优秀，但的确是我们努力的成果</p>
-
-<iframe height=340 width=840 src="https://player.xinpianchang.com/?aid=11972148&amp;mid=o36Jm4a6EZNQyjzB&amp;appKey=61a2f329348b3bf77&amp;apiBackend=https://mod-api.xinpianchang.com&amp" allowfullscreen="true" style="border: none;"></iframe>
-
-<p>看看我们的大合照😁:</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/%E5%90%88%E7%85%A7%20(3).png" /></p>
-<p>​
-哈哈哈，还希望大家不要吐槽我的眯眯眼😛，当时光线太强，实在睁不开眼，不是故意的哈😜。我的ps技术也不是很好，只能做成这样，还希望大家多多担待</p>
-<p>​
-这次实践课给我留下印象还是很十分的深刻的，疫情期间，我这边（一个人在学校）要是没有室友们的帮助，估计是完成不了的，视频剪辑的时候，我和邵明禹哥哥把pr工程文件传来传去（每次都是2~3个G），邵明禹哥哥吐槽了n多次网络问题，我这边修改视频的时候，也不知道怎么回事，pr崩了5、6次，还把我的素材直接全部删除了😭，找也找不回，最后只能重新剪辑。</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220611092434778.png"
-alt="被删除视频" />
-<figcaption aria-hidden="true">被删除视频</figcaption>
-</figure>
-<p>​
-这次大家没能全员出镜，可以算得上团队火力没有全开吧，但是我个人感觉还是不错的，因为在刚开始选题的时候，就想要做一些有思想深度的视频，疫情期间，多个人不能见面的情况下，从个体的角度入手，个体和个体之间用一些手段连接，去拔高整个实践课的深度，我认为是可行的。</p>
-<p>​
-总之，十分感谢那些和我一起走过这段道路的小伙伴，谢谢你们的付出，也谢谢那些帮助我们完成实践课的各位同学，就如视频所说，你们是冬天里的暖阳😉😉😉😉。</p>
-]]></content>
-      <categories>
-        <category>思想觉悟</category>
       </categories>
   </entry>
   <entry>
@@ -1049,6 +1049,114 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
       </categories>
   </entry>
   <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Qt</title>
+    <url>/2021/09/20/Qt1/</url>
+    <content><![CDATA[<p>Qt问题总汇</p>
+<span id="more"></span>
+<h1 id="信号和槽">信号和槽</h1>
+<h2 id="连接函数connect">连接函数：connect</h2>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
+<p>松散耦合：发送端和接受端的松散耦合</p>
+<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
+<ul>
+<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
+<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>定义槽和信号后，需要定义触发函数</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
+<h3 id="信号的重载">信号的重载</h3>
+<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问题：这里的两个函数指针是如何定义的？？？</li>
+<li>答：</li>
+</ul>
+<p>Qstring 转char *</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
+<h3 id="信号连接信号">信号连接信号</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
+<p>直接将两个信号用connect相连</p>
+<ul>
+<li><p>断开信号 disconnect</p></li>
+<li><p>多个信号一个槽</p></li>
+<li><p>多个槽连接一个信号</p></li>
+<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
+</ul>
+<p>lambda函数</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
+<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
+</ul>
+<h1 id="模态与非模态">模态与非模态</h1>
+<h2 id="模态">模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="非模态">非模态</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
+<li>答：</li>
+</ul>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>树莓派实现联邦学习</title>
     <url>/2023/12/29/Raspberry_federated_learning/</url>
     <content><![CDATA[<p>树莓派联邦学习部署</p>
@@ -1164,147 +1272,6 @@ href="https://pypi.org/project/torch/1.8.0/#modal-close">torch-wheel</a>下载�
 ]]></content>
       <categories>
         <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
-<span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
-<ol type="1">
-<li>修改<code>deb</code>镜像源</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Qt</title>
-    <url>/2021/09/20/Qt1/</url>
-    <content><![CDATA[<p>Qt问题总汇</p>
-<span id="more"></span>
-<h1 id="信号和槽">信号和槽</h1>
-<h2 id="连接函数connect">连接函数：connect</h2>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"><span class="built_in">connect</span>(Button,&amp;QpushButton::clicked,<span class="keyword">this</span>,&amp;Qwidget::close);</span><br></pre></td></tr></table></figure>
-<p>松散耦合：发送端和接受端的松散耦合</p>
-<h2 id="自定义槽函数和信号">自定义槽函数和信号</h2>
-<ul>
-<li>signal只能声明，不能定义，写在发送信号的类的<code>signals</code>中，返回值是void</li>
-<li>slot需要声明，需要在cpp文件中定义，写在<code>public slots</code>文件中，返回值是void</li>
-</ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">class.h</span><br><span class="line"><span class="keyword">public</span> slots:</span><br><span class="line">    <span class="comment">// slots function area or declaration in public</span></span><br><span class="line">    <span class="comment">//return is void,need declaration ,and realize.</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">treat</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class.<span class="function">cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Studnet::treat</span><span class="params">()</span></span>&#123;</span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;treat!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">signals:</span><br><span class="line">    <span class="comment">//custom signals</span></span><br><span class="line">    <span class="comment">//return is void,only declaration ,Needn&#x27;t realize</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">hungry</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-<p>定义槽和信号后，需要定义触发函数</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">weidget:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">classover</span><span class="params">()</span></span>&#123;</span><br><span class="line">        emit zt-&gt;hungry();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>要先定义<code>connect</code>再调用<code>classover</code>。</p>
-<h3 id="信号的重载">信号的重载</h3>
-<p>信号函数和槽函数直接重载时，会因为二义性而导致程序无法编译，于是我们需要用函数指针来代替直接给地址，方法如下:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span>(Teacher:: *teachersignal)(QString)=&amp;Teacher::hungry;</span><br><span class="line"><span class="keyword">void</span>(Studnet:: *studentslot)(QString) = &amp;Studnet::treat;    </span><br><span class="line"></span><br><span class="line">connect(zt,teachersignal::hungry,st,studentslot);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问题：这里的两个函数指针是如何定义的？？？</li>
-<li>答：</li>
-</ul>
-<p>Qstring 转char *</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Qstring.toUtf8().data()  <span class="comment">//先转utf8，再转char*</span></span><br></pre></td></tr></table></figure>
-<h3 id="信号连接信号">信号连接信号</h3>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(btn,&amp;QPushButton::clicked,zt,teachersignal2);</span><br></pre></td></tr></table></figure>
-<p>直接将两个信号用connect相连</p>
-<ul>
-<li><p>断开信号 disconnect</p></li>
-<li><p>多个信号一个槽</p></li>
-<li><p>多个槽连接一个信号</p></li>
-<li><p>信号和槽的参数类型必须一一对应，信号参数个数可以大于槽函数的参数个数</p></li>
-</ul>
-<p>lambda函数</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">//connect 一般使用方法</span></span><br><span class="line"><span class="built_in">connect</span>(信号发送者，发送的信号（函数的地址），信号接受者，处理的槽函数（函数的地址）);</span><br><span class="line"></span><br><span class="line"><span class="comment">//lambda 使用的方式</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,<span class="keyword">this</span>,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br><span class="line"><span class="comment">//可以省略this</span></span><br><span class="line"><span class="built_in">connect</span>(btn3,&amp;QPushButton::clicked,[=]()&#123;</span><br><span class="line">        btn3-&gt;<span class="built_in">move</span>(<span class="number">200</span>,<span class="number">100</span>);&#125;);</span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：为什么lambda的函数不像之前的函数一样，需要取地址符<code>&amp;</code>.</li>
-<li>答：<strong>可以不加取地址符，但是早期Qt并不支持</strong>.</li>
-</ul>
-<h1 id="模态与非模态">模态与非模态</h1>
-<h2 id="模态">模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">connect(ui-&gt;actionnew,&amp;QAction::triggered,[=]()&#123;</span><br><span class="line">    QDialog dlg(<span class="keyword">this</span>);</span><br><span class="line">    dlg.resize(<span class="number">200</span>,<span class="number">100</span>);</span><br><span class="line">    dlg.exec();  <span class="comment">//对话框窗口保持</span></span><br><span class="line">    qDebug()&lt;&lt;<span class="string">&quot;modal dialog!&quot;</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="非模态">非模态</h2>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">[=]()&#123;QDialog dig2(<span class="keyword">this</span>);</span><br><span class="line">         dig2.show();  <span class="comment">//无法保持，一闪而过</span></span><br><span class="line">        &#125;</span><br><span class="line">QDialog *dig2 =<span class="keyword">new</span> QDialog(<span class="keyword">this</span>);</span><br><span class="line">   dig2-&gt;show();	<span class="comment">//可以保持(堆区)</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>问：指针调用和对象调用为什么会出现不一样的结果？</li>
-<li>答：</li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1551,6 +1518,39 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
       </categories>
   </entry>
   <entry>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
+<span id="more"></span>
+<h1 id="常用指令">常用指令</h1>
+<ol type="1">
+<li>导出时设置颜色为透明色:</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>爬虫小结</title>
     <url>/2021/02/02/Web%20Crawler/</url>
     <content><![CDATA[<p>爬着爬着，就进局子里了...........</p>
@@ -1630,88 +1630,6 @@ src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20210202145703.png" /></p>
 ]]></content>
       <categories>
         <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>评价类数学模型总结</title>
-    <url>/2022/01/22/common_model/</url>
-    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
-<span id="more"></span>
-<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
-<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
-a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
-a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
-a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
-\]</span></p>
-<h2 id="均方差法">均方差法</h2>
-<p><span class="math display">\[
-\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
-s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
-\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
-\]</span></p>
-<p><span class="math display">\[
-w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
-\]</span></p>
-<h2 id="极差法">极差法</h2>
-<p><span class="math display">\[
-r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
-j}\right|\right\}(j=1,2, \cdots, m)\\
-\]</span></p>
-<p><span class="math display">\[
-\max_{every
-element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
-\]</span></p>
-<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
-\]</span></p>
-<h2 id="熵值法">熵值法</h2>
-<p>特征比重：</p>
-<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
-j}&gt;0\]</span>,第<span
-class="math inline">\(j\)</span>项指标的特征比重为 <span
-class="math display">\[
-p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
-\cdots, m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
-\]</span></p>
-<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
-class="math display">\[
-e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
-m)
-\]</span></p>
-<p><span class="math display">\[
-\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
-\]</span></p>
-<p>不难看出，如果第<span
-class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
-<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
-class="math display">\[
-g_{j}=1-e_{j}(j=1,2, \cdots, m)
-\]</span> 如果第项指标的观测值差异越大，则差异系数<span
-class="math inline">\(g\)</span>就越大，第<span
-class="math inline">\(j\)</span>项指标也就越重要。</p>
-<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
-class="math display">\[
-w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
-\]</span> 参考文章:</p>
-<p><a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
-href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
-]]></content>
-      <categories>
-        <category>Math model</category>
       </categories>
   </entry>
   <entry>
@@ -1866,6 +1784,312 @@ alt="image-20240302141718235" />
       <categories>
         <category>Windows</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Docker-ubuntu安装ssh</title>
+    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
+<span id="more"></span>
+<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
+<p>1.更新源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p>2.安装openssh-server</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
+<p>对于Alpine-linux，则用下面命令安装</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
+<p>还需安装openrc</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
+<p>设置<code>/etc/ssh/sshd_config</code></p>
+<p>追加如下指令</p>
+<p>-- <code>PermitRootLogin yes</code></p>
+<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
+<p>:star:先换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
+<p>生成source文件</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
+<p>写入源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
+<p>删除缓存</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
+<p>在更新</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -v6 -w 1 www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>评价类数学模型总结</title>
+    <url>/2022/01/22/common_model/</url>
+    <content><![CDATA[<p>小小总结，希望以后对自己有帮助</p>
+<span id="more"></span>
+<h1 id="权重系数确定的方法">权重系数确定的方法</h1>
+<p>题设：n个评价对象，m个评价指标观测值为 <span class="math display">\[
+a_{ij}\quad(i=1,2,...n;j=1,2,..,m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11} &amp; a_{12}&amp;...&amp;a_{1,m}\\\\a_{21} &amp;
+a_{22}&amp;...&amp;a_{2m}\\ \vdots&amp;...&amp;...&amp;\\a_{n1} &amp;
+a_{n2}&amp;...&amp;a_{nm}\end{bmatrix}
+\]</span></p>
+<h2 id="均方差法">均方差法</h2>
+<p><span class="math display">\[
+\mu_j=\frac{1}{n}\sum_{i=1}^{n}a_{ij}\qquad
+s_j=\sqrt{\frac{1}{n}(a_{ij}-\mu_j)^2}\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow
+\begin{bmatrix}s_1&amp;\cdots&amp;s_m\end{bmatrix}\\
+\]</span></p>
+<p><span class="math display">\[
+w_j=\frac{s_j}{\sum_{k=1}^{m}s_k}(j=1,2,3,4...m)\\
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}w_1&amp; w_2&amp;\cdots w_m\end{bmatrix}
+\]</span></p>
+<h2 id="极差法">极差法</h2>
+<p><span class="math display">\[
+r_{j}=\max _{1 \leq i&lt;k \leq n}\left\{\left|a_{i j}-a_{k
+j}\right|\right\}(j=1,2, \cdots, m)\\
+\]</span></p>
+<p><span class="math display">\[
+\max_{every
+element}\begin{bmatrix}rand(a_{i1}-a_{k1})&amp;\cdots&amp;rand(a_{ij}-a_{kj})\end{bmatrix}\longrightarrow\begin{bmatrix}r_1&amp;r_2&amp;\cdots&amp;r_m\end{bmatrix}
+\]</span></p>
+<p>所以第<span class="math inline">\(j\)</span>项指标的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{s_{j}}{\sum_{l=1}^{m} r_{k}}(j=1,2, \cdots, m)
+\]</span></p>
+<h2 id="熵值法">熵值法</h2>
+<p>特征比重：</p>
+<p>在<span class="math display">\[\mu_j=\sum_{i=1}^{n} a_{i
+j}&gt;0\]</span>,第<span
+class="math inline">\(j\)</span>项指标的特征比重为 <span
+class="math display">\[
+p_{i j}=\frac{a_{i j}}{\sum_{i=1}^{n} a_{i j}}(i=1,2, \cdots, n ; j=1,2,
+\cdots, m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}a_{11}\\a_{21}\\\vdots\\a_{n1}\end{bmatrix}\cdots\begin{bmatrix}a_{1m}\\a_{2m}\\\vdots\\a_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}\mu_1&amp;\cdots\mu_m\end{bmatrix}\longrightarrow\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}
+\]</span></p>
+<p>第<span class="math inline">\(j\)</span>项的熵值为： <span
+class="math display">\[
+e_{j}=-\frac{1}{\ln n} \sum_{i=1}^{n} p_{i j} \ln p_{i j}(j=1,2, \cdots,
+m)
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}p_{11}&amp;\cdots&amp;p_{1m}\\p_{21}&amp;\cdots&amp;p_{2m}\\\vdots&amp;\cdots&amp;\\p_{n1}&amp;\cdots&amp;p_{nm}\end{bmatrix}\longrightarrow\begin{bmatrix}e_1&amp;\cdots&amp;e_m\end{bmatrix}
+\]</span></p>
+<p>不难看出，如果第<span
+class="math inline">\(j\)</span>项指标的观测值差异越大，熵值越小；反之，熵值越大。</p>
+<p>计算第<span class="math inline">\(j\)</span>项指标的差异系数为 <span
+class="math display">\[
+g_{j}=1-e_{j}(j=1,2, \cdots, m)
+\]</span> 如果第项指标的观测值差异越大，则差异系数<span
+class="math inline">\(g\)</span>就越大，第<span
+class="math inline">\(j\)</span>项指标也就越重要。</p>
+<p>第<span class="math inline">\(j\)</span>项的权重系数为 <span
+class="math display">\[
+w_{j}=\frac{g_{j}}{\sum_{k=1}^{m} g_{k}}(j=1,2, \cdots, m)
+\]</span> 参考文章:</p>
+<p><a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy">熵的定义</a>，<a
+href="https://en.wikipedia.iwiki.eu.org/wiki/Entropy_(information_theory)">信息熵</a></p>
+]]></content>
+      <categories>
+        <category>Math model</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ikuai-docker自建webdav</title>
+    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="安装webdav">安装webdav</h1>
+<p>镜像：<code>bytemark/webdav:latest</code></p>
+<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
+<p>环境变量：</p>
+<p><code>USERNAME</code></p>
+<p><code>PASSWORD</code></p>
+<p><code>LOCATION</code></p>
+<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
+<p>修改编码为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
+<p>修改为utf8</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="配置alpine-linux">配置alpine-linux</h1>
+<h2 id="换源">换源</h2>
+<p>更换为UESTC源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
+<p>执行<code>update</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
+<p>安装<code>openrc</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
+<p>添加 auto-docker 为自启动</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add auto-docker</span><br></pre></td></tr></table></figure>
+<p>在<code>/etc/loacal.d/</code>中添加start结尾的脚本,如<code>docker.start</code>,内容如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>更新一下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Linux开发项目总结</title>
+    <url>/2023/11/25/linux_problem/</url>
+    <content><![CDATA[<p>欢迎交流</p>
+<span id="more"></span>
+<h1 id="python">Python</h1>
+<ul>
+<li>pip永久换源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
+<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
+<ol type="1">
+<li>安装<code>pipreqs</code>:</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>进入项目主要目录：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>生成requirement.txt</li>
+</ol>
+<h1 id="docker">Docker</h1>
+<p>​
+虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
+alt="image-20231125161329086" />
+<figcaption aria-hidden="true">image-20231125161329086</figcaption>
+</figure>
+<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
+<ul>
+<li>Docker search</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker 换源</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://frd9mvwo.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启docker</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
+<ul>
+<li>下载镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建并运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>停止运行镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>杀掉</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Docker删除容器&amp;&amp;镜像</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行多台docker</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>观察docker情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>进入容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
+<ul>
+<li>退出容器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h1 id="linux">Linux</h1>
+<h2 id="解压tar包">解压tar包</h2>
+<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
+verbose详细显示，-f file文件属性）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
+<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
+<h2 id="查看ip地址">查看ip地址</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
+<p>观察NAT转发表</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
+<h2 id="path">PATH</h2>
+<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>添加Python虚拟环境virtualenv4</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查看命令执行情况</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查找<code>grep</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="进程">进程</h2>
+<p>查看进程</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
+<h2 id="git">git</h2>
+<ul>
+<li>git如何设置gitignore</li>
+</ul>
+<ol type="1">
+<li>新建<code>.gitgnore</code>文件</li>
+<li>添加如下代码排除所有工程文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="设置脚本自启动">设置脚本自启动</h2>
+<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="部署seafileonlyoffice">部署seafile+onlyoffice</h1>
+<ol type="1">
+<li>先下载<code>docker-compose</code></li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  office-preview:</span><br><span class="line">    image: seafileltd/office-preview:latest</span><br><span class="line">    container_name: seafile-office-preview</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8086:8089&quot;</span></span><br><span class="line">    <span class="built_in">command</span>: bash start.sh</span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/office-preview/shared:/shared  <span class="comment">##宿主机路径可以自定义</span></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.11</span><br><span class="line">    container_name: seafile-mysql</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=db_dev  <span class="comment"># Requested, set the root&#x27;s password of MySQL service.</span></span><br><span class="line">      - MYSQL_LOG_CONSOLE=<span class="literal">true</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-mysql/db:/var/lib/mysql  <span class="comment"># Requested, specifies the path to MySQL data persistent store.</span></span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line"></span><br><span class="line">  memcached:</span><br><span class="line">    image: memcached:1.6</span><br><span class="line">    container_name: seafile-memcached</span><br><span class="line">    entrypoint: memcached -m 256</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  onlyoffice: </span><br><span class="line">    image: onlyoffice/documentserver</span><br><span class="line">    container_name: onlyoffice </span><br><span class="line">    environment:</span><br><span class="line">      - JWT_SECRET=seafile123</span><br><span class="line">      - JWT_ENABLED=<span class="literal">true</span></span><br><span class="line">      - JWT_HEADER=Authorization</span><br><span class="line">      - JWT_IN_BODY=<span class="literal">true</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-onlyoffice/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/data:/var/www/onlyoffice/Data</span><br><span class="line">      - ./opt/seafile-onlyoffice/lib:/var/lib/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/db:/var/lib/postgresql</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  seafile:</span><br><span class="line">    image: seafileltd/seafile-mc:latest</span><br><span class="line">    container_name: seafile</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8089:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;8090:8080&quot;</span></span><br><span class="line"><span class="comment">#      - &quot;443:443&quot;  # If https is enabled, cancel the comment.</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-data:/shared   <span class="comment"># Requested, specifies the path to Seafile data persistent store.</span></span><br><span class="line">    environment:</span><br><span class="line">      - DB_HOST=db</span><br><span class="line">      - DB_ROOT_PASSWD=db_dev  <span class="comment"># Requested, the value shuold be root&#x27;s password of MySQL service.</span></span><br><span class="line"><span class="comment">#      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.</span></span><br><span class="line">      - SEAFILE_ADMIN_EMAIL=ninglang@qq.com <span class="comment"># Specifies Seafile admin user, default is &#x27;me@example.com&#x27;.</span></span><br><span class="line">      - SEAFILE_ADMIN_PASSWORD=3761234yzm     <span class="comment"># Specifies Seafile admin password, default is &#x27;asecret&#x27;.</span></span><br><span class="line">      - SEAFILE_SERVER_LETSENCRYPT=<span class="literal">false</span>   <span class="comment"># Whether use letsencrypt to generate cert.</span></span><br><span class="line">      - SEAFILE_SERVER_HOSTNAME=3865.ninglang.fun:8089 <span class="comment"># Specifies your host name.</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">      - memcached</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  seafile-net:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>修改seahub</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#进入seafile</span></span><br><span class="line">docker <span class="built_in">exec</span> -it seafile /bin/bash</span><br><span class="line"><span class="comment">#进入conf</span></span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">vim seahub_settings.py</span><br></pre></td></tr></table></figure>
+<p>追加<code>seahub_settings.py</code>内容如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Enable Only Office</span></span><br><span class="line">ENABLE_ONLYOFFICE = <span class="literal">True</span></span><br><span class="line">VERIFY_ONLYOFFICE_CERTIFICATE = <span class="literal">True</span></span><br><span class="line">ONLYOFFICE_JWT_SECRET = <span class="string">&#x27;seafile123&#x27;</span></span><br><span class="line"><span class="comment"># ONLYOFFICE_APIJS_URL = &#x27;http&#123;s&#125;://&#123;your OnlyOffice server&#x27;s domain or IP&#125;/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_APIJS_URL = <span class="string">&#x27;http://3865.ninglang.fun:8080/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_FILE_EXTENSION = (<span class="string">&#x27;doc&#x27;</span>, <span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;ppt&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xls&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>, <span class="string">&#x27;odt&#x27;</span>, <span class="string">&#x27;fodt&#x27;</span>, <span class="string">&#x27;odp&#x27;</span>, <span class="string">&#x27;fodp&#x27;</span>, <span class="string">&#x27;ods&#x27;</span>, <span class="string">&#x27;fods&#x27;</span>)</span><br><span class="line">ONLYOFFICE_EDIT_FILE_EXTENSION = (<span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>重启docker</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/10/17/index/</url>
+    <content><![CDATA[<span id="more"></span>
+]]></content>
   </entry>
   <entry>
     <title>数据结构</title>
@@ -2131,292 +2355,6 @@ class="math inline">\(O(1)\)</span></li>
       </categories>
   </entry>
   <entry>
-    <title>ikuai-docker自建webdav</title>
-    <url>/2024/01/30/docker%E8%87%AA%E5%BB%BAwebdav/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建webdav的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="安装webdav">安装webdav</h1>
-<p>镜像：<code>bytemark/webdav:latest</code></p>
-<p>目录挂载：<code>/seafile/smb/music</code>：<code>/var/lib/dav/data</code></p>
-<p>环境变量：</p>
-<p><code>USERNAME</code></p>
-<p><code>PASSWORD</code></p>
-<p><code>LOCATION</code></p>
-<p><code>AUTH_TYPE</code>:<code>Basic</code></p>
-<p>修改编码为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi conf/conf-enabled/dav.conf</span><br></pre></td></tr></table></figure>
-<p>修改为utf8</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&lt;Directory <span class="string">&quot;/var/lib/dav/data/&quot;</span>&gt;</span><br><span class="line">  Dav On</span><br><span class="line">  Options Indexes FollowSymLinks</span><br><span class="line"></span><br><span class="line">  AuthType Basic</span><br><span class="line">  AuthName <span class="string">&quot;WebDAV&quot;</span></span><br><span class="line">  IndexOptions Charset=utf-8      &lt;-----------添加这一行</span><br><span class="line">  AuthUserFile <span class="string">&quot;/user.passwd&quot;</span></span><br><span class="line">  &lt;RequireAny&gt;</span><br><span class="line">    Require valid-user</span><br><span class="line">  &lt;/RequireAny&gt;</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="配置alpine-linux">配置alpine-linux</h1>
-<h2 id="换源">换源</h2>
-<p>更换为UESTC源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g&#x27;</span> /etc/apk/repositories</span><br></pre></td></tr></table></figure>
-<p>执行<code>update</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk update</span><br></pre></td></tr></table></figure>
-<p>安装<code>openrc</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<p>添加 auto-docker 为自启动</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add auto-docker</span><br></pre></td></tr></table></figure>
-<p>在<code>/etc/loacal.d/</code>中添加start结尾的脚本,如<code>docker.start</code>,内容如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>更新一下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rc-update add <span class="built_in">local</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Docker-ubuntu安装ssh</title>
-    <url>/2024/01/22/docker-ubuntu-ssh%E5%AE%89%E8%A3%85/</url>
-    <content><![CDATA[<p>这是一篇有关Docker-ubuntu-ssh的安装教程</p>
-<span id="more"></span>
-<h1 id="step1安装openssh-server">STEP1：安装openssh-server</h1>
-<p>1.更新源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p>2.安装openssh-server</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install openssh-server</span><br></pre></td></tr></table></figure>
-<p>对于Alpine-linux，则用下面命令安装</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add --update openssh-server</span><br></pre></td></tr></table></figure>
-<p>还需安装openrc</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apk add openrc</span><br></pre></td></tr></table></figure>
-<h1 id="step2设置允许root登录">STEP2：设置允许root登录</h1>
-<p>设置<code>/etc/ssh/sshd_config</code></p>
-<p>追加如下指令</p>
-<p>-- <code>PermitRootLogin yes</code></p>
-<h1 id="nginx-docker无法使用apt问题">NGINX-Docker无法使用apt问题</h1>
-<p>:star:先换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/apt</span><br></pre></td></tr></table></figure>
-<p>生成source文件</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">touch  sources.list</span><br></pre></td></tr></table></figure>
-<p>写入源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb http://mirrors.ustc.edu.cn/debian stable-updates main contrib non-free&quot;</span> &gt;&gt;sources.list</span><br></pre></td></tr></table></figure>
-<p>删除缓存</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rm -fR /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure>
-<p>在更新</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -v6 -w 1 www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title></title>
-    <url>/2023/10/17/index/</url>
-    <content><![CDATA[<span id="more"></span>
-]]></content>
-  </entry>
-  <entry>
-    <title>Linux开发项目总结</title>
-    <url>/2023/11/25/linux_problem/</url>
-    <content><![CDATA[<p>欢迎交流</p>
-<span id="more"></span>
-<h1 id="python">Python</h1>
-<ul>
-<li>pip永久换源</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 清华源</span></span><br><span class="line">pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 阿里源</span></span><br><span class="line">pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/</span><br><span class="line"><span class="meta">#</span><span class="bash"> 腾讯源</span></span><br><span class="line">pip config set global.index-url http://mirrors.cloud.tencent.com/pypi/simple</span><br><span class="line"><span class="meta">#</span><span class="bash"> 豆瓣源</span></span><br><span class="line">pip config set global.index-url http://pypi.douban.com/simple/# 换回默认源pip config unset global.index-url</span><br></pre></td></tr></table></figure>
-<h2 id="生成项目所需要的各种包">生成项目所需要的各种包</h2>
-<ol type="1">
-<li>安装<code>pipreqs</code>:</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>进入项目主要目录：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pipreqs</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>生成requirement.txt</li>
-</ol>
-<h1 id="docker">Docker</h1>
-<p>​
-虚拟化技术意义，主要是为了最大化的利用高配硬件设备的资源，<font color='red'>提高物理机资源</font><font color='red'>利用率</font>，可以实现应用程序、软件服务进程<font color='red'>资源隔离</font>.</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20231125161329086.png"
-alt="image-20231125161329086" />
-<figcaption aria-hidden="true">image-20231125161329086</figcaption>
-</figure>
-<p>创建Docker程序部署目录：<code>/usr/local/docker/</code>；</p>
-<ul>
-<li>Docker search</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker 换源</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/docker/daemon.json</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line"> <span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://frd9mvwo.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo service docker restart</span><br></pre></td></tr></table></figure>
-<ul>
-<li>下载镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker pull nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载镜像在/var/lib/docker/image/overlay2/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker images </span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -itd -p 80:80 --name=web1 --privileged nginx:latest</span><br><span class="line"><span class="comment">#run:create &amp;&amp; start；80（外部端口）:80（内部端口）; itd:交互式后台detached</span></span><br><span class="line"><span class="comment">##-i表示：interactive交互；</span></span><br><span class="line"><span class="comment">##-t表示：tty终端；</span></span><br><span class="line"><span class="comment">#-d表示：detach后台启动；</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建并运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker create <span class="string">&quot;name&quot;</span></span><br><span class="line">docker start <span class="string">&quot;name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>停止运行镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker stop <span class="string">&quot;name&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#stop之后只能用start重新开启 </span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>杀掉</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> <span class="string">&quot;container name&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>Docker删除容器&amp;&amp;镜像</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#删除容器</span></span><br><span class="line">docker rm <span class="string">&quot;CONTAINER Name&quot;</span></span><br><span class="line"><span class="comment">#删除镜像</span></span><br><span class="line">docker rmi <span class="string">&quot;IMAGE ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>运行多台docker</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(seq 0 99);<span class="keyword">do</span> docker run -itd-p 80<span class="variable">$i</span>:80--name=webos<span class="variable">$i</span></span><br><span class="line">--privileged nginx:latest;<span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>观察docker情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker inspect  <span class="string">&quot;CONTAINER ID&quot;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>进入容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it <span class="string">&quot;容器名&quot;</span> /bin/bash</span><br></pre></td></tr></table></figure>
-<ul>
-<li>退出容器</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-<h1 id="linux">Linux</h1>
-<h2 id="解压tar包">解压tar包</h2>
-<p>通过Tar工具对其解压缩（-x extract解压，-z gzip压缩格式，-v
-verbose详细显示，-f file文件属性）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tar -xzvf docker-19.03.9.tgz</span><br></pre></td></tr></table></figure>
-<p>打开后台终端<code>nohup</code>,后台启动<code>&amp;</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nphup /usr/<span class="built_in">local</span>/docker/dockerd &amp;</span><br></pre></td></tr></table></figure>
-<h2 id="查看ip地址">查看ip地址</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ifconfig eth0</span><br></pre></td></tr></table></figure>
-<p>观察NAT转发表</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">iptables -t nat -L -n --line-numbers</span><br><span class="line"><span class="comment">#类似于路由器内网和外网转发表</span></span><br></pre></td></tr></table></figure>
-<h2 id="path">PATH</h2>
-<p>先将换行符<code>EOF</code>添加到<code>/etc/profile</code>，再添加一行<code>export PATH=\$PATH:/usr/local/docker/</code>到下面,将<code>/usr/local/docker/</code>添加到PATH中去。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cat&gt;&gt;/etc/profile&lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">export PATH=\$PATH:/usr/local/docker/</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>添加Python虚拟环境virtualenv4</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#WARNING: The script virtualenv is installed in &#x27;/home/ninglang/.local/bin&#x27; which is not on PATH.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#解决办法</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/ninglang/.<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查看命令执行情况</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
-<ul>
-<li>查找<code>grep</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep -aiWE nginx</span><br><span class="line"><span class="comment">#-a 或 --text : 不要忽略二进制的数据。</span></span><br><span class="line"><span class="comment">#-i 或 --ignore-case : 忽略字符大小写的差别。</span></span><br><span class="line"><span class="comment">#-w 或 --word-regexp : 只显示全字符合的列</span></span><br><span class="line"><span class="comment">#-E 或 --extended-regexp : 将样式为延伸的正则表达式来使用。</span></span><br></pre></td></tr></table></figure>
-<h2 id="进程">进程</h2>
-<p>查看进程</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ps -ef | grep -aiE sshd</span><br></pre></td></tr></table></figure>
-<h2 id="git">git</h2>
-<ul>
-<li>git如何设置gitignore</li>
-</ul>
-<ol type="1">
-<li>新建<code>.gitgnore</code>文件</li>
-<li>添加如下代码排除所有工程文件</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">##	This is an example .gitignore file for Vivado, please treat it as an example as </span></span><br><span class="line"><span class="comment">##	it might not be complete. In addition, XAPP 1165 should be followed.</span></span><br><span class="line"><span class="comment">#########################################################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Exclude all</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line">*</span><br><span class="line">!*/</span><br><span class="line">!.gitignore</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">##	kil-5</span></span><br><span class="line"><span class="comment">###########################################################################</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Source files:</span></span><br><span class="line"><span class="comment">#########</span></span><br><span class="line"><span class="comment">#Do NOT ignore c, cpp, h and uvprojx.</span></span><br><span class="line"></span><br><span class="line">!*.uvprojx</span><br><span class="line">!*.c </span><br><span class="line">!*.cpp </span><br><span class="line">!*.h</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="设置脚本自启动">设置脚本自启动</h2>
-<p>​ 修改/etc/rc.local文件，在其中加入自己想要执行的命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">python3 -u /home/ninglang/NJUlogin-main/NJUlogin/school_login.py &gt;/home/ninglang/NJUlogin-main/NJUlogin/school_login.log  2&gt;&amp;1 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#python3 -u /home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.py  &gt;/home/ninglang/NJUlogin-main/NJUlogin/pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># nohup python3 -u  pwdLogin.py &gt; hello.log  2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment"># nohup python3 pwdLogin.py &gt; pwdLogin.log 2&gt;&amp;1 &amp;</span></span><br><span class="line"><span class="comment">#cd /home/ninglang/NJUlogin-main/NJUlogin/ &amp;&amp; python3 ./school_login.py</span></span><br><span class="line"><span class="comment">#/home/ninglang/NJUlogin-main/NJUlogin/pwlogin.sh</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="部署seafileonlyoffice">部署seafile+onlyoffice</h1>
-<ol type="1">
-<li>先下载<code>docker-compose</code></li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">version: <span class="string">&quot;3&quot;</span></span><br><span class="line">services:</span><br><span class="line">  office-preview:</span><br><span class="line">    image: seafileltd/office-preview:latest</span><br><span class="line">    container_name: seafile-office-preview</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8086:8089&quot;</span></span><br><span class="line">    <span class="built_in">command</span>: bash start.sh</span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/office-preview/shared:/shared  <span class="comment">##宿主机路径可以自定义</span></span><br><span class="line">  db:</span><br><span class="line">    image: mariadb:10.11</span><br><span class="line">    container_name: seafile-mysql</span><br><span class="line">    environment:</span><br><span class="line">      - MYSQL_ROOT_PASSWORD=db_dev  <span class="comment"># Requested, set the root&#x27;s password of MySQL service.</span></span><br><span class="line">      - MYSQL_LOG_CONSOLE=<span class="literal">true</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-mysql/db:/var/lib/mysql  <span class="comment"># Requested, specifies the path to MySQL data persistent store.</span></span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line"></span><br><span class="line">  memcached:</span><br><span class="line">    image: memcached:1.6</span><br><span class="line">    container_name: seafile-memcached</span><br><span class="line">    entrypoint: memcached -m 256</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  onlyoffice: </span><br><span class="line">    image: onlyoffice/documentserver</span><br><span class="line">    container_name: onlyoffice </span><br><span class="line">    environment:</span><br><span class="line">      - JWT_SECRET=seafile123</span><br><span class="line">      - JWT_ENABLED=<span class="literal">true</span></span><br><span class="line">      - JWT_HEADER=Authorization</span><br><span class="line">      - JWT_IN_BODY=<span class="literal">true</span></span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8080:80&quot;</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-onlyoffice/<span class="built_in">log</span>:/var/<span class="built_in">log</span>/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/data:/var/www/onlyoffice/Data</span><br><span class="line">      - ./opt/seafile-onlyoffice/lib:/var/lib/onlyoffice</span><br><span class="line">      - ./opt/seafile-onlyoffice/db:/var/lib/postgresql</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">  seafile:</span><br><span class="line">    image: seafileltd/seafile-mc:latest</span><br><span class="line">    container_name: seafile</span><br><span class="line">    ports:</span><br><span class="line">      - <span class="string">&quot;8089:80&quot;</span></span><br><span class="line">      - <span class="string">&quot;8090:8080&quot;</span></span><br><span class="line"><span class="comment">#      - &quot;443:443&quot;  # If https is enabled, cancel the comment.</span></span><br><span class="line">    volumes:</span><br><span class="line">      - ./opt/seafile-data:/shared   <span class="comment"># Requested, specifies the path to Seafile data persistent store.</span></span><br><span class="line">    environment:</span><br><span class="line">      - DB_HOST=db</span><br><span class="line">      - DB_ROOT_PASSWD=db_dev  <span class="comment"># Requested, the value shuold be root&#x27;s password of MySQL service.</span></span><br><span class="line"><span class="comment">#      - TIME_ZONE=Asia/Shanghai # Optional, default is UTC. Should be uncomment and set to your local time zone.</span></span><br><span class="line">      - SEAFILE_ADMIN_EMAIL=ninglang@qq.com <span class="comment"># Specifies Seafile admin user, default is &#x27;me@example.com&#x27;.</span></span><br><span class="line">      - SEAFILE_ADMIN_PASSWORD=3761234yzm     <span class="comment"># Specifies Seafile admin password, default is &#x27;asecret&#x27;.</span></span><br><span class="line">      - SEAFILE_SERVER_LETSENCRYPT=<span class="literal">false</span>   <span class="comment"># Whether use letsencrypt to generate cert.</span></span><br><span class="line">      - SEAFILE_SERVER_HOSTNAME=3865.ninglang.fun:8089 <span class="comment"># Specifies your host name.</span></span><br><span class="line">    depends_on:</span><br><span class="line">      - db</span><br><span class="line">      - memcached</span><br><span class="line">    networks:</span><br><span class="line">      - seafile-net</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">networks:</span><br><span class="line">  seafile-net:</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>修改seahub</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#进入seafile</span></span><br><span class="line">docker <span class="built_in">exec</span> -it seafile /bin/bash</span><br><span class="line"><span class="comment">#进入conf</span></span><br><span class="line"><span class="built_in">cd</span> conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改</span></span><br><span class="line">vim seahub_settings.py</span><br></pre></td></tr></table></figure>
-<p>追加<code>seahub_settings.py</code>内容如下</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Enable Only Office</span></span><br><span class="line">ENABLE_ONLYOFFICE = <span class="literal">True</span></span><br><span class="line">VERIFY_ONLYOFFICE_CERTIFICATE = <span class="literal">True</span></span><br><span class="line">ONLYOFFICE_JWT_SECRET = <span class="string">&#x27;seafile123&#x27;</span></span><br><span class="line"><span class="comment"># ONLYOFFICE_APIJS_URL = &#x27;http&#123;s&#125;://&#123;your OnlyOffice server&#x27;s domain or IP&#125;/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_APIJS_URL = <span class="string">&#x27;http://3865.ninglang.fun:8080/web-apps/apps/api/documents/api.js&#x27;</span></span><br><span class="line">ONLYOFFICE_FILE_EXTENSION = (<span class="string">&#x27;doc&#x27;</span>, <span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;ppt&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xls&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>, <span class="string">&#x27;odt&#x27;</span>, <span class="string">&#x27;fodt&#x27;</span>, <span class="string">&#x27;odp&#x27;</span>, <span class="string">&#x27;fodp&#x27;</span>, <span class="string">&#x27;ods&#x27;</span>, <span class="string">&#x27;fods&#x27;</span>)</span><br><span class="line">ONLYOFFICE_EDIT_FILE_EXTENSION = (<span class="string">&#x27;docx&#x27;</span>, <span class="string">&#x27;pptx&#x27;</span>, <span class="string">&#x27;xlsx&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<p>3.进入onlyoffice修改<code>etc/onlyoffice/documentserver/default.json</code>，修改如下</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;rejectUnauthorized&quot;</span>: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;allowPrivateIPAddress&quot;</span>: <span class="literal">true</span>,</span><br><span class="line"><span class="string">&quot;allowMetaIPAddress&quot;</span>: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>重启docker</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ikuai搭建seafile-docker</title>
-    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="step1-安装seafile-docker">step1： 安装seafile-docker</h1>
-<p>下载<code>seafileltd/seafile:latest</code>镜像</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png"
-alt="image-20240120202506712" />
-<figcaption aria-hidden="true">image-20240120202506712</figcaption>
-</figure>
-<p>在容器设置中挂载目录</p>
-<ul>
-<li><code>/shared</code></li>
-</ul>
-<p>如下环境变量设置账号和密码</p>
-<ul>
-<li><code>SEAFILE_ADMIN_EMAIL</code></li>
-<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
-</ul>
-<h1 id="step2安装-iputils-ping">step2：安装 iputils-ping</h1>
-<p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
-<p><strong>1.更新apt包</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p><strong>2.安装iputils-ping</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
-<p><strong>3.测试ping百度</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
-<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-<p><strong>4.修改ping.sh为可执行文件</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
-<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png"
-alt="image-20240120203717758" /><strong>6.修改自启动脚本</strong></p>
-<p>在<code>/root/.bashrc</code>中追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo "Seafile server started"</code>的前面.</p>
-<h1 id="step3设置nginx反向代理">step3：设置nginx反向代理</h1>
-<p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>2.测试文件格式正常</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
-<p>重启docker容器</p>
-<h1 id="step4设置seafile">step4：设置seafile</h1>
-<p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
-<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
-<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
-<h1 id="step5设置seafdav">step5：设置seafdav</h1>
-<p>设置<code>/conf/seafdav.conf</code>中为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
-<p>在手机端设置</p>
-<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
-<p>账号密码如实填写</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2547,6 +2485,95 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
       </categories>
   </entry>
   <entry>
+    <title>ikuai搭建seafile-docker</title>
+    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="step1-安装seafile-docker">step1： 安装seafile-docker</h1>
+<p>下载<code>seafileltd/seafile:latest</code>镜像</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png"
+alt="image-20240120202506712" />
+<figcaption aria-hidden="true">image-20240120202506712</figcaption>
+</figure>
+<p>在容器设置中挂载目录</p>
+<ul>
+<li><code>/shared</code></li>
+</ul>
+<p>如下环境变量设置账号和密码</p>
+<ul>
+<li><code>SEAFILE_ADMIN_EMAIL</code></li>
+<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
+</ul>
+<h1 id="step2安装-iputils-ping">step2：安装 iputils-ping</h1>
+<p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
+<p><strong>1.更新apt包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p><strong>2.安装iputils-ping</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
+<p><strong>3.测试ping百度</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
+<p><strong>4.修改ping.sh为可执行文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
+<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png"
+alt="image-20240120203717758" /><strong>6.修改自启动脚本</strong></p>
+<p>在<code>/root/.bashrc</code>中追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo "Seafile server started"</code>的前面.</p>
+<h1 id="step3设置nginx反向代理">step3：设置nginx反向代理</h1>
+<p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2.测试文件格式正常</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
+<p>重启docker容器</p>
+<h1 id="step4设置seafile">step4：设置seafile</h1>
+<p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
+<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
+<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
+<h1 id="step5设置seafdav">step5：设置seafdav</h1>
+<p>设置<code>/conf/seafdav.conf</code>中为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
+<p>在手机端设置</p>
+<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
+<p>账号密码如实填写</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>遗传算法</title>
+    <url>/2022/02/20/yichuan/</url>
+    <content><![CDATA[<p>遗传算法的初步了解</p>
+<span id="more"></span>
+<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
+<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
+<p>首先创建最初种群</p>
+<p>配置环境</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
+<p>计算适应度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
+<p>创建最初种群</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
+<p>基因配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
+<p>数组深拷贝</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
+<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>GA算法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>时间预测模型</title>
     <url>/2022/02/20/%E6%97%B6%E9%97%B4%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B/</url>
     <content><![CDATA[<p>美赛的一种预测模型</p>
@@ -2618,33 +2645,6 @@ class="math display">\[
 ]]></content>
       <categories>
         <category>Math Model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>遗传算法</title>
-    <url>/2022/02/20/yichuan/</url>
-    <content><![CDATA[<p>遗传算法的初步了解</p>
-<span id="more"></span>
-<p>以<code>TSP</code>问题为例,遗传算法的流程图</p>
-<p><img src="https://picturnl.oss-cn-shanghai.aliyuncs.com/191819382245126.gif" alt="img" style="zoom: 33%;" /></p>
-<p>首先创建最初种群</p>
-<p>配置环境</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> config <span class="keyword">as</span> conf</span><br><span class="line"><span class="keyword">from</span> ga <span class="keyword">import</span> Ga</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">config = conf.get_config()</span><br></pre></td></tr></table></figure>
-<p>计算适应度</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dist_mat</span>(<span class="params">input_list</span>):</span></span><br><span class="line">    n = config.city_num</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input_list&quot;</span>,input_list)</span><br><span class="line">    dist_mat = np.zeros([n, n])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i + <span class="number">1</span>, n):</span><br><span class="line">            d = input_list[i, :] - input_list[j, :]</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;d&quot;</span>,d)</span><br><span class="line">            <span class="comment"># 计算点积</span></span><br><span class="line">            dist_mat[i, j] = np.dot(d, d)</span><br><span class="line">            dist_mat[j, i] = dist_mat[i, j]</span><br><span class="line">    <span class="keyword">return</span> dist_mat</span><br></pre></td></tr></table></figure>
-<p>创建最初种群</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 城市坐标</span></span><br><span class="line">city_pos_list = np.random.rand(config.city_num, config.pos_dimension)</span><br><span class="line"><span class="comment"># 城市距离矩阵</span></span><br><span class="line">city_dist_mat = build_dist_mat(city_pos_list)</span><br></pre></td></tr></table></figure>
-<p>基因配置</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">gene_len = config.city_num  <span class="comment">#基因长度，就是城市的数量</span></span><br><span class="line">individual_num = config.individual_num <span class="comment">#每次个体的数量</span></span><br><span class="line">gen_num = config.gen_num <span class="comment">#遗传代数</span></span><br><span class="line">mutate_prob = config.mutate_prob <span class="comment">#突变率</span></span><br></pre></td></tr></table></figure>
-<p>数组深拷贝</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copy_list</span>(<span class="params">old_arr: [<span class="built_in">int</span>]</span>):</span></span><br><span class="line">    new_arr = []</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> old_arr:</span><br><span class="line">        new_arr.append(element)</span><br><span class="line">    <span class="keyword">return</span> new_arr</span><br></pre></td></tr></table></figure>
-<p>种群中的一个个体,一个个体就是TSP的一个路线</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Individual</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, genes=<span class="literal">None</span></span>):</span></span><br><span class="line">        <span class="comment"># 随机生成序列</span></span><br><span class="line">        <span class="keyword">if</span> genes <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">            genes = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len)]<span class="comment">#如果是初代，那么路线则为默认12345</span></span><br><span class="line">            random.shuffle(genes)<span class="comment">#然后打乱路线</span></span><br><span class="line">        self.genes = genes</span><br><span class="line">        self.fitness = self.evaluate_fitness()</span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">evaluate_fitness</span>(<span class="params">self</span>):</span>  <span class="comment">#计算路线的长度</span></span><br><span class="line">        <span class="comment"># 计算个体适应度</span></span><br><span class="line">        fitness = <span class="number">0.0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gene_len - <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 起始城市和目标城市</span></span><br><span class="line">            from_idx = self.genes[i]</span><br><span class="line">            to_idx = self.genes[i + <span class="number">1</span>]</span><br><span class="line">            fitness += city_dist_mat[from_idx, to_idx]</span><br><span class="line">        <span class="comment"># 连接首尾</span></span><br><span class="line">        fitness += city_dist_mat[self.genes[-<span class="number">1</span>], self.genes[<span class="number">0</span>]]</span><br><span class="line">        <span class="keyword">return</span> fitness</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>GA算法</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ga</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, input_</span>):</span></span><br><span class="line">        <span class="keyword">global</span> city_dist_mat</span><br><span class="line">        city_dist_mat = input_</span><br><span class="line">        self.best = <span class="literal">None</span>  <span class="comment"># 每一代的最佳个体</span></span><br><span class="line">        self.individual_list = []  <span class="comment"># 每一代的个体列表</span></span><br><span class="line">        self.result_list = []  <span class="comment"># 每一代对应的解</span></span><br><span class="line">        self.fitness_list = []  <span class="comment"># 每一代对应的适应度</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">cross</span>(<span class="params">self</span>):</span>  <span class="comment">#交叉</span></span><br><span class="line">        new_gen = []	<span class="comment">#新一代</span></span><br><span class="line">        random.shuffle(self.individual_list)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, individual_num - <span class="number">1</span>, <span class="number">2</span>):</span><br><span class="line">            <span class="comment"># 父代基因</span></span><br><span class="line">            genes1 = copy_list(self.individual_list[i].genes)</span><br><span class="line">            genes2 = copy_list(self.individual_list[i + <span class="number">1</span>].genes)</span><br><span class="line">            index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">            index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">            pos1_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes1)&#125;</span><br><span class="line">            pos2_recorder = &#123;value: idx <span class="keyword">for</span> idx, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(genes2)&#125;</span><br><span class="line">            <span class="comment">#键是原来的数，值是该数在数组的位置</span></span><br><span class="line">           </span><br><span class="line">            <span class="comment"># 交叉</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(index1, index2):</span><br><span class="line">                value1, value2 = genes1[j], genes2[j] <span class="comment">#取出j位置的该值</span></span><br><span class="line">                pos1, pos2 = pos1_recorder[value2], pos2_recorder[value1]<span class="comment">#取出相反该值的位置</span></span><br><span class="line">                <span class="comment">#两个基因交换</span></span><br><span class="line">                genes1[j], genes1[pos1] = genes1[pos1], genes1[j]</span><br><span class="line">                genes2[j], genes2[pos2] = genes2[pos2], genes2[j]</span><br><span class="line">                pos1_recorder[value1], pos1_recorder[value2] = pos1, j</span><br><span class="line">                pos2_recorder[value1], pos2_recorder[value2] = j, pos2</span><br><span class="line">            new_gen.append(Individual(genes1))</span><br><span class="line">            new_gen.append(Individual(genes2))</span><br><span class="line">        <span class="keyword">return</span> new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mutate</span>(<span class="params">self, new_gen</span>):</span>   <span class="comment">#变异</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> new_gen:</span><br><span class="line">            <span class="keyword">if</span> random.random() &lt; mutate_prob:</span><br><span class="line">                <span class="comment"># 翻转切片</span></span><br><span class="line">                old_genes = copy_list(individual.genes)</span><br><span class="line">                index1 = random.randint(<span class="number">0</span>, gene_len - <span class="number">2</span>)</span><br><span class="line">                index2 = random.randint(index1, gene_len - <span class="number">1</span>)</span><br><span class="line">                genes_mutate = old_genes[index1:index2]</span><br><span class="line">                genes_mutate.reverse()</span><br><span class="line">                individual.genes = old_genes[:index1] + genes_mutate + old_genes[index2:]</span><br><span class="line">        <span class="comment"># 两代合并</span></span><br><span class="line">        self.individual_list += new_gen</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">select</span>(<span class="params">self</span>):</span>    <span class="comment">#选择</span></span><br><span class="line">        <span class="comment"># 锦标赛</span></span><br><span class="line">        group_num = <span class="number">10</span>  <span class="comment"># 小组数</span></span><br><span class="line">        group_size = <span class="number">10</span>  <span class="comment"># 每小组人数</span></span><br><span class="line">        group_winner = individual_num // group_num  <span class="comment"># 每小组获胜人数</span></span><br><span class="line">        winners = []  <span class="comment"># 锦标赛结果</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group_num):</span><br><span class="line">            group = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(group_size):</span><br><span class="line">                <span class="comment"># 随机组成小组</span></span><br><span class="line">                player = random.choice(self.individual_list)</span><br><span class="line">                player = Individual(player.genes)</span><br><span class="line">                group.append(player)</span><br><span class="line">            group = Ga.rank(group)</span><br><span class="line">            <span class="comment"># 取出获胜者</span></span><br><span class="line">            winners += group[:group_winner]</span><br><span class="line">        self.individual_list = winners</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">rank</span>(<span class="params">group</span>):</span></span><br><span class="line">        <span class="comment"># 冒泡排序</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(group)):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(group) - i):</span><br><span class="line">                <span class="keyword">if</span> group[j].fitness &gt; group[j + <span class="number">1</span>].fitness:</span><br><span class="line">                    group[j], group[j + <span class="number">1</span>] = group[j + <span class="number">1</span>], group[j]</span><br><span class="line">        <span class="keyword">return</span> group</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">next_gen</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 交叉</span></span><br><span class="line">        new_gen = self.cross()</span><br><span class="line">        <span class="comment"># 变异</span></span><br><span class="line">        self.mutate(new_gen)</span><br><span class="line">        <span class="comment"># 选择</span></span><br><span class="line">        self.select()</span><br><span class="line">        <span class="comment"># 获得这一代的结果</span></span><br><span class="line">        <span class="keyword">for</span> individual <span class="keyword">in</span> self.individual_list:</span><br><span class="line">            <span class="keyword">if</span> individual.fitness &lt; self.best.fitness:</span><br><span class="line">                self.best = individual</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># 初代种群</span></span><br><span class="line">        self.individual_list = [Individual() <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(individual_num)] <span class="comment">#初始化初代种群</span></span><br><span class="line">        <span class="comment">#individual里面genes只有数字的数组</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        self.best = self.individual_list[<span class="number">0</span>]</span><br><span class="line">        <span class="comment"># 迭代</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(gen_num):</span><br><span class="line">            self.next_gen()</span><br><span class="line">            <span class="comment"># 连接首尾</span></span><br><span class="line">            result = copy_list(self.best.genes)</span><br><span class="line">            result.append(result[<span class="number">0</span>])</span><br><span class="line">            self.result_list.append(result)</span><br><span class="line">            self.fitness_list.append(self.best.fitness)</span><br><span class="line">        <span class="keyword">return</span> self.result_list, self.fitness_list</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>coding</category>
       </categories>
   </entry>
   <entry>
