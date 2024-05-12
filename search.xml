@@ -1,140 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>C &amp;&amp; C++ (1)</title>
-    <url>/2021/09/03/C_C++/</url>
-    <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
-Quote)</p>
-<span id="more"></span>
-<h1 id="function">Function</h1>
-<ul>
-<li><p>Function declaration</p>
-<p>if Function declaration's parameter is empty of
-<code>void</code>,This two declaration in c++ are same :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f();				<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br></pre></td></tr></table></figure>
-<p>but they are different in c:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f();				<span class="comment">//Don&#x27;t give the information of parameters ,It have chance to carrary 						//paramters</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Macro definition</p>
-<p>Macro definition may cause some error that we can't expect ,for
-example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> doub(x) x*2</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>in line 8 ,we are expecting the result is :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> doubled is <span class="number">6</span></span><br></pre></td></tr></table></figure>
-<p>but in fact ,the result is :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> <span class="keyword">double</span> is <span class="number">5</span></span><br></pre></td></tr></table></figure>
-<p>because the macro definition is replace the expression in the place
-where it is called :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>*<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
-<li><p>Inline function</p>
-<p>to avoid the unsafe of Marco definition ,We can use inline function
-to replace the macro function to achieve more safe :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>function with default value of parameters</p>
-<p>the parameters with default value must be in the right of parameters
-with no initial value:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i ,<span class="keyword">int</span> j=<span class="number">5</span>,<span class="keyword">int</span> k)</span></span>;     <span class="comment">//incorrect </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k=<span class="number">5</span>)</span></span>;      <span class="comment">//correct</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Function Overloading</p>
-<p>The same function name can be used to define different tasks</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">square</span><span class="params">(<span class="keyword">long</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">square</span><span class="params">(<span class="keyword">double</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i =<span class="number">12</span>;</span><br><span class="line">    <span class="keyword">long</span> j =<span class="number">1234</span>;</span><br><span class="line">    <span class="keyword">double</span> k =<span class="number">1.23</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;int i&#x27;quare is &quot;</span>&lt;&lt;square(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;long j&#x27;s quare is &quot;</span>&lt;&lt;square(j)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;double k&#x27;s quare is &quot;</span>&lt;&lt;square(k)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if only the type of return is not the same ,the numbers of parameter
-and the type of parameters is same,The function couldn't be
-overloaded:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;     <span class="comment">//That is incorrect ,because only the type of return is not the same </span></span><br></pre></td></tr></table></figure>
-<p>if the overloading function with default value parameter, it can be
-incorrect :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b=<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a)</span></span>;				<span class="comment">//This is also incorrect the compiler can&#x27;t decide which function should be choosed </span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="scope-operator">Scope operator ::</h1>
-<ul>
-<li><p>Priority</p>
-<p>Local variables have higher priority than global variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> avar =<span class="number">10</span>;			<span class="comment">//global variable</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> avar=<span class="number">3</span>;			<span class="comment">//local variable</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;avar is &quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>if global variables wants to be called in function ,we can add
-<code>::</code> in the front of variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;local variable&quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;global variable&quot;</span>&lt;&lt;::avar&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="union">Union</h1>
-<ul>
-<li><p>What is the Union</p>
-<p>Union is a custom type ,we can create union in two way in c:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>,<span class="title">b</span>,<span class="title">c</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//second way</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;a,b,c;</span><br></pre></td></tr></table></figure>
-<p>union's space is the largest memory footprint of all member
-,<code>int</code>,<code>char</code>,<code>double</code>,the double's
-memory footprint is largest ,so the union data's memory footprint is 8
-bits(the size of <code>double</code>)</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">short</span> m;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d,%d\n&quot;</span>,<span class="keyword">sizeof</span>(a),<span class="keyword">sizeof</span>(<span class="keyword">union</span> data));</span><br><span class="line">	a.n = <span class="number">0x40</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.ch =<span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.m = <span class="number">0x2059</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.n =<span class="number">0x3e25ad54</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>you may get the result as follows:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span>,<span class="number">4</span></span><br><span class="line"><span class="number">40</span>,@,<span class="number">40</span></span><br><span class="line"><span class="number">39</span>,<span class="number">9</span>,<span class="number">39</span></span><br><span class="line"><span class="number">2059</span>,Y,<span class="number">2059</span></span><br><span class="line"><span class="number">3E25</span>AD54,T,AD54</span><br></pre></td></tr></table></figure>
-<p>so the result prove that union members will have Influence each
-other, if you change one member's value ,the other member's value is
-changed</p></li>
-<li><p>How to store data</p>
-<p>Union 's data is shared for all member ,so one of they is changed
-,others will be effected,but the process is how to go</p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210903113323946.png" /></p></li>
-<li><p>Using union</p>
-<p>student information and teacher information is recorded by the same
-struct ,but some place are different,for example:</p>
-<table>
-<thead>
-<tr class="header">
-<th>name</th>
-<th>Num</th>
-<th>Sex</th>
-<th>Profession</th>
-<th>Score/course</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>A</td>
-<td>1</td>
-<td>f</td>
-<td>s</td>
-<td>89</td>
-</tr>
-<tr class="even">
-<td>B</td>
-<td>2</td>
-<td>m</td>
-<td>t</td>
-<td>math</td>
-</tr>
-</tbody>
-</table>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM 4</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">40</span>];</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">	<span class="keyword">char</span> pro;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">d</span>&#123;</span></span><br><span class="line">		<span class="keyword">int</span> score;</span><br><span class="line">		<span class="keyword">char</span> course[<span class="number">10</span>];</span><br><span class="line">	&#125;sc;</span><br><span class="line">&#125; bodys[NUM];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;NUM;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Please input info:&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s %d %c %c&quot;</span>,&amp;bodys[i].name,&amp;bodys[i].num,&amp;bodys[i].sex,&amp;bodys[i].pro);</span><br><span class="line">		<span class="keyword">if</span> (bodys[i].pro == <span class="string">&#x27;s&#x27;</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;bodys[i].sc.score);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%d&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.score);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;bodys[i].sc.course);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%s&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.course);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h1 id="quote">Quote</h1>
-<ul>
-<li><p>definition</p>
-<p>give variables a another name after quoted ,the two variables are
-equivalent when one of them changed ,the other will change</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i =<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;j = i;		<span class="comment">//delcare j is a integer quote ,and initialize j with i</span></span><br></pre></td></tr></table></figure>
-<p>but j definited in following way is not allowed:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> &amp;j;			<span class="comment">//incorrect j is not linked some variables</span></span><br><span class="line">j = i;</span><br></pre></td></tr></table></figure></li>
-<li><p>quote and pointer</p>
-<p>quote is another name for a variable ,but pointer is a tool pointing
-to variable</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">15</span>;</span><br><span class="line">	<span class="keyword">int</span> *iptr=&amp;i;			<span class="comment">//define a pointer </span></span><br><span class="line">	<span class="keyword">int</span> &amp;rptr = i;			<span class="comment">//define a quote </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;I is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	i=<span class="number">29</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After changing i to 29:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;i is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>quote: No need <code>&amp;</code> ,pointer : Need <code>*</code>
-.</p></li>
-<li><p>warn</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i,k;</span><br><span class="line"><span class="keyword">int</span> &amp;j =i;</span><br><span class="line">j =&amp;k;   		<span class="comment">//incorrect , delcare j is the quotation of k is not allowed </span></span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> &amp;r = <span class="number">10</span>; 	<span class="comment">//incorrect, void type is not allow </span></span><br><span class="line"><span class="keyword">int</span> &amp;r = <span class="number">10</span> ; 	<span class="comment">//incorrect,can&#x27;t assign quote &quot;r&quot; with value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t quote array</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>] = <span class="string">&quot;amd&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;a[<span class="number">4</span>] = a;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t define quotation to quotation</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r =n;</span><br><span class="line"><span class="keyword">int</span> &amp;*p = n;</span><br></pre></td></tr></table></figure></li>
-<li><p>used as parameters of function</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp =a;</span><br><span class="line">	a =b;</span><br><span class="line">	b =temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>quotation is used as formal parameter for function variable
-transfer,but it seem that we have really passed a,b into the function
-"swap"</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Android Adb Command</title>
     <url>/2021/10/24/Android-Adb-Command/</url>
     <content><![CDATA[<p>安卓小技巧</p>
@@ -300,6 +166,140 @@ href="">ipforbidden</a>模块，刷入，即可</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Length</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> meter;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		Length(<span class="keyword">int</span> m)&#123;</span><br><span class="line">			meter = m;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="function"><span class="keyword">operator</span> <span class="title">double</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="number">1</span>*meter/<span class="number">1000</span>);   <span class="comment">//这个地方一定要使用1.0,否者强制转化会导致结果出错 </span></span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="function">Length <span class="title">a</span><span class="params">(<span class="number">1500</span>)</span></span>;</span><br><span class="line">	<span class="keyword">double</span> m =<span class="keyword">float</span>(a);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;m=&quot;</span>&lt;&lt;m&lt;&lt;<span class="string">&quot;km&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意：这里<code>Length</code>返回值只能是1.0，不能是1，否者将会不准确。</p>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>C &amp;&amp; C++ (1)</title>
+    <url>/2021/09/03/C_C++/</url>
+    <content><![CDATA[<p>describe some differences between c and c++,(Function Union and
+Quote)</p>
+<span id="more"></span>
+<h1 id="function">Function</h1>
+<ul>
+<li><p>Function declaration</p>
+<p>if Function declaration's parameter is empty of
+<code>void</code>,This two declaration in c++ are same :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f();				<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br></pre></td></tr></table></figure>
+<p>but they are different in c:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f(<span class="keyword">void</span>);			<span class="comment">//This function don&#x27;t carray any parameters</span></span><br><span class="line">f();				<span class="comment">//Don&#x27;t give the information of parameters ,It have chance to carrary 						//paramters</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Macro definition</p>
+<p>Macro definition may cause some error that we can't expect ,for
+example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> doub(x) x*2</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in line 8 ,we are expecting the result is :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> doubled is <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<p>but in fact ,the result is :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">1</span>+<span class="number">2</span> <span class="keyword">double</span> is <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p>because the macro definition is replace the expression in the place
+where it is called :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>*<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>Inline function</p>
+<p>to avoid the unsafe of Marco definition ,We can use inline function
+to replace the macro function to achieve more safe :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span> ;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; doubled is &quot;</span>&lt;&lt;doub(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;1+2 doubled is &quot;</span>&lt;&lt;doub(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">doub</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*<span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>function with default value of parameters</p>
+<p>the parameters with default value must be in the right of parameters
+with no initial value:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i ,<span class="keyword">int</span> j=<span class="number">5</span>,<span class="keyword">int</span> k)</span></span>;     <span class="comment">//incorrect </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j,<span class="keyword">int</span> k=<span class="number">5</span>)</span></span>;      <span class="comment">//correct</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Function Overloading</p>
+<p>The same function name can be used to define different tasks</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">square</span><span class="params">(<span class="keyword">long</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">square</span><span class="params">(<span class="keyword">double</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> i*i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i =<span class="number">12</span>;</span><br><span class="line">    <span class="keyword">long</span> j =<span class="number">1234</span>;</span><br><span class="line">    <span class="keyword">double</span> k =<span class="number">1.23</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;int i&#x27;quare is &quot;</span>&lt;&lt;square(i)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;long j&#x27;s quare is &quot;</span>&lt;&lt;square(j)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;double k&#x27;s quare is &quot;</span>&lt;&lt;square(k)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if only the type of return is not the same ,the numbers of parameter
+and the type of parameters is same,The function couldn't be
+overloaded:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;     <span class="comment">//That is incorrect ,because only the type of return is not the same </span></span><br></pre></td></tr></table></figure>
+<p>if the overloading function with default value parameter, it can be
+incorrect :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b=<span class="number">0</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nihao</span><span class="params">(<span class="keyword">int</span> a)</span></span>;				<span class="comment">//This is also incorrect the compiler can&#x27;t decide which function should be choosed </span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="scope-operator">Scope operator ::</h1>
+<ul>
+<li><p>Priority</p>
+<p>Local variables have higher priority than global variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> avar =<span class="number">10</span>;			<span class="comment">//global variable</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> avar=<span class="number">3</span>;			<span class="comment">//local variable</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;avar is &quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>if global variables wants to be called in function ,we can add
+<code>::</code> in the front of variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;local variable&quot;</span>&lt;&lt;avar&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;global variable&quot;</span>&lt;&lt;::avar&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="union">Union</h1>
+<ul>
+<li><p>What is the Union</p>
+<p>Union is a custom type ,we can create union in two way in c:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>,<span class="title">b</span>,<span class="title">c</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//second way</span></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">double</span> f;</span><br><span class="line">&#125;a,b,c;</span><br></pre></td></tr></table></figure>
+<p>union's space is the largest memory footprint of all member
+,<code>int</code>,<code>char</code>,<code>double</code>,the double's
+memory footprint is largest ,so the union data's memory footprint is 8
+bits(the size of <code>double</code>)</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">data</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">char</span> ch;</span><br><span class="line">	<span class="keyword">short</span> m;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">data</span> <span class="title">a</span>;</span></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d,%d\n&quot;</span>,<span class="keyword">sizeof</span>(a),<span class="keyword">sizeof</span>(<span class="keyword">union</span> data));</span><br><span class="line">	a.n = <span class="number">0x40</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.ch =<span class="string">&#x27;9&#x27;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.m = <span class="number">0x2059</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	a.n =<span class="number">0x3e25ad54</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%X,%c,%hX\n&quot;</span>,a.n,a.ch,a.m);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>you may get the result as follows:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="number">4</span>,<span class="number">4</span></span><br><span class="line"><span class="number">40</span>,@,<span class="number">40</span></span><br><span class="line"><span class="number">39</span>,<span class="number">9</span>,<span class="number">39</span></span><br><span class="line"><span class="number">2059</span>,Y,<span class="number">2059</span></span><br><span class="line"><span class="number">3E25</span>AD54,T,AD54</span><br></pre></td></tr></table></figure>
+<p>so the result prove that union members will have Influence each
+other, if you change one member's value ,the other member's value is
+changed</p></li>
+<li><p>How to store data</p>
+<p>Union 's data is shared for all member ,so one of they is changed
+,others will be effected,but the process is how to go</p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20210903113323946.png" /></p></li>
+<li><p>Using union</p>
+<p>student information and teacher information is recorded by the same
+struct ,but some place are different,for example:</p>
+<table>
+<thead>
+<tr class="header">
+<th>name</th>
+<th>Num</th>
+<th>Sex</th>
+<th>Profession</th>
+<th>Score/course</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>f</td>
+<td>s</td>
+<td>89</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>2</td>
+<td>m</td>
+<td>t</td>
+<td>math</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NUM 4</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">	<span class="keyword">char</span> name[<span class="number">40</span>];</span><br><span class="line">	<span class="keyword">int</span> num;</span><br><span class="line">	<span class="keyword">char</span> sex;</span><br><span class="line">	<span class="keyword">char</span> pro;</span><br><span class="line">	<span class="class"><span class="keyword">union</span> <span class="title">d</span>&#123;</span></span><br><span class="line">		<span class="keyword">int</span> score;</span><br><span class="line">		<span class="keyword">char</span> course[<span class="number">10</span>];</span><br><span class="line">	&#125;sc;</span><br><span class="line">&#125; bodys[NUM];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;NUM;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Please input info:&quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%s %d %c %c&quot;</span>,&amp;bodys[i].name,&amp;bodys[i].num,&amp;bodys[i].sex,&amp;bodys[i].pro);</span><br><span class="line">		<span class="keyword">if</span> (bodys[i].pro == <span class="string">&#x27;s&#x27;</span>)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;bodys[i].sc.score);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%d&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.score);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%s&quot;</span>,&amp;bodys[i].sc.course);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;\n%s\t%d\t%c\t%c\t%s&quot;</span>,</span><br><span class="line">                   bodys[i].name,bodys[i].num,bodys[i].sex,bodys[i].pro,bodys[i].sc.course);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="quote">Quote</h1>
+<ul>
+<li><p>definition</p>
+<p>give variables a another name after quoted ,the two variables are
+equivalent when one of them changed ,the other will change</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i =<span class="number">5</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;j = i;		<span class="comment">//delcare j is a integer quote ,and initialize j with i</span></span><br></pre></td></tr></table></figure>
+<p>but j definited in following way is not allowed:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i;</span><br><span class="line"><span class="keyword">int</span> &amp;j;			<span class="comment">//incorrect j is not linked some variables</span></span><br><span class="line">j = i;</span><br></pre></td></tr></table></figure></li>
+<li><p>quote and pointer</p>
+<p>quote is another name for a variable ,but pointer is a tool pointing
+to variable</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">15</span>;</span><br><span class="line">	<span class="keyword">int</span> *iptr=&amp;i;			<span class="comment">//define a pointer </span></span><br><span class="line">	<span class="keyword">int</span> &amp;rptr = i;			<span class="comment">//define a quote </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;I is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	i=<span class="number">29</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;After changing i to 29:&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;i is &quot;</span>&lt;&lt;i&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;*iptr is  &quot;</span>&lt;&lt;*iptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;rptr is &quot;</span>&lt;&lt;rptr&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>quote: No need <code>&amp;</code> ,pointer : Need <code>*</code>
+.</p></li>
+<li><p>warn</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i,k;</span><br><span class="line"><span class="keyword">int</span> &amp;j =i;</span><br><span class="line">j =&amp;k;   		<span class="comment">//incorrect , delcare j is the quotation of k is not allowed </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> &amp;r = <span class="number">10</span>; 	<span class="comment">//incorrect, void type is not allow </span></span><br><span class="line"><span class="keyword">int</span> &amp;r = <span class="number">10</span> ; 	<span class="comment">//incorrect,can&#x27;t assign quote &quot;r&quot; with value</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t quote array</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>] = <span class="string">&quot;amd&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;a[<span class="number">4</span>] = a;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//can&#x27;t define quotation to quotation</span></span><br><span class="line"><span class="keyword">int</span> n=<span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;&amp; r =n;</span><br><span class="line"><span class="keyword">int</span> &amp;*p = n;</span><br></pre></td></tr></table></figure></li>
+<li><p>used as parameters of function</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a,<span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp =a;</span><br><span class="line">	a =b;</span><br><span class="line">	b =temp;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a=<span class="number">5</span>,b=<span class="number">10</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	swap(a,b);</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a=&quot;</span>&lt;&lt;a&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;<span class="string">&quot;b=&quot;</span>&lt;&lt;b;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>quotation is used as formal parameter for function variable
+transfer,but it seem that we have really passed a,b into the function
+"swap"</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	index(<span class="number">1</span>)=<span class="number">100</span>;		<span class="comment">//in fact ,because the return of funciton is not a number ,but a[i]</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;a[1]=&quot;</span>&lt;&lt;a[<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> &amp;<span class="title">index</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
       <categories>
         <category>coding</category>
@@ -501,6 +501,61 @@ max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i])
       </categories>
   </entry>
   <entry>
+    <title>数字电子基础</title>
+    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
+    <content><![CDATA[<p>一些数电不太能理解的地方</p>
+<span id="more"></span>
+<h1 id="反相器">反相器</h1>
+<h2 id="coms电路">COMS电路</h2>
+<ul>
+<li>CMOS的<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
+<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
+<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
+<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
+</ul>
+<h2 id="ttl电路">TTL电路</h2>
+<ul>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
+<li><p><a
+href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
+<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
+class="math inline">\(T_{cd}=0\)</span>的时候，将<a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
+<p>因为<span
+class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
+class="math inline">\(T_{cd}可以变大点\)</span></p></li>
+<li><p><a
+href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
+<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
+<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
+alt="输入电流特性" />
+<figcaption aria-hidden="true">输入电流特性</figcaption>
+</figure>
+<ul>
+<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
+</ul>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
+alt="TTL三态门" />
+<figcaption aria-hidden="true">TTL三态门</figcaption>
+</figure>
+<ul>
+<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
+</ul>
+]]></content>
+      <categories>
+        <category>电子</category>
+      </categories>
+  </entry>
+  <entry>
     <title>专业英语</title>
     <url>/2023/06/05/English_profess/</url>
     <content><![CDATA[<p>GANs</p>
@@ -584,61 +639,6 @@ means：“我们还与以前依赖于手动定义的样式和内容分解或共
 ]]></content>
       <categories>
         <category>code</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>数字电子基础</title>
-    <url>/2022/03/14/Digital%20Electronics%20Fundamentals/</url>
-    <content><![CDATA[<p>一些数电不太能理解的地方</p>
-<span id="more"></span>
-<h1 id="反相器">反相器</h1>
-<h2 id="coms电路">COMS电路</h2>
-<ul>
-<li>CMOS的<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=10&amp;t=1235.8">输出特性</a>,CMOS受负载的输出高低电平变化</li>
-<li><span class="math inline">\(V_{OH}\quad V_{OL}...\)</span>的取法<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=1203.6">（噪声容限）</a></li>
-<li>CMOS门不允许悬空，和地面的电阻相接不影响</li>
-<li>CMOS电路的输入端不允许悬空，因为悬空会使电位不定，破坏正常的逻辑关系。另外，悬空时输入阻抗高，易受外界噪声干扰，使电路产生误动作，而且也极易造成栅极感应静电而击穿。</li>
-</ul>
-<h2 id="ttl电路">TTL电路</h2>
-<ul>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=14&amp;t=2517.3">扇出系数的概念</a>，计算</p></li>
-<li><p><a
-href="https://baike.baidu.com/item/%E6%BC%8F%E7%94%B5%E6%B5%81/9730233">漏电流</a></p></li>
-<li><p><span class="math inline">\(T_{cd}和T_{pd}\)</span>,为什么<span
-class="math inline">\(T_{cd}=0\)</span>的时候，将<a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=1258.7">无法信任电平</a>？</p>
-<p>因为<span
-class="math inline">\(T_{cd}=0\)</span>，表面一旦高电平降低，那么电路进入无效区，这时候就需要重新，<span
-class="math inline">\(T_{cd}可以变大点\)</span></p></li>
-<li><p><a
-href="https://www.bilibili.com/video/BV18p411Z7ce?p=15&amp;t=2038.4">交流噪声容限</a>(是指噪声信号是高频吗？)</p></li>
-<li><p>TTL电源不允许大幅调整，不允许超过10%</p></li>
-<li><p>TTL电路输入端通过电阻接地，电阻值R的大小直接影响电路所处的状态。</p></li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314165358358.png"
-alt="输入电流特性" />
-<figcaption aria-hidden="true">输入电流特性</figcaption>
-</figure>
-<ul>
-<li>OC门上拉电阻的选择，不能太大，是担心输出高电平的时候不能输出高电平，不能太小，是因为担心输出低电平的时候电流太大损坏管子（最坏的情况，只有一个管子接地），高电平的时候内阻近视为上拉电阻，而低电平的时候内阻相当于管子的阻抗，这时要求内阻较小</li>
-</ul>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20220314172656223.png"
-alt="TTL三态门" />
-<figcaption aria-hidden="true">TTL三态门</figcaption>
-</figure>
-<ul>
-<li>OC门和OD的优势：电平偏移，也就是说，输出的电平可以通过上拉电阻来调整</li>
-</ul>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -744,21 +744,6 @@ ChatGPT（一）：十分钟读懂 Transformer - 知乎</a></p>
       </categories>
   </entry>
   <entry>
-    <title>LinkWe Technology</title>
-    <url>/2021/10/08/LinkWe/</url>
-    <content><![CDATA[<p>LinkWe Technology product</p>
-<span id="more"></span>
-<div class="link-grid"><div class="link-grid-container">
-<object class="link-grid-image" data="/images/linkwe.png"></object>
-<p>零维科技官网</p><p>一群有梦想的年轻人</p>
-<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
-</div></div>
-]]></content>
-      <categories>
-        <category>Product design</category>
-      </categories>
-  </entry>
-  <entry>
     <title>毛概实践课</title>
     <url>/2022/06/10/Introduction%20to%20Mao%20Zedong%20Thought/</url>
     <content><![CDATA[<p>毛概实践课🤗</p>
@@ -790,114 +775,18 @@ alt="被删除视频" />
       </categories>
   </entry>
   <entry>
-    <title>Pointer</title>
-    <url>/2021/09/03/Point/</url>
-    <content><![CDATA[<p>Review the knowledge of pointers</p>
+    <title>LinkWe Technology</title>
+    <url>/2021/10/08/LinkWe/</url>
+    <content><![CDATA[<p>LinkWe Technology product</p>
 <span id="more"></span>
-<h1 id="pointer-category">Pointer Category</h1>
-<ul>
-<li><p>Pointer point the constant:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *name = <span class="string">&quot;chen&quot;</span>    <span class="comment">//statement a pointer point a constant</span></span><br></pre></td></tr></table></figure>
-<p>because using <code>const</code>,so the Pointer can't change variable
-in the address which it point ,so the statement as follows is incorrect
-:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;a&#x27;</span>					<span class="comment">//incorrect,pointer &quot;name&quot; can&#x27;t change constant </span></span><br></pre></td></tr></table></figure>
-<p>but name is a normal pointer ,so it could change the items it
-point,statement as follows are correct:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>				<span class="comment">//change the address the pointer point ,correct</span></span><br></pre></td></tr></table></figure>
-<p>Also,Even you have changed your string you point ,you still can't
-change the string, Please somebody tell me why ,Thank you !</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;y&#x27;</span>					<span class="comment">//incorrect,but I don&#x27;t know why!</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Constant Pointer</p>
-<p>A pointer can't change the address it point ,but it still can change
-the content it point,example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">const</span> name =<span class="string">&quot;chen&quot;</span>;     <span class="comment">//define a constant pointer</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;					<span class="comment">//correct ,it can change the constent of pointer</span></span><br><span class="line">name = <span class="string">&quot;zhang&quot;</span>;					<span class="comment">//incorrect ,it can&#x27;t change the address it points</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Constant Pointer points to constant</p>
-<p>A constant pointer points a constant ,the address pointer point is
-unchangeable and the content of address is unchangeable,example :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> name=<span class="string">&quot;chen&quot;</span>;	<span class="comment">//define a constant pointer point the constant</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;q&#x27;</span>;					<span class="comment">//incorrect ,the constant is unchangeable</span></span><br><span class="line">name =<span class="string">&#x27;ninglang&#x27;</span>;				<span class="comment">//incorrect ,the address pointed is unchangeable </span></span><br></pre></td></tr></table></figure></li>
-<li><p>Const</p>
-<p>Using a const to define a <code>integer</code> variable ,the keyword
-omitted is acceptable the definition as following is same:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
-<p>formal parameters also can be describe by <code>const</code>,for
-example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
-<p>the method promise the array can't be changed ,only be read.</p></li>
-</ul>
-<h1 id="pointer-array">Pointer array</h1>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>in fact , you see the definition of Pointer array ,It is like as
-follows:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
-<p>At the same time :</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
-<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
-so we can use the code to print 'a'</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="pointer-function">Pointer Function</h1>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
-<p>This function declaration is normal ,but There are some difference in
-next function declaration</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
-<p>This function declaration is pointer function ,the return is a
-pointer to <code>int</code> ,This is an address</p>
-<h1 id="pointer-to-function">Pointer To Function</h1>
-<p>To state a pointer to function ,which is a Pointer pointing function
-.declaration form:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
-<p>There are two ways to assign values to pointer variables</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
-<p>There are also two ways to call pointer to function</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
-<p>Example:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="new-and-delete">New and Delete</h1>
-<p>operation <code>new</code> can get a space from heap and return the
-pointer to point the first address of the memory,and <code>delete</code>
-can free the space</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
-<p><code>new</code> assign space for multidimensional array:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
-<p><code>new</code> assign space with initial value:</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
+<div class="link-grid"><div class="link-grid-container">
+<object class="link-grid-image" data="/images/linkwe.png"></object>
+<p>零维科技官网</p><p>一群有梦想的年轻人</p>
+<a href="http://yzmninglang.gitee.io/link-we/index.html"></a>
+</div></div>
 ]]></content>
       <categories>
-        <category>coding</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>保研注意事项</title>
-    <url>/2023/06/13/Postgraduate/</url>
-    <content><![CDATA[<p>保研注意事项</p>
-<span id="more"></span>
-<ul>
-<li>浙江大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
-- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
-<ul>
-<li>南京大学（<strong>6月15日结束</strong>）</li>
-</ul>
-<p><a
-href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
-- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
-<p><a
-href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
-<p><a
-href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
-]]></content>
-      <categories>
-        <category>生活</category>
+        <category>Product design</category>
       </categories>
   </entry>
   <entry>
@@ -1049,6 +938,168 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
+    <title>Pointer</title>
+    <url>/2021/09/03/Point/</url>
+    <content><![CDATA[<p>Review the knowledge of pointers</p>
+<span id="more"></span>
+<h1 id="pointer-category">Pointer Category</h1>
+<ul>
+<li><p>Pointer point the constant:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *name = <span class="string">&quot;chen&quot;</span>    <span class="comment">//statement a pointer point a constant</span></span><br></pre></td></tr></table></figure>
+<p>because using <code>const</code>,so the Pointer can't change variable
+in the address which it point ,so the statement as follows is incorrect
+:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;a&#x27;</span>					<span class="comment">//incorrect,pointer &quot;name&quot; can&#x27;t change constant </span></span><br></pre></td></tr></table></figure>
+<p>but name is a normal pointer ,so it could change the items it
+point,statement as follows are correct:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name = <span class="string">&#x27;zhang&#x27;</span>				<span class="comment">//change the address the pointer point ,correct</span></span><br></pre></td></tr></table></figure>
+<p>Also,Even you have changed your string you point ,you still can't
+change the string, Please somebody tell me why ,Thank you !</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">name[<span class="number">3</span>]=<span class="string">&#x27;y&#x27;</span>					<span class="comment">//incorrect,but I don&#x27;t know why!</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Constant Pointer</p>
+<p>A pointer can't change the address it point ,but it still can change
+the content it point,example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *<span class="keyword">const</span> name =<span class="string">&quot;chen&quot;</span>;     <span class="comment">//define a constant pointer</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;a&#x27;</span>;					<span class="comment">//correct ,it can change the constent of pointer</span></span><br><span class="line">name = <span class="string">&quot;zhang&quot;</span>;					<span class="comment">//incorrect ,it can&#x27;t change the address it points</span></span><br></pre></td></tr></table></figure></li>
+<li><p>Constant Pointer points to constant</p>
+<p>A constant pointer points a constant ,the address pointer point is
+unchangeable and the content of address is unchangeable,example :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *<span class="keyword">const</span> name=<span class="string">&quot;chen&quot;</span>;	<span class="comment">//define a constant pointer point the constant</span></span><br><span class="line">name[<span class="number">3</span>] = <span class="string">&#x27;q&#x27;</span>;					<span class="comment">//incorrect ,the constant is unchangeable</span></span><br><span class="line">name =<span class="string">&#x27;ninglang&#x27;</span>;				<span class="comment">//incorrect ,the address pointed is unchangeable </span></span><br></pre></td></tr></table></figure></li>
+<li><p>Const</p>
+<p>Using a const to define a <code>integer</code> variable ,the keyword
+omitted is acceptable the definition as following is same:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> LIMITS = <span class="number">100</span>;</span><br><span class="line"><span class="keyword">const</span> LIMITS = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+<p>formal parameters also can be describe by <code>const</code>,for
+example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">MAX</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span>*ptr)</span></span></span><br></pre></td></tr></table></figure>
+<p>the method promise the array can't be changed ,only be read.</p></li>
+</ul>
+<h1 id="pointer-array">Pointer array</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> *pArr = arr[<span class="number">0</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string array arr&#x27;s element :&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index=<span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s&quot;</span>,arr[index]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The string arr&#x27;s first element&#x27;s every element:&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> index = <span class="number">0</span>;index&lt;<span class="number">3</span>;index++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,*(pArr+index));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>in fact , you see the definition of Pointer array ,It is like as
+follows:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>]=&#123;<span class="string">&#x27;abc&#x27;</span>,<span class="string">&#x27;def&#x27;</span>,<span class="string">&#x27;ghi&#x27;</span>&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">char</span> *pChar1 = <span class="string">&#x27;abc&#x27;</span>,*pChar2 = <span class="string">&#x27;def&#x27;</span>,*pChar3=<span class="string">&#x27;ghi&#x27;</span></span><br><span class="line"><span class="keyword">char</span> *arr[<span class="number">3</span>] = &#123;pChar1,pChar2,pChar3&#125;;</span><br></pre></td></tr></table></figure>
+<p>At the same time :</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">arr[<span class="number">0</span>] = pChar;   <span class="comment">//the arr first element is the pointer pChar</span></span><br></pre></td></tr></table></figure>
+<p>and the <code>pChar</code> is pointing the 'abc''s first element 'a',
+so we can use the code to print 'a'</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,pChar[<span class="number">0</span>]);   <span class="comment">//print &#x27;a&#x27;</span></span><br><span class="line"><span class="comment">// print&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c &quot;</span>,pChar[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="pointer-function">Pointer Function</h1>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>;			<span class="comment">//normal function return integers</span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is normal ,but There are some difference in
+next function declaration</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br></pre></td></tr></table></figure>
+<p>This function declaration is pointer function ,the return is a
+pointer to <code>int</code> ,This is an address</p>
+<h1 id="pointer-to-function">Pointer To Function</h1>
+<p>To state a pointer to function ,which is a Pointer pointing function
+.declaration form:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span><br></pre></td></tr></table></figure>
+<p>There are two ways to assign values to pointer variables</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">fun = &amp;function;</span><br><span class="line">fun = function;</span><br></pre></td></tr></table></figure>
+<p>There are also two ways to call pointer to function</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">x=(*fun)();</span><br><span class="line">x=fun();</span><br></pre></td></tr></table></figure>
+<p>Example:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sub</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> (*fun)(<span class="keyword">int</span> x,<span class="keyword">int</span> y);</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//first kind </span></span><br><span class="line">	fun = add;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(1,2)=&quot;</span>&lt;&lt;(*fun)(<span class="number">1</span>,<span class="number">2</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//second kind</span></span><br><span class="line">	fun = &amp;sub;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;(*fun)(5,3)=&quot;</span>&lt;&lt;(*fun)(<span class="number">5</span>,<span class="number">3</span>)&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;fun(<span class="number">5</span>,<span class="number">3</span>);</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="new-and-delete">New and Delete</h1>
+<p>operation <code>new</code> can get a space from heap and return the
+pointer to point the first address of the memory,and <code>delete</code>
+can free the space</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> *p;</span><br><span class="line">p = <span class="keyword">new</span> <span class="keyword">int</span> ; <span class="comment">//new dynamically allocate an integer memory space,assign the first address to pointer variable</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> p;   	<span class="comment">//free the space allocated by new</span></span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space for multidimensional array:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> *pi = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+<p><code>new</code> assign space with initial value:</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> *p;</span><br><span class="line">	p = <span class="keyword">new</span> <span class="keyword">int</span>(<span class="number">99</span>);      <span class="comment">//initial value</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;*p;</span><br><span class="line">	<span class="keyword">delete</span> p;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="malloc-free-get-space">Malloc &amp;&amp; Free get space</h1>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>保研注意事项</title>
+    <url>/2023/06/13/Postgraduate/</url>
+    <content><![CDATA[<p>保研注意事项</p>
+<span id="more"></span>
+<ul>
+<li>浙江大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198589&amp;highlight=%E6%B5%99%E6%B1%9F%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">浙江大学信息与电子工程学院2023年暑期学术夏令营
+- 浙江大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="http://www.isee.zju.edu.cn/2023/0517/c21109a2758376/page.htm">浙江大学信息与电子工程学院2023年全国优秀大学生暑期学术夏令营活动通知</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160017.png" /></p>
+<ul>
+<li>南京大学（<strong>6月15日结束</strong>）</li>
+</ul>
+<p><a
+href="https://www.eeban.com/forum.php?mod=viewthread&amp;tid=198591&amp;highlight=%E5%8D%97%E4%BA%AC%E5%A4%A7%E5%AD%A6%2B%E7%94%B5%E5%AD%90">2023年南京大学电子科学与工程学院优秀大学生夏令营
+- 南京大学 - 保研论坛-保研经验分享 - Powered by Discuz!</a></p>
+<p><a
+href="https://ese.nju.edu.cn/89/9b/c22538a625051/page.htm">2023年南京大学电子科学与工程学院优秀大学生夏令营报名通知</a></p>
+<p><a
+href="https://table.nju.edu.cn/dtable/forms/6364632e-24f5-4972-9737-5c1b11e49ef6/">2023年南京大学电子科学与工程学院夏令营报名</a></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/20230613160326.png" /></p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python 机器学习</title>
+    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
+    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+<span id="more"></span>
+<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
+<p>项目使用树莓派4B，具体流程如下</p>
+<ul>
+<li>下载<a
+href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
+href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
+<li>下载<a
+href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
+href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
+<li>或者使用<a
+href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
+href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
+<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
+</ul>
+<ol type="1">
+<li>修改<code>deb</code>镜像源</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
+<p>请不要修改,这个网址专为树莓定制</p>
+<p>pip永久换源(win和linux通用)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
+<p>也可以这样换源</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
+<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
+<ul>
+<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
+<li>首先去<a
+href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
+<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
+<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
+</ul>
+<p>安装多线程工具<code>axel</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
+<p>下载方式</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>coding</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Qt</title>
     <url>/2021/09/20/Qt1/</url>
     <content><![CDATA[<p>Qt问题总汇</p>
@@ -1106,54 +1157,36 @@ figure,see whether it is overfit or not ?</li>
       </categories>
   </entry>
   <entry>
-    <title>Python 机器学习</title>
-    <url>/2022/01/19/Python%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB/</url>
-    <content><![CDATA[<p>下面是本人总结的Python机器学习-图像处理的步骤</p>
+    <title>DSP</title>
+    <url>/2022/03/14/Signals%20and%20Systems/</url>
+    <content><![CDATA[<p>信号与系统笔记</p>
+<p>DSP相关讨论</p>
 <span id="more"></span>
-<h1 id="环境配置垃圾分类项目">环境配置（垃圾分类项目）</h1>
-<p>项目使用树莓派4B，具体流程如下</p>
-<ul>
-<li>下载<a
-href="https://ninglang.lanzoup.com/ilCsRyzoo7e">win32_disk_imager</a>,烧录<a
-href="https://pan.baidu.com/s/1wfXBpk6R3wdQg5n0t9gdpg?pwd=969m">镜像</a>,在BOOT分区下建立文件名为<code>SSH</code>的文件，无后缀</li>
-<li>下载<a
-href="https://ninglang.lanzoup.com/i16xuyzp40d">PUTTY</a>(记得将后缀<code>it</code>删除)和<a
-href="https://ninglang.lanzoup.com/iDj5nyzp46j">VNC</a></li>
-<li>或者使用<a
-href="https://ninglang.lanzoup.com/itIFAz1bd4j">xshell</a>和<a
-href="https://ninglang.lanzoup.com/in19iz1b7ze">xftp</a>操作</li>
-<li>使用SSH连接树莓派，树莓派自带Python3和Python2，使用pip配置环境</li>
-</ul>
+<h1 id="常用指令">常用指令</h1>
 <ol type="1">
-<li>修改<code>deb</code>镜像源</li>
+<li>导出时设置颜色为透明色:</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line">deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
-<p>修改树莓派pip源。请记住，<code>/etc/pip.conf</code>,里面默认是</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">extra-index-url=https://www.piwheels.org/simple</span><br></pre></td></tr></table></figure>
-<p>请不要修改,这个网址专为树莓定制</p>
-<p>pip永久换源(win和linux通用)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
-<p>linux里面的永久源的地址为<code>/home/pi/.config/pip/pip.conf</code>,需要修改可以直接编辑</p>
-<p>也可以这样换源</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.pip</span><br><span class="line">vim ~/.pip/pip.conf</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">timeout=100</span><br><span class="line">index-url=https://pypi.tuna.tsinghua.edu.cn/simple/</span><br><span class="line">extra-index-url= http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">[install]</span><br><span class="line">trusted-host=</span><br><span class="line">        pypi.tuna.tsinghua.edu.cn</span><br><span class="line">        mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
-<p>这里的<code>trusted-host</code>只有当链接不是https时需要，即将阿里云的网站改为</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">extra-index-url= https://mirrors.aliyun.com/pypi/simple</span><br></pre></td></tr></table></figure>
-<h2 id="ubuntu配置opencv">ubuntu配置opencv</h2>
-<ul>
-<li>网上所有的教程都无法直接成功，所以，个人的踩坑经历</li>
-<li>首先去<a
-href="https://www.piwheels.org/project/opencv-python/">opencv-python</a>下载对应Python版本的opencv</li>
-<li>然后移入树莓派中，使用<code>pip3 install ...whl</code>即可成功</li>
-<li>很多的包都有这个特点，所以，要注意这个点，当自己的树莓派无法安装时，可以考虑这个专门为树莓派做的网站</li>
-</ul>
-<p>安装多线程工具<code>axel</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install axel</span><br></pre></td></tr></table></figure>
-<p>下载方式</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">axel 参数 文件下载地址</span><br><span class="line">常用可选参数：</span><br><span class="line">-s   设置最大下载速度，如果限制到512KB/s，则填写512000</span><br><span class="line">-n   指定连接数</span><br><span class="line">-o   指定另存为目录，或者指定的目录+文件名</span><br><span class="line">-H   指定header</span><br><span class="line">-U 指定useragent</span><br><span class="line">-q   静默模式</span><br><span class="line">-a   更改默认进度条样式</span><br><span class="line"></span><br><span class="line">eg:</span><br><span class="line">axel -n 30 http://archive.cloudera.com/cm5/cm/5/cloudera-manager-centos7-cm5.15.2_x86_64.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<ol start="2" type="1">
+<li>设置matlab图像默认为白色：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<ol start="3" type="1">
+<li>设置动画：</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
+<ol start="4" type="1">
+<li>设置latex显示</li>
+</ol>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
+<ol start="5" type="1">
+<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
+</ol>
+<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<p>​</p>
 ]]></content>
       <categories>
-        <category>coding</category>
+        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -1515,39 +1548,6 @@ W_{\text {long }}=\frac{2 W_{L}+W_{\text {city }}(T)}{2 L / v_{\text
 ]]></content>
       <categories>
         <category>Math model</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>DSP</title>
-    <url>/2022/03/14/Signals%20and%20Systems/</url>
-    <content><![CDATA[<p>信号与系统笔记</p>
-<p>DSP相关讨论</p>
-<span id="more"></span>
-<h1 id="常用指令">常用指令</h1>
-<ol type="1">
-<li>导出时设置颜色为透明色:</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(gca,<span class="string">&#x27;color&#x27;</span>,<span class="string">&#x27;none&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<ol start="2" type="1">
-<li>设置matlab图像默认为白色：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(<span class="number">0</span>,<span class="string">&#x27;defaultfigurecolor&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<ol start="3" type="1">
-<li>设置动画：</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 画一下sinc函数随着参数变化时的图像变化</span></span><br><span class="line">fig = <span class="built_in">figure</span>;</span><br><span class="line"><span class="comment">% x = linspace(0, 2*pi, 100);</span></span><br><span class="line">t=<span class="number">-3</span>:<span class="number">0.001</span>:<span class="number">3</span>;</span><br><span class="line">im = cell(<span class="number">1</span>, <span class="number">20</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">15</span></span><br><span class="line"></span><br><span class="line">    clf(fig);</span><br><span class="line">    dis=<span class="number">0.8</span>;</span><br><span class="line">    func1= sinc_me(t,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    func2= sinc_me(t<span class="number">-0.02</span>*<span class="built_in">pi</span>,<span class="number">10</span>*<span class="built_in">i</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1);</span><br><span class="line">    <span class="built_in">hold</span> on;</span><br><span class="line">    <span class="built_in">plot</span>(t,func2);</span><br><span class="line">    <span class="built_in">legend</span>(<span class="string">&#x27;N=10&#x27;</span>,<span class="string">&#x27;N=10&#x27;</span>);</span><br><span class="line">    subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line">    <span class="built_in">plot</span>(t,func1+func2);</span><br><span class="line">    set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>, num2str(<span class="built_in">i</span>));</span><br><span class="line">    <span class="built_in">hold</span> off;</span><br><span class="line">    <span class="comment">% plot(x, y, &#x27;Color&#x27;, all_colors(1, :), &#x27;LineWidth&#x27;, 2);</span></span><br><span class="line">    <span class="comment">% xlim([0, 2*pi]);</span></span><br><span class="line">    pause();</span><br><span class="line">    <span class="comment">% 注释下面两句话可以看到动态输出</span></span><br><span class="line">    <span class="comment">% frame = getframe(fig);</span></span><br><span class="line">    <span class="comment">% im&#123;i&#125; = frame2im(frame);</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 下面是保存成 gif</span></span><br><span class="line"><span class="comment">% filename = &#x27;./Matlab_2_7_6_Curve_Animation1.gif&#x27;; </span></span><br><span class="line"><span class="comment">% for idx = 1:20</span></span><br><span class="line"><span class="comment">%     % 制作gif文件，图像必须是index索引图像</span></span><br><span class="line"><span class="comment">%     [A, map] = rgb2ind(im&#123;idx&#125;, 256);</span></span><br><span class="line"><span class="comment">%     if idx == 1</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;LoopCount&#x27;, Inf, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     else</span></span><br><span class="line"><span class="comment">%         imwrite(A, map, filename, &#x27;gif&#x27;, &#x27;WriteMode&#x27;, &#x27;append&#x27;, &#x27;DelayTime&#x27;, 0.3);</span></span><br><span class="line"><span class="comment">%     end</span></span><br><span class="line"><span class="comment">% end</span></span><br></pre></td></tr></table></figure>
-<ol start="4" type="1">
-<li>设置latex显示</li>
-</ol>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">set(get(gca, <span class="string">&#x27;Title&#x27;</span>), <span class="string">&#x27;String&#x27;</span>,<span class="string">&#x27;$x_1(k)$&#x27;</span>, <span class="string">&#x27;interpreter&#x27;</span>,<span class="string">&#x27;latex&#x27;</span>,<span class="string">&#x27;Fontsize&#x27;</span>,<span class="number">18</span>);</span><br></pre></td></tr></table></figure>
-<ol start="5" type="1">
-<li>设置画布大小（其中0.7和0.6是画布的长和宽）</li>
-</ol>
-<figure class="highlight mathematica"><table><tr><td class="code"><pre><span class="line"><span class="variable">figure</span><span class="punctuation">(</span><span class="operator">&#x27;</span><span class="variable">units</span><span class="operator">&#x27;,&#x27;</span><span class="variable">normalized</span><span class="operator">&#x27;,&#x27;</span><span class="variable">position</span><span class="operator">&#x27;,</span><span class="punctuation">[</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.1</span><span class="operator">,</span><span class="number">0.7</span><span class="operator">,</span><span class="number">0.6</span><span class="punctuation">]</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<p>​</p>
-]]></content>
-      <categories>
-        <category>电子</category>
       </categories>
   </entry>
   <entry>
@@ -2355,68 +2355,6 @@ verbose详细显示，-f file文件属性）</p>
       </categories>
   </entry>
   <entry>
-    <title>ikuai搭建seafile-docker</title>
-    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
-<span id="more"></span>
-<h1 id="step1-安装seafile-docker">step1： 安装seafile-docker</h1>
-<p>下载<code>seafileltd/seafile:latest</code>镜像</p>
-<figure>
-<img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png"
-alt="image-20240120202506712" />
-<figcaption aria-hidden="true">image-20240120202506712</figcaption>
-</figure>
-<p>在容器设置中挂载目录</p>
-<ul>
-<li><code>/shared</code></li>
-</ul>
-<p>如下环境变量设置账号和密码</p>
-<ul>
-<li><code>SEAFILE_ADMIN_EMAIL</code></li>
-<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
-</ul>
-<h1 id="step2安装-iputils-ping">step2：安装 iputils-ping</h1>
-<p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
-<p><strong>1.更新apt包</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
-<p><strong>2.安装iputils-ping</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
-<p><strong>3.测试ping百度</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
-<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
-<p><strong>4.修改ping.sh为可执行文件</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
-<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
-<p><img
-src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png"
-alt="image-20240120203717758" /><strong>6.修改自启动脚本</strong></p>
-<p>在<code>/root/.bashrc</code>中追加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo "Seafile server started"</code>的前面.</p>
-<h1 id="step3设置nginx反向代理">step3：设置nginx反向代理</h1>
-<p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><strong>2.测试文件格式正常</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
-<p>重启docker容器</p>
-<h1 id="step4设置seafile">step4：设置seafile</h1>
-<p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
-<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
-<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
-<h1 id="step5设置seafdav">step5：设置seafdav</h1>
-<p>设置<code>/conf/seafdav.conf</code>中为</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
-<p>在手机端设置</p>
-<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
-<p>账号密码如实填写</p>
-]]></content>
-      <categories>
-        <category>Code</category>
-      </categories>
-  </entry>
-  <entry>
     <title>移动通信三级项目</title>
     <url>/2023/06/06/mobile/</url>
     <content><![CDATA[<p>移动通信</p>
@@ -2544,6 +2482,68 @@ href="https://blog.csdn.net/m0_51961114/article/details/120699238">(34条消息)
 ]]></content>
       <categories>
         <category>code</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ikuai搭建seafile-docker</title>
+    <url>/2024/01/20/seafile6.3.4%E7%88%B1%E5%BF%AB%E7%B3%BB%E7%BB%9F%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>这是一篇有关使用ikuai搭建6.3.4的博客，并且实现了ipv6的访问</p>
+<span id="more"></span>
+<h1 id="step1-安装seafile-docker">step1： 安装seafile-docker</h1>
+<p>下载<code>seafileltd/seafile:latest</code>镜像</p>
+<figure>
+<img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120202506712.png"
+alt="image-20240120202506712" />
+<figcaption aria-hidden="true">image-20240120202506712</figcaption>
+</figure>
+<p>在容器设置中挂载目录</p>
+<ul>
+<li><code>/shared</code></li>
+</ul>
+<p>如下环境变量设置账号和密码</p>
+<ul>
+<li><code>SEAFILE_ADMIN_EMAIL</code></li>
+<li><code>SEAFILE_ADMIN_PASSWORD</code></li>
+</ul>
+<h1 id="step2安装-iputils-ping">step2：安装 iputils-ping</h1>
+<p>因为docker中的ipv6如果不往外界发出信号，路由是无法知道该容器的ipv6地址,所以需要安装ping工具每隔一段时间不断发包，表示心跳</p>
+<p><strong>1.更新apt包</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt update</span><br></pre></td></tr></table></figure>
+<p><strong>2.安装iputils-ping</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install -y iputils-ping</span><br></pre></td></tr></table></figure>
+<p><strong>3.测试ping百度</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ping -6 -c 1 www.baidu.com</span><br></pre></td></tr></table></figure>
+<p><strong>3.编写<code>/root/script/ping.sh</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ping -c 1 -6  www.baidu.com &gt; /dev/null</span><br><span class="line">    sleep 15</span><br><span class="line"><span class="keyword">done</span> &amp;</span><br></pre></td></tr></table></figure>
+<p><strong>4.修改ping.sh为可执行文件</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chmod +x /root/script/ping.sh</span><br></pre></td></tr></table></figure>
+<p><strong>5.测试脚本执行情况：如下执行成功</strong></p>
+<p><img
+src="https://picturnl.oss-cn-shanghai.aliyuncs.com/image-20240120203717758.png"
+alt="image-20240120203717758" /><strong>6.修改自启动脚本</strong></p>
+<p>在<code>/root/.bashrc</code>中追加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f /root/script/ping.sh ]; <span class="keyword">then</span></span><br><span class="line">      /root/script/ping.sh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>一般而言，由于seafile不自动开bash，因此，建议将上述加入.bashrc加入到<code>seafile-server-latest/seafile.sh</code>中，添加到<code>echo "Seafile server started"</code>的前面.</p>
+<h1 id="step3设置nginx反向代理">step3：设置nginx反向代理</h1>
+<p><strong>1.创建<code>/etc/nginx/conf.d/seafile.conf</code>，内容如下</strong></p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> [::]:<span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> seafile.ninglang.fun;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For $remote_addr;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">         <span class="attribute">proxy_pass</span>         http://127.0.0.1:8000;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   Host $host;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Real-IP $remote_addr;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">         <span class="attribute">proxy_set_header</span>   X-Forwarded-Host $server_name;</span><br><span class="line">         <span class="attribute">proxy_read_timeout</span>  <span class="number">1200s</span>;</span><br><span class="line"></span><br><span class="line">         <span class="comment"># used for view/edit office file via Office Online Server</span></span><br><span class="line">         <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">         <span class="attribute">access_log</span>      /var/log/nginx/seahub.access.log;</span><br><span class="line">         <span class="attribute">error_log</span>       /var/log/nginx/seahub.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> /seafhttp &#123;</span><br><span class="line">        <span class="attribute">rewrite</span><span class="regexp"> ^/seafhttp(.*)$</span> <span class="variable">$1</span> <span class="literal">break</span>;</span><br><span class="line">        <span class="attribute">proxy_pass</span> http://127.0.0.1:8082;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_set_header</span>   X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> /seafdav &#123;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span>    <span class="number">127.0.0.1:8080</span>;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SCRIPT_FILENAME     $document_root$fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   PATH_INFO           $fastcgi_script_name;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PROTOCOL     $server_protocol;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   QUERY_STRING        $query_string;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   REQUEST_METHOD      $request_method;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_TYPE        $content_type;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   CONTENT_LENGTH      $content_length;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_ADDR         $server_addr;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_PORT         $server_port;</span><br><span class="line">        <span class="attribute">fastcgi_param</span>   SERVER_NAME         $server_name;</span><br><span class="line">        <span class="attribute">client_max_body_size</span> <span class="number">0</span>;</span><br><span class="line">        <span class="attribute">proxy_connect_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_read_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">proxy_send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line">        <span class="attribute">send_timeout</span>  <span class="number">36000s</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment"># This option is only available for Nginx &gt;= 1.8.0. See more details below.</span></span><br><span class="line">        <span class="attribute">proxy_request_buffering</span> <span class="literal">off</span>;</span><br><span class="line">        <span class="attribute">access_log</span>      /var/log/nginx/seafdav.access.log;</span><br><span class="line">        <span class="attribute">error_log</span>       /var/log/nginx/seafdav.<span class="literal">error</span>.log;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2.测试文件格式正常</strong></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nginx -t</span><br><span class="line"></span><br><span class="line"><span class="comment">#nginx: the configuration file /etc/nginx/nginx.conf syntax is ok</span></span><br><span class="line"><span class="comment">#nginx: configuration file /etc/nginx/nginx.conf test is successful</span></span><br></pre></td></tr></table></figure>
+<p>重启docker容器</p>
+<h1 id="step4设置seafile">step4：设置seafile</h1>
+<p>修改<code>SERVICE_URL</code>和<code>FILE_SERVER_ROOT</code></p>
+<p><code>SERVICE_URL</code>:<code>http://seafile.ninglang.fun</code></p>
+<p><code>FILE_SERVER_ROOT</code>:<code>http://seafile.ninglang.fun/seafhttp</code></p>
+<h1 id="step5设置seafdav">step5：设置seafdav</h1>
+<p>设置<code>/conf/seafdav.conf</code>中为</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">enabled</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">port</span> <span class="string">=</span> <span class="number">8080</span></span><br><span class="line"><span class="string">fastcgi</span> <span class="string">=</span> <span class="literal">true</span></span><br><span class="line"><span class="string">share_name</span> <span class="string">=</span> <span class="string">/seafdav</span></span><br></pre></td></tr></table></figure>
+<p>在手机端设置</p>
+<p><code>网络地址</code>:<code>seafile.ninglang.fun/seafdav</code></p>
+<p>账号密码如实填写</p>
+]]></content>
+      <categories>
+        <category>Code</category>
       </categories>
   </entry>
   <entry>
